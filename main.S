@@ -81,15 +81,15 @@ main_lupe_tcidu_lupe_co_barda:
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_j_t2)
 	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
-	#define	pagbu_ctr_t6	t6
-	li	pagbu_ctr_t6,	3
+	#define	pagbu_ctr_t4	t4
+	li	pagbu_ctr_t4,	3
 main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	(datni_cur_j_a3)
-	addi	pagbu_ctr_t6,	pagbu_ctr_t6,	-1
+	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
 	lw	datni_t3,	(datni_j_t2)
 	addi	datni_j_t2,	datni_j_t2,	4
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
-	bnez	pagbu_ctr_t6,	main_lupe_tcidu_lupe_co_cmalu
+	bnez	pagbu_ctr_t4,	main_lupe_tcidu_lupe_co_cmalu
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	ctr_a0,	ctr_a0,	-1
 	addi	judri_idx_j_a1,	judri_idx_j_a1,	4
