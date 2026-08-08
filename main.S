@@ -16,6 +16,7 @@ patton:	.word	1,	2,	3,	4, \
 # .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
 # .i le vo moi cu jai .indika tu'a lo zgitci
 # .i le mu moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
+# .i le xa moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
 cur: .word	0, 				# 0 \
 		0,				# 1 \
 		0,	0,	0,	0, 	# 5 \
@@ -23,7 +24,7 @@ cur: .word	0, 				# 0 \
 		0,	0,	0,	0
 
 #define	CUR_XOSC_SNIDU	1
-#define	CUR_DENPA_INST(x)	4 * (10 + x)
+#define	CUR_DENPA_INST(x)	4 * (2 + x)
 
 .global main
 
