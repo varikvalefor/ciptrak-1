@@ -21,10 +21,13 @@ cur: .word	0, 				# 0 \
 		0,				# 1 \
 		0,	0,	0,	0, 	# 5 \
 		0,	0,	0,	0, 	# 9 \
-		0,	0,	0,	0
+		0,	0,	0,	0,	# 13 / 0xD
+		0,	0,	0,	0	# 17 / 0x11
 
 #define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
+#define	CUR_PATN_SEZVATI(x)	4 * (10 + x)
+#define	CUR_PATN_JUDRI(x)	4 * (14 + x)
 
 .global main
 
