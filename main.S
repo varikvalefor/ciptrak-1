@@ -184,5 +184,10 @@ zgitci_frob:
 	beqz	a0,	zgitci_frob_mapti_0
 	ret
 zgitci_frob_mapti_0:
+	li	t1,	1
+	bneq	a0,	t1,	zgtici_frob_check_2
+	# PWM
+	ret
+zgitci_frob_check_2:
 	# todo
 	ret
