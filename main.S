@@ -202,9 +202,9 @@ zgitci_frob_mapti_0:
 	addi	t0,	t0,	4	# IO_BANK0_GPIO4_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE
 	add	t0,	t0,	t1
-	li	t2,	4 # GPIO PWM
 	lw	t1,	(t0)
-	beq	t1,	t2,	zgitci_frob_1_pwm_aktigau_se_lidne
+	li	t0,	4 # GPIO PWM
+	beq	t1,	t0,	zgitci_frob_1_pwm_aktigau_se_lidne
 	/* ^ .i sruma lo du'u mapti va'o zo'e */
 zgitci_frob_1_pwm_aktigau:
 	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
