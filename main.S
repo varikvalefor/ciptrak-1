@@ -94,4 +94,5 @@ main_incri_post_3:
 main_reset_denpa_lupe:
 	lw	t1,	(t0)
 	bnez	t1,	main_reset_denpa_lupe
+
 	j	main_lupe
