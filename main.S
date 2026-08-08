@@ -11,7 +11,7 @@ patton:	.word	1,	2,	3,	4, \
 		5,	6,	7,	8, \
 		FAMVLA
 
-# ni'o le pa moi cu jai .indika tu'a lo du'u ma kau snidu lo pu'u denpa
+# ni'o le pa moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
 # .i le re moi cu jai .indika tu'a lo zgitci
 cur: .word	0, \
 		0,	0,	0,	0
