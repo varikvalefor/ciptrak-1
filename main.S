@@ -230,6 +230,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	li	t1,	1
 	sll	t1,	t1,	pwm_slice_a5
 	slli	t1,	t1,	1	# PWM -> PIN
+	/* ^ t1 = 1<<PIN */
 	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
 	# PWM_CHx_DIV_OFFSET
