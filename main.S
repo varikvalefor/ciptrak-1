@@ -101,6 +101,26 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
 	# zgike
+	lw	a0,	CUR_ZGITCI0(0) + vrc_s1
+	lw	a1,	4 + CUR_ZGITCI0(0) + vrc_s1
+	lw	a2,	8 + CUR_ZGITCI0(0) + vrc_s1
+	lw	a3,	0xC + CUR_ZGITCI0(0) + vrc_s1
+	jal	zgitci_frob
+	lw	a0,	CUR_ZGITCI0(1) + vrc_s1
+	lw	a1,	4 + CUR_ZGITCI0(1) + vrc_s1
+	lw	a2,	8 + CUR_ZGITCI0(1) + vrc_s1
+	lw	a3,	0xC + CUR_ZGITCI0(1) + vrc_s1
+	jal	zgitci_frob
+	lw	a0,	CUR_ZGITCI0(2) + vrc_s1
+	lw	a1,	4 + CUR_ZGITCI0(2) + vrc_s1
+	lw	a2,	8 + CUR_ZGITCI0(2) + vrc_s1
+	lw	a3,	0xC + CUR_ZGITCI0(2) + vrc_s1
+	jal	zgitci_frob
+	lw	a0,	CUR_ZGITCI0(3) + vrc_s1
+	lw	a1,	4 + CUR_ZGITCI0(3) + vrc_s1
+	lw	a2,	8 + CUR_ZGITCI0(3) + vrc_s1
+	lw	a3,	0xC + CUR_ZGITCI0(3) + vrc_s1
+	jal	zgitci_frob
 
 	# denpa
 
@@ -143,3 +163,7 @@ main_reset_denpa_lupe:
 	bnez	t1,	main_reset_denpa_lupe
 
 	j	main_lupe
+
+zgitci_frob:
+	# todo
+	ret
