@@ -13,7 +13,7 @@ patton:	.word	1,	2,	3,	4, \
 
 # ni'o le pa moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
 # .i le re moi cu jai .indika tu'a lo zgitci
-cur: .word	0, \
+cur: .word	0,	0,	0,	0, \
 		0,	0,	0,	0
 
 .global main
