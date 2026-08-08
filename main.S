@@ -181,5 +181,8 @@ main_reset_denpa_lupe:
 	j	main_lupe
 
 zgitci_frob:
+	beqz	a0,	zgitci_frob_mapti_0
+	ret
+zgitci_frob_mapti_0:
 	# todo
 	ret
