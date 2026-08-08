@@ -22,36 +22,36 @@ cur: .word	0, 				# 0 \
 		0,	0,	0,	0, 	# 9 \
 		0,	0,	0,	0
 
+#define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (10 + x)
 
 .global main
 
 main:
-cipra:
-	#define	ptn_t0	t0
-	la	ptn_t0,	patton
-	#define	famvla_t1	t1
-	li	famvla_t1,	0xFFFFFFFF
-	srli	a0,	ptn_t0,	2
-cipra_lupe:
-	lw	t2,	(ptn_t0)
-	addi	ptn_t0,	ptn_t0,	4
-	bne	t2,	famvla_t1,	cipra_lupe
-cipra_fanmo:
-	srli	t2,	ptn_t0,	2
-	beq	t2,	a0,	main_lupe_pre
-cipra_fliba:
-	li	t0,	(RESETS_BASE + RESETS_RESET_OFFSET)
-	li	t1,	1<<RESETS_IO_BANK0_BIT | 1<<RESETS_PADS_BANK0_BIT
+main_init:
+main_init_xosc:
+	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
+	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
+	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
 	sw	t1,	(t0)
-	#	BEEP!!!
-	wfi
+main_init_xosc_cipra:
+	li	t0,	(XOSC_BASE + XOSC_STATUS_OFFSET)
+main_init_xosc_cipra_lupe:
+	lw	t1,	(t0)
+	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
+	beqz	t1,	main_init_xosc_cipra_lupe
+
 main_lupe_pre:
 	#define	ptn_s0	s0
 	la	s0,	patton
 	#define	vrc_s1	s1
 	la	vrc_s1,	cur
 main_lupe:
+main_lupe_xosc_counter:
+	lw	t1,	CUR_XOSC_SNIDU(vrc_s1)
+	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
+	sw	t1,	(t0)
+
 	# tcidu
 
 	# zgike
@@ -90,4 +90,8 @@ main_incri_post_2:
 main_incri_post_3:
 
 	# .i denpa fi tu'a la'oi .XOSC.
+	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
+main_reset_denpa_lupe:
+	lw	t1,	(t0)
+	bnez	t1,	main_reset_denpa_lupe
 	j	main_lupe
