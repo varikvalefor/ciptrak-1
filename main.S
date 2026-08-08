@@ -62,40 +62,40 @@ main_lupe_xosc_counter:
 
 	# tcidu
 main_lupe_tcidu:
-	# ni'o zo'oi .zt. cmavlaka'i zo zgitci
-	#define	zt_ctr_a0	a0
-	#define	zt_judri_idx_j_a1	a1
-	#define	zt_sezvati_j_a2	a2
-	#define	zt_datni_cur_j_a3	a3
-	#define	zt_judri_idx_t0	t0
-	#define	zt_sezvati_t1	t1
-	li	zt_ctr_a0,	4
-	addi	zt_judri_idx_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
-	addi	zt_sezvati_j_a2,	vrc_s1,	CUR_PATN_SEZVATI(0)
-	addi	zt_datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
+	/* ni'o la .varik. cu jinvi le du'u racli fa lo nu sruma lo du'u lo ro co'e cu srana lo zgitci */
+	#define	ctr_a0	a0
+	#define	judri_idx_j_a1	a1
+	#define	sezvati_j_a2	a2
+	#define	datni_cur_j_a3	a3
+	#define	judri_idx_t0	t0
+	#define	sezvati_t1	t1
+	li	ctr_a0,	4
+	addi	judri_idx_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
+	addi	sezvati_j_a2,	vrc_s1,	CUR_PATN_SEZVATI(0)
+	addi	datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
-	lw	zt_judri_idx_t0,	(zt_judri_idx_j_a1)
-	lw	zt_sezvati_t1,	(zt_sezvati_j_a2)
+	lw	judri_idx_t0,	(judri_idx_j_a1)
+	lw	sezvati_t1,	(sezvati_j_a2)
 	#define	datni_j_t2	t2
-	add	datni_j_t2,	zt_judri_idx_t0,	zt_sezvati_t1
+	add	datni_j_t2,	judri_idx_t0,	sezvati_t1
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_j_t2)
 	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
-	#define	zt_pagbu_ctr_t6	t6
-	li	zt_pagbu_ctr_t6,	3
+	#define	pagbu_ctr_t6	t6
+	li	pagbu_ctr_t6,	3
 main_lupe_tcidu_lupe_co_cmalu:
-	sw	datni_t3,	(zt_datni_cur_j_a3)
-	addi	zt_pagbu_ctr_t6,	zt_pagbu_ctr_t6,	-1
+	sw	datni_t3,	(datni_cur_j_a3)
+	addi	pagbu_ctr_t6,	pagbu_ctr_t6,	-1
 	lw	datni_t3,	(datni_j_t2)
 	addi	datni_j_t2,	datni_j_t2,	4
-	addi	zt_datni_cur_j_a3,	zt_datni_cur_j_a3,	4
-	bnez	zt_pagbu_ctr_t6,	main_lupe_tcidu_lupe_co_cmalu
+	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
+	bnez	pagbu_ctr_t6,	main_lupe_tcidu_lupe_co_cmalu
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
-	addi	zt_ctr_a0,	zt_ctr_a0,	-1
-	addi	zt_judri_idx_j_a1,	zt_judri_idx_j_a1,	4
-	addi	zt_sezvati_j_a2,	zt_sezvati_j_a2,	4
-	addi	zt_datni_cur_j_a3,	zt_datni_cur_j_a3,	4
-	bnez	zt_ctr_a0,	main_lupe_tcidu_lupe_co_barda
+	addi	ctr_a0,	ctr_a0,	-1
+	addi	judri_idx_j_a1,	judri_idx_j_a1,	4
+	addi	sezvati_j_a2,	sezvati_j_a2,	4
+	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
+	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
 	# zgike
 
