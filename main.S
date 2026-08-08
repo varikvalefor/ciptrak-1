@@ -240,10 +240,39 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	/* ^ t1 = 1<<PIN = 2 * (1 << PWM) = 1 << (PWM + 1) */
 	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
-	# PWM_CHx_DIV_OFFSET
+zgitci_frob_1_pwm_div_ningau:
+	srli	t0,	a1,	2
+	li	t1,	0xffff + 0b11 << 16
+	and	t0,	t0,	t1
+	#define	zenba_t1	t1
+	#define	jdika_t2	t2
+	bexti	zenba_t1,	t0,	17
+	bexti	jdika_t2,	t0,	16
+	bclri	t0,	t0,	17
+	bclri	t0,	t0,	16
+	#define	div_j_t3	t3
+	li	t3,	0x14 * 2
+	mul	t3,	t3,	pwm_slice_a5
+	li	t4,	PWM_BASE
+	add	t3,	t3,	t4
+	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
+	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
+	sw	t0,	(div_j_t3)
+	j	zgitci_frob_1_pwm_csr
+zgitci_frob_1_pwm_div_slilu:
 	# ???
 	# TODO
-
+	j	zgitci_frob_1_pwm_csr
+zgitci_frob_1_pwm_div_sampu:
+	lw	t4,	(div_j_t3)
+	beqz	zenba_t1,	zgitci_frob_1_pwm_div_sampu_jdika
+	add	t0,	t0,	t4
+	sw	t0,	(div_j_t3)
+	j	zgitci_frob_1_pwm_csr
+zgitci_frob_1_pwm_div_sampu_jdika:
+	sub	t0,	t0,	t4
+	sw	t0,	(div_j_t3)
+zgitci_frob_1_pwm_csr:
 	# PWM_CHx_CSR_OFFSET
 	# ???
 	# TODO
