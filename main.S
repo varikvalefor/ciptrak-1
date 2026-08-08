@@ -11,12 +11,13 @@ patton:	.word	1,	2,	3,	4, \
 		5,	6,	7,	8, \
 		FAMVLA
 
-# ni'o le pa moi cu temci namcu
-# .i le re moi cu jai .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi.
-# .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
-# .i le vo moi je le mu moi je le xa moi je le ze moi cu jai .indika tu'a lo zgitci
-# .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
-# .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
+/* ni'o le pa moi cu temci namcu
+ * .i le re moi cu jai .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi.
+ * .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
+ * .i le vo moi je le mu moi je le xa moi je le ze moi cu jai .indika tu'a lo zgitci
+ * .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
+ * .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
+ */
 cur: .word	0,				/* 0 */ \
 	0,				/* 1 */ \
 	0,	0,	0,	0, 	/* 5 */ \
