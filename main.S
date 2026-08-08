@@ -189,8 +189,8 @@ zgitci_frob:
 zgitci_frob_mapti_0:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
-	#define	pwm_slice_a1	a1
-	andi	pwm_slice_a1,	a1,	0b11
+	#define	pwm_slice_a5	a1
+	andi	pwm_slice_a5,	a1,	0b11
 	li	t0,	0x14
 	mul	t0,	a1,	t0
 	li	t1,	PWM_BASE
@@ -211,28 +211,27 @@ zgitci_frob_1_pwm_aktigau_denpa:
 
 	# IO_BANK0_GPIOx_CTRL
 	li	t0,	0x004
-	#define gpin_t1	t1
-	slli	gpin_t1,	pwm_slice_a1,	1
-	slli	t0,	gpin_t1,	2	# 4 * PIN
+	slli	t0,	pwm_slice_a5,	(1 + 2)	# 4 * PIN
 	addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
-	li	t2,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS
-	add	t0,	t0,	t2
-	li	t2,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
-	sw	t2,	(t0)
+	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS
+	add	t0,	t0,	t1
+	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
+	sw	t1,	(t0)
 
 	# GPIO_FUNC_PWM
-	slli    t0,     gpin_t1,        3 # * 8
-	addi	t0,	t0,	4
-	add	t0,	t0,	gpin_t1
-	li	t2,	IO_BANK0_BASE
-	li	t2,	4 # GPIO PWM
-	sw	t2,	(t0)
+	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
+	addi	t0,	t0,	4	# IO_BANK0_GPIO4_CTRL_OFFSET
+	li	t1,	IO_BANK0_BASE
+	add	t0,	t0,	t1
+	li	t1,	4 # GPIO PWM
+	sw	t1,	(t0)
 
 	# .i curmi tu'a lo dikca
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
-	li	t2,	1
-	sll	t2,	t2,	gpin_t1
-	sw	t2,	(t0)
+	li	t1,	1
+	sll	t1,	t1,	pwm_slice_a5
+	slli	t1,	t1,	1	# PWM -> PIN
+	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
 	# PWM_CHx_DIV_OFFSET
 	# ???
