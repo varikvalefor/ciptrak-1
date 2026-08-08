@@ -20,7 +20,7 @@ cur: .word	0, 				# 0 \
 		0,	0,	0,	0, 	# 8 \
 		0,	0,	0,	0
 
-#define	CUR_DENPA_INST(x)	4 * (1 + 8 + x)
+#define	CUR_DENPA_INST(x)	4 * (9 + x)
 
 .global main
 
