@@ -103,30 +103,31 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 
 	# incr
 main_incri:
-	lw	t1,	0(vrc_s1)
-	addi	t1,	t1,	1
-	sw	t1,	0(vrc_s1)
+	#define	temci_t1	t1
+	lw	temci_t1,	0(vrc_s1)
+	addi	temci_t1,	temci_t1,	1
+	sw	temci_t1,	0(vrc_s1)
 
 	lw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
-	rem	t3,	t1,	t2
+	rem	t3,	temci_t1,	t2
 	bnez	t3,	main_incri_post_0
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
 main_incri_post_0:
 	lw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
-	rem	t3,	t1,	t2
+	rem	t3,	temci_t1,	t2
 	bnez	t3,	main_incri_post_1
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
 main_incri_post_1:
 	lw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
-	rem	t3,	t1,	t2
+	rem	t3,	temci_t1,	t2
 	bnez	t3,	main_incri_post_2
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
 main_incri_post_2:
 	lw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
-	rem	t3,	t1,	t2
+	rem	t3,	temci_t1,	t2
 	bnez	t3,	main_incri_post_3
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
