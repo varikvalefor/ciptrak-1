@@ -14,9 +14,13 @@ patton:	.word	1,	2,	3,	4, \
 # ni'o le pa moi cu temci namcu
 # .i le re moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
 # .i le ci moi cu jai .indika tu'a lo zgitci
-cur: .word	0, \
-		0,	0,	0,	0, \
+# .i le vo moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
+cur: .word	0, 				# 0 \
+		0,	0,	0,	0, 	# 4 \
+		0,	0,	0,	0, 	# 8 \
 		0,	0,	0,	0
+
+#define	CUR_DENPA_INST(x)	4 * (1 + 8 + x)
 
 .global main
 
@@ -43,16 +47,43 @@ cipra_fliba:
 main_lupe_pre:
 	#define	ptn_s0	s0
 	la	s0,	patton
+	#define	vrc_s1	s1
+	la	vrc_s1,	cur
 main_lupe:
-	lw	a0,	(ptn_s0)
-	lw	a1,	4(ptn_s0)
-	lw	a2,	8(ptn_s0)
-	lw	a3,	12(ptn_s0)
-	beq	famvla_t1,	a0,	main_lupe_pre
+	# tcidu
 
 	# zgike
 
 	# denpa
 
-	addi	s0,	s0,	4
+	# incr
+main_incri:
+	lw	t1,	0(vrc_s1)
+	addi	t1,	t1,	1
+	sw	t1,	0(vrc_s1)
+
+	lw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
+	rem	t3,	t1,	t2
+	bnez	t3,	main_incri_post_0
+	addi	t2,	t2,	1
+	sw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
+main_incri_post_0:
+	lw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
+	rem	t3,	t1,	t2
+	bnez	t3,	main_incri_post_1
+	addi	t2,	t2,	1
+	sw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
+main_incri_post_1:
+	lw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
+	rem	t3,	t1,	t2
+	bnez	t3,	main_incri_post_2
+	addi	t2,	t2,	1
+	sw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
+main_incri_post_2:
+	lw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
+	rem	t3,	t1,	t2
+	bnez	t3,	main_incri_post_3
+	addi	t2,	t2,	1
+	sw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
+main_incri_post_3:
 	j	main_lupe
