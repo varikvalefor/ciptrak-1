@@ -12,15 +12,17 @@ patton:	.word	1,	2,	3,	4, \
 		FAMVLA
 
 # ni'o le pa moi cu temci namcu
-# .i le re moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
-# .i le ci moi cu jai .indika tu'a lo zgitci
-# .i le vo moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
+# .i le re moi cu jai .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi.
+# .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
+# .i le vo moi cu jai .indika tu'a lo zgitci
+# .i le mu moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
 cur: .word	0, 				# 0 \
-		0,	0,	0,	0, 	# 4 \
-		0,	0,	0,	0, 	# 8 \
+		0,				# 1 \
+		0,	0,	0,	0, 	# 5 \
+		0,	0,	0,	0, 	# 9 \
 		0,	0,	0,	0
 
-#define	CUR_DENPA_INST(x)	4 * (9 + x)
+#define	CUR_DENPA_INST(x)	4 * (10 + x)
 
 .global main
 
@@ -86,4 +88,6 @@ main_incri_post_2:
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
 main_incri_post_3:
+
+	# .i denpa fi tu'a la'oi .XOSC.
 	j	main_lupe
