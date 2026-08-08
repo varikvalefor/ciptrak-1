@@ -17,15 +17,15 @@ patton:	.word	1,	2,	3,	4, \
 # .i le vo moi je le mu moi je le xa moi je le ze moi cu jai .indika tu'a lo zgitci
 # .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
 # .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
-cur: .word	0, 				# 0 \
-		0,				# 1 \
-		0,	0,	0,	0, 	# 5 \
-		0,	0,	0,	0, 	# 9 ; ZT1 \
-		0,	0,	0,	0, 	# 13 / 0xD ; ZT2 \
-		0,	0,	0,	0, 	# 17 / 0x11 ; ZT3 \
-		0,	0,	0,	0, 	# 21 / 0x15 ; ZT4 \
-		0,	0,	0,	0,	# 25 / 0x19 ; PTSZ
-		0,	0,	0,	0	# 29 / 0x1D ; PTJD
+cur: .word	0,				/* 0 */ \
+	0,				/* 1 */ \
+	0,	0,	0,	0, 	/* 5 */ \
+	0,	0,	0,	0, 	/* 9 | ZT1 */ \
+	0,	0,	0,	0, 	/* 13 / 0xD | ZT2 */ \
+	0,	0,	0,	0, 	/* 17 / 0x11 | ZT3 */ \
+	0,	0,	0,	0, 	/* 21 / 0x15 | ZT4 */ \
+	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
+	0,	0,	0,	0	/* 29 / 0x1D | PTJD */
 
 #define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
