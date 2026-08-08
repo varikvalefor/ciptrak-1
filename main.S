@@ -4,6 +4,9 @@
 
 #include "shortcut.S"
 
+#define	REG_ALIAS_CLR_BITS	0x3000
+#define	PADS_BANK0_GPIO0_ISO_BIT	8
+
 #define	FAMVLA	0xFFFFFFFF	# .i .indika lo du'u fanmo lo me'oi .pattern.  .i la .varik. cu jinvi le du'u mapti fa lo nu la'oi .FAMVLA. lamji je se se lidne lo pa moi be lo'i jai .indika pe lo me'oi .pattern.
 
 .data
@@ -185,8 +188,69 @@ zgitci_frob:
 	ret
 zgitci_frob_mapti_0:
 	li	t1,	1
-	bneq	a0,	t1,	zgtici_frob_check_2
-	# PWM
+	bne	a0,	t1,	zgitci_frob_check_2
+	#define	pwm_slice_a1	a1
+	andi	pwm_slice_a1,	a1,	0b11
+	li	t0,	0x14
+	mul	t0,	a1,	t0
+	li	t1,	PWM_BASE
+	add	t0,	t0,	t1
+	lw	t1,	(t0)
+	andi	t1,	t1,	PWM_CSR_PH_EN_BIT
+	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
+zgitci_frob_1_pwm_aktigau:
+	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
+	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
+	sw	t1,	(t0)
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
+zgitci_frob_1_pwm_aktigau_denpa:
+	lw	t2,	(t0)
+	and	t2,	t2,	t1
+	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
+
+	# IO_BANK0_GPIOx_CTRL
+	li	t0,	0x004
+	#define gpin_t1	t1
+	slli	gpin_t1,	pwm_slice_a1,	1
+	slli	t0,	gpin_t1,	2	# 4 * PIN
+	addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
+	li	t2,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS
+	add	t0,	t0,	t2
+	li	t2,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
+	sw	t2,	(t0)
+
+	# GPIO_FUNC_PWM
+	slli    t0,     gpin_t1,        3 # * 8
+	addi	t0,	t0,	4
+	add	t0,	t0,	gpin_t1
+	li	t2,	IO_BANK0_BASE
+	li	t2,	4 # GPIO PWM
+	sw	t2,	(t0)
+
+	# .i curmi tu'a lo dikca
+	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
+	li	t2,	1
+	sll	t2,	t2,	gpin_t1
+	sw	t2,	(t0)
+zgitci_frob_1_pwm_aktigau_se_lidne:
+	# PWM_CHx_DIV_OFFSET
+	# ???
+	# TODO
+
+	# PWM_CHx_CSR_OFFSET
+	# ???
+	# TODO
+
+	# PWM_CHx_TOP_OFFSET
+	# ???
+	# TODO
+
+	# PWM_CHx_CC_OFFSET
+	# ???
+	# TODO
+	# ???
+
 	ret
 zgitci_frob_check_2:
 	# todo
