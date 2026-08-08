@@ -29,6 +29,7 @@ cur: .word	0, 				# 0 \
 
 #define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
+#define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 #define	CUR_PATN_JUDRI(x)	4 * (26 + x)
 
@@ -60,6 +61,40 @@ main_lupe_xosc_counter:
 	sw	t1,	(t0)
 
 	# tcidu
+main_lupe_tcidu:
+	#define	zgitci_ctr_a0	a0
+	#define	zgitci_judri_idx_j_a1	a1
+	#define	zgitci_sezvati_j_a2	a2
+	#define	zgitci_datni_cur_j_a3	a3
+	#define	zgitci_judri_idx_t0	t0
+	#define	zgitci_sezvati_t1	t1
+	li	zgitci_ctr_a0,	4
+	addi	zgitci_judri_idx_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
+	addi	zgitci_sezvati_j_a2,	vrc_s1,	CUR_PATN_SEZVATI(0)
+	addi	zgitci_datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
+main_lupe_tcidu_lupe_co_barda:
+	lw	zgitci_judri_idx_t0,	(zgitci_judri_idx_j_a1)
+	lw	zgitci_sezvati_t1,	(zgitci_sezvati_j_a2)
+	#define	datni_j_t2	t2
+	add	datni_j_t2,	zgitci_judri_idx_t0,	zgitci_sezvati_t1
+	#define	datni_t3	t3
+	lw	datni_t3,	(datni_j_t2)
+	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
+	#define	zgitci_pagbu_ctr_t6	t6
+	li	t6,	3
+main_lupe_tcidu_lupe_co_cmalu:
+	sw	datni_t3,	(zgitci_datni_cur_j_a3)
+	addi	t6,	t6,	-1
+	lw	datni_t3,	(datni_j_t2)
+	addi	datni_j_t2,	datni_j_t2,	4
+	addi	zgitci_datni_cur_j_a3,	zgitci_datni_cur_j_a3,	4
+	bnez	t6,	main_lupe_tcidu_lupe_co_cmalu
+main_lupe_tcidu_lupe_co_cmalu_fanmo:
+	addi	zgitci_ctr_a0,	zgitci_ctr_a0,	-1
+	addi	zgitci_judri_idx_j_a1,	zgitci_judri_idx_j_a1,	4
+	addi	zgitci_sezvati_j_a2,	zgitci_sezvati_j_a2,	4
+	addi	zgitci_datni_cur_j_a3,	zgitci_datni_cur_j_a3,	4
+	bnez	zgitci_ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
 	# zgike
 
