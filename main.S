@@ -11,22 +11,21 @@ patton:	.word	1,	2,	3,	4, \
 		5,	6,	7,	8, \
 		FAMVLA
 
-/* ni'o le pa moi cu temci namcu
- * .i le re moi cu jai .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi.
- * .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
- * .i le vo moi je le mu moi je le xa moi je le ze moi cu jai .indika tu'a lo zgitci
- * .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
- * .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
- */
 cur: .word	0,				/* 0 */ \
+	/* ^ .i temci namcu */ \
 	0,				/* 1 */ \
+                /* ^ .i .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi. */ \
 	0,	0,	0,	0, 	/* 5 */ \
+ 	/* .i .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa */ \
 	0,	0,	0,	0, 	/* 9 | ZT1 */ \
 	0,	0,	0,	0, 	/* 13 / 0xD | ZT2 */ \
 	0,	0,	0,	0, 	/* 17 / 0x11 | ZT3 */ \
 	0,	0,	0,	0, 	/* 21 / 0x15 | ZT4 */ \
+ 	/* ^ .i le vo co'e cu jai .indika tu'a lo zgitci */ \
 	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
+ 	/* ^ .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
 	0,	0,	0,	0	/* 29 / 0x1D | PTJD */
+ 	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */
 
 #define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
