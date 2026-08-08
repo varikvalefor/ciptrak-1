@@ -14,20 +14,23 @@ patton:	.word	1,	2,	3,	4, \
 # ni'o le pa moi cu temci namcu
 # .i le re moi cu jai .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi.
 # .i le ci moi cu jai .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa
-# .i le vo moi cu jai .indika tu'a lo zgitci
-# .i le mu moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
-# .i le xa moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
+# .i le vo moi je le mu moi je le xa moi je le ze moi cu jai .indika tu'a lo zgitci
+# .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern.
+# .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern.
 cur: .word	0, 				# 0 \
 		0,				# 1 \
 		0,	0,	0,	0, 	# 5 \
-		0,	0,	0,	0, 	# 9 \
-		0,	0,	0,	0,	# 13 / 0xD
-		0,	0,	0,	0	# 17 / 0x11
+		0,	0,	0,	0, 	# 9 ; ZT1 \
+		0,	0,	0,	0, 	# 13 / 0xD ; ZT2 \
+		0,	0,	0,	0, 	# 17 / 0x11 ; ZT3 \
+		0,	0,	0,	0, 	# 21 / 0x15 ; ZT4 \
+		0,	0,	0,	0,	# 25 / 0x19 ; PTSZ
+		0,	0,	0,	0	# 29 / 0x1D ; PTJD
 
 #define	CUR_XOSC_SNIDU	1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
-#define	CUR_PATN_SEZVATI(x)	4 * (10 + x)
-#define	CUR_PATN_JUDRI(x)	4 * (14 + x)
+#define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
+#define	CUR_PATN_JUDRI(x)	4 * (26 + x)
 
 .global main
 
