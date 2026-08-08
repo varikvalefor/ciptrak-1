@@ -141,8 +141,6 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	lw	a3,	(a3)
 	jal	zgitci_frob
 
-	# denpa
-
 	# incr
 main_incri:
 	#define	temci_t1	t1
