@@ -14,9 +14,9 @@ patton:	.word	1,	2,	3,	4, \
 cur: .word	0,				/* 0 */ \
 	/* ^ .i temci namcu */ \
 	0,				/* 1 */ \
-                /* ^ .i .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi. */ \
+	/* ^ .i .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi. */ \
 	0,	0,	0,	0, 	/* 5 */ \
- 	/* .i .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa */ \
+ 	/* ^ .i .indika tu'a lo du'u ma kau snidu pe'a lo pu'u denpa */ \
 	0,	0,	0,	0, 	/* 9 | ZT1 */ \
 	0,	0,	0,	0, 	/* 13 / 0xD | ZT2 */ \
 	0,	0,	0,	0, 	/* 17 / 0x11 | ZT3 */ \
