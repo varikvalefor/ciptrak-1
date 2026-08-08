@@ -234,7 +234,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	# .i curmi tu'a lo dikca
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
 	addi	t1,	pwm_slice_a5,	1
-	bseti	t1,	zero,	t1
+	bset	t1,	zero,	t1
 	/* ^ t1 = 1<<PIN = 2 * (1 << PWM) = 1 << (PWM + 1) */
 	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
