@@ -116,6 +116,7 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	lw	a2,	(a2)
 	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(0)
 	lw	a3,	(a3)
+	li	a4,	0
 	jal	zgitci_frob
 	addi	a0,	vrc_s1,	CUR_ZGITCI0(1)
 	lw	a0,	(a0)
@@ -125,6 +126,7 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	lw	a2,	(a2)
 	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(1)
 	lw	a3,	(a3)
+	li	a4,	1
 	jal	zgitci_frob
 	addi	a0,	vrc_s1,	CUR_ZGITCI0(2)
 	lw	a0,	(a0)
@@ -134,6 +136,7 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	lw	a2,	(a2)
 	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(2)
 	lw	a3,	(a3)
+	li	a4,	2
 	jal	zgitci_frob
 	addi	a0,	vrc_s1,	CUR_ZGITCI0(3)
 	lw	a0,	(a0)
@@ -143,6 +146,7 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	lw	a2,	(a2)
 	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(3)
 	lw	a3,	(a3)
+	li	a4,	3
 	jal	zgitci_frob
 
 	# incr
