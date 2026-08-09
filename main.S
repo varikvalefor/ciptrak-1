@@ -305,7 +305,7 @@ zgitci_frob_deaf_xosc:
 	li	t0,	0xFFF
 	bexti	t1,	a2,	(1 + 4 * 3)
 	beqz	t1,	zgitci_frob_deaf_xosc_post
-	and	t1,	a2,	t2
+	and	t1,	a2,	t0
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_post:
