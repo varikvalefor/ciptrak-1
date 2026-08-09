@@ -299,7 +299,7 @@ zgitci_frob_deaf_xosc:
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_xosc_post
 	li	t1,	0xFFFF
-	and	t0,	t0,	t1
+	and	t0,	a1,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
 
 	li	t0,	0xFFF
