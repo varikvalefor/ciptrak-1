@@ -40,6 +40,11 @@ cur: .word	0,				/* 0 */ \
 
 main:
 main_init:
+main_onit_oe:
+	# .i curmi tu'a lo dikca
+	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
+	li	t1,	0 | (1<<2) | (1<<4) | (1<<6)
+	sw	t1,	(t0)
 main_init_xosc:
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
@@ -229,13 +234,6 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	li	t1,	IO_BANK0_BASE
 	add	t0,	t0,	t1
 	li	t1,	4 # GPIO PWM
-	sw	t1,	(t0)
-
-	# .i curmi tu'a lo dikca
-	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
-	addi	t1,	pwm_slice_a5,	1
-	bset	t1,	zero,	t1
-	/* ^ t1 = 1<<PIN = 2 * (1 << PWM) = 1 << (PWM + 1) */
 	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
 zgitci_frob_1_pwm_div_ningau:
