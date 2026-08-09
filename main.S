@@ -311,10 +311,12 @@ zgtici_frob_c000_mv:
 	slli	judri_j_t1,	t0,	2
 	sw	patn_a1,	(judri_j_t1)
 
-	bexti	t0,	a0,	0
-	beqz	t0,	zgtici_frob_c000_mv_post
+	bexti	t2,	a0,	0
+	beqz	t2,	zgtici_frob_c000_mv_post
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
-	add	t0,	sezvati_j_t0,	judri_j_t1
+	lw	t2,	(judri_j_t1))
+	lw	t1,	(sezvati_j_t0)
+	add	t0,	t1,	t2
 	lw	a0,	(t0)
 	lw	a1,	4(t0)
 	lw	a2,	8(t0)
