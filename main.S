@@ -251,6 +251,7 @@ zgitci_frob_1_pwm_div_ningau:
 	add	div_j_t3,	t3,	t4
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
+zgitci_frob_1_pwm_div_basti:
 	sw	t0,	(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
