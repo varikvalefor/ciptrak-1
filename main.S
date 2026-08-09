@@ -316,15 +316,18 @@ zgtici_frob_c000_mv:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 	lw	t2,	(judri_j_t1))
 	lw	t1,	(sezvati_j_t0)
+	addi	sp,	sp,	-4
+	sw	s0,	(sp)
+	mv	s0,	ra
+
 	add	t0,	t1,	t2
 	lw	a0,	(t0)
 	lw	a1,	4(t0)
 	lw	a2,	8(t0)
 	lw	a3,	0xC(t0)
-	addi	sp,	sp,	-4
-	sw	s0,	(sp)
-	mv	s0,	ra
+
 	jal	zgitci_frob
+
 	mv	ra,	s0
 	lw	s0,	(sp)
 	addi	sp,	sp,	4
