@@ -236,7 +236,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 zgitci_frob_1_pwm_aktigau_se_lidne:
 zgitci_frob_1_pwm_div_ningau:
 	srli	t0,	a1,	2
-	li	t1,	0xffff + 0b11 << 16
+	li	t1,	0b11111111111100
 	and	t0,	t0,	t1
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
