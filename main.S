@@ -284,7 +284,7 @@ zgitci_frob_1_pwm_csr:
 zgitci_frob_check_2:
 	# todo
 /*
- * DEAF0000
+ * 0xDEAF0000
  *
  * 0xXXXX [dp: 0xXXXX]
  * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
