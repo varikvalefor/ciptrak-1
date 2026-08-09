@@ -272,7 +272,7 @@ zgitci_frob_1_pwm_csr:
 	 * .i djica tu'a la'oi .A_INV. ji la'oi .PH_CORRECT. ji la'oi .DIVMODE. ji ma
 	 * .i la .varik. cu jinvi le du'u frili cumki fa ko'a goi lo nu rejgau pe'a ro lo ze me'oi .bit.
 	 * .i ku'i la .varik. na birti lo du'u xu kau ko'a banzuka lo ka ce'u tolmapti lo nu na'e binxo pe'a kei kei lo ka ce'u mapti
-	 * /
+	 */
 	# PWM_CHx_CSR_OFFSET
 	# ???
 	# TODO
