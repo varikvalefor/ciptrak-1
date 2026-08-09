@@ -221,8 +221,8 @@ zgitci_frob_1_pwm_aktigau_denpa:
 
 	# IO_BANK0_GPIOx_CTRL
 	slli	t0,	pwm_slice_a5,	(1 + 2)	# 4 * PIN
-	addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
-	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS
+	// addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
+	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS + 4 // "
 	add	t0,	t0,	t1
 	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
 	sw	t1,	(t0)
