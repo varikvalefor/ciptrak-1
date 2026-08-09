@@ -291,5 +291,6 @@ zgitci_frob_deaf_xosc:
 	li	t1,	0xFFFF
 	and	t0,	t0,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
+	ret
 zgitci_frob_deaf_xosc_post:
 	ret
