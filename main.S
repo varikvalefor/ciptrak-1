@@ -68,7 +68,6 @@ main_lupe_xosc_counter:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sw	t1,	(t0)
 
-	# tcidu
 main_lupe_tcidu:
 	/* ni'o la .varik. cu jinvi le du'u racli fa lo nu sruma lo du'u lo ro co'e cu srana lo zgitci */
 	/* ni'o ji'a la .varik. cu jinvi le du'u cumki fa lo nu me'oi .unroll.
