@@ -191,7 +191,7 @@ zgitci_frob:
 zgitci_frob_mapti_0:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
-	#define	pwm_slice_a5	a1
+	#define	pwm_slice_a5	a5
 	andi	pwm_slice_a5,	a1,	0b11
 	li	t0,	0x14
 	mul	t0,	a1,	t0
