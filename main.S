@@ -283,13 +283,30 @@ zgitci_frob_1_pwm_csr:
 	ret
 zgitci_frob_check_2:
 	# todo
+/*
+ * DEAF0000
+ *
+ * 0xXXXX [dp: 0xXXXX]
+ * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
+ *
+ * XXX[x1][st: bbbbbbbbbbbb]
+ * ^ .i sa'u lo me'oi .x1. srana lo du'u xu kau djica lo nu co'e co ni zilsutra
+ *   .i sa'u lo me'oi .st. cu mu'oi zoi. FREQ_RANGE .zoi. namcu
+ *
+ * ?
+ */
 zgitci_frob_deaf_xosc:
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_xosc_post
-	srli	t0,	a0,	2
 	li	t1,	0xFFFF
 	and	t0,	t0,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
-	ret
+
+	li	t0,	0xFFF
+	bexti	t1,	a2,	(1 + 4 * 3)
+	beqz	t1,	zgitci_frob_deaf_xosc_post
+	and	t1,	a2,	t2
+	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
+	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_post:
 	ret
