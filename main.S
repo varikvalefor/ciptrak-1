@@ -201,8 +201,8 @@ zgitci_frob_mapti_0:
 	andi	t1,	t1,	PWM_CSR_PH_EN_BIT
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
-	addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
-	li	t1,	IO_BANK0_BASE
+	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
+	li	t1,	IO_BANK0_BASE + 4 // "
 	add	t0,	t0,	t1
 	lw	t1,	(t0)
 	li	t0,	4 # GPIO PWM
