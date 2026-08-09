@@ -30,7 +30,7 @@ cur: .word	0,				/* 0 */ \
 	0,	0,	0,	0	/* 29 / 0x1D | PTJD */
 	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */
 
-#define	CUR_XOSC_SNIDU	1
+#define	CUR_XOSC_SNIDU	4 * 1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
