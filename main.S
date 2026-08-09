@@ -229,8 +229,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 
 	# GPIO_FUNC_PWM
 	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
-	addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
-	li	t1,	IO_BANK0_BASE
+	li	t1,	IO_BANK0_BASE + 4 # IO_BANK0_GPIOx_CTRL_OFFSET
 	add	t0,	t0,	t1
 	li	t1,	4 # GPIO PWM
 	sw	t1,	(t0)
