@@ -189,6 +189,7 @@ main_reset_denpa_lupe:
 
 	j	main_lupe
 
+#define	zgitci_a4	a4
 zgitci_frob:
 	bnez	a0,	zgitci_frob_mapti_0
 	ret
