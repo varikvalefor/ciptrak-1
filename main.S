@@ -423,6 +423,9 @@ zgitci_frob_damri_sezvati_reset_post:
  * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a
  */
 zgitci_frob_damri_sha:
+	bexti   t0,     a2,     0
+	beqz    t0,     zgitci_frob_damri_sha_post
+
 	#define sha_t0	t0
 	addi	t0,	cur_s0,	CUR_SHA256_OFFSET
 	lw	sha_t0,	(t0)
