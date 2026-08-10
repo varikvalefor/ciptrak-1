@@ -39,15 +39,22 @@ cur: .word	0,				/* 0 */ \
 	/* ^ .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
 	0,	0,	0,	0,	/* 29 / 0x1D | PTJD */ \
 	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */ \
-	0,	0,	0,	0	/* 33 / 0x21 | SIDX */ \
-	/* ^ .i co'e ja me'oi .sample. se zvati */
+	0,	0,	0,	0,	/* 33 / 0x21 | SIDX */ \
+	/* ^ .i co'e ja me'oi .sample. se zvati */ \
+	0,	0,	0,	0	/* 37 / 0x25 | POCKET SAND */ \
+	/* ^ .i me'oi .SHA256. ke cunso pe'a /* \
+	0	/* 38 / 0x26 | SHA_EN */\
+	/* ^ .i djica tu'a lo me'oi .SHA256. co'e */
 
+#define	CUR_TEMCI	4 * 0
 #define	CUR_XOSC_SNIDU	4 * 1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 #define	CUR_PATN_JUDRI(x)	4 * (26 + x)
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
+#define	CUR_SHA_OFFSET	4 * 34
+#define	CUR_SHA_EN	4 * 38
 
 .global main
 
@@ -85,6 +92,31 @@ main_lupe_xosc_counter:
 	lw	t1,	CUR_XOSC_SNIDU(vrc_s1)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sw	t1,	(t0)
+
+main_lupe_sha:
+	addi	t0,	vrc_s1,	CUR_SHA_EN
+	beqz	t0,	main_lupe_tcidu
+	addi	t0,	vrc_s1,	CUR_TEMCI
+	lw	t0,	(t0)
+	li	t1,	0xF
+	and	t0,	t0,	t1
+	bne	t0,	t1,	main_lupe_tcidu
+	
+
+	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
+	li	t1,	1
+	sw	t1,	(t0)
+	// not (dma design)
+	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
+	li	t0,	DMA_BASE + DMA_CH0_READ_ADDR
+	sw	t1,	(t0)
+	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
+	li	t1,	DMA_BASE + DMA_CH0_WRITE_ADDR
+	sw	t0,	(t1)
+	li	t0,	DMA_BASE + DMA_CH0_TRANS_COUNT
+	li	t1,	(512 / 32)
+	sw	t1,	(t0)
+	// TODO
 
 main_lupe_tcidu:
 	/* ni'o la .varik. cu jinvi le du'u racli fa lo nu sruma lo du'u lo ro co'e cu srana lo zgitci */
@@ -388,27 +420,9 @@ zgitci_frob_damri_sezvati_reset_post:
  * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a
  */
 zgitci_frob_damri_sha:
-	bexti	t0,	a2,	0
-	beqz	t0,	zgitci_frob_damri_sha_post
-	add	t2,	a2,	a3
-	add	t2,	t2,	t1
-	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
-	li	t1,	1
-	sw	t1,	(t0)
-	// not (dma design)
-	li	t0,	DMA_BASE + DMA_CH0_READ_ADDR
-	sw	vrc_s0,	(t0)
-	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
-	li	t1,	DMA_BASE + DMA_CH0_WRITE_ADDR
-	sw	t0,	(t1)
-	li	t0,	DMA_BASE + DMA_CH0_TRANS_COUNT
-	li	t1,	(512 / 32)
-	sw	t1,	(t0)
-	// TODO
-
-	// .i xu cadga fa lo nu pilno la'oi .main. tu'a lo co'e ja me'oi .SHA256. co'e
-	// .i jinvi le du'u la'oi .main. mapti lo mleca be fi lo ka ce'u skami pluja
 	#define sha_t0	t0
+	addi	t0,	cur_s0,	CUR_SHA256_OFFSET
+	lw	sha_t0,	(t0)
 	// TODO: SHA256 crap
 
 	clz	t1,	sha_t0
