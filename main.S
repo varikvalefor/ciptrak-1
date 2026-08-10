@@ -350,6 +350,22 @@ zgitci_frob_check_2:
 	// TODO: xu idx ningau pe'a
 
 	ret
+/*
+ * PIO
+ *
+ * 0x00000003
+ *
+ * ?
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_check_3:
+	li	t0,	3
+	bne	a0,	t0,	zgtici_frob_c000_mv
+	// TODO
+	ret
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
