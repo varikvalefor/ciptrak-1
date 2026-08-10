@@ -316,7 +316,7 @@ zgitci_frob_1_pwm_csr:
  *
  * ?
  *
- * /
+ */
 zgitci_frob_check_2:
 	li	t0,	2
 	bne	a0,	t0,	zgtici_frob_c000_mv
