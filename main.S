@@ -353,18 +353,37 @@ zgitci_frob_check_2:
 /*
  * PIO
  *
- * 0x00000003
+ * 0x0001000X
  *
  * [judri: 0xFFFFFFFF]
  *
- * [?: 0x????][?: 0bXXXXXXXXXXX][nibarda: 0bXXXXX]
+ * [?: 0x????][?: 0bXXXXXXXXXX][idx: 0bX][nibarda: 0bXXXXX]
+ * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
+ *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
  * ?
  */
-zgitci_frob_check_3:
-	li	t0,	3
-	bne	a0,	t0,	zgtici_frob_c000_mv
-	// TODO
+zgitci_frob_check_pio:
+	li	t0,	0x0001000F
+	or	t1,	a0,	t0
+	bne	t1,	t0,	zgtici_frob_c000_mv
+	// TODO: .aktigau lo me'oi .PIO. co'e
+	// .i la'e di'u srana lo me'oi .GPIO. co'e
+zgitci_frob_check_pio_gpio_post:
+	#define	max_t0	t0
+	li	t0,	31
+	and	max_t0,	a2,	t0
+	#define	pio_j_t1	t1
+	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
+	#define	ctr_a3	a3
+	li	ctr_a3,	0
+zgitci_frob_check_pio_ld_lupe:
+	lw	t2,	(a2)
+	sh	t2,	(a1)
+	slli	t2,	t2,	16
+	sh	t2,	2(a1)
+	addi	ctr_a3,	ctr_a3,	1
+	blt	ctr_a3,	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
