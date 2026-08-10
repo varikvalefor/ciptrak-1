@@ -70,6 +70,11 @@ main_init_xosc_cipra_lupe:
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 
+main_init_sha:
+	li	t0,	ACCESSCTRL_BASE + ACCESSCTRL_SHA256_OFFSET
+	li	t1,	0xFF
+	sw	t0,	(t1)
+
 main_lupe_pre:
 	#define	ptn_s0	s0
 	la	s0,	patton
@@ -358,7 +363,7 @@ zgitci_frob_check_2:
  *
  * 0x00000004
  *
- * [tonga: 0xFFFF][nibarda: 0xFFFF]
+ * [cnino: 0bX][tonga: 0bXXXXXXXXXXXXXXX][nibarda: 0xXXXX]
  *
  * 0xXXXXXX[nlev: 0bXX][sha256_noise: 0bX]
  *
@@ -367,7 +372,62 @@ zgitci_frob_check_2:
 zgitci_frob_damri:
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
+	bexti	t0,	a0,	31
+	beqz	t0,	zgitci_frob_damri_sezvati_reset_post
+zgitci_frob_damri_sezvati_reset:
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
+	addi	t0,	zgitci_a4,	30
+	slli	t0,	t0,	2
+	sw	x0,	(t0)
+zgitci_frob_damri_sezvati_reset_post:
+	#define	curval_a5	a5
 	// TODO
+
+/*
+ * ni'o pilno la'oi .SHA256. jenai la'oi .TRNG. ki'u zo'e joi le su'u jinvi le du'u la'oi .SHA256. zmadu fi le ka ce'u jai zilsutra
+ * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a
+ */
+zgitci_frob_damri_sha:
+	bexti	t0,	a2,	0
+	beqz	t0,	zgitci_frob_damri_sha_post
+	add	t2,	a2,	a3
+	add	t2,	t2,	t1
+	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
+	li	t1,	1
+	sw	t1,	(t0)
+	// not (dma design)
+	li	t0,	DMA_BASE + DMA_CH0_READ_ADDR
+	sw	vrc_s0,	(t0)
+	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
+	li	t1,	DMA_BASE + DMA_CH0_WRITE_ADDR
+	sw	t0,	(t1)
+	li	t0,	DMA_BASE + DMA_CH0_TRANS_COUNT
+	li	t1,	(512 / 32)
+	sw	t1,	(t0)
+	// TODO
+
+	// .i xu cadga fa lo nu pilno la'oi .main. tu'a lo co'e ja me'oi .SHA256. co'e
+	// .i jinvi le du'u la'oi .main. mapti lo mleca be fi lo ka ce'u skami pluja
+	#define sha_t0	t0
+	// TODO: SHA256 crap
+
+	clz	t1,	sha_t0
+	slri	t2,	a2,	1
+	andi	t2,	t2,	0b11
+	add	t1,	t1,	t2
+	srl	sha_t0,	sha_t0,	t1
+	bexti	t1,	sha_t0,	0
+	beqz	t1,	zgitci_frob_damri_sha_jdika
+	add	curval_a5,	curval_a5,	sha_t0
+	j	zgitci_frob_damri_min
+zgitci_frob_damri_sha_jdika:
+	sub     curval_a5,      curval_a5,      sha_t0
+zgitci_frob_damri_min:
+	li	t0,	0
+	min	curval_a5,	curval_a5,	0
+zgitci_frob_damri_sha_post:
+	/* TODO: cusku pe'a
+	 * .i xu lo me'oi .PWM. co'e cu mapti */
 	ret
 /*
  * PIO
