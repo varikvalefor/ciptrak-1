@@ -37,14 +37,17 @@ cur: .word	0,				/* 0 */ \
 	/* ^ .i le vo co'e cu jai .indika tu'a lo zgitci */ \
 	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
 	/* ^ .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
-	0,	0,	0,	0	/* 29 / 0x1D | PTJD */
-	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */
+	0,	0,	0,	0,	/* 29 / 0x1D | PTJD */ \
+	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */ \
+	0,	0,	0,	0	/* 33 / 0x21 | SIDX */ \
+	/* ^ .i co'e ja me'oi .sample. se zvati */
 
 #define	CUR_XOSC_SNIDU	4 * 1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 #define	CUR_PATN_JUDRI(x)	4 * (26 + x)
+#define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
 
 .global main
 
