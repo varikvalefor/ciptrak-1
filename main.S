@@ -304,6 +304,8 @@ zgitci_frob_1_pwm_csr:
 	ret
 /*
  * SANCE DATNYVEI PE'A
+ * .i xu cadga fa lo nu pilno lo re moi be lo'i rucyca'a lo me'oi .PWM. co'e
+ * .i la .varik. cu jinvi le du'u lo me'oi .PWM. co'e cu mapti tu'a lo sance datnyvei pe'a
  *
  * 2
  *
