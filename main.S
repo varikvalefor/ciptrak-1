@@ -300,8 +300,8 @@ zgtici_frob_c000_mv:
 	li	t1,	0xC0000000
 	bclri	t1,	a0,	0
 	bne	a0,	t0,	zgitci_frob_deaf_xosc
-	/* se morji: 	CUR_PATN_SEZVATI(x)	4 * (22 + x)
-			CUR_PATN_JUDRI(x)	4 * (26 + x) */
+	// se morji: 	CUR_PATN_SEZVATI(x)	4 * (22 + x)
+	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
 	#define	sezvati_j_t0	t0
 	#define	judri_j_t1	t1
 	addi	t0,	zgitci_a4,	22
@@ -314,7 +314,7 @@ zgtici_frob_c000_mv:
 	bexti	t2,	a0,	0
 	beqz	t2,	zgtici_frob_c000_mv_post
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
-	lw	t2,	(judri_j_t1))
+	lw	t2,	(judri_j_t1)
 	lw	t1,	(sezvati_j_t0)
 	addi	sp,	sp,	-4
 	sw	s0,	(sp)
