@@ -351,6 +351,22 @@ zgitci_frob_check_2:
 
 	ret
 /*
+ * DAMRI
+ *
+ * 0x00000004
+ *
+ * [tonga: 0xFFFF][nibarda: 0xFFFF]
+ *
+ * 0xXXXXXX[nlev: 0bXX][noise: 0bX]
+ *
+ * ?
+ */
+zgitci_frob_damri:
+	li	t0,	0x0000004
+	bne	a0,	t0,	zgitci_frob_check_pio
+	// TODO
+	ret
+/*
  * PIO
  *
  * 0x0001000X
