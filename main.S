@@ -44,7 +44,7 @@ cur: .word	0,				/* 0 */ \
 	0,	0,	0,	0	/* 37 / 0x25 | POCKET SAND */ \
 	/* ^ .i me'oi .SHA256. ke cunso pe'a /* \
 	0	/* 38 / 0x26 | SHA_EN */\
-	/* ^ .i djica tu'a lo me'oi .SHA256. co'e */
+	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */
 
 #define	CUR_TEMCI	4 * 0
 #define	CUR_XOSC_SNIDU	4 * 1
