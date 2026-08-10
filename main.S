@@ -116,6 +116,9 @@ main_lupe_sha:
 	li	t0,	DMA_BASE + DMA_CH0_TRANS_COUNT
 	li	t1,	(512 / 32)
 	sw	t1,	(t0)
+	li	t0,	DMA_BASE + CH0_CTRL_TRIG
+	li	t1,	1 | (0x2 << 2)
+	sw	t1,	(t0)
 	// TODO
 
 main_lupe_tcidu:
