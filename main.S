@@ -285,6 +285,7 @@ zgitci_frob_1_pwm_div_sampu_jdika:
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
 	 * .i djica tu'a la'oi .A_INV. ji la'oi .PH_CORRECT. ji la'oi .DIVMODE. ji ma
+	 * .i xu djica lo nu curmi tu'a lo me'oi .B. pijne  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u pluja kei kei fo zo'e joi le du'u sarcu fa lo nu cusku lo se du'u djica tu'a lo me'oi .B. pijne kei kei kei noi vo'a jinvi ke'a
 	 * .i la .varik. cu jinvi le du'u frili cumki fa ko'a goi lo nu rejgau pe'a ro lo ze me'oi .bit.
 	 * .i ku'i la .varik. na birti lo du'u xu kau ko'a banzuka lo ka ce'u tolmapti lo nu na'e binxo pe'a kei kei lo ka ce'u mapti
 	 */
