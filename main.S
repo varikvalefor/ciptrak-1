@@ -367,7 +367,7 @@ zgitci_frob_check_pio:
 	li	t0,	0x0001000F
 	or	t1,	a0,	t0
 	bne	t1,	t0,	zgtici_frob_c000_mv
-	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
+	// TODO: .aktigau lo me'oi .PIO. co'e
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
 	#define	max_t0	t0
