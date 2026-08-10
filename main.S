@@ -355,9 +355,9 @@ zgitci_frob_check_2:
  *
  * 0x00000003
  *
- * ?
+ * [judri: 0xFFFFFFFF]
  *
- * ?
+ * [?: 0x????][nibarda: 0xFFFF]
  *
  * ?
  */
