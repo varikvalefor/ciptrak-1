@@ -164,33 +164,35 @@ main_incri:
 	#define	temci_t1	t1
 	lw	temci_t1,	0(vrc_s1)
 	addi	temci_t1,	temci_t1,	1
-	sw	temci_t1,	0(vrc_s1)
 
 	lw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
-	rem	t3,	temci_t1,	t2
-	bnez	t3,	main_incri_post_0
-	addi	t2,	t2,	1
-	sw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
-main_incri_post_0:
-	lw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
-	rem	t3,	temci_t1,	t2
-	bnez	t3,	main_incri_post_1
-	addi	t2,	t2,	1
-	sw	t2,	(CUR_DENPA_INST(1))(vrc_s1)
-main_incri_post_1:
-	lw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
-	rem	t3,	temci_t1,	t2
-	bnez	t3,	main_incri_post_2
-	addi	t2,	t2,	1
-	sw	t2,	(CUR_DENPA_INST(2))(vrc_s1)
-main_incri_post_2:
-	lw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
-	rem	t3,	temci_t1,	t2
-	bnez	t3,	main_incri_post_3
-	addi	t2,	t2,	1
-	sw	t2,	(CUR_DENPA_INST(3))(vrc_s1)
-main_incri_post_3:
+	rem     t3,     temci_t1,       t2
+	lw	t4,	(CUR_DENPA_INST(1))(vrc_s1)
+	rem	t5,	temci_t1,	t4
+	lw	a0,	(CUR_DENPA_INST(2))(vrc_s1)
+	rem	a1,	temci_t1,	a0
+	lw	a2,	(CUR_DENPA_INST(3))(vrc_s1)
+	rem	a3,	temci_t1,	a2
 
+	sw	temci_t1,	0(vrc_s1)
+
+	bnez	t3,	main_incri_next_t5
+	addi    t2,     t2,     1
+	sw      t2,     (CUR_DENPA_INST(0))(vrc_s1)
+main_incri_next_t5:
+	bnez	t5,	main_incri_next_a0
+	addi    t4,     t4,     1
+	sw      t4,     (CUR_DENPA_INST(1))(vrc_s1)
+main_incri_next_a0:
+	bnez	a1,	main_incri_next_a2
+	addi    a0,     a0,     1
+	sw      a0,     (CUR_DENPA_INST(2))(vrc_s1)
+main_incri_next_a2:
+	bnez	a3,	main_reset_denpa
+	addi    a2,     a2,     1
+	sw      a2,     (CUR_DENPA_INST(3))(vrc_s1)
+
+main_reset_denpa:
 	# .i denpa fi tu'a la'oi .XOSC.
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
