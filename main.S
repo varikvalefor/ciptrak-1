@@ -321,6 +321,31 @@ zgitci_frob_check_2:
 	li	t0,	2
 	bne	a0,	t0,	zgtici_frob_c000_mv
 	# todo
+	li	t0,	0xFFF
+	#define	zts_id_t0	t0
+	and	zts_id_t0,	a1,	t0
+	#define	zts_j_t1	t1
+	slli	t1,	zts_id_t0,	1
+	la	t2,	sanceListe
+	add	zts_j_t1,	t1,	t2
+
+	// sance idx
+	#define	zts_sance_idx_t2	t2
+	// zts_sance_idx_t2 = ??
+
+	// do it now, kid
+	#define	pwmval_t0	t0
+	/* .i la .varik. na birti lo du'u xu kau dukse le ka ce'u sampu
+	   .i xu zmadu fa lo nu zmiku pe'a lo nu se meirmoi muvgau pe'a
+	   TODO: FACKI */
+	lw	t0,	(zts_j_t1)
+	add	t0,	t0,	zts_sance_idx_t2
+	lw	pwmval_t0,	(t0)
+
+	// TODO: PWM crap
+
+	// TODO: xu idx ningau pe'a
+
 	ret
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
