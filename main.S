@@ -14,7 +14,14 @@ patton:	.word	1,	2,	3,	4, \
 		5,	6,	7,	8, \
 		FAMVLA
 
-// | .i liste lo'i judri be lo me'oi .sample.
+/* | .i sa'u liste lo'i judri be lo me'oi .sample.
+ * .i sa'u nai ru'e ga naja mapti gi ro da poi ke'a kacna'u je cu dubjavme'a lo ni barda zo'u
+ * su'o de zo'u du...
+   * fa ga ce'o...
+     * lo meirmoi be da bei la'oi .sanceListe. be'o gi
+     * lo meirmoi be lo sumji be li pa bei da be'o be'o bei la'oi .sanceListe.
+   * fe lo judri be de be'o ce'o lo ni de barda
+*/
 sanceListe: .word	0,	0,	0,	0
 
 cur: .word	0,				/* 0 */ \
