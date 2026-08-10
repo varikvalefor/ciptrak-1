@@ -14,6 +14,9 @@ patton:	.word	1,	2,	3,	4, \
 		5,	6,	7,	8, \
 		FAMVLA
 
+// | .i liste lo'i judri be lo me'oi .sample.
+sanceListe: .word	0,	0,	0,	0
+
 cur: .word	0,				/* 0 */ \
 	/* ^ .i temci namcu */ \
 	0,				/* 1 */ \
@@ -292,8 +295,24 @@ zgitci_frob_1_pwm_csr:
 	# ???
 
 	ret
+/*
+ * SANCE DATNYVEI PE'A
+ *
+ * 2
+ *
+ * [?????][sid: 0xXXX]
+ * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
+ *
+ * ?
+ *
+ * ?
+ *
+ * /
 zgitci_frob_check_2:
+	li	t0,	2
+	bne	a0,	t0,	zgtici_frob_c000_mv
 	# todo
+	ret
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
