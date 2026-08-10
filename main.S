@@ -347,7 +347,7 @@ zgitci_frob_check_2:
 
 	// TODO: PWM crap
 
-	// TODO: xu idx ningau pe'a
+	// TODO: xu se meirmoi ningau pe'a
 
 	ret
 /*
