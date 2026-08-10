@@ -360,7 +360,7 @@ zgitci_frob_check_2:
  *
  * [tonga: 0xFFFF][nibarda: 0xFFFF]
  *
- * 0xXXXXXX[nlev: 0bXX][noise: 0bX]
+ * 0xXXXXXX[nlev: 0bXX][sha256_noise: 0bX]
  *
  * ?
  */
