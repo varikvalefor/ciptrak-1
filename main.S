@@ -119,7 +119,11 @@ main_lupe_sha:
 	li	t0,	DMA_BASE + CH0_CTRL_TRIG
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(t0)
+
 	// TODO
+
+	addi    t0,     vrc_s1, CUR_SHA_EN
+	sw	x0,	(t0)
 
 main_lupe_tcidu:
 	/* ni'o la .varik. cu jinvi le du'u racli fa lo nu sruma lo du'u lo ro co'e cu srana lo zgitci */
@@ -425,6 +429,10 @@ zgitci_frob_damri_sezvati_reset_post:
 zgitci_frob_damri_sha:
 	bexti   t0,     a2,     0
 	beqz    t0,     zgitci_frob_damri_sha_post
+
+	li	t0,	1
+	li	t1,	vrc_s0 + CUR_SHA_EN
+	sw	t0,	(t1)
 
 	#define sha_t0	t0
 	addi	t0,	cur_s0,	CUR_SHA_OFFSET
