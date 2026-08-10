@@ -359,7 +359,7 @@ zgtici_frob_c000_mv_post:
  * 0xXXXX [dp: 0xXXXX]
  * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
  *
- * XXX[x1][st: bbbbbbbbbbbb]
+ * XXX[?: bbb][x1: b][st: bbbbbbbbbbbb]
  * ^ .i sa'u lo me'oi .x1. srana lo du'u xu kau djica lo nu co'e co ni zilsutra
  *   .i sa'u lo me'oi .st. cu mu'oi zoi. FREQ_RANGE .zoi. namcu
  *
