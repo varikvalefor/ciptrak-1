@@ -495,9 +495,10 @@ zgitci_frob_check_pio_ld_lupe:
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
-	li	t1,	0xC0000000
+	li	t0,	0xC0000001
+	and	t0,	a0,	t0
 	bclri	t1,	a0,	0
-	bne	a0,	t0,	zgitci_frob_deaf_xosc
+	bne	t1,	t0,	zgitci_frob_deaf_xosc
 	// se morji: 	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
 	#define	sezvati_j_t0	t0
