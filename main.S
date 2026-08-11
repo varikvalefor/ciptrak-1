@@ -455,7 +455,7 @@ zgitci_frob_damri_sha:
 	lw	sha_t0,	(t0)
 	// TODO: SHA256 crap
 
-	clz	t1,	sha_t0
+	clz	t1,	curval_a5
 	srli	t2,	a2,	1
 	andi	t2,	t2,	0b11
 	add	t1,	t1,	t2
