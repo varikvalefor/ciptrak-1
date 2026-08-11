@@ -373,7 +373,7 @@ zgitci_frob_1_pwm_csr:
  * .i xu cadga fa lo nu pilno lo re moi be lo'i rucyca'a lo me'oi .PWM. co'e
  * .i la .varik. cu jinvi le du'u lo me'oi .PWM. co'e cu mapti tu'a lo sance datnyvei pe'a
  *
- * 2
+ * [23]
  *
  * [?????][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
@@ -385,7 +385,9 @@ zgitci_frob_1_pwm_csr:
  */
 zgitci_frob_check_2:
 	li	t0,	2
-	bne	a0,	t0,	zgtici_frob_c000_mv
+	blt	a0,	t0,	zgtici_frob_c000_mv
+	li	t0,	3
+	bgt	a0,	t0,	zgtici_frob_c000_mv
 	# todo
 	li	t0,	0xFFF
 	#define	zts_id_t0	t0
@@ -410,8 +412,15 @@ zgitci_frob_check_2:
 
 	// TODO: PWM crap
 
-	// TODO: xu se meirmoi ningau pe'a
-
+	bexti	t1,	a0,	0
+	beqz	t1,	zgitci_frob_check_2_0out
+	lw	t1,	(zts_sance_idx_t2)
+	addi	t1,	t1,	1
+	sw	t1,	(zts_sance_idx_t2)
+	j	zgitci_frob_check_2_fanmo
+zgitci_frob_check_2_0out:
+	sw	x0,	(zts_sance_idx_t2)
+zgitci_frob_check_2_fanmo:
 	ret
 /*
  * DAMRI
