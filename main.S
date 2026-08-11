@@ -125,7 +125,10 @@ main_lupe_sha:
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(dma_ctrl_t5)
 
-	// TODO: denpa
+	nop
+	nop
+	nop
+	// nop	// addi
 
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t0,	(dma_w_j_t3)
