@@ -447,7 +447,7 @@ zgitci_frob_damri_sha:
 	beqz    t0,     zgitci_frob_damri_sha_post
 
 	li	t0,	1
-	li	t1,	vrc_s0 + CUR_SHA_EN
+	addi	t1,	vrc_s0,	CUR_SHA_EN
 	sw	t0,	(t1)
 
 	#define sha_t0	t0
