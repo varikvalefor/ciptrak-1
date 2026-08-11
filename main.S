@@ -106,19 +106,24 @@ main_lupe_sha:
 	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
 	li	t1,	1
 	sw	t1,	(t0)
+
 	// not (dma design)
+	#define	dma_rd_j_t2	t2
+	#define	dma_w_j_t3	t3
+	#define	dma_tx_j_t4	t4
+	#define	dma_ctrl_t5	t5
 	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
-	li	t0,	DMA_BASE + DMA_CH0_READ_ADDR
-	sw	t1,	(t0)
+	li	dma_rd_j_t2,	DMA_BASE + DMA_CH0_READ_ADDR
+	sw	t1,	(dma_rd_j_t2)
 	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
-	li	t1,	DMA_BASE + DMA_CH0_WRITE_ADDR
-	sw	t0,	(t1)
-	li	t0,	DMA_BASE + DMA_CH0_TRANS_COUNT
+	li	dma_w_j_t3,	DMA_BASE + DMA_CH0_WRITE_ADDR
+	sw	t0,	(dma_w_j_t3)
+	li	dma_tx_j_t4,	DMA_BASE + DMA_CH0_TRANS_COUNT
 	li	t1,	(512 / 32)
-	sw	t1,	(t0)
-	li	t0,	DMA_BASE + CH0_CTRL_TRIG
+	sw	t1,	(dma_tx_j_t4)
+	li	dma_ctrl_t5,	DMA_BASE + CH0_CTRL_TRIG
 	li	t1,	1 | (0x2 << 2)
-	sw	t1,	(t0)
+	sw	t1,	(dma_ctrl_t5)
 
 	// TODO
 
