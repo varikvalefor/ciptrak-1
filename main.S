@@ -399,7 +399,9 @@ zgitci_frob_check_2:
 
 	// sance idx
 	#define	zts_sance_idx_t2	t2
-	// zts_sance_idx_t2 = ??
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
+	addi	t2,	zgitci_a4,	30
+	slli	zts_sance_idx_t2,	t2,	2
 
 	// do it now, kid
 	#define	pwmval_t0	t0
