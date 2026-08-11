@@ -133,7 +133,7 @@ main_lupe_sha:
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t0,	(dma_w_j_t3)
 	li	t0,	// TODO: SHA
-	sw	t0,	dma_rd_j_t2
+	sw	t0,	(dma_rd_j_t2)
 	li	t0,	4
 	sw	t0,	(dma_tx_j_t4)
 	sw	t1,	(dma_ctrl_t5) // hack hack hack
