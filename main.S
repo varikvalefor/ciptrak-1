@@ -463,7 +463,6 @@ zgitci_frob_damri_sha:
 	#define sha_t0	t0
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	lw	sha_t0,	(t0)
-	// TODO: SHA256 crap
 
 	clz	t1,	curval_a5
 	srli	t2,	a2,	1
