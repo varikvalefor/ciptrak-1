@@ -71,7 +71,8 @@ main_init_xosc:
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
 	sw	t1,	(t0)
 main_init_xosc_cipra:
-	li	t0,	(XOSC_BASE + XOSC_STATUS_OFFSET)
+	// | t0 = XOSC_BASE + XOSC_STATUS_OFFSET
+	addi	t0,	t0,	XOSC_STATUS_OFFSET - XOSC_CTRL_OFFSET
 main_init_xosc_cipra_lupe:
 	lw	t1,	(t0)
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
@@ -116,12 +117,15 @@ main_lupe_sha:
 	li	dma_rd_j_t2,	DMA_BASE + DMA_CHx_READ_ADDR_OFFSET(0)
 	sw	t1,	(dma_rd_j_t2)
 	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
-	li	dma_w_j_t3,	DMA_BASE + DMA_CHx_WRITE_ADDR_OFFSET(0)
+	// | li	dma_w_j_t3,	DMA_BASE + DMA_CHx_WRITE_ADDR_OFFSET(0)
+	addi	dma_w_j_t3,	dma_rd_j_t2,	(DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))
 	sw	t0,	(dma_w_j_t3)
-	li	dma_tx_j_t4,	DMA_BASE + DMA_CHx_TRANS_COUNT_OFFSET(0)
+	// | li	dma_tx_j_t4,	DMA_BASE + DMA_CHx_TRANS_COUNT_OFFSET(0)
+	addi	dma_tx_j_t4,	dma_w_j_t3,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_WRITE_ADDR_OFFSET(0))
 	li	t1,	(512 / 32)
 	sw	t1,	(dma_tx_j_t4)
-	li	dma_ctrl_t5,	DMA_BASE + DMA_CHx_CTRL_TRIG_OFFSET(0)
+	// li	dma_ctrl_t5,	DMA_BASE + DMA_CHx_CTRL_TRIG_OFFSET(0)
+	addi	dma_ctrl_t5,	dma_tx_j_t4,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_TRANS_COUNT_OFFSET(0))
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(dma_ctrl_t5)
 
@@ -292,7 +296,7 @@ zgitci_frob_1_pwm_aktigau:
 	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
 	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(t0)
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
 	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
