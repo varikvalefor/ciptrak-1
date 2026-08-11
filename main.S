@@ -397,7 +397,6 @@ zgitci_frob_check_2:
 	la	t2,	sanceListe
 	add	zts_j_t1,	t1,	t2
 
-	// sance idx
 	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t2,	zgitci_a4,	30
