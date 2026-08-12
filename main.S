@@ -603,7 +603,7 @@ zgtici_frob_c000_mv:
 	li	t0,	0xC0000001
 	and	t0,	a0,	t0
 	bclri	t1,	a0,	0
-	bne	t1,	t0,	zgitci_frob_c000_denpa
+	bne	t1,	t0,	zgitci_frob_c000_sutra
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
 	#define	sezvati_j_t0	t0
@@ -636,6 +636,48 @@ zgtici_frob_c000_mv:
 	lw	s0,	(sp)
 	addi	sp,	sp,	4
 zgtici_frob_c000_mv_post:
+	ret
+
+/*
+ * SUTRA
+ *
+ * 0xC0000002
+ *
+ * [judri: 0xXXXXXXXX]
+ *
+ * [?: 0xXXXX][nibarda: 0xXXXX]
+ *
+ * ?
+ *
+ */
+zgitci_frob_c000_sutra:
+	li	t0,	0xC0000002
+	bne	a0,	t0,	zgitci_frob_c000_denpa
+	addi	sp,	sp,	-4
+	sw	s0,	(sp)
+	mv	s0,	ra
+
+	#define	ctr_t0	t0
+	#define	judri_t1	t1
+	li	t0,	0xFFFF
+	and	t0,	a2,	t0
+	mv	judri_t1,	a1
+zgitci_frob_c000_sutra_lupe:
+	/* DROP t[3-7] */
+	lw	t3,	(judri_t1)
+	lw	a0,	(t3)
+	lw	a1,	4(t3)
+	lw	a2,	8(t3)
+	lw	a3,	0xC(t3)
+	jal	zgitci_frob
+	addi	ctr_t0,	ctr_t0,	-1
+	addi	judri_t1,	judri_t1,	4
+	bnez	ctr_t0,	zgitci_frob_c000_sutra_lupe
+
+	mv	ra,	s0
+	lw	s0,	(sp)
+	addi	sp,	sp,	4
+
 	ret
 
 /*
