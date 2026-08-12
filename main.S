@@ -500,20 +500,22 @@ zgitci_frob_damri:
 
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
+	#define	idx_j_t0	t0
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
 	slli	t0,	t0,	2
-	add	t0,	t0,	vrc_s1
+	add	idx_j_t0,	t0,	vrc_s1
 	bexti	t1,	a0,	31
+	#define	tmp_sesumji_t2	t2
+	li	tmp_sesumji_t2,	1
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
-	li	t1,	1
-	sw	t1,	(t0)
+	sw	tmp_sesumji_t2,	(idx_j_t0)
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	lw	t1,	(t0)
-	addi	t1,	t1,	1
-	sw	t1,	(t0)
+	// TODO: .i xu mapti  .i la .varik. na prane le ka ce'u birti
+	amoadd.w	t1,	tmp_sesumji_t2,	(idx_j_t0)
+	add	t1,	t1,	t2
 zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
