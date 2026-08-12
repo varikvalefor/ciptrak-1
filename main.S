@@ -147,7 +147,7 @@ main_lupe_sha:
 	nop
 	nop
 	nop
-	// nop	// addi
+	// nop	// .i la .varik. cu jinvi le du'u ronsa le me'oi .addi. co'e je ke se lidne
 
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t0,	(dma_w_j_t3)
