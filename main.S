@@ -451,7 +451,16 @@ zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(t0)
 zgitci_frob_damri_sezvati_reset_post:
 	#define	curval_a5	a5
-	// TODO
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
+	addi	t0,	zgitci_a4,	30
+	slli	t0,	t0,	2
+	lw	t0,	(t0)
+
+	// TODO: curval_a5 = ?
+
+	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
+	   .i xu mapti fa tu'a lo me'oi .jal. co'e
+	   .i la .varik. na birti */
 
 /*
  * ni'o pilno la'oi .SHA256. jenai la'oi .TRNG. ki'u zo'e joi le su'u jinvi le du'u la'oi .SHA256. zmadu fi le ka ce'u jai zilsutra
