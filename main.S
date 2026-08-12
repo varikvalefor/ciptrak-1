@@ -256,6 +256,8 @@ main_lupe_zgike:
 
 	# incr
 main_incri:
+	/* DROP [at][01234567] */
+
 	#define	temci_t1	t1
 	lw	temci_t1,	0(vrc_s1)
 	addi	temci_t1,	temci_t1,	1
@@ -288,6 +290,8 @@ main_incri_next_a2:
 	sw      a2,     (CUR_PATN_SEZVATI(3))(vrc_s1)
 
 main_reset_denpa:
+	/* DROP [at][01234567] */
+
 	# .i denpa fi tu'a la'oi .XOSC.
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
