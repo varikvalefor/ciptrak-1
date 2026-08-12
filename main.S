@@ -304,6 +304,20 @@ main_reset_denpa_lupe:
 zgitci_frob:
 	bnez	a0,	zgitci_frob_mapti_0
 	ret
+
+/* PWM
+ *
+ * 0x1
+ *
+ * [?: 0xXXXXXXX][?: 0bXX][slice: 0bXX]
+ *
+ * ?
+ *
+ * ?
+ *
+ * ?
+ *
+ */
 zgitci_frob_mapti_0:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
