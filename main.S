@@ -584,6 +584,19 @@ zgitci_frob_check_pio_ld_lupe:
 	addi	ctr_a3,	ctr_a3,	1
 	blt	ctr_a3,	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
+
+/*
+ * MV
+ *
+ * 0xC0000001
+ *
+ * [patn: 0xXXXXXXXX]
+ *
+ * [sezvati: 0xXXXXXXXX]
+ *
+ * ?
+ *
+ */
 zgtici_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
