@@ -210,7 +210,7 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
-	# zgike
+main_lupe_zgike:
 	addi	a0,	vrc_s1,	CUR_ZGITCI0(0)
 	lw	a0,	(a0)
 	addi	a1,	vrc_s1,	4 + CUR_ZGITCI0(0)
