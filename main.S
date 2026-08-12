@@ -194,7 +194,6 @@ main_lupe_tcidu_lupe_vimcu:
 	sw	x0,	(t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	(datni_cur_j_a3)
-main_lupe_tcidu_lupe_co_cmalu_post:
 	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
 	lw	datni_t3,	(datni_j_t2)
 	addi	datni_j_t2,	datni_j_t2,	4
