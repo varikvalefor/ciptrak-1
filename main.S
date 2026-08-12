@@ -264,7 +264,7 @@ main_incri:
 	amoadd.w	temci_t1,	tmp_1_t2,	0(vrc_s1)
 	add	temci_t1,	temci_t1,	tmp_1_t2
 
-	amoadd.w	t2,	tmp_1_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	rem     t3,     temci_t1,       t2
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 	rem	t5,	temci_t1,	t4
@@ -274,6 +274,9 @@ main_incri:
 	rem	a3,	temci_t1,	a2
 
 	bnez	t3,	main_incri_next_t5
+	addi    t2,     t2,     1
+	// | TODO: .i xu frili cumki fa lo nu vimcu pe'a lo me'oi .sw. co'e
+	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
 main_incri_next_t5:
 	bnez	t5,	main_incri_next_a0
 	addi    t4,     t4,     1
