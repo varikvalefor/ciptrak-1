@@ -476,9 +476,8 @@ zgitci_frob_check_2:
 
 	bexti	t1,	a0,	0
 	beqz	t1,	zgitci_frob_check_2_0out
-	lw	t1,	(zts_sance_idx_t2)
-	addi	t1,	t1,	1
-	sw	t1,	(zts_sance_idx_t2)
+	li	t1,	1
+	amoadd.w	x0,	t1,	(zts_sance_idx_t2)
 	j	zgitci_frob_check_2_fanmo
 zgitci_frob_check_2_0out:
 	sw	x0,	(zts_sance_idx_t2)
