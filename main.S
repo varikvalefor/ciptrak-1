@@ -186,8 +186,9 @@ main_lupe_tcidu_lupe_vimcu:
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	addi	t5,	vrc_s1,	39
+	addi	t5,	zgitci_a4,	39
 	slli	t5,	t5,	2
+	addi	t5,	t5,	vrc_s1
 	sw	x0,	(t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	(datni_cur_j_a3)
