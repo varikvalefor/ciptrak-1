@@ -79,6 +79,7 @@ main_init_xosc_cipra_lupe:
 	beqz	t1,	main_init_xosc_cipra_lupe
 
 main_init_sha:
+	/* TODO: .i xu sarcu  .i xu nai me'oi .Secure. */
 	li	t0,	ACCESSCTRL_BASE + ACCESSCTRL_SHA256_OFFSET
 	li	t1,	0xFF
 	sw	t0,	(t1)
