@@ -275,6 +275,7 @@ main_incri:
 
 	bnez	t3,	main_incri_next_t5
 	addi    t2,     t2,     1
+	// | TODO: .i xu frili cumki fa lo nu vimcu pe'a lo me'oi .sw. co'e
 	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
 main_incri_next_t5:
 	bnez	t5,	main_incri_next_a0
