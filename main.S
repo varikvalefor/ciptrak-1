@@ -183,7 +183,6 @@ main_lupe_tcidu_lupe_co_barda:
 main_lupe_tcidu_lupe_vimcu:
 	lw	cur_t5,	(datni_cur_j_a3)
 	beq	cur_t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
-	sw	datni_t3,	(datni_cur_j_a3)
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
@@ -191,8 +190,7 @@ main_lupe_tcidu_lupe_vimcu:
 	slli	t5,	t5,	2
 	sw	x0,	(t5)
 main_lupe_tcidu_lupe_co_cmalu:
-	lw	cur_t5,	(datni_cur_j_a3)
-	beq	cur_t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_post
+	sw	datni_t3,	(datni_cur_j_a3)
 main_lupe_tcidu_lupe_co_cmalu_post:
 	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
 	lw	datni_t3,	(datni_j_t2)
