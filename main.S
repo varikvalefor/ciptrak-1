@@ -603,7 +603,7 @@ zgitci_frob_c000_denpa:
 	bne	a0,	t0,	zgitci_frob_deaf_xosc
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
 	#define	denpa_j_t0	t0
-	addi	t0,	zgitci_t4,	2
+	addi	t0,	zgitci_a4,	2
 	slli	denpa_j_t0,	t0,	2
 	sw	a1,	(denpa_j_t0)
 
