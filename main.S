@@ -528,7 +528,7 @@ zgtici_frob_c000_mv:
 	li	t0,	0xC0000001
 	and	t0,	a0,	t0
 	bclri	t1,	a0,	0
-	bne	t1,	t0,	zgitci_frob_deaf_xosc
+	bne	t1,	t0,	zgitci_frob_c000_denpa
 	// se morji: 	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
 	#define	sezvati_j_t0	t0
@@ -563,6 +563,30 @@ zgtici_frob_c000_mv:
 zgtici_frob_c000_mv_post:
 	ret
 
+/*
+ * DENPA BIXYGAU PE'A
+ *
+ * 0xC0000010
+ *
+ * [nidenpa: 0xXXXXXXXX]
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_c000_denpa:
+	li	t0,	0xC0000010
+	bne	a0,	t0,	zgitci_frob_deaf_xosc
+	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
+	#define	denpa_j_t0	t0
+	addi	t0,	zgitci_t4,	2
+	slli	denpa_j_t0,	t0,	2
+	sw	a1,	(denpa_j_t0)
+
+	// TODO: .i xu cadga fa lo nu zukte lo frica
+	// .i la .varik. cu te smimlu fi le ka ce'u sampu kei je cu jinvi le du'u zo'oi .jal. jai zilmasno
+
+	ret
 /*
  * 0xDEAF0000
  *
