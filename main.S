@@ -194,7 +194,7 @@ main_lupe_tcidu_lupe_vimcu:
 main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	(datni_cur_j_a3)
 	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
-	lw	datni_t3,	(datni_j_t2)
+	lw	datni_t3,	(datni_j_t2)	// TODO: i xu frili cumki fa lo nu muvgau pe'a  .i la .varik. cu tolnei lo nu tcidu pe'a jenai ku'i cu pilno
 	addi	datni_j_t2,	datni_j_t2,	4
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	pagbu_ctr_t4,	main_lupe_tcidu_lupe_co_cmalu
