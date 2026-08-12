@@ -560,7 +560,7 @@ zgtici_frob_c000_mv:
 	slli	sezvati_j_t0,	t0,	2
 	sw	sezvati_a2,	(sezvati_j_t0)
 	addi	t1,	zgitci_a4,	26
-	slli	judri_j_t1,	t0,	2
+	slli	judri_j_t1,	t1,	2
 	sw	patn_a1,	(judri_j_t1)
 
 	bexti	t2,	a0,	0
