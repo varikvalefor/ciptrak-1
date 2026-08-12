@@ -259,8 +259,10 @@ main_incri:
 	/* DROP [at][01234567] */
 
 	#define	temci_t1	t1
-	lw	temci_t1,	0(vrc_s1)
-	addi	temci_t1,	temci_t1,	1
+	#define	tmp_1_t2	t2
+	li	tmp_1_t2,	1
+	amoadd.w	temci_t1,	tmp_1_t2,	0(vrc_s1)
+	add	temci_t1,	temci_t1,	tmp_1_t2
 
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	rem     t3,     temci_t1,       t2
@@ -270,8 +272,6 @@ main_incri:
 	rem	a1,	temci_t1,	a0
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 	rem	a3,	temci_t1,	a2
-
-	sw	temci_t1,	0(vrc_s1)
 
 	bnez	t3,	main_incri_next_t5
 	addi    t2,     t2,     1
