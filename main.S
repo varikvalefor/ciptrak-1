@@ -42,7 +42,12 @@ cur: .word	0,				/* 0 */ \
 	0,	0,	0,	0,	/* 33 / 0x21 | SIDX */ \
 	/* ^ .i co'e ja me'oi .sample. se zvati */ \
 	0,	0,	0,	0	/* 37 / 0x25 | POCKET SAND */ \
-	/* ^ .i me'oi .SHA256. ke cunso pe'a /* \
+	/*
+	 * ^ .i me'oi .SHA256. ke cunso pe'a
+	 * .i pilno la'oi .SHA256. jenai la'oi .TRNG. ki'u zo'e joi le su'u jinvi le du'u la'oi .SHA256. zmadu fi le ka ce'u jai zilsutra
+	 * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a
+	 *
+	 */
 	0	/* 38 / 0x26 | SHA_EN */\
 	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */ \
 	0,	0,	0,	0	/* 42 / 2A | SIVNI */ \
@@ -476,10 +481,6 @@ zgitci_frob_damri_sezvati_reset_post:
 	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
 	   .i la .varik. na birti */
 
-/*
- * ni'o pilno la'oi .SHA256. jenai la'oi .TRNG. ki'u zo'e joi le su'u jinvi le du'u la'oi .SHA256. zmadu fi le ka ce'u jai zilsutra
- * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a
- */
 zgitci_frob_damri_sha:
 	bexti   t0,     a2,     0
 	beqz    t0,     zgitci_frob_damri_sha_post
