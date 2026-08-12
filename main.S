@@ -180,9 +180,9 @@ main_lupe_tcidu_lupe_co_barda:
 	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
 	#define	pagbu_ctr_t4	t4
 	li	pagbu_ctr_t4,	3
-main_lupe_tcidu_lupe_co_cmalu:
-	lw	cur_a5,	(datni_cur_j_a3)
-	beq	cur_a5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_post
+main_lupe_tcidu_lupe_vimcu:
+	lw	cur_t5,	(datni_cur_j_a3)
+	beq	cur_t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
 	sw	datni_t3,	(datni_cur_j_a3)
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
@@ -190,6 +190,9 @@ main_lupe_tcidu_lupe_co_cmalu:
 	addi	t5,	vrc_s1,	39
 	slli	t5,	t5,	2
 	sw	x0,	(t5)
+main_lupe_tcidu_lupe_co_cmalu:
+	lw	cur_t5,	(datni_cur_j_a3)
+	beq	cur_t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_post
 main_lupe_tcidu_lupe_co_cmalu_post:
 	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
 	lw	datni_t3,	(datni_j_t2)
