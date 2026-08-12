@@ -496,6 +496,8 @@ zgitci_frob_check_2_fanmo:
  * ?
  */
 zgitci_frob_damri:
+	#define	curval_a5	a5
+
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
 	bexti	t0,	a0,	31
@@ -504,12 +506,14 @@ zgitci_frob_damri:
 	slli	t0,	t0,	2
 	beqz	t0,	zgitci_frob_damri_sezvati_reset_post
 zgitci_frob_damri_sezvati_reset:
-	sw	x0,	(t0)
-zgitci_frob_damri_sezvati_reset_post:
-	#define	curval_a5	a5
+	li	t1,	1
+	sw	t1,	(t0)
+	j	zgitci_frob_damri_sezvati_incr_post
+zgitci_frob_damri_sezvati_incr:
 	lw	t1,	(t0)
 	addi	t2,	t1,	1
 	sw	t2,	(t0)
+zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
 
