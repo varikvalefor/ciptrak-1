@@ -186,7 +186,9 @@ main_lupe_tcidu_lupe_vimcu:
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	addi	t5,	zgitci_a4,	39
+	li	t5,	39 + 4
+	sub	t5,	t5,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (39 + 4) - (4 - x) = 39 + x .zoi.
+	addi	t5,	zgitci_a4,	(39 + 3)
 	slli	t5,	t5,	2
 	add	t5,	t5,	vrc_s1
 	sw	x0,	(t5)
