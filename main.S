@@ -359,6 +359,15 @@ zgitci_frob_1_pwm_csr:
 	 * .i la .varik. cu jinvi le du'u frili cumki fa ko'a goi lo nu rejgau pe'a ro lo ze me'oi .bit.
 	 * .i ku'i la .varik. na birti lo du'u xu kau ko'a banzuka lo ka ce'u tolmapti lo nu na'e binxo pe'a kei kei lo ka ce'u mapti
 	 */
+
+	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
+	#define	pwm_csr_j_t0	t0
+	li	t0,	0x14
+	mul	t0,	zgitci_a4,	t0	// TODO: .i xu sarcu fa tu'a la'oi .mul. noi ke'a jai zilmasno
+	li	t1,	PWM_BASE
+	add	pwm_csr_j_t0,	t0,	t1
+	// TODO
+	
 	# PWM_CHx_CSR_OFFSET
 	# ???
 	# TODO
