@@ -161,18 +161,16 @@ main_lupe_tcidu:
 	   .i ku'i la .varik. cu co'e ja djica curmi tu'a lo pinka */
 	#define	ctr_a0	a0
 	#define	judri_j_a1	a1
-	#define	sezvati_j_a2	a2
 	#define	datni_cur_j_a3	a3
 	#define	judri_t0	t0
 	#define	sezvati_t1	t1
 	#define	cur_t5	t5
 	li	ctr_a0,	4
 	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
-	addi	sezvati_j_a2,	vrc_s1,	CUR_PATN_SEZVATI(0)
 	addi	datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
-	lw	sezvati_t1,	(sezvati_j_a2)
+	lw	sezvati_t1,	0x10(judri_j_a1)
 	#define	datni_j_t2	t2
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -201,7 +199,6 @@ main_lupe_tcidu_lupe_co_cmalu:
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	ctr_a0,	ctr_a0,	-1
 	addi	judri_j_a1,	judri_j_a1,	4
-	addi	sezvati_j_a2,	sezvati_j_a2,	4
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
