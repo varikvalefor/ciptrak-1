@@ -62,6 +62,7 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
 #define	CUR_SHA_OFFSET	4 * 34
 #define	CUR_SHA_EN	4 * 38
+#define	CUR_ZGITCI_SIVNI(x)	4 * (39 + x)
 
 .global main
 
@@ -164,6 +165,7 @@ main_lupe_tcidu:
 	#define	datni_cur_j_a3	a3
 	#define	judri_t0	t0
 	#define	sezvati_t1	t1
+	#define	cur_t5	t5
 	li	ctr_a0,	4
 	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
 	addi	sezvati_j_a2,	vrc_s1,	CUR_PATN_SEZVATI(0)
@@ -179,7 +181,16 @@ main_lupe_tcidu_lupe_co_barda:
 	#define	pagbu_ctr_t4	t4
 	li	pagbu_ctr_t4,	3
 main_lupe_tcidu_lupe_co_cmalu:
+	lw	cur_a5,	(datni_cur_j_a3)
+	beq	cur_a5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_post
 	sw	datni_t3,	(datni_cur_j_a3)
+	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
+	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
+	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
+	addi	t5,	vrc_s1,	39
+	slli	t5,	t5,	2
+	sw	x0,	(t5)
+main_lupe_tcidu_lupe_co_cmalu_post:
 	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
 	lw	datni_t3,	(datni_j_t2)
 	addi	datni_j_t2,	datni_j_t2,	4
