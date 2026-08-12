@@ -510,7 +510,9 @@ zgitci_frob_damri_sezvati_reset_post:
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
 	slli	t0,	t0,	2
-	lw	t0,	(t0)
+	lw	t1,	(t0)
+	addi	t2,	t1,	1
+	sw	t2,	(t0)
 
 	// TODO: curval_a5 = ?
 
