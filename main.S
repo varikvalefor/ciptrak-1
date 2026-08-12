@@ -140,6 +140,10 @@ main_lupe_sha:
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(dma_ctrl_t5)
 
+	/*
+	  | .i denpa ki'u zo'e joi le su'u la'oi .DMA. na prane le ka ce'u jai zilsutra
+	  .i la .varik. cu jinvi fo zo'e joi tu'a le velcki be tu'a la'oi .RP2350. fe le du'u li vo cu se ke rucyca'a snidu pe'a lo pu'u muvgau pe'a
+	*/
 	nop
 	nop
 	nop
