@@ -515,7 +515,7 @@ zgitci_frob_damri_sha_post:
  *
  * 0x0001000X
  *
- * [judri: 0xFFFFFFFF]
+ * [judri: 0xXXXXXXXX]
  *
  * [?: 0x????][?: 0bXXXXXXXXXX][idx: 0bX][nibarda: 0bXXXXX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
