@@ -500,11 +500,11 @@ zgitci_frob_damri:
 
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
-	bexti	t0,	a0,	31
+	bexti	t1,	a0,	31
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
 	slli	t0,	t0,	2
-	beqz	t0,	zgitci_frob_damri_sezvati_reset_post
+	beqz	t1,	zgitci_frob_damri_sezvati_reset_post
 zgitci_frob_damri_sezvati_reset:
 	li	t1,	1
 	sw	t1,	(t0)
