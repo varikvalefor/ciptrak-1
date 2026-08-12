@@ -372,6 +372,8 @@ zgitci_frob_1_pwm_csr:
 	# TODO
 	# ???
 
+	/* ni'o la .varik. na te cadga fi tu'a lo me'oi .DIV. */
+
 	ret
 /*
  * SANCE DATNYVEI PE'A
