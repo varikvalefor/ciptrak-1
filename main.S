@@ -714,6 +714,8 @@ zgitci_frob_c000_denpa:
 
 	ret
 /*
+ * XOSC BIXYGAU PE'A
+ *
  * 0xDEAF0000
  *
  * 0xXXXX [dp: 0xXXXX]
