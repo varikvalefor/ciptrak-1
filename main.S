@@ -731,8 +731,9 @@ zgitci_frob_deaf_xosc:
 
 	bexti	t1,	a2,	(1 + 4 * 3)	// temp
 	beqz	t1,	zgitci_frob_deaf_xosc_post
-	li	t0,	0xFFF
-	and	t1,	a2,	t0
+
+	li	t1,	0xFFF
+	and	t1,	a2,	t1
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_post:
