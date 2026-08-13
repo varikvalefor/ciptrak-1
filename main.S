@@ -550,7 +550,7 @@ zgitci_frob_damri_sha_jdika:
 	sub     curval_a5,      curval_a5,      sha_t0
 zgitci_frob_damri_min:
 	li	t0,	0
-	min	curval_a5,	curval_a5,	t0
+	minu	curval_a5,	curval_a5,	t0
 zgitci_frob_damri_sha_post:
 	/* TODO: cusku pe'a
 	 * .i xu lo me'oi .PWM. co'e cu mapti */
