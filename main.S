@@ -729,9 +729,9 @@ zgitci_frob_deaf_xosc:
 	and	t0,	a1,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
 
-	li	t0,	0xFFF
 	bexti	t1,	a2,	(1 + 4 * 3)	// temp
 	beqz	t1,	zgitci_frob_deaf_xosc_post
+	li	t0,	0xFFF
 	and	t1,	a2,	t0
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
