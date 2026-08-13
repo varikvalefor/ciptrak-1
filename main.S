@@ -666,7 +666,7 @@ zgitci_frob_c000_sutra:
 	#define	ctr_t0	t0
 	#define	judri_t1	t1
 	li	t0,	0xFFFF
-	and	t0,	a2,	t0
+	and	ctr_t0,	a2,	t0
 	mv	judri_t1,	a1
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[3-7] */
