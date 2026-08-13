@@ -87,8 +87,6 @@ main_init_xosc_cipra_lupe:
 	beqz	t1,	main_init_xosc_cipra_lupe
 
 main_lupe_pre:
-	#define	ptn_s0	s0
-	la	s0,	patton
 	#define	vrc_s1	s1
 	la	vrc_s1,	cur
 main_lupe:
