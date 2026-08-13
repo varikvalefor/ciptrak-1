@@ -288,7 +288,7 @@ main_reset_denpa:
 	# .i denpa fi tu'a la'oi .XOSC.
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lw	t1,	(t0)
+	lh	t1,	2(t0)
 	bnez	t1,	main_reset_denpa_lupe
 
 	j	main_lupe
