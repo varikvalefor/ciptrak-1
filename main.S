@@ -86,12 +86,6 @@ main_init_xosc_cipra_lupe:
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 
-main_init_sha:
-	/* TODO: .i xu sarcu  .i xu nai me'oi .Secure. */
-	li	t0,	ACCESSCTRL_BASE + ACCESSCTRL_SHA256_OFFSET
-	li	t1,	0xFF
-	sw	t0,	(t1)
-
 main_lupe_pre:
 	#define	ptn_s0	s0
 	la	s0,	patton
