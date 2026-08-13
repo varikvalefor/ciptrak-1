@@ -659,6 +659,7 @@ zgtici_frob_c000_mv_post:
 zgitci_frob_c000_sutra:
 	li	t0,	0xC0000002
 	bne	a0,	t0,	zgitci_frob_c000_denpa
+
 	addi	sp,	sp,	-4
 	sw	s0,	(sp)
 	mv	s0,	ra
