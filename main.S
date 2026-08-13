@@ -716,7 +716,7 @@ zgitci_frob_c000_denpa:
  * 0xXXXX [dp: 0xXXXX]
  * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
  *
- * XXX[?: bbb][x1: b][st: bbbbbbbbbbbb]
+ * XXX[?: bbb][x1: b][st: 0xXXX]
  * ^ .i sa'u lo me'oi .x1. srana lo du'u xu kau djica lo nu co'e co ni zilsutra
  *   .i sa'u lo me'oi .st. cu mu'oi zoi. FREQ_RANGE .zoi. namcu
  *
