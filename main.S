@@ -607,7 +607,6 @@ zgtici_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
 	li	t0,	0xC0000001
-	and	t0,	a0,	t0
 	bclri	t1,	a0,	0
 	bne	t1,	t0,	zgitci_frob_c000_sutra
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (22 + x)
