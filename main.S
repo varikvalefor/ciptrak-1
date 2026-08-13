@@ -640,6 +640,14 @@ zgtici_frob_c000_mv_post:
 
 /*
  * SUTRA
+ * .i la .varik. cu zu'edji tu'a lo nu la'oi .SUTRA. jai filri'a lo nu zi'o sutra tu'a lo'i zgitci co'e... noi la judri judri lo pa moi be lo'i co'e be ke'a je noi la'oi .nibarda. nilzilcmi ke'a
+ * .i la'oi .SUTRA. smimlu zo'e pe la'oi .main. le ka lo co'e co me la judri cu judri lo co'e be lo zgike be'o poi ke'a mapti tu'a la'oi .zgitci_frob.
+ *
+ * ===== !!!!! =====
+ * .i ku'i la .varik. cu kajde fi zo'e joi le su'u la'oi .SUTRA. panra la'oi .MV. le ka vo'a jinvi le du'u ke'a jai filri'a lo nu co'e ja spofu
+ * ===== !!!!! =====
+ *
+ * == aX ==
  *
  * 0xC0000002
  *
