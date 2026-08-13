@@ -504,9 +504,9 @@ zgitci_frob_damri:
 	addi	t0,	zgitci_a4,	30
 	slli	t0,	t0,	2
 	add	idx_j_t0,	t0,	vrc_s1
-	bexti	t1,	a0,	31
 	#define	tmp_sesumji_t2	t2
 	li	tmp_sesumji_t2,	1
+	bexti	t1,	a0,	31
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
 	sw	tmp_sesumji_t2,	(idx_j_t0)
