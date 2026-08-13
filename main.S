@@ -255,7 +255,7 @@ main_incri:
 	#define	temci_t1	t1
 	#define	tmp_1_t2	t2
 	li	tmp_1_t2,	1
-	amoadd.w	temci_t1,	tmp_1_t2,	0(vrc_s1)
+	amoadd.w	temci_t1,	tmp_1_t2,	CUR_TEMCI(vrc_s1)
 	add	temci_t1,	temci_t1,	tmp_1_t2
 
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
