@@ -706,7 +706,8 @@ zgitci_frob_c000_denpa:
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
 	#define	denpa_j_t0	t0
 	addi	t0,	zgitci_a4,	2
-	slli	denpa_j_t0,	t0,	2
+	slli	t0,	t0,	2
+	add	denpa_j_t0,	t0,	vrc_s1
 	sw	a1,	(denpa_j_t0)
 
 	// TODO: .i xu cadga fa lo nu zukte lo frica
