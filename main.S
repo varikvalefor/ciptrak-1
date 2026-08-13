@@ -445,10 +445,10 @@ zgitci_frob_1_pwm_csr:
  *
  */
 zgitci_frob_check_2:
-	li	t0,	2
-	blt	a0,	t0,	zgtici_frob_c000_mv
-	li	t0,	3
-	bgt	a0,	t0,	zgtici_frob_c000_mv
+	// | (a0 `elem` [2,3])?
+	addi	t0,	a0,	-2
+	li	t1,	2
+	bgeu	t0,	t1,	zgtici_frob_c000_mv
 	# todo
 	li	t0,	0xFFF
 	#define	zts_id_t0	t0
