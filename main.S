@@ -660,8 +660,7 @@ zgitci_frob_c000_sutra:
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
 	addi	sp,	sp,	-4
-	sw	s0,	(sp)
-	mv	s0,	ra
+	sw	ra,	(sp)
 
 	#define	ctr_t0	t0
 	#define	judri_a1	a1
