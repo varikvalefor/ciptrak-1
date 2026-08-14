@@ -631,8 +631,7 @@ zgtici_frob_c000_mv:
 
 	jal	zgitci_frob
 
-	mv	ra,	s0
-	lw	s0,	(sp)
+	lw	ra,	(sp)
 	addi	sp,	sp,	4
 zgtici_frob_c000_mv_post:
 	ret
