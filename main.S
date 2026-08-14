@@ -668,11 +668,11 @@ zgitci_frob_c000_sutra:
 	and	ctr_t0,	a2,	t0
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[2-7] */
-	lw	t3,	(judri_t1)
-	lw	a0,	(t3)
-	lw	a1,	4(t3)
-	lw	a2,	8(t3)
-	lw	a3,	0xC(t3)
+	lw	t2,	(judri_t1)
+	lw	a0,	(t2)
+	lw	a1,	4(t2)
+	lw	a2,	8(t2)
+	lw	a3,	0xC(t2)
 	jal	zgitci_frob
 	addi	ctr_t0,	ctr_t0,	-1
 	addi	judri_a1,	judri_a1,	4
