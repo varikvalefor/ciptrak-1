@@ -664,10 +664,9 @@ zgitci_frob_c000_sutra:
 	mv	s0,	ra
 
 	#define	ctr_t0	t0
-	#define	judri_t1	t1
+	#define	judri_a1	a1
 	li	t0,	0xFFFF
 	and	ctr_t0,	a2,	t0
-	mv	judri_t1,	a1
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[3-7] */
 	lw	t3,	(judri_t1)
@@ -677,7 +676,7 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a3,	0xC(t3)
 	jal	zgitci_frob
 	addi	ctr_t0,	ctr_t0,	-1
-	addi	judri_t1,	judri_t1,	4
+	addi	judri_a1,	judri_a1,	4
 	bnez	ctr_t0,	zgitci_frob_c000_sutra_lupe
 
 	mv	ra,	s0
