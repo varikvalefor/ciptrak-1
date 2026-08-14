@@ -621,8 +621,7 @@ zgtici_frob_c000_mv:
 	lw	t2,	(judri_j_t1)
 	lw	t1,	(sezvati_j_t0)
 	addi	sp,	sp,	-4
-	sw	s0,	(sp)
-	mv	s0,	ra
+	sw	ra,	(sp)
 
 	add	t0,	t1,	t2
 	lw	a0,	(t0)
