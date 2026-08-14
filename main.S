@@ -741,3 +741,13 @@ zgitci_frob_deaf_xosc:
 	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_post:
 	ret
+
+/*
+ * VRICI
+ * .i pilno lo me'oi .a5... tu'a lo vrici  .i go'i
+ *
+ * [klesi: 0xFF][?: 0xXXXXXX]
+ *
+ */
+vrici_frob:
+	ret
