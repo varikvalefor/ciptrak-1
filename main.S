@@ -500,7 +500,7 @@ zgitci_frob_damri:
 	#define	tmp_sesumji_t2	t2
 	li	tmp_sesumji_t2,	1
 
-	bexti	t1,	a0,	31
+	bexti	t1,	a1,	31
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
