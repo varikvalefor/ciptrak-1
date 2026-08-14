@@ -678,8 +678,7 @@ zgitci_frob_c000_sutra_lupe:
 	addi	judri_a1,	judri_a1,	4
 	bnez	ctr_t0,	zgitci_frob_c000_sutra_lupe
 
-	mv	ra,	s0
-	lw	s0,	(sp)
+	lw	ra,	(sp)
 	addi	sp,	sp,	4
 
 	ret
