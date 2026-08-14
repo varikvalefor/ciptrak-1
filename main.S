@@ -503,7 +503,7 @@ zgitci_frob_damri:
 	bexti	t1,	a0,	31
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
-	sw	tmp_sesumji_t2,	(idx_j_t0)
+	sw	x0,	(idx_j_t0)
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
 	// TODO: .i xu mapti  .i la .varik. na prane le ka ce'u birti
