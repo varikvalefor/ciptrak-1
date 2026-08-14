@@ -507,9 +507,9 @@ zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	// TODO: .i xu mapti  .i la .varik. na prane le ka ce'u birti
-	amoadd.w	t1,	tmp_sesumji_t2,	(idx_j_t0)
+	lw	t1,	(idx_j_t0)
 	add	t1,	t1,	tmp_sesumji_t2
+	sw	t1,	(idx_j_t0)
 zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
