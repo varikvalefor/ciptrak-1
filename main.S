@@ -752,8 +752,19 @@ zgitci_frob_deaf_xosc_post:
  *
  */
 vrici_frob:
-	#define	klesi_t0	t0
-	srli	klesi_t0,	klesi,	(6 * 4)
+	#define	SIVNI_NILZILCMI	1
+	#define	t0	t0
+	srli	t0,	klesi,	(6 * 4)
+	li	t1,	SIVNI_NILZILCMI
+	bgt	t0,	t1,	vrici_frob_dispatch
+	slli	t0,	t0,	2
+	addi	t0,	t0,	4
+vrici_frob_dispatch:
+	jalr	x0,	pc,	t0
+	// | 0
+	ret
+	// | 1
+	j	vrici_frob_denpa
 vrici_frob_denpa:
 	li	t1,	1
 	bne	klesi_t0,	t1,	vrici_frob_denpa_post
