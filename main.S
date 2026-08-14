@@ -573,15 +573,14 @@ zgitci_frob_check_pio_gpio_post:
 	and	max_t0,	a2,	t0
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
-	#define	ctr_a3	a3
-	li	ctr_a3,	0
+	addi	max_t0,	max_t0,	1	// underflow
 zgitci_frob_check_pio_ld_lupe:
 	lw	t2,	(a2)
 	sh	t2,	(a1)
 	slli	t2,	t2,	16	// TODO: .i jai mapti fa zo'oi .slli. ji zo'oi .srli.
 	sh	t2,	2(a1)
-	addi	ctr_a3,	ctr_a3,	1
-	blt	ctr_a3,	max_t0,	zgitci_frob_check_pio_ld_lupe
+	addi	max_t0,	max_t0,	-1
+	bnez	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
 
 /*
