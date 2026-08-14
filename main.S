@@ -668,7 +668,7 @@ zgitci_frob_c000_sutra:
 	li	t0,	0xFFFF
 	and	ctr_t0,	a2,	t0
 zgitci_frob_c000_sutra_lupe:
-	/* DROP t[3-7] */
+	/* DROP t[2-7] */
 	lw	t3,	(judri_t1)
 	lw	a0,	(t3)
 	lw	a1,	4(t3)
