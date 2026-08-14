@@ -569,7 +569,7 @@ zgitci_frob_check_pio:
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
 	#define	max_t0	t0
-	li	t0,	31
+	li	t0,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	and	max_t0,	a2,	t0
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
