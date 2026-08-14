@@ -748,6 +748,27 @@ zgitci_frob_deaf_xosc_post:
  *
  * [klesi: 0xFF][?: 0xXXXXXX]
  *
+ * DROP t[0-7]
+ *
  */
 vrici_frob:
+	#define	klesi_t0	t0
+	srli	klesi_t0,	klesi,	(6 * 4)
+vrici_frob_denpa:
+	li	t1,	1
+	bne	klesi_t0,	t1,	vrici_frob_denpa_post
+
+	li	t0,	0xFFFFFF
+	and	t1,	a0,	t0
+
+	#define	denpa_j_t0	t0
+	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
+	addi	t0,	zgitci_a4,	2
+	slli	t0,	t0,	2
+	add	denpa_j_t0,	t0,	vrc_s1
+
+	sw	t1,	(denpa_j_t0)
+
+	ret
+vrici_frob_denpa_post:
 	ret
