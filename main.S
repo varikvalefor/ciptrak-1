@@ -760,7 +760,9 @@ vrici_frob:
 	#define	t0	t0
 	srli	t0,	klesi,	(6 * 4)
 	li	t1,	SIVNI_NILZILCMI
-	bgt	t0,	t1,	vrici_frob_dispatch
+	ble	t0,	t1,	vrici_frob_dispatch_pre
+	ret
+vrici_frob_dispatch_pre:
 	slli	t0,	t0,	2
 	addi	t0,	t0,	4
 vrici_frob_dispatch:
