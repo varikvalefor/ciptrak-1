@@ -544,6 +544,7 @@ zgitci_frob_damri_sha:
 	andi	t2,	t2,	0b11
 	add	t1,	t1,	t2
 	srl	sha_t0,	sha_t0,	t1
+
 	bexti	t1,	sha_t0,	0
 	beqz	t1,	zgitci_frob_damri_sha_jdika
 	add	curval_a5,	curval_a5,	sha_t0
