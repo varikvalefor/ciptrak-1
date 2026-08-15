@@ -739,6 +739,10 @@ zgitci_frob_deaf_xosc:
 	and	t1,	a2,	t1
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
+
+/*
+ * NOPE.AVI
+ */
 zgitci_frob_nope:
 	ret
 
