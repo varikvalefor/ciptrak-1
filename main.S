@@ -764,7 +764,8 @@ vrici_frob:
 	slli	t0,	t0,	2
 	addi	t0,	t0,	4
 vrici_frob_dispatch:
-	jalr	x0,	pc,	t0
+	// | TODO: .i xu mapti  .i la .varik. cu milxe le ka ce'u senpi
+	jr	t0,	4
 	// | 0
 	ret
 	// | 1
