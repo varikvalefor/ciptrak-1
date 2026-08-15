@@ -774,7 +774,7 @@ vrici_frob_dispatch:
 	j	vrici_frob_j
 vrici_frob_denpa:
 	li	t0,	0xFFFFFF
-	and	t1,	a0,	t0
+	and	t1,	a5,	t0
 
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
