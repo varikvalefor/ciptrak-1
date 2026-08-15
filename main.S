@@ -763,6 +763,9 @@ vrici_frob:
 	ble	t0,	t1,	vrici_frob_dispatch_pre
 	ret
 vrici_frob_dispatch_pre:
+	li	t1,	0xFFFFFF
+	and	t1,	a5,	t1
+
 	slli	t0,	t0,	2
 	addi	t0,	t0,	4
 vrici_frob_dispatch:
@@ -775,9 +778,6 @@ vrici_frob_dispatch:
 	// | 2
 	j	vrici_frob_j
 vrici_frob_denpa:
-	li	t0,	0xFFFFFF
-	and	t1,	a5,	t0
-
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
 	addi	t0,	zgitci_a4,	2
@@ -788,9 +788,6 @@ vrici_frob_denpa:
 
 	ret
 vrici_frob_j:
-	li	t0,	0xFFFFFF
-	and	t0,	a5,	t0
-
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
 	addi	t1,	zgitci_a4,	22
 	slli	t1,	t1,	2
