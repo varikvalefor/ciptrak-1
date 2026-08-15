@@ -767,7 +767,6 @@ vrici_frob_dispatch_pre:
 	and	t1,	a5,	t1
 
 	slli	t0,	t0,	2
-	addi	t0,	t0,	4
 vrici_frob_dispatch:
 	// | TODO: .i xu mapti  .i la .varik. cu milxe le ka ce'u senpi
 	jr	t0,	4
