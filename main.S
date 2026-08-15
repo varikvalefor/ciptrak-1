@@ -772,9 +772,6 @@ vrici_frob_dispatch:
 	// | 2
 	j	vrici_frob_j
 vrici_frob_denpa:
-	li	t1,	1
-	bne	klesi_t0,	t1,	vrici_frob_j
-
 	li	t0,	0xFFFFFF
 	and	t1,	a0,	t0
 
