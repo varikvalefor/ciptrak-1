@@ -757,7 +757,7 @@ zgitci_frob_nope:
  */
 vrici_frob:
 	#define	SIVNI_NILZILCMI	2
-	srli	t0,	klesi,	(6 * 4)
+	srli	t0,	a5,	(6 * 4)
 	li	t1,	SIVNI_NILZILCMI
 	ble	t0,	t1,	vrici_frob_dispatch_pre
 	ret
