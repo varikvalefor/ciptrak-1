@@ -522,11 +522,6 @@ zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
 
-	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
-	   .i xu mapti fa tu'a lo me'oi .jal. co'e
-	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
-	   .i la .varik. na birti */
-
 zgitci_frob_damri_sha:
 	bexti   t0,     a2,     0
 	beqz    t0,     zgitci_frob_damri_sha_post
@@ -556,8 +551,11 @@ zgitci_frob_damri_sha_min:
 	minu	curval_a5,	curval_a5,	x0
 zgitci_frob_damri_cusku:
 
-	/* TODO: cusku pe'a
-	 * .i xu lo me'oi .PWM. co'e cu mapti */
+	/* TODO: cusku pe'a */
+	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
+	   .i xu mapti fa tu'a lo me'oi .jal. co'e
+	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
+	   .i la .varik. na birti */
 
 	ret
 /*
