@@ -421,6 +421,15 @@ zgitci_frob_1_pwm_csr:
 
 	/* ni'o la .varik. na te cadga fi tu'a lo me'oi .DIV. */
 
+zgitci_frob_1_pwm_idx:
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
+	addi	t0,	zgitci_a4,	39
+	slli	t0,	t0,	2
+	add	t0,	t0,	vrc_s1
+	lw	t1,	(t0)
+	addi	t1,	t1,	1
+	sw	t1,	(t0)
+
 	ret
 /*
  * SANCE DATNYVEI PE'A
