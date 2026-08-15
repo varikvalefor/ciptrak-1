@@ -548,10 +548,10 @@ zgitci_frob_damri_sha:
 	bexti	t1,	sha_t0,	0
 	beqz	t1,	zgitci_frob_damri_sha_jdika
 	add	curval_a5,	curval_a5,	sha_t0
-	j	zgitci_frob_damri_min
+	j	zgitci_frob_damri_sha_min
 zgitci_frob_damri_sha_jdika:
 	sub     curval_a5,      curval_a5,      sha_t0
-zgitci_frob_damri_min:
+zgitci_frob_damri_sha_min:
 	minu	curval_a5,	curval_a5,	x0
 zgitci_frob_damri_sha_post:
 	/* TODO: cusku pe'a
