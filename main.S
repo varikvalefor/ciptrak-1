@@ -252,10 +252,9 @@ main_incri:
 	/* DROP [at][01234567] */
 
 	#define	temci_t1	t1
-	#define	tmp_1_t2	t2
-	li	tmp_1_t2,	1
-	amoadd.w	temci_t1,	tmp_1_t2,	CUR_TEMCI(vrc_s1)
-	add	temci_t1,	temci_t1,	tmp_1_t2
+	lw	temci_t1,	CUR_TEMCI(vrc_s1)
+	addi	temci_t1,	temci_t1,	1
+	sw	temci_t1,	CUR_TEMCI(vrc_s1)
 
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	rem     t3,     temci_t1,       t2
