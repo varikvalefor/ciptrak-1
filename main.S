@@ -769,7 +769,7 @@ vrici_frob_dispatch_pre:
 	slli	t0,	t0,	2
 vrici_frob_dispatch:
 	// | TODO: .i xu mapti  .i la .varik. cu milxe le ka ce'u senpi
-	jr	t0,	4
+	j	t0
 	// | 0
 	ret
 	// | 1
