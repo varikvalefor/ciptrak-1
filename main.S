@@ -832,7 +832,7 @@ zgitci_frob_deaf_setsivni:
 	slli	t0,	t0,	2
 	add	t0,	t0,	vrc_s1
 	sw	a2,	(t0)
-tci_frob_deaf_setsivni_i2:
+zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
