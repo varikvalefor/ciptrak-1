@@ -860,7 +860,7 @@ zgitci_frob_nope:
  *
  */
 vrici_frob:
-	#define	SIVNI_NILZILCMI	2
+	#define	SIVNI_NILZILCMI	3
 	srli	t0,	a5,	(6 * 4)
 	li	t1,	SIVNI_NILZILCMI
 	ble	t0,	t1,	vrici_frob_dispatch_pre
@@ -879,6 +879,8 @@ vrici_frob_dispatch:
 	j	vrici_frob_denpa
 	// | 2
 	j	vrici_frob_j
+	// | 3
+	j	vrici_frob_0
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
@@ -896,5 +898,26 @@ vrici_frob_j:
 	add	t1,	t1,	vrc_s1
 
 	sw	t1,	(t0)
+
+	ret
+/*
+ * RUB ONE OUT
+ *
+ */
+vrici_frob_0:
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
+	//           CUR_PATN_JUDRI(x)	4 * (26 + x)
+	addi	t0,	zgitci_a4,	22
+	slli	t0,	t0,	2
+	add	t0,	t0,	vrc_s1
+	addi	t1,	t0,	4 * (26 - 22)	// CUR_PATN_JUDRI
+
+	lw	t0,	(t0)
+	lw	t1,	(t1)
+
+	add	t1,	t1,	a5
+	add	t0,	t0,	t1
+
+	sw	x0,	(t0)
 
 	ret
