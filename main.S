@@ -751,6 +751,36 @@ zgitci_frob_deaf_xosc:
 	sw	t1,	(t0)
 
 /*
+ * BIXYGAU PE'A
+ * .i zu'edji tu'a lo nu la'oi .BIXYGAU. jai filri'a lo nu basygau pe'a lo zgitci co'e
+ *
+ * 0xDEAF0001
+ *
+ * [judriP: 0xXXXXXXX][?: 0bXXX][idx: 0bX]
+ *
+ * [zt1: 0xXXXXXXXX]
+ *
+ * [zt2: 0xXXXXXXXX]
+ *
+ */
+zgitci_frob_deaf_bixygau:
+	#define	judri0_t0	t0
+	#define	A1_SIVNI_JUDRIP_OFFSET	4
+	li	t1,	0x10000000
+	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
+	add	t0,	t0,	t1
+
+	// | + t1 * 8
+	// .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
+	bexti	t1,	a1,	0
+	sh3add	judri0_t0,	t0,	t1
+
+	sw	a2,	0(judri0_t0)
+	sw	a3,	4(judri0_t0)
+
+	ret
+
+/*
  * NOPE.AVI
  */
 zgitci_frob_nope:
