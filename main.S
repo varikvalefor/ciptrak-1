@@ -737,7 +737,7 @@ zgitci_frob_c000_denpa:
 zgitci_frob_deaf_xosc:
 	#define	SIVNI_ST_MASK	0xFFF
 	li	t0,	0xDEAF0000
-	bne	a0,	t0,	zgitci_frob_nope
+	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 	li	t1,	0xFFFF
 	and	t0,	a1,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
@@ -764,6 +764,8 @@ zgitci_frob_deaf_xosc:
  *
  */
 zgitci_frob_deaf_bixygau:
+	li	t0,	0xDEAF0001
+	bne	t0,	a0,	zgitci_frob_nope
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 	li	t1,	0x10000000
