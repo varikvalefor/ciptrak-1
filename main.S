@@ -781,7 +781,7 @@ zgitci_frob_deaf_xosc:
  */
 zgitci_frob_deaf_bixygau:
 	li	t0,	0xDEAF0001
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_deaf_setsivni
 
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
@@ -801,6 +801,47 @@ zgitci_frob_deaf_bixygau:
 	sw	a2,	0(judri0_t0)
 	sw	a3,	4(judri0_t0)
 
+	ret
+
+/*
+ * SET SIVNI
+ *
+ * 0xDEAF0002
+ *
+ * [?: 0xXXXXXXX][offset:0bXX][e: 0bXX]
+ *
+ * [sivni1]
+ *
+ * [sivni2]
+ *
+ */
+zgitci_frob_deaf_setsivni:
+	li	t0,	0xDEAF0002
+	bne	t0,	a0,	zgitci_frob_nope
+
+	#define	A1_SIVNI_ENABLE_BIT_0	0
+	#define	A1_SIVNI_ENABLE_BIT_1	1
+	#define	A1_SIVNI_OFFSET_BIT_0	2
+	#define	A1_SIVNI_OFFSET_BIT_1	3
+
+	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
+	beqz	t0,	zgitci_frob_deaf_setsivni_i2
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
+	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
+	addi	t0,	t0,	39
+	slli	t0,	t0,	2
+	add	t0,	t0,	vrc_s1
+	sw	a2,	(t0)
+tci_frob_deaf_setsivni_i2:
+	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
+	beqz	t0,	zgitci_frob_deaf_setsivni_post
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
+	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
+	addi	t0,	t0,	40	// .i jinvi le du'u li vo no cu jai filri'a tu'a lo ci moi je lo vo moi
+	slli	t0,	t0,	2
+	add	t0,	t0,	vrc_s1
+	sw	a3,	(t0)
+zgitci_frob_deaf_setsivni_post:
 	ret
 
 /*
