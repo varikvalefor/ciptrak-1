@@ -618,7 +618,7 @@ zgitci_frob_check_pio_ld_lupe:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * ?
+ * [?: 0xXXXX][ctr: 0xXXXX]
  *
  */
 zgtici_frob_c000_mv:
@@ -634,10 +634,26 @@ zgtici_frob_c000_mv:
 	addi	t0,	zgitci_a4,	22
 	slli	t0,	t0,	2
 	add	sezvati_j_t0,	t0,	vrc_s1
-	sw	sezvati_a2,	(sezvati_j_t0)
 	addi	t1,	zgitci_a4,	26
 	slli	t1,	t1,	2
 	add	judri_j_t1,	t1,	vrc_s1
+
+	li	t2,	0xFFFF
+	and	t2,	a3,	t2
+	beqz	t2,	zgtici_frob_c000_mv_cont
+
+	srli	t3,	a3,	16
+	slli	t3,	t3,	16
+	addi	t2,	t2,	-1
+	add	a3,	t2,	t3
+
+	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
+	lw	t0,	(judri_j_t1)
+	sw	a3,	0xC(t0)
+	ret
+
+zgtici_frob_c000_mv_cont:
+	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
 	bexti	t2,	a0,	0
