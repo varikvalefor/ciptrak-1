@@ -465,7 +465,7 @@ zgitci_frob_check_2:
 	// | (a0 `elem` [2,3])?
 	addi	t0,	a0,	-2
 	li	t1,	2
-	bgeu	t0,	t1,	zgtici_frob_c000_mv
+	bgeu	t0,	t1,	zgitci_frob_c000_mv
 	# todo
 	li	t0,	0xFFF
 	#define	zts_id_t0	t0
@@ -590,7 +590,7 @@ zgitci_frob_damri_cusku:
 zgitci_frob_check_pio:
 	li	t0,	0x0001000F
 	or	t1,	a0,	t0
-	bne	t1,	t0,	zgtici_frob_c000_mv
+	bne	t1,	t0,	zgitci_frob_c000_mv
 	// TODO: .aktigau lo me'oi .PIO. co'e
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
@@ -621,7 +621,7 @@ zgitci_frob_check_pio_ld_lupe:
  * [?: 0xXXXX][ctr: 0xXXXX]
  *
  */
-zgtici_frob_c000_mv:
+zgitci_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
 	li	t0,	0xC0000000
@@ -640,7 +640,7 @@ zgtici_frob_c000_mv:
 
 	li	t2,	0xFFFF
 	and	t2,	a3,	t2
-	beqz	t2,	zgtici_frob_c000_mv_cont
+	beqz	t2,	zgitci_frob_c000_mv_cont
 
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
@@ -652,12 +652,12 @@ zgtici_frob_c000_mv:
 	sw	a3,	0xC(t0)
 	ret
 
-zgtici_frob_c000_mv_cont:
+zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
 	bexti	t2,	a0,	0
-	beqz	t2,	zgtici_frob_c000_mv_post
+	beqz	t2,	zgitci_frob_c000_mv_post
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 	lw	t2,	(judri_j_t1)
 	lw	t1,	(sezvati_j_t0)
@@ -674,7 +674,7 @@ zgtici_frob_c000_mv_cont:
 
 	lw	ra,	(sp)
 	addi	sp,	sp,	4
-zgtici_frob_c000_mv_post:
+zgitci_frob_c000_mv_post:
 	ret
 
 /*
