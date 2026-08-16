@@ -770,8 +770,8 @@ zgitci_frob_deaf_bixygau:
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 
-	li	t1,	0x10000000
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
+	li	t1,	0x10000000
 	add	t0,	t0,	t1
 
 	// | + t1 * 8
