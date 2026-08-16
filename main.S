@@ -766,8 +766,10 @@ zgitci_frob_deaf_xosc:
 zgitci_frob_deaf_bixygau:
 	li	t0,	0xDEAF0001
 	bne	t0,	a0,	zgitci_frob_nope
+
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
+
 	li	t1,	0x10000000
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 	add	t0,	t0,	t1
