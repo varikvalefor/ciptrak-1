@@ -867,7 +867,7 @@ vrici_frob:
 	ret
 vrici_frob_dispatch_pre:
 	li	t1,	0xFFFFFF
-	and	t1,	a5,	t1
+	and	a5,	a5,	t1
 
 	slli	t0,	t0,	2
 vrici_frob_dispatch:
@@ -886,7 +886,7 @@ vrici_frob_denpa:
 	slli	t0,	t0,	2
 	add	denpa_j_t0,	t0,	vrc_s1
 
-	sw	t1,	(denpa_j_t0)
+	sw	a5,	(denpa_j_t0)
 
 	ret
 vrici_frob_j:
