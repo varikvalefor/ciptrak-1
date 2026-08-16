@@ -14,6 +14,8 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 .zoi.  .i la .varik. na birti lo du'u le notci cu jai filri'a lo nu jimpe ji kau lo nu jinvi lo du'u vo'a jai fenki  .i ku'i la .varik. na birti le du'u ri na fenki
 
 .i la .varik. cu jinvi le du'u vo'a pilno lo mu'oi glibau. Raspberry Pi Pico 2 W .glibau.
+
+.i la .varik. cu kucli lo du'u ma kau mapti la'oi .RP2350. jenai zo'e
 */
 
 #include "shortcut.S"
