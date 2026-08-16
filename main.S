@@ -833,10 +833,10 @@ zgitci_frob_deaf_setsivni:
 	add	t0,	t0,	vrc_s1
 	sw	a2,	(t0)
 zgitci_frob_deaf_setsivni_i2:
-	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
+	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
-	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
+	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	addi	t0,	t0,	40	// .i jinvi le du'u li vo no cu jai filri'a tu'a lo ci moi je lo vo moi
 	slli	t0,	t0,	2
 	add	t0,	t0,	vrc_s1
