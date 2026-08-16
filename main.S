@@ -1,6 +1,20 @@
-# ni'o la .varik. cu kucli lo du'u xu kau frili cumki fa tu'a lo me'oi .tracker. pe la'oi .RP2350.
-# .i la'e di'u krinu tu'a le datnyvei  .i la .varik. na ta'e sampla  .i ku'i la'oi .RP2350. co'e ja cinri la .varik.
-# .i la .varik. cu pilno la'o glibau. Raspberry Pi Pico 2 W .glibau.
+/*
+ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo notci pe zoi zoi.
+
+	ni'o la .varik. cu tolsti lo pu'u vo'a ciksi lo me'oi .tracker. proga fo la'oi .RP2350.
+	.i la .varik. cu co'e ja narka'e zo'e je tu'a lo zgike je cu co'e ja se cnino tu'a la'oi .RP2350.
+	.i ku'i la .varik. cu co'e ja cinmo lo ka la'oi .RP2350. cusku pe'a lo se du'u ri djica pe'a tu'a lo me'oi .tracker. proga kei ce'u
+	.i la .varik. na krici lo du'u lo skami cu prenu ja cu se xadni lo prenu  .i ku'i la .varik. cu jinvi le du'u lo skami cu mapti lo su'o co'e je cu tolmapti lo su'o co'e
+
+	VARIK begins the process of explaining (for the RP2350) a music tracker program.
+	VARIK is stupid with music and whatnot.  Additionally, the RP2350 is new/whatever for VARIK.
+	But VARIK feels/whatever that the RP2350 "states" (to VARIK) that the RP2350 "desires" a music tracker program.
+	VARIK does not believe that computers are prenu or are bodies of prenu.  But VARIK opines that computers are appropriate for some things and are ill-suited for some things.
+
+.zoi.  .i la .varik. na birti lo du'u le notci cu jai filri'a lo nu jimpe ji kau lo nu jinvi lo du'u vo'a jai fenki  .i ku'i la .varik. na birti le du'u ri na fenki
+
+.i la .varik. cu jinvi le du'u vo'a pilno lo mu'oi glibau. Raspberry Pi Pico 2 W .glibau.
+*/
 
 #include "shortcut.S"
 
