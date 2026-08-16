@@ -496,7 +496,7 @@ zgitci_frob_check_2_fanmo:
  * ?
  */
 zgitci_frob_damri:
-	#define	SIVNI_CNINO_BIT	31
+	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
 
 	li	t0,	0x0000004
@@ -509,7 +509,7 @@ zgitci_frob_damri:
 	#define	tmp_sesumji_t2	t2
 	li	tmp_sesumji_t2,	1
 
-	bexti	t1,	a1,	SIVNI_CNINO_BIT
+	bexti	t1,	a1,	A1_SIVNI_CNINO_BIT
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
