@@ -512,11 +512,11 @@ zgitci_frob_check_2_fanmo:
  * ?
  */
 zgitci_frob_damri:
-	#define	A1_SIVNI_CNINO_BIT	31
-	#define	curval_a5	a5
-
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
+
+	#define	A1_SIVNI_CNINO_BIT	31
+	#define	curval_a5	a5
 	#define	idx_j_t0	t0
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
