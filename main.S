@@ -946,20 +946,21 @@ vrici_frob_0:
 
 	ret
 vrici_frob_jog:
+	#define	sezvati_j_t0	t0
 	bexti	t1,	a5,	23
 	bclri	a5,	a5,	23
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
 	addi	t0,	zgitci_t4,	22
 	slli	t0,	t0,	2
-	add	t0,	t0,	vrc_s1
-	lw	t2,	(t0)
+	add	sezvati_j_t0,	t0,	vrc_s1
+	lw	t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
 	slli	t2,	t2,	2
 	add	t2,	t2,	a5
-	sw	t2,	(t0)
+	sw	t2,	(sezvati_j_t0)
 	ret
 vrici_frob_jog_sesumji:
 	slli	t2,	t2,	2
 	sub	t2,	t2,	a5
-	sw	t2,	(t0)
+	sw	t2,	(sezvati_j_t0)
 	ret
