@@ -954,10 +954,12 @@ vrici_frob_jog:
 	add	t0,	t0,	vrc_s1
 	lw	t2,	(t0)
 	beqz	t1,	vrici_frob_jog_sesumji
+	slli	t2,	t2,	2
 	add	t2,	t2,	a5
 	sw	t2,	(t0)
 	ret
 vrici_frob_jog_sesumji:
+	slli	t2,	t2,	2
 	sub	t2,	t2,	a5
 	sw	t2,	(t0)
 	ret
