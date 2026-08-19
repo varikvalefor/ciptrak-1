@@ -887,8 +887,9 @@ vrici_frob:
 	ble	t0,	t1,	vrici_frob_dispatch_pre
 	ret
 vrici_frob_dispatch_pre:
+	#define	datni_a5	a5
 	li	t1,	0xFFFFFF
-	and	a5,	a5,	t1
+	and	datni_a5,	a5,	t1
 
 	slli	t0,	t0,	2
 vrici_frob_dispatch:
@@ -913,7 +914,7 @@ vrici_frob_denpa:
 	slli	t0,	t0,	2
 	add	denpa_j_t0,	t0,	vrc_s1
 
-	sw	a5,	(denpa_j_t0)
+	sw	datni_a5,	(denpa_j_t0)
 
 	ret
 vrici_frob_j:
@@ -922,7 +923,7 @@ vrici_frob_j:
 	slli	t1,	t1,	2
 	add	t1,	t1,	vrc_s1
 
-	sw	t1,	(a5)
+	sw	t1,	(datni_a5)
 
 	ret
 /*
@@ -939,15 +940,15 @@ vrici_frob_0:
 	lw	t1,	(t1)
 	lw	t0,	(t0)
 
-	add	t1,	t1,	a5
+	add	t1,	t1,	datni_a5
 	add	t0,	t0,	t1
 
 	sw	x0,	(t0)
 
 	ret
 vrici_frob_jog:
-	bexti	t1,	a5,	23
-	bclri	a5,	a5,	23
+	bexti	t1,	datni_a5,	23
+	bclri	datni_a5,	datni_a5,	23
 
 	#define	sezvati_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
@@ -957,12 +958,12 @@ vrici_frob_jog:
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
-	sh2add	sezvati_t2,	sezvati_t2,	a5
+	sh2add	sezvati_t2,	sezvati_t2,	datni_a5
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 vrici_frob_jog_sesumji:
-	slli	a5,	a5,	2
-	sub	sezvati_t2,	sezvati_t2,	a5
+	slli	datni_a5,	datni_a5,	2
+	sub	sezvati_t2,	sezvati_t2,	datni_a5
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 // | TODO: .i xu mapti
@@ -970,5 +971,5 @@ vrici_frob_sivni:
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
 	addi	t0,	zgitci_a4,	39
 	sh2add	t0,	vrc_s1,	t0
-	sw	a5,	(t0)
+	sw	datni_a5,	(t0)
 	ret
