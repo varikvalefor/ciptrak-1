@@ -946,11 +946,11 @@ vrici_frob_0:
 
 	ret
 vrici_frob_jog:
-	#define	sezvati_j_t0	t0
 	bexti	t1,	a5,	23
 	bclri	a5,	a5,	23
 	slli	a5,	a5,	2
 
+	#define	sezvati_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
 	addi	t0,	zgitci_t4,	22
 	slli	t0,	t0,	2
