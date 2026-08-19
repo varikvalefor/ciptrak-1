@@ -128,6 +128,8 @@ main_lupe_sha:
 	li	t1,	1
 	sw	t1,	(t0)
 
+	/* TODO: RESET */
+
 	// not (dma design)
 	#define	dma_rd_j_t2	t2
 	#define	dma_w_j_t3	t3
