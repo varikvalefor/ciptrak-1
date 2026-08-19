@@ -103,7 +103,10 @@ main_init_xosc_cipra_lupe:
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_sha256:
-	/* TODO: RESET */
+	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET
+	lw	t1,	(t0)
+	bseti	t1,	t1,	RESETS_SHA256_BIT
+	sw	t1,	(t0)
 
 main_lupe_pre:
 	#define	vrc_s1	s1
