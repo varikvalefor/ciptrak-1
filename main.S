@@ -317,6 +317,7 @@ main_reset_denpa_lupe:
 	j	main_lupe
 
 #define	zgitci_a4	a4
+// | TODO: .i xu lo me'oi .switch. co'e cu zmadu
 zgitci_frob:
 	bnez	a0,	zgitci_frob_mapti_0
 	ret
