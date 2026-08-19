@@ -971,7 +971,6 @@ vrici_frob_jog_sesumji:
 vrici_frob_sivni:
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
 	addi	t0,	zgitci_a4,	39
-	slli	t0,	t0,	2
-	add	t0,	t0,	vrc_s1
+	sh2add	t0,	vrc_s1,	t0
 	sw	a5,	(t0)
 	ret
