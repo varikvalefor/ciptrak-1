@@ -938,8 +938,8 @@ vrici_frob_0:
 	add	t0,	t0,	vrc_s1
 	addi	t1,	t0,	4 * (26 - 22)	// CUR_PATN_JUDRI
 
-	lw	t0,	(t0)
 	lw	t1,	(t1)
+	lw	t0,	(t0)
 
 	add	t1,	t1,	a5
 	add	t0,	t0,	t1
