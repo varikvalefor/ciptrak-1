@@ -958,7 +958,7 @@ vrici_frob_jog:
 	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
 	add	sezvati_t2,	sezvati_t2,	a5
-	sw	t2,	(sezvati_j_t0)
+	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 vrici_frob_jog_sesumji:
 	sub	sezvati_t2,	sezvati_t2,	a5
