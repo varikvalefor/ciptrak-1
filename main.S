@@ -920,8 +920,7 @@ vrici_frob_denpa:
 vrici_frob_j:
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
 	addi	t1,	zgitci_a4,	22
-	slli	t1,	t1,	2
-	add	t1,	t1,	vrc_s1
+	sh2add	t1,	vrc_s1,	t1
 
 	sw	t1,	(datni_a5)
 
