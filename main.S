@@ -968,6 +968,7 @@ vrici_frob_jog_sesumji:
 	sub	sezvati_t2,	sezvati_t2,	a5
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
+// | TODO: .i xu mapti
 vrici_frob_sivni:
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
 	addi	t0,	zgitci_a4,	39
