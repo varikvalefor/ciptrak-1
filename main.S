@@ -953,14 +953,15 @@ vrici_frob_jog:
 	addi	t0,	zgitci_t4,	22
 	slli	t0,	t0,	2
 	add	sezvati_j_t0,	t0,	vrc_s1
-	lw	t2,	(sezvati_j_t0)
+	#define	sezvati_t2	t2
+	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
-	slli	t2,	t2,	2
-	add	t2,	t2,	a5
+	slli	sezvati_t2,	sezvati_t2,	2
+	add	sezvati_t2,	sezvati_t2,	a5
 	sw	t2,	(sezvati_j_t0)
 	ret
 vrici_frob_jog_sesumji:
-	slli	t2,	t2,	2
-	sub	t2,	t2,	a5
-	sw	t2,	(sezvati_j_t0)
+	slli	sezvati_t2,	sezvati_t2,	2
+	sub	sezvati_t2,	sezvati_t2,	a5
+	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
