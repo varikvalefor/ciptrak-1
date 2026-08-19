@@ -859,8 +859,7 @@ zgitci_frob_deaf_setsivni_i2:
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	addi	t0,	t0,	39 + 2	// .i jinvi le du'u li vo pa noi jinvi le du'u ke'a sumji li ci no li re cu jai filri'a tu'a lo ci moi je lo vo moi
-	slli	t0,	t0,	2
-	add	t0,	t0,	vrc_s1
+	sh2add	t0,	vrc_s1,	t0
 	sw	a3,	(t0)
 zgitci_frob_deaf_setsivni_post:
 	ret
