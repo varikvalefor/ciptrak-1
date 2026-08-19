@@ -103,6 +103,9 @@ main_init_xosc_cipra_lupe:
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_sha256:
+	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
+	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
+	 * cu zmadu fi le ka ce'u jai zilmasno */
 	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET
 	lw	t1,	(t0)
 	bseti	t1,	t1,	RESETS_SHA256_BIT
