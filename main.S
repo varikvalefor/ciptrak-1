@@ -102,6 +102,8 @@ main_init_xosc_cipra_lupe:
 	lw	t1,	(t0)
 	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
+main_init_sha256:
+	/* TODO: RESET */
 
 main_lupe_pre:
 	#define	vrc_s1	s1
@@ -127,8 +129,6 @@ main_lupe_sha:
 	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
 	li	t1,	1
 	sw	t1,	(t0)
-
-	/* TODO: RESET */
 
 	// not (dma design)
 	#define	dma_rd_j_t2	t2
