@@ -878,7 +878,7 @@ zgitci_frob_nope:
  *
  * [klesi: 0xFF][?: 0xXXXXXX]
  *
- * DROP t[0-7]
+ * DROP t[0-7] a5
  *
  */
 vrici_frob:
