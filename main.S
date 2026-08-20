@@ -641,8 +641,7 @@ zgitci_frob_c000_mv:
 	#define	sezvati_j_t0	t0
 	#define	judri_j_t1	t1
 	addi	t0,	zgitci_a4,	22
-	slli	t0,	t0,	2
-	add	sezvati_j_t0,	t0,	vrc_s1
+	sh2add	sezvati_j_t0,	vrc_s1,	t0
 	addi	judri_j_t1,	sezvati_j_t0,	4 * (26 - 22)	// CUR_PATN_JUDRI
 
 	li	t2,	0xFFFF
