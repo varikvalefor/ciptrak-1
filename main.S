@@ -529,8 +529,7 @@ zgitci_frob_damri:
 	#define	idx_j_t0	t0
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
-	slli	t0,	t0,	2
-	add	idx_j_t0,	t0,	vrc_s1
+	sh2add	idx_j_t0,	vrc_s1,	t0
 	#define	tmp_sesumji_t2	t2
 	li	tmp_sesumji_t2,	1
 
