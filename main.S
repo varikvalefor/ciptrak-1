@@ -480,9 +480,8 @@ zgitci_frob_check_2:
 	#define	zts_id_t0	t0
 	and	zts_id_t0,	a1,	t0
 	#define	zts_j_t1	t1
-	slli	t1,	zts_id_t0,	1
 	la	t2,	sanceListe
-	add	zts_j_t1,	t1,	t2
+	sh1add	zts_j_t1,	t2,	t1
 
 	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
