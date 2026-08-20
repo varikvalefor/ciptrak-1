@@ -211,8 +211,7 @@ main_lupe_tcidu_lupe_vimcu:
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	li	t5,	39 + 4
 	sub	t5,	t5,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (39 + 4) - (4 - x) = 39 + x .zoi.
-	slli	t5,	t5,	2
-	add	t5,	t5,	vrc_s1
+	sh2add	t5,	vrc_s1,	t5
 	sw	x0,	(t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	(datni_cur_j_a3)
