@@ -406,12 +406,10 @@ zgitci_frob_1_pwm_div_slilu:
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	(div_j_t3)
-	beqz	zenba_t1,	zgitci_frob_1_pwm_div_sampu_jdika
+	bnez	zenba_t1,	zgitci_frob_1_pwm_div_sampu_zenba
+	sub	t0,	x0,	t0
+zgitci_frob_1_pwm_div_sampu_zenba:
 	add	t0,	t0,	t4
-	sw	t0,	(div_j_t3)
-	j	zgitci_frob_1_pwm_csr
-zgitci_frob_1_pwm_div_sampu_jdika:
-	sub	t0,	t0,	t4
 	sw	t0,	(div_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
