@@ -427,10 +427,6 @@ zgitci_frob_1_pwm_csr:
 	add	pwm_csr_j_t0,	t0,	t1
 	// TODO
 
-	# PWM_CHx_CSR_OFFSET
-	# ???
-	# TODO
-
 	# PWM_CHx_TOP_OFFSET
 	# ???
 	# TODO
