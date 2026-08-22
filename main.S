@@ -524,8 +524,6 @@ zgitci_frob_damri:
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
 	addi	t0,	zgitci_a4,	30
 	sh2add	idx_j_t0,	vrc_s1,	t0
-	#define	tmp_sesumji_t2	t2
-	li	tmp_sesumji_t2,	1
 
 	bexti	t1,	a1,	A1_SIVNI_CNINO_BIT
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
@@ -534,7 +532,7 @@ zgitci_frob_damri_sezvati_reset:
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
 	lw	t1,	(idx_j_t0)
-	add	t1,	t1,	tmp_sesumji_t2
+	addi	t1,	t1,	1
 	sw	t1,	(idx_j_t0)
 zgitci_frob_damri_sezvati_incr_post:
 
