@@ -335,11 +335,12 @@ zgitci_frob:
  *
  */
 zgitci_frob_mapti_0:
+	#define	SIVNI_A1_SLICE_BITS	0b11
 zgitci_frob_mapti_0_xu_akti:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
 	#define	pwm_slice_a5	a5
-	andi	pwm_slice_a5,	a1,	(4 - 1)	// 0b1111...
+	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 	li	t0,	0x14
 	mul	t0,	a1,	t0
 	li	t1,	PWM_BASE
