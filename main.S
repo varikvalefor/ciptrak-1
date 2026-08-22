@@ -512,6 +512,7 @@ zgitci_frob_check_2_fanmo:
  * ?
  */
 zgitci_frob_damri:
+	#define	SIVNI_A2_SHA256_NOISE_BIT	0
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
 
@@ -538,7 +539,7 @@ zgitci_frob_damri_sezvati_incr_post:
 	// TODO: curval_a5 = ?
 
 zgitci_frob_damri_sha:
-	bexti   t0,     a2,     0
+	bexti   t0,     a2,     SIVNI_A2_SHA256_NOISE_BIT
 	beqz    t0,     zgitci_frob_damri_sha_post
 
 	li	t0,	1
