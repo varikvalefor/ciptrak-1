@@ -346,12 +346,15 @@ zgitci_frob_mapti_0:
 	lw	t1,	(t0)
 	andi	t1,	t1,	PWM_CSR_PH_EN_BIT
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
+
+	#define	gpio_ctrl_j_t0	t0
 	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
-	add	t0,	t0,	t1
+	add	gpio_ctrl_j_t0,	t0,	t1
+
 	#define	gpio_curf_t1	t1
-	lw	gpio_curf_t1,	(t0)
+	lw	gpio_curf_t1,	(gpio_ctrl_j_t0)
 	li	t0,	4 # GPIO PWM
 	beq	gpio_curf_t1,	t0,	zgitci_frob_1_pwm_aktigau_se_lidne
 	/* ^ .i sruma lo du'u mapti va'o zo'e */
