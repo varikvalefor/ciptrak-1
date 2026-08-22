@@ -909,7 +909,7 @@ vrici_frob_j:
 	addi	t1,	zgitci_a4,	22
 	sh2add	t1,	vrc_s1,	t1
 
-	sw	t1,	(datni_a5)
+	sw	datni_a5,	(t1)
 
 	ret
 /*
