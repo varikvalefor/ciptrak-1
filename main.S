@@ -344,7 +344,7 @@ zgitci_frob_mapti_0_xu_akti:
 
 	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
 	li	t0,	0x14
-	mul	t0,	a1,	t0
+	mul	t0,	pwm_slice_a5,	t0
 	li	t1,	PWM_BASE
 	add	t0,	t0,	t1
 	lw	t1,	(t0)
