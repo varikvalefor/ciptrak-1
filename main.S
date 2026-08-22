@@ -945,7 +945,9 @@ vrici_frob_jog:
 	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
 	sh2add	sezvati_t2,	sezvati_t2,	datni_a5
+
 	sw	sezvati_t2,	(sezvati_j_t0)
+
 	ret
 vrici_frob_jog_sesumji:
 	slli	datni_a5,	datni_a5,	2
