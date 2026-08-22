@@ -348,7 +348,7 @@ zgitci_frob_mapti_0_xu_akti:
 	li	t1,	PWM_BASE
 	add	t0,	t0,	t1
 	lw	t1,	(t0)
-	andi	t1,	t1,	PWM_CSR_PH_EN_BIT
+	bexti	t1,	t1,	PWM_CSR_PH_EN_BIT
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 
 	#define	gpio_ctrl_j_t0	t0
