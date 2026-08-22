@@ -552,10 +552,11 @@ zgitci_frob_damri_sha:
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	lw	sha_t0,	(t0)
 
+	#define	nlev_t2	t2
 	clz	t1,	curval_a5
 	srli	t2,	a2,	1
-	andi	t2,	t2,	0b11
-	add	t1,	t1,	t2
+	andi	nlev_t2,	t2,	0b11
+	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
 
 	// | TODO: .i xu cadga fa lo nu frica
