@@ -935,18 +935,18 @@ vrici_frob_0:
 
 	ret
 vrici_frob_jog:
-	bexti	t1,	datni_a5,	23
-	bclri	datni_a5,	datni_a5,	23
-
 	#define	sezvati_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
 	addi	t0,	zgitci_t4,	22
 	sh2add	sezvati_j_t0,	vrc_s1,	t0
 
+	#define	sign_t1	t1
+	bexti	sign_t1,	datni_a5,	23
+	bclri	datni_a5,	datni_a5,	23
+
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
-	beqz	t1,	vrici_frob_jog_sesumji
-
+	beqz	sign_t1,	vrici_frob_jog_sesumji
 	// | ni'o xu mapti fa tu'a la'oi .sh2add.  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti lo so'i judri kei je le ka co'e ja nandu fa lo nu spofu ri'a tu'a ce'u  .i ku'i la .varik. na birti lo du'u xu kau banzuka le ka ce'u zilmasno
 	// .i ji'a xu lo me'oi .slli. co'e zmadu ni'i zo'e joi lo su'u mapti le su'u pilno la'oi .slli. tu'a la'oi .vrici_frob_jog_sesumji.
 	sh2add	sezvati_t2,	sezvati_t2,	datni_a5
