@@ -371,6 +371,8 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
 
+	/* DROP t[0-6] */
+
 	# IO_BANK0_GPIOx_CTRL
 	#define	pads_gpio_j_t0	t0
 	slli	t0,	pwm_slice_a5,	(1 + 2)	# 4 * PIN
