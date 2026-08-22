@@ -83,7 +83,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_SHA_OFFSET	4 * 34
 #define	CUR_SHA_EN_OFFSET	38
 #define	CUR_SHA_EN	4 * CUR_SHA_EN_OFFSET
-#define	CUR_ZGITCI_SIVNI(x)	4 * (39 + x)
+#define	CUR_ZGITCI_SIVNI_OFFSET	39
+#define	CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 
 .global main
 
@@ -210,11 +211,11 @@ main_lupe_tcidu_lupe_co_barda:
 main_lupe_tcidu_lupe_vimcu:
 	lw	cur_t5,	(datni_cur_j_a3)
 	beq	cur_t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
-	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (39 + x)
+	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	li	t5,	39 + 4
-	sub	t5,	t5,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (39 + 4) - (4 - x) = 39 + x .zoi.
+	li	t5,	CUR_ZGITCI_SIVNI_OFFSET + 4
+	sub	t5,	t5,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	t5,	vrc_s1,	t5
 	sw	x0,	(t5)
 main_lupe_tcidu_lupe_co_cmalu:
@@ -445,8 +446,8 @@ zgitci_frob_1_pwm_csr:
 	/* ni'o la .varik. na te cadga fi tu'a lo me'oi .DIV. */
 
 zgitci_frob_1_pwm_idx:
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
-	addi	t0,	zgitci_a4,	39
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	lw	t1,	(t0)
 	addi	t1,	t1,	1
@@ -842,17 +843,17 @@ zgitci_frob_deaf_setsivni:
 
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
 	beqz	t0,	zgitci_frob_deaf_setsivni_i2
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
-	addi	t0,	t0,	39
+	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	sw	a2,	(t0)
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
-	addi	t0,	t0,	39 + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
+	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s1,	t0
 	sw	a3,	(t0)
 zgitci_frob_deaf_setsivni_post:
@@ -961,8 +962,8 @@ vrici_frob_jog_sesumji:
 	ret
 // | TODO: .i xu mapti
 vrici_frob_sivni:
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (39 + x)
-	addi	t0,	zgitci_a4,	39
+	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	sw	datni_a5,	(t0)
 	ret
