@@ -76,7 +76,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 #define	CUR_PATN_SEZVATI_OFFSET	22
-#define	CUR_PATN_JUDRI(x)	4 * (26 + x)
+#define	CUR_PATN_JUDRI_OFFSET	26
+#define	CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
 #define	CUR_SHA_OFFSET	4 * 34
 #define	CUR_SHA_EN	4 * 38
@@ -634,7 +635,7 @@ zgitci_frob_c000_mv:
 	#define	judri_j_t1	t1
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	sezvati_j_t0,	vrc_s1,	t0
-	addi	judri_j_t1,	sezvati_j_t0,	4 * (26 - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
+	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
 
 	li	t2,	0xFFFF
 	and	t2,	a3,	t2
@@ -924,7 +925,7 @@ vrici_frob_0:
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 
-	lw	t1,	(4 * (26 - CUR_PATN_SEZVATI_OFFSET))(t1)	// CUR_PATN_JUDRI
+	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t1)	// CUR_PATN_JUDRI
 	lw	t0,	(t0)
 
 	add	t1,	t1,	datni_a5
