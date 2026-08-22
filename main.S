@@ -342,13 +342,9 @@ zgitci_frob_mapti_0_xu_akti:
 	#define	pwm_slice_a5	a5
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 
-	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
-	li	t0,	0x14
-	mul	t0,	pwm_slice_a5,	t0
-	li	t1,	PWM_BASE
-	add	t0,	t0,	t1
-	lw	t1,	(t0)
-	bexti	t1,	t1,	PWM_CSR_PH_EN_BIT
+	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	lw	t0,	(t0)
+	bexti	t1,	t0,	pwm_slice_a5
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 
 	#define	gpio_ctrl_j_t0	t0
