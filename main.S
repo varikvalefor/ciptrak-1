@@ -81,7 +81,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_ZGITCI_SAMP_IDX_OFFSET	30
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 #define	CUR_SHA_OFFSET	4 * 34
-#define	CUR_SHA_EN	4 * 38
+#define	CUR_SHA_EN_OFFSET	38
+#define	CUR_SHA_EN	4 * CUR_SHA_EN_OFFSET
 #define	CUR_ZGITCI_SIVNI(x)	4 * (39 + x)
 
 .global main
