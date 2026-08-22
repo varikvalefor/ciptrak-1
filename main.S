@@ -195,7 +195,7 @@ main_lupe_tcidu:
 	addi	datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
-	lw	sezvati_t1,	0x10(judri_j_a1)
+	lw	sezvati_t1,	(CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0))(judri_j_a1)
 	#define	datni_j_t2	t2
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
