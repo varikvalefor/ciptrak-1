@@ -353,6 +353,7 @@ zgitci_frob_mapti_0_xu_akti:
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 
 	#define	gpio_ctrl_j_t0	t0
+	// se morji: IO_BANK0_GPIOx_CTRL(x)  0x004 + 0x008 * x
 	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
