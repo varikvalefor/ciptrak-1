@@ -375,12 +375,13 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
 
 	# IO_BANK0_GPIOx_CTRL
+	#define	pads_gpio_j_t0	t0
 	slli	t0,	pwm_slice_a5,	(1 + 2)	# 4 * PIN
 	// addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
 	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS + 4 // "
-	add	t0,	t0,	t1
+	add	pads_gpio_j_t0,	t0,	t1
 	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
-	sw	t1,	(t0)
+	sw	t1,	(pads_gpio_j_t0)
 
 	# GPIO_FUNC_PWM
 	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
