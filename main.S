@@ -921,9 +921,8 @@ vrici_frob_0:
 	//           CUR_PATN_JUDRI(x)	4 * (26 + x)
 	addi	t0,	zgitci_a4,	22
 	sh2add	t0,	vrc_s1,	t0
-	addi	t1,	t0,	4 * (26 - 22)	// CUR_PATN_JUDRI
 
-	lw	t1,	(t1)
+	lw	t1,	(4 * (26 - 22))(t1)	// CUR_PATN_JUDRI
 	lw	t0,	(t0)
 
 	add	t1,	t1,	datni_a5
