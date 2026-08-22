@@ -387,7 +387,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
 	sw	t1,	(pads_gpio_j_t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
-zgitci_frob_1_pwm_div_ningau:
+zgitci_frob_1_pwm_div:
 	srli	t0,	a1,	2
 	li	t1,	0b11111111111111
 	and	t0,	t0,	t1
