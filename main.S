@@ -78,7 +78,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 #define	CUR_PATN_JUDRI_OFFSET	26
 #define	CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-#define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
+#define	CUR_ZGITCI_SAMP_IDX_OFFSET	30
+#define	CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 #define	CUR_SHA_OFFSET	4 * 34
 #define	CUR_SHA_EN	4 * 38
 #define	CUR_ZGITCI_SIVNI(x)	4 * (39 + x)
@@ -480,8 +481,8 @@ zgitci_frob_check_2:
 	sh1add	zts_j_t1,	t2,	t1
 
 	#define	zts_sance_idx_t2	t2
-	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
-	addi	t2,	zgitci_a4,	30
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
+	addi	t2,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
 	slli	zts_sance_idx_t2,	t2,	2
 
 	// do it now, kid
@@ -523,8 +524,8 @@ zgitci_frob_damri:
 	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
 	#define	idx_j_t0	t0
-	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (30 + x)
-	addi	t0,	zgitci_a4,	30
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
 	sh2add	idx_j_t0,	vrc_s1,	t0
 
 	bexti	t1,	a1,	A1_SIVNI_CNINO_BIT
