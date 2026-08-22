@@ -944,11 +944,10 @@ vrici_frob_jog:
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	t1,	vrici_frob_jog_sesumji
+
 	// | ni'o xu mapti fa tu'a la'oi .sh2add.  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti lo so'i judri kei je le ka co'e ja nandu fa lo nu spofu ri'a tu'a ce'u  .i ku'i la .varik. na birti lo du'u xu kau banzuka le ka ce'u zilmasno
 	sh2add	sezvati_t2,	sezvati_t2,	datni_a5
-
 	sw	sezvati_t2,	(sezvati_j_t0)
-
 	ret
 vrici_frob_jog_sesumji:
 	slli	datni_a5,	datni_a5,	2
