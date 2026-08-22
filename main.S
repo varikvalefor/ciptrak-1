@@ -354,9 +354,10 @@ zgitci_frob_mapti_0_xu_akti:
 	add	gpio_ctrl_j_t0,	t0,	t1
 	#define	gpio_curf_t1	t1
 	lw	gpio_curf_t1,	(gpio_ctrl_j_t0)
-	li	t0,	4 # GPIO PWM
+	li	t2,	4 # GPIO PWM
 	/* | .i sruma lo du'u mapti va'o zo'e */
-	beq	gpio_curf_t1,	t0,	zgitci_frob_1_pwm_aktigau_se_lidne
+	beq	gpio_curf_t1,	t2,	zgitci_frob_1_pwm_aktigau_se_lidne
+	sw	t2,	(gpio_ctrl_j_t0)
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -378,13 +379,6 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	add	pads_gpio_j_t0,	t0,	t1
 	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
 	sw	t1,	(pads_gpio_j_t0)
-
-	# GPIO_FUNC_PWM
-	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
-	li	t1,	IO_BANK0_BASE + 4 # IO_BANK0_GPIOx_CTRL_OFFSET
-	add	t0,	t0,	t1
-	li	t1,	4 # GPIO PWM
-	sw	t1,	(t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
 zgitci_frob_1_pwm_div_ningau:
 	srli	t0,	a1,	2
