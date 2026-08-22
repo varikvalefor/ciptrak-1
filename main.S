@@ -100,7 +100,7 @@ main_init_xosc_cipra:
 	addi	t0,	t0,	XOSC_STATUS_OFFSET - XOSC_CTRL_OFFSET
 main_init_xosc_cipra_lupe:
 	lw	t1,	(t0)
-	andi	t1,	t1,	XOSC_STATUS_ENABLED_BIT
+	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_sha256:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
