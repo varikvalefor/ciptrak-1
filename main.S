@@ -342,6 +342,7 @@ zgitci_frob_mapti_0_xu_akti:
 	#define	pwm_slice_a5	a5
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 
+	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
 	li	t0,	0x14
 	mul	t0,	a1,	t0
 	li	t1,	PWM_BASE
