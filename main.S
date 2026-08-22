@@ -359,6 +359,8 @@ zgitci_frob_mapti_0:
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	beq	gpio_curf_t1,	t0,	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_aktigau:
+	/* DROP t[0-6] */
+
 	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
 	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(t0)
