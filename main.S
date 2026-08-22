@@ -74,8 +74,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_XOSC_SNIDU	4 * 1
 #define	CUR_DENPA_INST(x)	4 * (2 + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
-#define	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 #define	CUR_PATN_SEZVATI_OFFSET	22
+#define	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 #define	CUR_PATN_JUDRI_OFFSET	26
 #define	CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (30 + x)
