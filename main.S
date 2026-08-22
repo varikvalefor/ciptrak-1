@@ -335,6 +335,7 @@ zgitci_frob:
  *
  */
 zgitci_frob_mapti_0:
+zgitci_frob_mapti_0_xu_akti:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
 	#define	pwm_slice_a5	a5
