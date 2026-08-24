@@ -606,16 +606,15 @@ zgitci_frob_check_pio_gpio_post:
 	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
-	addi	max_t0,	max_t0,	1	// underflow
+	addi	max_t0,	max_t0,	a1
 zgitci_frob_check_pio_ld_lupe:
 	#define	pio_instrX_t2	t2
 	lw	pio_instrX_t2,	(a2)
 	sh	pio_instrX_t2,	(a1)
 	srli	pio_instrX_t2,	pio_instrX_t2,	16
 	sh	pio_instrX_t2,	2(a1)
-	addi	max_t0,	max_t0,	-1
 	addi	a1,	a1,	4
-	bnez	max_t0,	zgitci_frob_check_pio_ld_lupe
+	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe
 	ret
 
 /*
