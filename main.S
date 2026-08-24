@@ -606,6 +606,7 @@ zgitci_frob_check_pio_gpio_post:
 	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
+	// TODO: .i cadga fa lo nu pilno lo xo moi be lo'i me'oi .PIO. co'e
 	addi	max_t0,	max_t0,	a1
 	bexti	t3,	max_t0,	0	// temp
 	beqz	t3,	zgitci_frob_check_pio_ld_lupe
