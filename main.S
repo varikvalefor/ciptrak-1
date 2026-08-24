@@ -609,11 +609,9 @@ zgitci_frob_check_pio_gpio_post:
 	addi	max_t0,	max_t0,	a1
 zgitci_frob_check_pio_ld_lupe:
 	#define	pio_instrX_t2	t2
-	lw	pio_instrX_t2,	(a2)
+	lh	pio_instrX_t2,	(a2)
 	sh	pio_instrX_t2,	(a1)
-	srli	pio_instrX_t2,	pio_instrX_t2,	16
-	sh	pio_instrX_t2,	2(a1)
-	addi	a1,	a1,	4
+	addi	a1,	a1,	2
 	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe
 	ret
 
