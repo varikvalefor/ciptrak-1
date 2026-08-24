@@ -613,6 +613,7 @@ zgitci_frob_check_pio_ld_lupe:
 	srli	t2,	t2,	16
 	sh	t2,	2(a1)
 	addi	max_t0,	max_t0,	-1
+	addi	a1,	a1,	4
 	bnez	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
 
