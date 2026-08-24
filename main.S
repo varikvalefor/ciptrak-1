@@ -620,7 +620,7 @@ zgitci_frob_check_pio_ld_lupe_co_barda:
 	// | pg 950 rp2350
 	addi	pio_j_t1,	pio_j_t1,	8
 	addi	a1,	a1,	4
-	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe_co_barda
+	blt	a1,	max_t0,	zgitci_frob_check_pio_ld_lupe_co_barda
 	ret
 zgitci_frob_check_pio_ld_lupe:
 	#define	pio_instrX_t2	t2
@@ -628,7 +628,7 @@ zgitci_frob_check_pio_ld_lupe:
 	sh	pio_instrX_t2,	(pio_j_t1)
 	addi	a1,	a1,	2
 	addi	pio_j_t1,	pio_j_t1,	4
-	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe
+	blt	a1,	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
 
 /*
