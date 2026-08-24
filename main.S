@@ -612,15 +612,15 @@ zgitci_frob_check_pio_gpio_post:
 	srli	max_t0,	max_t0,	1	// twice as nice
 zgitci_frob_check_pio_ld_lupe_co_barda:
 	#define	pio_instrX_t2	t2
-	lw	pio_instrX_t2,	(a2)
-	sw	pio_instrX_t2,	(a1)
+	lw	pio_instrX_t2,	(a1)
+	sw	pio_instrX_t2,	(pio_j_t1)
 	addi	a1,	a1,	4
 	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe_co_barda
 	ret
 zgitci_frob_check_pio_ld_lupe:
 	#define	pio_instrX_t2	t2
-	lh	pio_instrX_t2,	(a2)
-	sh	pio_instrX_t2,	(a1)
+	lh	pio_instrX_t2,	(a1)
+	sh	pio_instrX_t2,	(pio_j_t1)
 	addi	a1,	a1,	2
 	blt	max_t0,	a1,	zgitci_frob_check_pio_ld_lupe
 	ret
