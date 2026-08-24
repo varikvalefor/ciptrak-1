@@ -610,7 +610,7 @@ zgitci_frob_check_pio_gpio_post:
 zgitci_frob_check_pio_ld_lupe:
 	lw	t2,	(a2)
 	sh	t2,	(a1)
-	slli	t2,	t2,	16	// TODO: .i jai mapti fa zo'oi .slli. ji zo'oi .srli.
+	srli	t2,	t2,	16
 	sh	t2,	2(a1)
 	addi	max_t0,	max_t0,	-1
 	bnez	max_t0,	zgitci_frob_check_pio_ld_lupe
