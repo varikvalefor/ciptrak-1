@@ -350,7 +350,7 @@ zgitci_frob_mapti_0_xu_akti:
 
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
 	lw	t0,	(t0)
-	bexti	t1,	t0,	pwm_slice_a5
+	bext	t1,	t0,	pwm_slice_a5
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 
 	#define	gpio_ctrl_j_t0	t0
