@@ -231,6 +231,40 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
+	# incr
+main_incri:
+	/* DROP [at][01234567] */
+
+	#define	temci_t1	t1
+	lw	temci_t1,	CUR_TEMCI(vrc_s1)
+	addi	temci_t1,	temci_t1,	1
+	sw	temci_t1,	CUR_TEMCI(vrc_s1)
+
+	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	rem     t3,     temci_t1,       t2
+	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	rem	t5,	temci_t1,	t4
+	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	rem	a1,	temci_t1,	a0
+	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	rem	a3,	temci_t1,	a2
+
+	bnez	t3,	main_incri_next_t5
+	addi    t2,     t2,     1
+	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
+main_incri_next_t5:
+	bnez	t5,	main_incri_next_a0
+	addi    t4,     t4,     1
+	sw      t4,     (CUR_PATN_SEZVATI(1))(vrc_s1)
+main_incri_next_a0:
+	bnez	a1,	main_incri_next_a2
+	addi    a0,     a0,     1
+	sw      a0,     (CUR_PATN_SEZVATI(2))(vrc_s1)
+main_incri_next_a2:
+	bnez	a3,	main_reset_denpa
+	addi    a2,     a2,     1
+	sw      a2,     (CUR_PATN_SEZVATI(3))(vrc_s1)
+
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
@@ -274,40 +308,6 @@ main_lupe_zgike:
 	lw	a3,	(a3)
 	li	a4,	3
 	jal	zgitci_frob
-
-	# incr
-main_incri:
-	/* DROP [at][01234567] */
-
-	#define	temci_t1	t1
-	lw	temci_t1,	CUR_TEMCI(vrc_s1)
-	addi	temci_t1,	temci_t1,	1
-	sw	temci_t1,	CUR_TEMCI(vrc_s1)
-
-	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	rem     t3,     temci_t1,       t2
-	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	rem	t5,	temci_t1,	t4
-	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	rem	a1,	temci_t1,	a0
-	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	rem	a3,	temci_t1,	a2
-
-	bnez	t3,	main_incri_next_t5
-	addi    t2,     t2,     1
-	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
-main_incri_next_t5:
-	bnez	t5,	main_incri_next_a0
-	addi    t4,     t4,     1
-	sw      t4,     (CUR_PATN_SEZVATI(1))(vrc_s1)
-main_incri_next_a0:
-	bnez	a1,	main_incri_next_a2
-	addi    a0,     a0,     1
-	sw      a0,     (CUR_PATN_SEZVATI(2))(vrc_s1)
-main_incri_next_a2:
-	bnez	a3,	main_reset_denpa
-	addi    a2,     a2,     1
-	sw      a2,     (CUR_PATN_SEZVATI(3))(vrc_s1)
 
 main_reset_denpa:
 	/* DROP [at][01234567] */
