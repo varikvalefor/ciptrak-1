@@ -608,7 +608,7 @@ zgitci_frob_check_pio_gpio_post:
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
 	// TODO: .i cadga fa lo nu pilno lo xo moi be lo'i me'oi .PIO. co'e
-	addi	max_t0,	max_t0,	a1
+	add	max_t0,	max_t0,	a1
 	bexti	t3,	max_t0,	0	// temp
 	beqz	t3,	zgitci_frob_check_pio_ld_lupe
 	srli	max_t0,	max_t0,	1	// twice as nice
