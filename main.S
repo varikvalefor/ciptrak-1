@@ -395,10 +395,8 @@ zgitci_frob_1_pwm_div:
 	and	t0,	t0,	t1
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
-	bexti	zenba_t1,	t0,	17
-	bexti	jdika_t2,	t0,	16
-	bclri	t0,	t0,	17
-	bclri	t0,	t0,	16
+	bexti	zenba_t1,	a1,	17
+	bexti	jdika_t2,	a1,	16
 	#define	div_j_t3	t3
 	// se morji: PWM_CHx_DIV_OFFSET(x)   4 + x * 0x14
 	li	t3,	0x14
