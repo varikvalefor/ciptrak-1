@@ -134,8 +134,7 @@ main_lupe_sha:
 
 	addi	t0,	vrc_s1,	CUR_TEMCI
 	lw	t0,	(t0)
-	li	t1,	0xF
-	and	t0,	t0,	t1
+	andi	t0,	t0,	0xF
 	beqz	t0,	main_lupe_tcidu
 
 	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
