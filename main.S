@@ -136,7 +136,7 @@ main_lupe_sha:
 	lw	t0,	(t0)
 	li	t1,	0xF
 	and	t0,	t0,	t1
-	bne	t0,	t1,	main_lupe_tcidu
+	beqz	t0,	main_lupe_tcidu
 
 	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
 	li	t1,	1
