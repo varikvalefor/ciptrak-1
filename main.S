@@ -131,6 +131,7 @@ main_lupe_sha:
 	addi	t0,	vrc_s1,	CUR_SHA_EN
 	lw	t0,	(t0)
 	beqz	t0,	main_lupe_tcidu
+
 	addi	t0,	vrc_s1,	CUR_TEMCI
 	lw	t0,	(t0)
 	li	t1,	0xF
