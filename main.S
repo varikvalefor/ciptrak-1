@@ -945,7 +945,7 @@ vrici_frob_0:
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 
-	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t1)	// CUR_PATN_JUDRI
+	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t0)	// CUR_PATN_JUDRI
 	lw	t0,	(t0)
 
 	add	t1,	t1,	datni_a5
