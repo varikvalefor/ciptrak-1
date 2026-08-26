@@ -323,6 +323,7 @@ main_reset_denpa_lupe:
 #define	zgitci_a4	a4
 // | TODO: .i xu lo me'oi .switch. co'e cu zmadu
 zgitci_frob:
+	/* TODO: .i xu cadga fa lo nu bixygau pe'a fi lo me'oi .switch. co'e  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti tu'a lo so'i co'e... kei jenai ku'i le ka ce'u mapti tu'a lo ke jai .indika ke'e namcu */
 	bnez	a0,	zgitci_frob_mapti_0
 	ret
 
