@@ -411,8 +411,10 @@ zgitci_frob_1_pwm_div_basti:
 	sw	t0,	(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
-	# ???
-	# TODO
+	/* TODO
+	 *
+	 * .i slilu ma
+	 */
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	(div_j_t3)
