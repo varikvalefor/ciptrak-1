@@ -221,14 +221,14 @@ main_lupe_tcidu_lupe_vimcu:
 	sw	x0,	(sivni_t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	#define	datni2_t5	t5
-	lw	datni_t3,	(datni_cur_j_a3)
-	lw	datni2_t5,	4(datni_cur_j_a3)
-	sw	datni_t3,	datni_j_t2
-	sw	datni2_t5,	4(datni_j_t2)
-	lw	datni_t3,	8(datni_cur_j_a3)
-	lw	datni2_t5,	0xC(datni_cur_j_a3)
-	sw	datni_t3,	8(datni_j_t2)
-	sw	datni2_t5,	0xC(datni_j_t2)
+	lw	datni_t3,	(datni_j_t2)
+	lw	datni2_t5,	4(datni_j_t2)
+	sw	datni_t3,	datni_cur_j_a3
+	sw	datni2_t5,	4(datni_cur_j_a3)
+	lw	datni_t3,	8(datni_j_t2)
+	lw	datni2_t5,	0xC(datni_j_t2)
+	sw	datni_t3,	8(datni_cur_j_a3)
+	sw	datni2_t5,	0xC(datni_cur_j_a3)
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	ctr_a0,	ctr_a0,	-1
 	addi	judri_j_a1,	judri_j_a1,	4
