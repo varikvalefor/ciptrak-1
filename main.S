@@ -223,7 +223,7 @@ main_lupe_tcidu_lupe_co_cmalu:
 	#define	datni2_t5	t5
 	lw	datni_t3,	(datni_j_t2)
 	lw	datni2_t5,	4(datni_j_t2)
-	sw	datni_t3,	datni_cur_j_a3
+	sw	datni_t3,	(datni_cur_j_a3)
 	sw	datni2_t5,	4(datni_cur_j_a3)
 	lw	datni_t3,	8(datni_j_t2)
 	lw	datni2_t5,	0xC(datni_j_t2)
