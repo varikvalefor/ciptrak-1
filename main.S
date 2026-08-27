@@ -233,7 +233,6 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
-	# incr
 main_incri:
 	/* DROP [at][01234567] */
 
