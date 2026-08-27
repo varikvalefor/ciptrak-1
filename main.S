@@ -220,12 +220,15 @@ main_lupe_tcidu_lupe_vimcu:
 	sh2add	sivni_t5,	vrc_s1,	t5
 	sw	x0,	(sivni_t5)
 main_lupe_tcidu_lupe_co_cmalu:
-	sw	datni_t3,	(datni_cur_j_a3)
-	addi	pagbu_ctr_t4,	pagbu_ctr_t4,	-1
-	lw	datni_t3,	(datni_j_t2)	// TODO: .i xu frili cumki fa lo nu muvgau pe'a  .i la .varik. cu tolnei lo nu tcidu pe'a jenai ku'i cu pilno
-	addi	datni_j_t2,	datni_j_t2,	4
-	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
-	bnez	pagbu_ctr_t4,	main_lupe_tcidu_lupe_co_cmalu
+	#define	datni2_t5	t5
+	lw	datni_t3,	(datni_cur_j_a3)
+	lw	datni2_t5,	4(datni_cur_j_a3)
+	sw	datni_t3,	datni_j_t2
+	sw	datni2_t5,	4(datni_j_t2)
+	lw	datni_t3,	8(datni_cur_j_a3)
+	lw	datni2_t5,	0xC(datni_cur_j_a3)
+	sw	datni_t3,	8(datni_j_t2)
+	sw	datni2_t5,	0xC(datni_j_t2)
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	ctr_a0,	ctr_a0,	-1
 	addi	judri_j_a1,	judri_j_a1,	4
