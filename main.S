@@ -241,6 +241,9 @@ main_incri:
 	addi	temci_t1,	temci_t1,	1
 	sw	temci_t1,	CUR_TEMCI(vrc_s1)
 
+	/* TODO
+	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u zilmasno
+	 */
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	rem     t3,     temci_t1,       t2
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
