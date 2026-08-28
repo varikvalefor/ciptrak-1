@@ -738,17 +738,17 @@ zgitci_frob_c000_sutra:
 	srli	t0,	t0,	16	// 1c
 	sh2add	max_t0,	judri_a1,	t0
 zgitci_frob_c000_sutra_lupe:
-	/* DROP t[2-7] */
-	lw	t2,	(judri_a1)
+	/* DROP t[1-7] */
+	lw	t1,	(judri_a1)
 
 	// | loop crap
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_a1,	judri_a1,	4
 
-	lw	a0,	0x0(t2)
-	lw	a1,	0x4(t2)
-	lw	a2,	0x8(t2)
-	lw	a3,	0xC(t2)
+	lw	a0,	0x0(t1)
+	lw	a1,	0x4(t1)
+	lw	a2,	0x8(t1)
+	lw	a3,	0xC(t1)
 	jal	zgitci_frob
 
 	blt	judri_a1,	max_t0,	zgitci_frob_c000_sutra_lupe
