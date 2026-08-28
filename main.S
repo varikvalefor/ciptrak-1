@@ -730,12 +730,13 @@ zgitci_frob_c000_sutra:
 	addi	sp,	sp,	-4
 	sw	ra,	(sp)
 
-	#define	ctr_t0	t0
+	#define	max_t0	t0
 	#define	judri_a1	a1
 	// li	t0,	0xFFFF	// 2c
 	// and	ctr_t0,	a2,	t0	// 1c
 	slli	t0,	t0,	16	// 1c
 	srli	t0,	t0,	16	// 1c
+	sh2add	max_t0,	judri_a1,	t0
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[2-7] */
 	lw	t2,	(judri_a1)
@@ -751,9 +752,7 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a3,	0xC(t2)
 	jal	zgitci_frob
 
-	addi	ctr_t0,	ctr_t0,	-1
-	// addi	judri_a1,	judri_a1,	4	// .i da'i ronsa zo'e pe zo'oi .72ZYQsId.
-	bnez	ctr_t0,	zgitci_frob_c000_sutra_lupe
+	blt	judri_a1,	max_t0,	zgitci_frob_c000_sutra_lupe
 
 	lw	ra,	(sp)
 	addi	sp,	sp,	4
