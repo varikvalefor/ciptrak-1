@@ -610,13 +610,14 @@ zgitci_frob_check_pio:
 zgitci_frob_check_pio_gpio_post:
 	#define	max_t0	t0
 	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	sh1add	max_t0,	max_t0,	a1	// .i jinvi le du'u bitni li pa xa
 	#define	pio_j_t1	t1
 	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
 	// TODO: .i cadga fa lo nu pilno lo xo moi be lo'i me'oi .PIO. co'e
-	add	max_t0,	max_t0,	a1
-	bexti	t3,	max_t0,	0	// temp
+	bexti	t3,	a1,	0	// temp
+
+	/* TODO: .i xu mapti fa tu'a lo me'oi .DMA. co'e */
 	beqz	t3,	zgitci_frob_check_pio_ld_lupe
-	srli	max_t0,	max_t0,	1	// twice as nice
 zgitci_frob_check_pio_ld_lupe_co_barda:
 	#define	pio_instrX_t2	t2
 	lw	pio_instrX_t2,	(a1)
