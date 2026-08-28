@@ -742,7 +742,6 @@ zgitci_frob_c000_sutra_lupe:
 	lw	t2,	(judri_a1)
 
 	// | loop crap
-	// 72ZYQsId
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_a1,	judri_a1,	4
 
