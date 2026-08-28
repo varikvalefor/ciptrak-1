@@ -208,14 +208,15 @@ main_lupe_tcidu_lupe_co_barda:
 	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a3)
+	li   t4,     CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t5	t5
-	li	t5,	CUR_ZGITCI_SIVNI_OFFSET + 4
-	sub	t5,	t5,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
-	sh2add	sivni_t5,	vrc_s1,	t5
+	// li	t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zo'oi .NZwe53kb.
+	sub	t4,	t4,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	sh2add	sivni_t5,	vrc_s1,	t4
 	sw	x0,	(sivni_t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	#define	datni2_t4	t4
