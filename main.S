@@ -730,8 +730,10 @@ zgitci_frob_c000_sutra:
 
 	#define	ctr_t0	t0
 	#define	judri_a1	a1
-	li	t0,	0xFFFF
-	and	ctr_t0,	a2,	t0
+	// li	t0,	0xFFFF	// 2c
+	// and	ctr_t0,	a2,	t0	// 1c
+	slli	t0,	t0,	16	// 1c
+	srli	t0,	t0,	16	// 1c
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[2-7] */
 	lw	t2,	(judri_a1)
