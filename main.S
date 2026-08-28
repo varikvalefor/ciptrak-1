@@ -238,8 +238,6 @@ main_incri:
 
 	#define	temci_t1	t1
 	lw	temci_t1,	CUR_TEMCI(vrc_s1)
-	addi	temci_t1,	temci_t1,	1
-	sw	temci_t1,	CUR_TEMCI(vrc_s1)
 
 	/* TODO
 	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u zilmasno
@@ -252,6 +250,9 @@ main_incri:
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 	rem	a1,	temci_t1,	a0
 	rem	a3,	temci_t1,	a2
+
+	addi	temci_t1,	temci_t1,	1
+	sw	temci_t1,	CUR_TEMCI(vrc_s1)
 
 	bnez	t3,	main_incri_next_t5
 	addi    t2,     t2,     1
