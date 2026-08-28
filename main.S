@@ -727,21 +727,24 @@ zgitci_frob_c000_sutra:
 	li	t0,	0xC0000002
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
-	addi	sp,	sp,	-4
+	addi	sp,	sp,	-(3*4)
 	sw	ra,	(sp)
+	sw	s2,	4(sp)
+	sw	s3,	8(sp)
 
-	#define	max_t0	t0
-	#define	judri_a1	a1
-	slli	t0,	t0,	16
-	srli	t0,	t0,	16
-	sh2add	max_t0,	judri_a1,	t0
+	#define	max_s3	s3
+	#define	judri_s2	s2
+	mv	judri_s2,	a1
+	slli	s3,	a2,	16
+	srli	s3,	t0,	16
+	sh2add	max_s3,	judri_s2,	t0
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[1-7] */
-	lw	t1,	(judri_a1)
+	lw	t1,	(judri_s2)
 
 	// | loop crap
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
-	addi	judri_a1,	judri_a1,	4
+	addi	judri_s2,	judri_s2,	4
 
 	lw	a0,	0x0(t1)
 	lw	a1,	0x4(t1)
@@ -750,10 +753,12 @@ zgitci_frob_c000_sutra_lupe:
 	// ni'o xu su'o da zo'u mapti fa lo nu co'e da se ri'a lo nu le me'oi .lw. co'e cu zenba pe'a le ka ce'u jai zilsutra
 	jal	zgitci_frob
 
-	blt	judri_a1,	max_t0,	zgitci_frob_c000_sutra_lupe
+	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 
 	lw	ra,	(sp)
-	addi	sp,	sp,	4
+	lw	s2,	4(sp)
+	lw	s3,	8(sp)
+	addi	sp,	sp,	(3*4)
 
 	ret
 
