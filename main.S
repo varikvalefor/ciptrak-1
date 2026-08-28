@@ -739,17 +739,17 @@ zgitci_frob_c000_sutra:
 	srli	s3,	t0,	16
 	sh2add	max_s3,	judri_s2,	t0
 zgitci_frob_c000_sutra_lupe:
-	/* DROP t[1-7] */
-	lw	t1,	(judri_s2)
+	/* DROP t[0-7] */
+	lw	t0,	(judri_s2)
 
 	// | loop crap
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_s2,	judri_s2,	4
 
-	lw	a0,	0x0(t1)
-	lw	a1,	0x4(t1)
-	lw	a2,	0x8(t1)
-	lw	a3,	0xC(t1)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	// ni'o xu su'o da zo'u mapti fa lo nu co'e da se ri'a lo nu le me'oi .lw. co'e cu zenba pe'a le ka ce'u jai zilsutra
 	jal	zgitci_frob
 
