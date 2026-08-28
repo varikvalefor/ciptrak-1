@@ -735,13 +735,20 @@ zgitci_frob_c000_sutra:
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[2-7] */
 	lw	t2,	(judri_a1)
+
+	// | loop crap
+	// 72ZYQsId
+	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
+	addi	judri_a1,	judri_a1,	4
+
 	lw	a0,	(t2)
 	lw	a1,	4(t2)
 	lw	a2,	8(t2)
 	lw	a3,	0xC(t2)
 	jal	zgitci_frob
+
 	addi	ctr_t0,	ctr_t0,	-1
-	addi	judri_a1,	judri_a1,	4
+	// addi	judri_a1,	judri_a1,	4	// .i da'i ronsa zo'e pe zo'oi .72ZYQsId.
 	bnez	ctr_t0,	zgitci_frob_c000_sutra_lupe
 
 	lw	ra,	(sp)
