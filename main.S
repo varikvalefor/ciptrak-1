@@ -206,6 +206,8 @@ main_lupe_tcidu_lupe_co_barda:
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_j_t2)
+	// | .i la .varik. cu jimpe le du'u cumki fa lo nu na pilno
+	// .i ku'i la .varik. cu jinvi le du'u na'e vecnu pe'a tu'a zo'oi .li. ri'a tu'a zo'oi .lw.
 	li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_1
 	beqz	datni_t3,	main_lupe_tcidu_lupe_co_cmalu_fanmo
 main_lupe_tcidu_lupe_vimcu:
