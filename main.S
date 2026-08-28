@@ -163,7 +163,7 @@ main_lupe_sha:
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(dma_ctrl_t5)
 
-	/* ni'o la .varik. jinvi fo zo'e joi le du'u masno tu'a la'oi .dma_ctrl_t5. kei fe le du'u na sarcu fa lo me'oi .nop. co'e */
+	/* ni'o la .varik. cu jinvi fo zo'e joi le du'u masno tu'a la'oi .dma_ctrl_t5. kei fe le du'u na sarcu fa lo me'oi .nop. co'e */
 
 	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t0,	(dma_w_j_t3)
