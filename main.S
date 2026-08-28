@@ -210,6 +210,7 @@ main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a3)
 	li   t4,     CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
+
 	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
