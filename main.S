@@ -252,9 +252,6 @@ main_incri:
 	rem	a1,	temci_t1,	a0
 	rem	a3,	temci_t1,	a2
 
-	addi	temci_t1,	temci_t1,	1
-	sw	temci_t1,	CUR_TEMCI(vrc_s1)
-
 	bnez	t3,	main_incri_next_t5
 	addi    t2,     t2,     1
 	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
@@ -270,6 +267,9 @@ main_incri_next_a2:
 	bnez	a3,	main_reset_denpa
 	addi    a2,     a2,     1
 	sw      a2,     (CUR_PATN_SEZVATI(3))(vrc_s1)
+
+	addi	temci_t1,	temci_t1,	1
+	sw	temci_t1,	CUR_TEMCI(vrc_s1)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
