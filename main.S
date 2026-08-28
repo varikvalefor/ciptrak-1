@@ -745,6 +745,7 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a2,	0x8(t1)
 	lw	a3,	0xC(t1)
 
+	// commit 3df67ba8edaa5e98dac28e86a2b293c8e4c30c6a
 	addi	sp,	sp,	-4
 	sw	ra,	(sp)
 
