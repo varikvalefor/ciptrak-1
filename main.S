@@ -732,10 +732,8 @@ zgitci_frob_c000_sutra:
 
 	#define	max_t0	t0
 	#define	judri_a1	a1
-	// li	t0,	0xFFFF	// 2c
-	// and	ctr_t0,	a2,	t0	// 1c
-	slli	t0,	t0,	16	// 1c
-	srli	t0,	t0,	16	// 1c
+	slli	t0,	t0,	16
+	srli	t0,	t0,	16
 	sh2add	max_t0,	judri_a1,	t0
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[1-7] */
