@@ -482,9 +482,11 @@ zgitci_frob_check_2:
 	li	t1,	2
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
 	# todo
-	li	t0,	0xFFF
 	#define	zts_id_t0	t0
-	and	zts_id_t0,	a1,	t0
+	// li	t0,	0xFFF	// 2c
+	// andi	zts_id_t0,	a1,	0xFFF	// 1c
+	slli	t0,	a1,	(32 - 4 * 3)	// 1c
+	srli	zts_id_t0,	t0,	(32 - 4 * 3)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh1add	zts_j_t1,	t2,	t1
