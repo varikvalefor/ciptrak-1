@@ -747,6 +747,7 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a1,	0x4(t1)
 	lw	a2,	0x8(t1)
 	lw	a3,	0xC(t1)
+	// ni'o xu su'o da zo'u mapti fa lo nu co'e da se ri'a lo nu le me'oi .lw. co'e cu zenba pe'a le ka ce'u jai zilsutra
 	jal	zgitci_frob
 
 	blt	judri_a1,	max_t0,	zgitci_frob_c000_sutra_lupe
