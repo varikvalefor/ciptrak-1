@@ -754,7 +754,7 @@ zgitci_frob_c000_sutra_lupe:
 	jal	zgitci_frob
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
-
+zgitci_frob_c000_sutra_post:
 	lw	ra,	(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
