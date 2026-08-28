@@ -229,7 +229,7 @@ main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni_t3,	8(datni_cur_j_a3)
 	sw	datni2_t4,	0xC(datni_cur_j_a3)
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
-	addi	ctr_a0,	ctr_a0,	-1	// TODO: .i xu frili cumki fa lo nu tolsti tu'a la'oi .ctr_a0.
+	addi	ctr_a0,	ctr_a0,	-1	// TODO: .i xu frili cumki fa lo nu sisti tu'a la'oi .ctr_a0.
 	addi	judri_j_a1,	judri_j_a1,	4
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
