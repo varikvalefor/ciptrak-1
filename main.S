@@ -190,11 +190,11 @@ main_lupe_tcidu:
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	4
-	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
+	addi	judri_j_a1,	vrc_s1,	4 * CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
-	lw	sezvati_t1,	(CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0))(judri_j_a1)
+	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	#define	datni_j_t2	t2
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -453,7 +453,7 @@ zgitci_frob_1_pwm_csr:
 
 zgitci_frob_1_pwm_idx:
 	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
+	addi	t0,	zgitci_a4,	4 * CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	lw	t1,	(t0)
 	addi	t1,	t1,	1
