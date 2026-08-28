@@ -647,7 +647,6 @@ zgitci_frob_check_pio_ld_lupe:
  * [sezvati: 0xXXXXXXXX]
  *
  * [?: 0xXXXX][ctr: 0xXXXX]
- *
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
@@ -720,7 +719,6 @@ zgitci_frob_c000_mv_post:
  * [?: 0xXXXX][nibarda: 0xXXXX]
  *
  * ?
- *
  */
 zgitci_frob_c000_sutra:
 	li	t0,	0xC0000002
@@ -828,7 +826,6 @@ zgitci_frob_deaf_xosc:
  * [zt1: 0xXXXXXXXX]
  *
  * [zt2: 0xXXXXXXXX]
- *
  */
 zgitci_frob_deaf_bixygau:
 	li	t0,	0xDEAF0001
@@ -864,7 +861,6 @@ zgitci_frob_deaf_bixygau:
  * [sivni1]
  *
  * [sivni2]
- *
  */
 zgitci_frob_deaf_setsivni:
 	li	t0,	0xDEAF0002
@@ -906,7 +902,6 @@ zgitci_frob_nope:
  * [klesi: 0xFF][?: 0xXXXXXX]
  *
  * DROP t[0-7] a5
- *
  */
 vrici_frob:
 	#define	SIVNI_NILZILCMI	6
@@ -957,7 +952,6 @@ vrici_frob_j:
 	ret
 /*
  * RUB ONE OUT
- *
  */
 vrici_frob_0:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
