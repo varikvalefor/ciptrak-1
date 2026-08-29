@@ -105,16 +105,16 @@ main_init_xosc_cipra:
 	addi	t0,	t0,	XOSC_STATUS_OFFSET - XOSC_CTRL_OFFSET
 main_init_xosc_cipra_lupe:
 	lw	t1,	(t0)
+	li	t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_sha256
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_sha256:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET
-	lw	t1,	(t0)
+	lw	t1,	(t2)
 	bseti	t1,	t1,	RESETS_SHA256_BIT
-	sw	t1,	(t0)
+	sw	t1,	(t2)
 
 main_lupe_pre:
 	#define	vrc_s1	s1
