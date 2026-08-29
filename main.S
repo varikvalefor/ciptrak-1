@@ -664,10 +664,10 @@ zgitci_frob_c000_mv:
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
 	addi	t2,	t2,	-1
-	add	a3,	t2,	t3
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
+	add	a3,	t2,	t3	// lw opt
 	sw	a3,	0xC(t0)
 	ret
 
