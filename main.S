@@ -1002,6 +1002,7 @@ vrici_frob_sivni:
 vrici_frob_denpaV:
 	#define	zt_idx_t0	t0
 	srli	zt_idx_t0,	datni_a5,	22	// b[23], b[22]
+
 	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
 	addi	t0,	zt_idx_t0,	2
 	#define	denpa_j_t0	t0
