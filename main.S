@@ -239,7 +239,7 @@ main_incri:
 	lw	temci_t1,	CUR_TEMCI(vrc_s1)
 
 	/* TODO
-	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u zilmasno
+	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u jai zilmasno
 	 */
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
