@@ -272,46 +272,38 @@ main_incri_next_a2:
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
-	addi	a0,	vrc_s1,	CUR_ZGITCI0(0)
-	lw	a0,	(a0)
-	addi	a1,	vrc_s1,	4 + CUR_ZGITCI0(0)
-	lw	a1,	(a1)
-	addi	a2,	vrc_s1,	8 + CUR_ZGITCI0(0)
-	lw	a2,	(a2)
-	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(0)
-	lw	a3,	(a3)
+	addi	t0,	vrc_s1,	CUR_ZGITCI0(0)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	li	a4,	0
 	jal	zgitci_frob
-	addi	a0,	vrc_s1,	CUR_ZGITCI0(1)
-	lw	a0,	(a0)
-	addi	a1,	vrc_s1,	4 + CUR_ZGITCI0(1)
-	lw	a1,	(a1)
-	addi	a2,	vrc_s1,	8 + CUR_ZGITCI0(1)
-	lw	a2,	(a2)
-	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(1)
-	lw	a3,	(a3)
+	addi	t0,	vrc_s1,	CUR_ZGITCI0(1)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	li	a4,	1
 	jal	zgitci_frob
-	addi	a0,	vrc_s1,	CUR_ZGITCI0(2)
-	lw	a0,	(a0)
-	addi	a1,	vrc_s1,	4 + CUR_ZGITCI0(2)
-	lw	a1,	(a1)
-	addi	a2,	vrc_s1,	8 + CUR_ZGITCI0(2)
-	lw	a2,	(a2)
-	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(2)
-	lw	a3,	(a3)
+	addi	t0,	vrc_s1,	CUR_ZGITCI0(2)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	li	a4,	2
 	jal	zgitci_frob
-	addi	a0,	vrc_s1,	CUR_ZGITCI0(3)
-	lw	a0,	(a0)
-	addi	a1,	vrc_s1,	4 + CUR_ZGITCI0(3)
-	lw	a1,	(a1)
-	addi	a2,	vrc_s1,	8 + CUR_ZGITCI0(3)
-	lw	a2,	(a2)
-	addi	a3,	vrc_s1,	0xC + CUR_ZGITCI0(3)
-	lw	a3,	(a3)
+	addi	t0,	vrc_s1,	CUR_ZGITCI0(3)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	li	a4,	3
 	jal	zgitci_frob
+	// 6 by 6
+	// 7 by 7
+	// 8 by 8
+	// 9 by 9
 
 main_reset_denpa:
 	/* DROP [at][01234567] */
