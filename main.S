@@ -625,8 +625,9 @@ zgitci_frob_check_pio_ld_lupe_co_barda:
 zgitci_frob_check_pio_ld_lupe:
 	#define	pio_instrX_t2	t2
 	lh	pio_instrX_t2,	(a1)
+	addi	a1,	a1,	2	// fmSxJdTB.  lh opt
 	sh	pio_instrX_t2,	(pio_j_t1)
-	addi	a1,	a1,	2
+	// addi	a1,	a1,	2	// .i jinvi le du'u ronsa la'o zoi. fmSxJdTB .zoi.
 	addi	pio_j_t1,	pio_j_t1,	4
 	blt	a1,	max_t0,	zgitci_frob_check_pio_ld_lupe
 	ret
