@@ -614,9 +614,12 @@ zgitci_frob_check_pio_ld_lupe_co_barda:
 	#define	pio_instrX_t2	t2
 	lw	pio_instrX_t2,	(a1)
 	addi	a1,	a1,	4	// 4vxsBM5S.  lw opt
-	sw	pio_instrX_t2,	(pio_j_t1)
+
+	// | TODO: .i xu mapti  .i morji le du'u mu'oi zoi. little-endian .zoi.
+	sh	pio_instrX_t2,	(pio_j_t1)
 	srli	pio_instrX_t2,	pio_instrX_t2,	16
-	sw	pio_instrX_t2,	4(pio_j_t1)
+	sh	pio_instrX_t2,	4(pio_j_t1)
+
 	// | pg 950 rp2350
 	addi	pio_j_t1,	pio_j_t1,	8
 	// addi	a1,	a1,	4	// .i jinvi le du'u ronsa la'o zoi. 4vxsBM5S .zoi.
