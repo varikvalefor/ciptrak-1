@@ -72,7 +72,8 @@ cur: .word	0,				/* 0 */ \
 
 #define	CUR_TEMCI	4 * 0
 #define	CUR_XOSC_SNIDU	4 * 1
-#define	CUR_DENPA_INST(x)	4 * (2 + x)
+#define	CUR_DENPA_INST_OFFSET	2
+#define	CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
 #define	CUR_PATN_SEZVATI_OFFSET	22
 #define	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
@@ -774,9 +775,9 @@ zgitci_frob_c000_denpa:
 	li	t0,	0xC0000010
 	bne	a0,	t0,	zgitci_frob_deaf_xosc
 
-	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
+	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
-	addi	t0,	zgitci_a4,	2
+	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
 	sh2add	denpa_j_t0,	vrc_s1,	t0
 
 	sw	a1,	(denpa_j_t0)
@@ -936,8 +937,8 @@ vrici_frob_dispatch:
 	j	vrici_frob_denpaV
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
-	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
-	addi	t0,	zgitci_a4,	2
+	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
 	sh2add	denpa_j_t0,	vrc_s1,	t0
 
 	sw	datni_a5,	(denpa_j_t0)
@@ -1003,8 +1004,8 @@ vrici_frob_denpaV:
 	#define	zt_idx_t0	t0
 	srli	zt_idx_t0,	datni_a5,	22	// b[23], b[22]
 
-	// se morji: CUR_DENPA_INST(x)       4 * (2 + x)
-	addi	t0,	zt_idx_t0,	2
+	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
+	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
 	#define	denpa_j_t0	t0
 	sh2add	denpa_j_t0,	vrc_s1,	t0
 
