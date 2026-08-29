@@ -136,7 +136,7 @@ main_lupe_sha:
 	lw	t0,	(t0)
 	li	t1,	1	// x48Xyorh.  lw opt
 	andi	t0,	t0,	0xF
-	beqz	t0,	main_lupe_tcidu
+	bnez	t0,	main_lupe_tcidu
 
 	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
 	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
