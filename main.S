@@ -616,7 +616,7 @@ zgitci_frob_check_pio_ld_lupe_co_barda:
 	addi	a1,	a1,	4	// 4vxsBM5S.  lw opt
 
 	// | TODO: .i xu mapti  .i morji le du'u mu'oi zoi. little-endian .zoi.
-	sh	pio_instrX_t2,	(pio_j_t1)
+	sh	pio_instrX_t2,	0(pio_j_t1)
 	srli	pio_instrX_t2,	pio_instrX_t2,	16
 	sh	pio_instrX_t2,	4(pio_j_t1)
 
