@@ -359,8 +359,8 @@ zgitci_frob_mapti_0_xu_akti:
 	lw	gpio_curf_t1,	(gpio_ctrl_j_t0)
 	li	t2,	4 # GPIO PWM
 	/* | .i sruma lo du'u mapti va'o zo'e */
-	beq	gpio_curf_t1,	t2,	zgitci_frob_1_pwm_aktigau_se_lidne
 	sw	t2,	(gpio_ctrl_j_t0)
+	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
