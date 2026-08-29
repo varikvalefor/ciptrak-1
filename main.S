@@ -801,13 +801,14 @@ zgitci_frob_c000_denpa:
  */
 zgitci_frob_deaf_xosc:
 	#define	SIVNI_ST_MASK	0xFFF
+	#define	SIVNI_X1_BIT	1 + 4 * 3
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 	li	t1,	0xFFFF
 	and	t0,	a1,	t1
 	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
 
-	bexti	t1,	a2,	(1 + 4 * 3)	// temp
+	bexti	t1,	a2,	SIVNI_X1_BIT	// temp
 	beqz	t1,	zgitci_frob_deaf_xosc_post
 
 	li	t1,	SIVNI_ST_MASK
