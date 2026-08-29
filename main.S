@@ -371,6 +371,7 @@ zgitci_frob_1_pwm_aktigau:
 	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
+	slli	t0,	pwm_slice_a5,	(1 + 2)	// 64KzYuZ6.  lw opt
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
 
@@ -378,7 +379,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 
 	# IO_BANK0_GPIOx_CTRL
 	#define	pads_gpio_j_t0	t0
-	slli	t0,	pwm_slice_a5,	(1 + 2)	# 4 * PIN
+	//	slli	t0,	pwm_slice_a5,	(1 + 2)	// 4 * PIN; .i ronsa tu'a zoi zoi. 64KzYuZ6 .zoi.
 	// addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
 	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS + 4 // "
 	add	pads_gpio_j_t0,	t0,	t1
