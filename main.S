@@ -91,7 +91,7 @@ cur: .word	0,				/* 0 */ \
 
 main:
 main_init:
-main_onit_oe:
+main_init_oe:
 	# .i curmi tu'a lo dikca
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
