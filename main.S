@@ -216,7 +216,7 @@ main_lupe_tcidu_lupe_vimcu:
 	#define	sivni_t5	t5
 	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
 	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
-	sh2add	sivni_t5,	vrc_s1,	t4
+	sh2add	sivni_t5,	vrc_s1,	sivniP_t4
 	sw	x0,	(sivni_t5)
 main_lupe_tcidu_lupe_co_cmalu:
 	#define	datni2_t4	t4
