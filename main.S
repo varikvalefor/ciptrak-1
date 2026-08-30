@@ -154,7 +154,7 @@ main_lupe_sha:
 	#define	dma_rd_j_t2	t2
 	#define	dma_w_j_t3	t3
 	#define	dma_tx_j_t4	t4
-	#define	dma_ctrl_t5	t5
+	#define	dma_ctrl_j_t5	t5
 	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
 	li	dma_rd_j_t2,	DMA_BASE + DMA_CHx_READ_ADDR_OFFSET(0)
 	sw	t1,	(dma_rd_j_t2)
@@ -166,10 +166,10 @@ main_lupe_sha:
 	addi	dma_tx_j_t4,	dma_w_j_t3,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_WRITE_ADDR_OFFSET(0))
 	li	t1,	(512 / 32)
 	sw	t1,	(dma_tx_j_t4)
-	// li	dma_ctrl_t5,	DMA_BASE + DMA_CHx_CTRL_TRIG_OFFSET(0)
-	addi	dma_ctrl_t5,	dma_tx_j_t4,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_TRANS_COUNT_OFFSET(0))
+	// li	dma_ctrl_j_t5,	DMA_BASE + DMA_CHx_CTRL_TRIG_OFFSET(0)
+	addi	dma_ctrl_j_t5,	dma_tx_j_t4,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_TRANS_COUNT_OFFSET(0))
 	li	t1,	1 | (0x2 << 2)
-	sw	t1,	(dma_ctrl_t5)
+	sw	t1,	(dma_ctrl_j_t5)
 
 	/*
 	  | .i denpa ki'u zo'e joi le su'u la'oi .DMA. na prane le ka ce'u jai zilsutra
@@ -187,7 +187,7 @@ main_lupe_sha:
 	sw	t0,	(dma_rd_j_t2)
 	li	t0,	4
 	sw	t0,	(dma_tx_j_t4)
-	sw	t1,	(dma_ctrl_t5) // hack hack hack
+	sw	t1,	(dma_ctrl_j_t5) // hack hack hack
 
 	addi    t0,     vrc_s1, CUR_SHA_EN
 	sw	x0,	(t0)
