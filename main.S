@@ -105,13 +105,14 @@ main_init_oe:
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
 main_init_xosc:
-	li	t0,	XOSC_BASE
+	#define	xosc_t0	t0
+	li	xosc_t0,	XOSC_BASE
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
-	sw	t1,	XOSC_CTRL_OFFSET(t0)
+	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
 main_init_xosc_cipra:
 main_init_xosc_cipra_lupe:
-	lw	t1,	XOSC_STATUS_OFFSET(t0)
+	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	li	t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_sha256
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
