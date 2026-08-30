@@ -873,7 +873,7 @@ zgitci_frob_deaf_bixygau:
  */
 zgitci_frob_deaf_setsivni:
 	li	t0,	0xDEAF0002
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_slurp
 
 	#define	A1_SIVNI_ENABLE_BIT_0	0
 	#define	A1_SIVNI_ENABLE_BIT_1	1
@@ -912,11 +912,10 @@ zgitci_frob_deaf_setsivni_i2:
  */
 zgitci_frob_slurp:
 	li	t0,	0xDEAF0003
-	bne	t0,	a0,	zgitci_frob_slurp_post
+	bne	t0,	a0,	zgitci_frob_nope
 
 	// TODO
 
-zgitci_frob_slurp_post:
 	ret
 
 /*
