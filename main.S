@@ -887,7 +887,28 @@ zgitci_frob_deaf_setsivni_i2:
 	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s1,	t0
 	sw	a3,	(t0)
-zgitci_frob_deaf_setsivni_post:
+
+	ret
+
+/* SLURP
+ *
+ * 0xDEAF0003
+ *
+ * [judri_mem]
+ *
+ * [?: 0xXXX][nibarda: 0xXXXXX]
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_slurp:
+	li	t0,	0xDEAF0003
+	bne	t0,	a0,	zgitci_frob_slurp_post
+
+	// TODO
+
+zgitci_frob_slurp_post:
 	ret
 
 /*
