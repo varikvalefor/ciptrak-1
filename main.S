@@ -912,12 +912,13 @@ zgitci_frob_deaf_setsivni_i2:
  */
 zgitci_frob_slurp:
 	// TODO: .i xu mapti  .i simlu fi fy fe le ka ce'u sampu
+	#define	ram_j_a1	a1
 
 	li	t0,	0xDEAF0003
 	bne	t0,	a0,	zgitci_frob_nope
 
 	li	t0,	DMA_BASE + DMA_CH0_WRITE_ADDR
-	sw	a1,	(t0)
+	sw	ram_j_a1,	(t0)
 
 	addi	t0,	t0,	(DMA_CH0_READ_ADDR - DMA_CH0_WRITE_ADDR)
 	sw	a2,	(t0)
