@@ -928,7 +928,7 @@ zgitci_frob_slurp:
 	sw	t1,	(t0)
 
 	addi	t0,	t0,	(DMA_CH0_CTRL_TRIG - DMA_CH0_TRANS_COUNT)
-	li	t1,	1
+	li	t1,	1 || (0x2 << 2)
 	sw	t1,	(t0)
 
 	ret
