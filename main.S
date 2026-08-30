@@ -286,32 +286,29 @@ main_incri_next_a2:
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
-	addi	t0,	vrc_s1,	CUR_ZGITCI0(0)
-	lw	a0,	0x0(t0)
-	lw	a1,	0x4(t0)
-	lw	a2,	0x8(t0)
-	lw	a3,	0xC(t0)
+	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) (4 * (x + CUR_ZGITCI0(z)))(vrc_s1)
+	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 0)
+	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0)
+	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0)
+	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 0)
 	li	a4,	0
 	jal	zgitci_frob
-	addi	t0,	vrc_s1,	CUR_ZGITCI0(1)
-	lw	a0,	0x0(t0)
-	lw	a1,	0x4(t0)
-	lw	a2,	0x8(t0)
-	lw	a3,	0xC(t0)
+	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 1)
+	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 1)
+	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 1)
+	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 1)
 	li	a4,	1
 	jal	zgitci_frob
-	addi	t0,	vrc_s1,	CUR_ZGITCI0(2)
-	lw	a0,	0x0(t0)
-	lw	a1,	0x4(t0)
-	lw	a2,	0x8(t0)
-	lw	a3,	0xC(t0)
+	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 2)
+	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 2)
+	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 2)
+	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 2)
 	li	a4,	2
 	jal	zgitci_frob
-	addi	t0,	vrc_s1,	CUR_ZGITCI0(3)
-	lw	a0,	0x0(t0)
-	lw	a1,	0x4(t0)
-	lw	a2,	0x8(t0)
-	lw	a3,	0xC(t0)
+	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 3)
+	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 3)
+	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 3)
+	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 3)
 	li	a4,	3
 	jal	zgitci_frob
 	// 6 by 6
