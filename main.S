@@ -191,7 +191,7 @@ main_lupe_tcidu:
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	4
-	addi	judri_j_a1,	vrc_s1,	4 * CUR_PATN_JUDRI(0)
+	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a3,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
