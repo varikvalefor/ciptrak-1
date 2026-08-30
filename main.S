@@ -946,8 +946,11 @@ vrici_frob_dispatch_pre:
 	srli	datni_a5,	datni_a5,	8
 
 	slli	t0,	t0,	2
+	addi	t0,	t0,	3 * 4	// j + add + auipc
 vrici_frob_dispatch:
-	// | TODO: .i xu mapti  .i la .varik. cu milxe le ka ce'u senpi
+	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
+	auipc	t1,	0
+	add	t0,	t0,	t1
 	j	t0
 	// | 0
 	ret
