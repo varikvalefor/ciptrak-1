@@ -950,7 +950,7 @@ vrici_frob_dispatch:
 	addi	t0,	t0,	3 * 4	// j + add + auipc
 	auipc	t1,	0
 	add	t0,	t0,	t1
-	// | le se djica: pc = pc + 4 * (a5 >> (6 * 4))
+	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	j	t0
 	// | 0
 	ret
