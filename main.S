@@ -914,7 +914,20 @@ zgitci_frob_slurp:
 	li	t0,	0xDEAF0003
 	bne	t0,	a0,	zgitci_frob_nope
 
-	// TODO
+	li	t0,	DMA_BASE + DMA_CH0_WRITE_ADDR
+	sw	a1,	(t0)
+
+	addi	t0,	t0,	(DMA_CH0_READ_ADDR - DMA_CH0_WRITE_ADDR)
+	sw	a2,	(t0)
+
+	addi	t0,	t0,	(DMA_CH0_TRANS_COUNT - DMA_CH0_READ_ADDR)
+	slli	t1,	a3,	(8 - 5) * 4
+	srli	t1,	a3,	(8 - 5) * 4
+	sw	t1,	(t0)
+
+	addi	t0,	t0,	(DMA_CH0_CTRL_TRIG - DMA_CH0_TRANS_COUNT)
+	li	t1,	1
+	sw	t1,	(t0)
 
 	ret
 
