@@ -813,10 +813,10 @@ zgitci_frob_deaf_xosc:
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
-	// metfo: andi	t1,	a1,	0x0000FFFF
-	slli	t1,	a1,	4 * (8 - 4)
-	srli	t1,	t1,	4 * (8 - 4)
-	sw	t1,	CUR_XOSC_SNIDU(vrc_s1)
+	// metfo: andi	t0,	a1,	0x0000FFFF
+	slli	t0,	a1,	4 * (8 - 4)
+	srli	t0,	t0,	4 * (8 - 4)
+	sw	t0,	CUR_XOSC_SNIDU(vrc_s1)
 
 	bexti	t1,	a2,	SIVNI_X1_BIT	// temp
 	beqz	t1,	zgitci_frob_deaf_xosc_post
