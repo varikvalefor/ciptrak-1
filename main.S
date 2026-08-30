@@ -904,9 +904,9 @@ zgitci_frob_deaf_setsivni_i2:
  *
  * [judri_mem]
  *
- * [?: 0xXXX][nibarda: 0xXXXXX]
+ * [judri_flash]
  *
- * ?
+ * [?: 0xXXX][nibarda: 0xXXXXX]
  *
  * ?
  */
