@@ -196,6 +196,7 @@ main_lupe_tcidu:
 main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
+	addi	judri_j_a1,	judri_j_a1,	4	// uNT2sx7N.  lw opt
 	#define	datni_j_t2	t2
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -229,7 +230,7 @@ main_lupe_tcidu_lupe_co_cmalu:
 	sw	datni2_t4,	0xC(datni_cur_j_a3)
 main_lupe_tcidu_lupe_co_cmalu_fanmo:
 	addi	ctr_a0,	ctr_a0,	-1	// TODO: .i xu frili cumki fa lo nu sisti tu'a la'oi .ctr_a0.
-	addi	judri_j_a1,	judri_j_a1,	4
+	// addi	judri_j_a1,	judri_j_a1,	4	// .i ronsa la'o zoi. uNT2sx7N .zoi.
 	addi	datni_cur_j_a3,	datni_cur_j_a3,	4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
