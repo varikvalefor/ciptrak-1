@@ -568,8 +568,7 @@ zgitci_frob_damri_sha:
 	sw	t0,	CUR_SHA_EN(vrc_s1)
 
 	#define sha_t0	t0
-	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
-	lw	sha_t0,	(t0)
+	lw	sha_t0,	CUR_SHA_OFFSET(vrc_s1)
 
 	#define	nlev_t2	t2
 	clz	t1,	curval_a5
