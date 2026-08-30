@@ -944,11 +944,10 @@ vrici_frob_dispatch_pre:
 	// | metfo: andi	datni_a5,	datni_a5,	0xFFFFFF
 	slli	datni_a5,	datni_a5,	8
 	srli	datni_a5,	datni_a5,	8
-
-	slli	t0,	t0,	2
-	addi	t0,	t0,	3 * 4	// j + add + auipc
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
+	slli	t0,	t0,	2
+	addi	t0,	t0,	3 * 4	// j + add + auipc
 	auipc	t1,	0
 	add	t0,	t0,	t1
 	j	t0
