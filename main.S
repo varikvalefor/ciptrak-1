@@ -911,6 +911,8 @@ zgitci_frob_deaf_setsivni_i2:
  * ?
  */
 zgitci_frob_slurp:
+	// TODO: .i xu mapti  .i simlu fi fy fe le ka ce'u sampu
+
 	li	t0,	0xDEAF0003
 	bne	t0,	a0,	zgitci_frob_nope
 
