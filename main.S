@@ -927,8 +927,9 @@ zgitci_frob_slurp:
 	srli	t1,	a3,	(8 - 5) * 4
 	sw	t1,	(t0)
 
+	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
 	addi	t0,	t0,	(DMA_CH0_CTRL_TRIG - DMA_CH0_TRANS_COUNT)
-	li	t1,	1 || (0x2 << 2)
+	li	t1,	1 || DMA_CTRL_DATA_SIZE_WORD
 	sw	t1,	(t0)
 
 	ret
