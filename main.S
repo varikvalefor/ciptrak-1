@@ -136,8 +136,7 @@ main_lupe_xosc_counter:
 main_lupe_sha:
 	/* DROP [at][01234567] */
 
-	addi	t0,	vrc_s1,	CUR_SHA_EN
-	lw	t0,	(t0)
+	lw	t0,	CUR_SHA_EN(vrc_s1)
 	beqz	t0,	main_lupe_tcidu
 
 	addi	t0,	vrc_s1,	CUR_TEMCI
