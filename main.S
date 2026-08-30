@@ -113,8 +113,7 @@ main_init_sha256:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	lw	t1,	(t2)
-	bseti	t1,	t1,	RESETS_SHA256_BIT
+	li	t1,	(1<<RESETS_SHA256_BIT) + (1<<RESETS_PIO2_BIT) + (1<<RESETS_PIO1_BIT) + (1<<RESETS_PIO0_BIT) + (1<<RESETS_DMA_BIT)
 	sw	t1,	(t2)
 
 main_lupe_pre:
