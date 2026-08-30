@@ -941,7 +941,7 @@ vrici_frob:
 	ret
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
-	// | metfo: andi	datni_a5,	datni_a5,	0xFFFFFF
+	// | metfo: andi	datni_a5,	datni_a5,	0x00FFFFFF
 	slli	datni_a5,	datni_a5,	(2 * 4)
 	srli	datni_a5,	datni_a5,	(2 * 4)
 vrici_frob_dispatch:
