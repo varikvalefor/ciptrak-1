@@ -139,8 +139,7 @@ main_lupe_sha:
 	lw	t0,	CUR_SHA_EN(vrc_s1)
 	beqz	t0,	main_lupe_tcidu
 
-	addi	t0,	vrc_s1,	CUR_TEMCI
-	lw	t0,	(t0)
+	lw	t0,	CUR_TEMCI(vrc_s1)
 	li	t1,	1	// x48Xyorh.  lw opt
 	andi	t0,	t0,	0xF
 	bnez	t0,	main_lupe_tcidu
