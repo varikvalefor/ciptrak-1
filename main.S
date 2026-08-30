@@ -564,7 +564,7 @@ zgitci_frob_damri_sha:
 	srl	sha_t0,	sha_t0,	t1
 
 	// | TODO: .i xu cadga fa lo nu frica
-	bexti	t1,	sha_t0,	0
+	bexti	t1,	sha_t0,	0	// temp
 	beqz	t1,	zgitci_frob_damri_sha_jdika
 	add	curval_a5,	curval_a5,	sha_t0
 	j	zgitci_frob_damri_sha_min
