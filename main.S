@@ -1,4 +1,11 @@
 /*
+   CCCCCC   IIIIIII  PPPPPP   TTTTTTT  RRRRRR   AAAAAA  KK   KK
+  CC    CC     I      P   PP  T  T  T   R   RR  A    A   K  K
+  C      C     I      P   PP     T      R   RR       A   KKK
+  C            I      PPPPP      T      RRRRR   AAAAAA   K  K
+  CC    CC     I      P          T      R  R    A   AA   K   K
+   CCCCCC   IIIIIII   P          T      R   RR  AAAAAAA  K    K
+
 ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo notci pe zoi zoi.
 
 	ni'o la .varik. cu tolsti lo pu'u vo'a ciksi lo me'oi .tracker. proga fo la'oi .RP2350.
