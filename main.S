@@ -817,8 +817,8 @@ zgitci_frob_deaf_xosc:
 	srli	t0,	t0,	4 * (8 - 4)
 	sw	t0,	CUR_XOSC_SNIDU(vrc_s1)
 
-	bexti	t1,	a2,	SIVNI_X1_BIT	// temp
-	beqz	t1,	zgitci_frob_deaf_xosc_post
+	bexti	t0,	a2,	SIVNI_X1_BIT	// temp
+	beqz	t0,	zgitci_frob_deaf_xosc_post
 
 	// metfo: #define	SIVNI_ST_MASK	0x00000FFF
 	          andi	t1,	a2,	SIVNI_ST_MASK
