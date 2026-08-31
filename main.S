@@ -163,7 +163,7 @@ main_lupe_sha:
 
 	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(1))(dma_base_t0)
-	addi	t2,	sha256_a0,	SHA256_SUM0_OFFSET
+	addi	t2,	sha256_a0,	SHA256_SUMx_OFFSET(0)
 	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(1))(dma_base_t0)
 	li	t2,	4
 	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_t0)
