@@ -919,17 +919,17 @@ zgitci_frob_slurp:
 
 	li	t0,	DMA_BASE
 
-	sw	ram_j_a1,	 DMA_CH0_WRITE_ADDR(t0)
+	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR(0))(t0)
 
-	sw	flash_j_a2,	DMA_CH0_READ_ADDR(t0)
+	sw	flash_j_a2,	(DMA_CHx_READ_ADDR(0))(t0)
 
 	slli	t1,	a3,	(8 - 5) * 4
 	srli	t1,	a3,	(8 - 5) * 4
-	sw	t1,	DMA_CH0_TRANS_COUNT(t0)
+	sw	t1,	(DMA_CHx_TRANS_COUNT(0))(t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
 	li	t1,	1 || DMA_CTRL_DATA_SIZE_WORD
-	sw	t1,	DMA_CH0_CTRL_TRIG(t0)
+	sw	t1,	(DMA_CHx_CTRL_TRIG(0))(t0)
 
 	ret
 
