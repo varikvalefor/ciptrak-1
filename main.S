@@ -341,18 +341,7 @@ zgitci_frob_1_pwm_xu_akti::
 
 	lw	t0,	PWM_EN_OFFSET(pwm_base_a5)
 	bext	t1,	t0,	pwm_slice_a5
-	beqz	t1,	zgitci_frob_1_pwm_aktigau
-
-	#define	gpio_ctrl_j_t0	t0
-	// se morji: IO_BANK0_GPIOx_CTRL(x)  0x004 + 0x008 * x
-	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
-	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
-	li	t1,	IO_BANK0_BASE + 4 // "
-	add	gpio_ctrl_j_t0,	t0,	t1
-	li	t2,	4 # GPIO PWM
-	/* | .i sruma lo du'u mapti va'o zo'e */
-	sw	t2,	(gpio_ctrl_j_t0)
-	j	zgitci_frob_1_pwm_aktigau_se_lidne
+	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -363,21 +352,19 @@ zgitci_frob_1_pwm_aktigau:
 	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
-	slli	t0,	pwm_slice_a5,	(1 + 2)	// 64KzYuZ6.  lw opt
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-
-	/* DROP t[0-6] */
-
-	# IO_BANK0_GPIOx_CTRL
-	#define	pads_gpio_j_t0	t0
-	//	slli	t0,	pwm_slice_a5,	(1 + 2)	// 4 * PIN; .i ronsa tu'a zoi zoi. 64KzYuZ6 .zoi.
-	// addi	t0,	t0,	4 # PADS_BANK0_GPIOx_OFFSET
-	li	t1,	PADS_BANK0_BASE + REG_ALIAS_CLR_BITS + 4 // "
-	add	pads_gpio_j_t0,	t0,	t1
-	li	t1,	(1<<PADS_BANK0_GPIO0_ISO_BIT) | (1<<5 + 1<<4) # drive
-	sw	t1,	(pads_gpio_j_t0)
 zgitci_frob_1_pwm_aktigau_se_lidne:
+	#define	gpio_ctrl_j_t0	t0
+	// se morji: IO_BANK0_GPIOx_CTRL(x)  0x004 + 0x008 * x
+	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
+	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
+	li	t1,	IO_BANK0_BASE + 4 // "
+	add	gpio_ctrl_j_t0,	t0,	t1
+	li	t2,	4 # GPIO PWM
+	/* | .i sruma lo du'u mapti va'o zo'e */
+	sw	t2,	(gpio_ctrl_j_t0)
+	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_div:
 	srli	t0,	a1,	2
 	li	t1,	0b11111111111111
