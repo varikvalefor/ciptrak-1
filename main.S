@@ -662,17 +662,18 @@ zgitci_frob_c000_mv:
 	sh2add	sezvati_j_t0,	vrc_s1,	t0
 	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
 
+	#define	ctr_t2	t2
 	slli	t2,	a3,	16
-	srli	t2,	t2,	16
-	beqz	t2,	zgitci_frob_c000_mv_cont
+	srli	ctr_t2,	t2,	16
+	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
-	addi	t2,	t2,	-1
+	addi	ctr_t2,	ctr_t2,	-1
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
-	add	a3,	t2,	t3	// lw opt
+	add	a3,	ctr_t2,	t3	// lw opt
 	sw	a3,	0xC(t0)
 	ret
 
