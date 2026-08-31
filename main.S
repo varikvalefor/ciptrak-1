@@ -582,36 +582,21 @@ zgitci_frob_check_pio_gpio_post:
 	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sh1add	max_t0,	max_t0,	a1	// .i jinvi le du'u bitni li pa xa
 	#define	pio_j_t1	t1
-	// TODO: pio_j_t1 = PIOx_BASE + PIOx_INSTR_MEM0_OFFSET
-	// TODO: .i cadga fa lo nu pilno lo xo moi be lo'i me'oi .PIO. co'e
-	bexti	t3,	a1,	0	// temp
 
-	/* TODO: .i xu mapti fa tu'a lo me'oi .DMA. co'e */
-	beqz	t3,	zgitci_frob_check_pio_ld_lupe
-zgitci_frob_check_pio_ld_lupe_co_barda:
-	#define	pio_instrX_t2	t2
-	lw	pio_instrX_t2,	(a1)
-	addi	a1,	a1,	4	// 4vxsBM5S.  lw opt
+	#define	dma_t1	t0
+	li	dma_t1,	DMA_BASE
 
-	// | TODO: .i xu mapti  .i morji le du'u mu'oi zoi. little-endian .zoi.
-	sh	pio_instrX_t2,	0(pio_j_t1)
-	srli	pio_instrX_t2,	pio_instrX_t2,	16
-	sh	pio_instrX_t2,	4(pio_j_t1)
+	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
+	sw	max_t0,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t1)
 
-	// | pg 950 rp2350
-	addi	pio_j_t1,	pio_j_t1,	8
-	// addi	a1,	a1,	4	// .i jinvi le du'u ronsa la'o zoi. 4vxsBM5S .zoi.
-	blt	a1,	max_t0,	zgitci_frob_check_pio_ld_lupe_co_barda
+	sw	a1,	(DMA_CHx_READE_ADDR_OFFSET(2))(dma_t1)
 
-	ret
-zgitci_frob_check_pio_ld_lupe:
-	#define	pio_instrX_t2	t2
-	lh	pio_instrX_t2,	(a1)
-	addi	a1,	a1,	2	// fmSxJdTB.  lh opt
-	sh	pio_instrX_t2,	(pio_j_t1)
-	// addi	a1,	a1,	2	// .i jinvi le du'u ronsa la'o zoi. fmSxJdTB .zoi.
-	addi	pio_j_t1,	pio_j_t1,	4
-	blt	a1,	max_t0,	zgitci_frob_check_pio_ld_lupe
+	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
+	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
+
+	li	t0,	1 || (0<<2)
+	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
+
 	ret
 
 /*
