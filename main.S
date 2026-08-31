@@ -176,8 +176,7 @@ main_lupe_sha:
 	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_t0) // hack hack hack
 
-	addi    t0,     vrc_s1, CUR_SHA_EN
-	sw	x0,	(t0)
+	sw	x0,	CUR_SHA_EN(vrc_s1)
 
 main_lupe_tcidu:
 	/* DROP [at][01234567] */
