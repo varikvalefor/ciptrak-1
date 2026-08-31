@@ -334,7 +334,7 @@ zgitci_frob_1_pwm:
 
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
-zgitci_frob_1_pwm_xu_akti::
+zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	pwm_slice_a5	a5
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
