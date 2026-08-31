@@ -154,7 +154,7 @@ main_lupe_sha:
 
 	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
 	sw	t1,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
-	li	t1,	SHA256_BASE + SHA256_WDATA_OFFSET
+	addi	t1,	sha256_a0,	SHA256_WDATA_OFFSET
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_t0)
 	li	t1,	(512 / 32)
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
