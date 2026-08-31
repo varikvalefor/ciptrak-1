@@ -113,7 +113,7 @@ main_init_xosc:
 main_init_xosc_cipra:
 main_init_xosc_cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
-	li	t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_sha256
+	li	t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_periph:
