@@ -148,25 +148,15 @@ main_lupe_sha:
 	sw	t1,	(t0)
 
 	// not (dma design)
-	#define	dma_rd_j_t2	t2
-	#define	dma_w_j_t3	t3
-	#define	dma_tx_j_t4	t4
-	#define	dma_ctrl_j_t5	t5
+	#define	dma_base_t0	t0
 	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
-	li	dma_rd_j_t2,	DMA_BASE + DMA_CHx_READ_ADDR_OFFSET(0)
-	sw	t1,	(dma_rd_j_t2)
-	li	t0,	SHA256_BASE + SHA256_WDATA_OFFSET
-	// | li	dma_w_j_t3,	DMA_BASE + DMA_CHx_WRITE_ADDR_OFFSET(0)
-	addi	dma_w_j_t3,	dma_rd_j_t2,	(DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))
-	sw	t0,	(dma_w_j_t3)
-	// | li	dma_tx_j_t4,	DMA_BASE + DMA_CHx_TRANS_COUNT_OFFSET(0)
-	addi	dma_tx_j_t4,	dma_w_j_t3,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_WRITE_ADDR_OFFSET(0))
+	sw	t1,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
+	li	t1,	SHA256_BASE + SHA256_WDATA_OFFSET
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_t0)
 	li	t1,	(512 / 32)
-	sw	t1,	(dma_tx_j_t4)
-	// li	dma_ctrl_j_t5,	DMA_BASE + DMA_CHx_CTRL_TRIG_OFFSET(0)
-	addi	dma_ctrl_j_t5,	dma_tx_j_t4,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_TRANS_COUNT_OFFSET(0))
+	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
 	li	t1,	1 | (0x2 << 2)
-	sw	t1,	(dma_ctrl_j_t5)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_t0)
 
 	/*
 	  | .i denpa ki'u zo'e joi le su'u la'oi .DMA. na prane le ka ce'u jai zilsutra
@@ -178,13 +168,13 @@ main_lupe_sha:
 	nop
 	// nop	// .i la .varik. cu jinvi le du'u ronsa le me'oi .addi. co'e je ke se lidne
 
-	addi	t0,	vrc_s1,	CUR_SHA_OFFSET
-	sw	t0,	(dma_w_j_t3)
-	li	t0,	SHA256_BASE + SHA256_SUM0_OFFSET
-	sw	t0,	(dma_rd_j_t2)
-	li	t0,	4
-	sw	t0,	(dma_tx_j_t4)
-	sw	t1,	(dma_ctrl_j_t5) // hack hack hack
+	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
+	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_t0)
+	li	t2,	SHA256_BASE + SHA256_SUM0_OFFSET
+	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
+	li	t2,	4
+	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_t0) // hack hack hack
 
 	addi    t0,     vrc_s1, CUR_SHA_EN
 	sw	x0,	(t0)
@@ -487,8 +477,8 @@ zgitci_frob_check_2:
 	#define	zts_id_t0	t0
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
-	slli	t0,	a1,	(32 - 4 * 3)	// 1c
-	srli	zts_id_t0,	t0,	(32 - 4 * 3)	// 1c
+	slli	t0,	a1,	4 * (8 - 3)	// 1c
+	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh1add	zts_j_t1,	t2,	t1
@@ -924,21 +914,19 @@ zgitci_frob_slurp:
 	li	t0,	0xDEAF0003
 	bne	t0,	a0,	zgitci_frob_nope
 
-	li	t0,	DMA_BASE + DMA_CH0_WRITE_ADDR
-	sw	ram_j_a1,	(t0)
+	li	t0,	DMA_BASE
 
-	addi	t0,	t0,	(DMA_CH0_READ_ADDR - DMA_CH0_WRITE_ADDR)
-	sw	flash_j_a2,	(t0)
+	sw	ram_j_a1,	 DMA_CH0_WRITE_ADDR(t0)
 
-	addi	t0,	t0,	(DMA_CH0_TRANS_COUNT - DMA_CH0_READ_ADDR)
+	sw	flash_j_a2,	DMA_CH0_READ_ADDR(t0)
+
 	slli	t1,	a3,	(8 - 5) * 4
 	srli	t1,	a3,	(8 - 5) * 4
-	sw	t1,	(t0)
+	sw	t1,	DMA_CH0_TRANS_COUNT(t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
-	addi	t0,	t0,	(DMA_CH0_CTRL_TRIG - DMA_CH0_TRANS_COUNT)
 	li	t1,	1 || DMA_CTRL_DATA_SIZE_WORD
-	sw	t1,	(t0)
+	sw	t1,	DMA_CH0_CTRL_TRIG(t0)
 
 	ret
 
