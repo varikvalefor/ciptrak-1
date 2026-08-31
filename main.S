@@ -161,23 +161,13 @@ main_lupe_sha:
 	li	t1,	1 | (0x2 << 2)
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_t0)
 
-	/*
-	  | .i denpa ki'u zo'e joi le su'u la'oi .DMA. na prane le ka ce'u jai zilsutra
-	  .i la .varik. cu jijyji'i le du'u lo nu bixygau pe'a la'oi .dma_w_j_t3. jai rinka lo nu frica ciska pe'a
-	  .i la .varik. cu jinvi fo zo'e joi tu'a le velcki be tu'a la'oi .RP2350. fe le du'u li vo cu se ke rucyca'a snidu pe'a lo pu'u muvgau pe'a
-	*/
-	nop
-	nop
-	nop
-	// nop	// .i la .varik. cu jinvi le du'u ronsa le me'oi .addi. co'e je ke se lidne
-
 	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
-	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_t0)
+	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(1))(dma_base_t0)
 	addi	t2,	sha256_a0,	SHA256_SUM0_OFFSET
-	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
+	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(1))(dma_base_t0)
 	li	t2,	4
-	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
-	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_t0) // hack hack hack
+	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_t0)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_t0) // hack hack hack
 
 	sw	x0,	CUR_SHA_EN(vrc_s1)
 
