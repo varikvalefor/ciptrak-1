@@ -161,12 +161,12 @@ main_lupe_sha:
 	li	t0,	1 | (0x2 << 2)
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_a1)
 
-	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
-	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(1))(dma_base_a1)
-	addi	t2,	sha256_a0,	SHA256_SUMx_OFFSET(0)
-	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(1))(dma_base_a1)
-	li	t2,	4
-	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_a1)
+	addi	t1,	vrc_s1,	CUR_SHA_OFFSET
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(1))(dma_base_a1)
+	addi	t1,	sha256_a0,	SHA256_SUMx_OFFSET(0)
+	sw	t1,	(DMA_CHx_READ_ADDR_OFFSET(1))(dma_base_a1)
+	li	t1,	4
+	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_a1)
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_a1) // hack hack hack
 
 	sw	x0,	CUR_SHA_EN(vrc_s1)
