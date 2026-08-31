@@ -143,9 +143,10 @@ main_lupe_sha:
 	andi	t0,	t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
-	li	t0,	SHA256_BASE + SHA256_CSR_OFFSET
+	#define	sha256_a0	a0
+	li	sha256_a0,	SHA256_BASE
 	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
-	sw	t1,	(t0)
+	sw	t1,	SHA256_CSR_OFFSET(sha256_a0)
 
 	// not (dma design)
 	#define	dma_base_t0	t0
@@ -172,7 +173,7 @@ main_lupe_sha:
 
 	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_t0)
-	li	t2,	SHA256_BASE + SHA256_SUM0_OFFSET
+	addi	t2,	sha256_a0,	SHA256_SUM0_OFFSET
 	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
 	li	t2,	4
 	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_t0)
