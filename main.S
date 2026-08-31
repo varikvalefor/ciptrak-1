@@ -134,17 +134,17 @@ main_lupe_xosc_counter:
 
 main_lupe_sha:
 	/* DROP [at][01234567] */
+	#define	sha256_a0	a0
 
 	lw	t0,	CUR_SHA_EN(vrc_s1)
+	li	t1,	1	// x48Xyorh.  lw opt
 	beqz	t0,	main_lupe_tcidu
 
 	lw	t0,	CUR_TEMCI(vrc_s1)
-	li	t1,	1	// x48Xyorh.  lw opt
+	li	sha256_a0,	SHA256_BASE	// lw opt
 	andi	t0,	t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
-	#define	sha256_a0	a0
-	li	sha256_a0,	SHA256_BASE
 	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
 	sw	t1,	SHA256_CSR_OFFSET(sha256_a0)
 
