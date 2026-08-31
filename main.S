@@ -152,14 +152,14 @@ main_lupe_sha:
 	#define	dma_base_a1	a1
 	li	dma_base_a1,	DMA_BASE
 
-	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
-	sw	t1,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_a1)
-	addi	t1,	sha256_a0,	SHA256_WDATA_OFFSET
-	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_a1)
-	li	t1,	(512 / 32)
-	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_a1)
-	li	t1,	1 | (0x2 << 2)
-	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_a1)
+	addi	t0,	vrc_s1,	CUR_PATN_SEZVATI(0)
+	sw	t0,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_a1)
+	addi	t0,	sha256_a0,	SHA256_WDATA_OFFSET
+	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(0))(dma_base_a1)
+	li	t0,	(512 / 32)
+	sw	t0,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(dma_base_a1)
+	li	t0,	1 | (0x2 << 2)
+	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(dma_base_a1)
 
 	addi	t2,	vrc_s1,	CUR_SHA_OFFSET
 	sw	t2,	(DMA_CHx_WRITE_ADDR_OFFSET(1))(dma_base_a1)
@@ -167,7 +167,7 @@ main_lupe_sha:
 	sw	t2,	(DMA_CHx_READ_ADDR_OFFSET(1))(dma_base_a1)
 	li	t2,	4
 	sw	t2,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_a1)
-	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_a1) // hack hack hack
+	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_a1) // hack hack hack
 
 	sw	x0,	CUR_SHA_EN(vrc_s1)
 
