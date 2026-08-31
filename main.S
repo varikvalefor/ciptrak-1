@@ -339,6 +339,9 @@ zgitci_frob:
  *
  */
 zgitci_frob_mapti_0:
+	#define	pwm_base_a5	a5
+	li	a5,	PWM_BASE
+
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
 zgitci_frob_mapti_0_xu_akti:
@@ -346,8 +349,7 @@ zgitci_frob_mapti_0_xu_akti:
 	#define	pwm_slice_a5	a5
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 
-	li	t0,	PWM_BASE + PWM_EN_OFFSET
-	lw	t0,	(t0)
+	lw	t0,	PWM_EN_OFFSET(pwm_base_a5)
 	bext	t1,	t0,	pwm_slice_a5
 	beqz	t1,	zgitci_frob_1_pwm_aktigau
 
@@ -399,7 +401,7 @@ zgitci_frob_1_pwm_div:
 	// se morji: PWM_CHx_DIV_OFFSET(x)   4 + x * 0x14
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
-	li	t4,	PWM_BASE + 4
+	addi	t4,	pwm_base_a5,	4
 	add	div_j_t3,	t3,	t4
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
