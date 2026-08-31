@@ -357,8 +357,6 @@ zgitci_frob_mapti_0_xu_akti:
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
-	#define	gpio_curf_t1	t1
-	lw	gpio_curf_t1,	(gpio_ctrl_j_t0)
 	li	t2,	4 # GPIO PWM
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t2,	(gpio_ctrl_j_t0)
