@@ -578,8 +578,6 @@ zgitci_frob_check_pio:
 	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
-	#define pio_j_t1        t1
-
 	#define	dma_t1	t0
 	li	dma_t1,	DMA_BASE
 
