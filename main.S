@@ -586,7 +586,7 @@ zgitci_frob_check_pio_gpio_post:
 	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
 	sw	max_t0,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t1)
 
-	sw	a1,	(DMA_CHx_READE_ADDR_OFFSET(2))(dma_t1)
+	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t1)
 
 	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
 	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
