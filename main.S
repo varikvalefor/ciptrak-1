@@ -935,7 +935,7 @@ vrici_frob:
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	// | metfo: andi	datni_a5,	datni_a5,	0x00FFFFFF
-	slli	datni_a5,	datni_a5,	(2 * 4)
+	slli	a5,	a5,	(2 * 4)
 	srli	datni_a5,	datni_a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
