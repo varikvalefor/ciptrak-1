@@ -149,6 +149,7 @@ main_lupe_sha:
 
 	// not (dma design)
 	#define	dma_base_t0	t0
+	li	t0,	DMA_BASE
 	addi	t1,	vrc_s1,	CUR_PATN_SEZVATI(0)
 	sw	t1,	(DMA_CHx_READ_ADDR_OFFSET(0))(dma_base_t0)
 	li	t1,	SHA256_BASE + SHA256_WDATA_OFFSET
