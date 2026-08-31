@@ -976,6 +976,7 @@ vrici_frob_j:
 	sw	datni_a5,	(t1)
 
 	ret
+
 /*
  * RUB ONE OUT
  */
