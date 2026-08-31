@@ -992,7 +992,7 @@ vrici_frob_jog:
 	lw	sezvati_t2,	(sezvati_j_t0)
 	beqz	sign_t1,	vrici_frob_jog_sesumji
 	// | ni'o jimpe le du'u la'oi .sh2add. mapti  .i ku'i jinvi le du'u zmadu le me'oi .slli. co'e cu zmadu fi le ka ce'u panra la'oi .vrici_frob_jog_sesumji. le ka ce'u jai snidu
-	srai	datni_a5,	datni_a5,	-2
+	slli	datni_a5,	datni_a5,	2
 	add	sezvati_t2,	sezvati_t2,	datni_a5
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
