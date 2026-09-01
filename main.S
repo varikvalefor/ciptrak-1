@@ -637,6 +637,9 @@ zgitci_frob_c000_mv:
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 
 zgitci_frob_c000_mv_cont_cnino_ctr:
+	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
+	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
+
 	addi	ctr_t2,	ctr_t2,	-1
 
 	// | metfo: andi	t3,	a3,	0xFFFF0000
