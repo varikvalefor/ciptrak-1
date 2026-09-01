@@ -712,7 +712,7 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a1,	0x4(t0)
 	lw	a2,	0x8(t0)
 	lw	a3,	0xC(t0)
-	lw	s4,	(judri_s2)
+	lw	s4,	(judri_s2)	// preload
 	jal	zgitci_frob
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
