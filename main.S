@@ -340,6 +340,7 @@ zgitci_frob_1_pwm_xu_akti:
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 
 	lw	t0,	PWM_EN_OFFSET(pwm_base_a5)
+	// TODO: .i xu lo su'o co'e cu mapti tu'a la'oi .lw.
 	bext	t1,	t0,	pwm_slice_a5
 	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_aktigau:
