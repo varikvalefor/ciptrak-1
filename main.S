@@ -368,8 +368,9 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_div:
 	srli	t0,	a1,	2
-	li	t1,	0b11111111111111
-	and	t0,	t0,	t1
+	// metfo: andi	t0,	t0,	0b11111111111111
+	slli	t0,	t0,	(32 - 14)
+	srli	t0,	t0,	(32 - 14)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	// | TODO: .i xu mapti
