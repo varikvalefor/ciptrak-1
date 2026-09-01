@@ -205,7 +205,7 @@ main_lupe_tcidu_lupe_vimcu:
 	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_co_cmalu
 
-	// se morji: CUR_ZGITCI_SIVNI(0)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t5	t5
