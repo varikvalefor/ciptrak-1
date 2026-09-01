@@ -622,11 +622,6 @@ zgitci_frob_c000_mv:
 	li	t2,	1
 	bgtu	t1,	t2,	zgitci_frob_c000_sutra
 
-	// TODO: .i ma krinu
-	// .i na morji lo du'u zu'edji ma kau
-	// .i xu tolsnuti fa lo su'u sucta
-	// .i na morji lo du'u xu kau mapti lo sidbo
-
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
 	#define	sezvati_j_t0	t0
@@ -640,6 +635,11 @@ zgitci_frob_c000_mv:
 	slli	t2,	a3,	16
 	srli	ctr_t2,	t2,	16
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+
+	// TODO: .i ma krinu
+	// .i na morji lo du'u zu'edji ma kau
+	// .i xu tolsnuti fa lo su'u sucta
+	// .i na morji lo du'u xu kau mapti lo sidbo
 
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
