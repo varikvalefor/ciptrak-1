@@ -469,19 +469,20 @@ zgitci_frob_check_2:
 
 	// do it now, kid
 	#define	pwmval_t0	t0
+	#define	zts_a5	a5
 	/* .i la .varik. na birti lo du'u xu kau dukse le ka ce'u sampu
 	   .i xu zmadu fa lo nu zmiku pe'a lo nu se meirmoi muvgau pe'a
 	   TODO: FACKI */
-	lw	t0,	(zts_j_t1)
-	add	t0,	t0,	zts_sance_idx_t2
+	lw	zts_a5,	(zts_j_t1)
+	add	t0,	zts_a5,	zts_sance_idx_t2
 	lw	pwmval_t0,	(t0)
 
 	// TODO: PWM crap
 
 	bexti	t1,	a0,	0
 	beqz	t1,	zgitci_frob_check_2_0out
-	li	t1,	1
-	amoadd.w	x0,	t1,	(zts_sance_idx_t2)
+	addi	zts_a5,	zts_a5,	1
+	sw	zts_a5,	(zts_sance_idx_t2)
 	ret
 zgitci_frob_check_2_0out:
 	sw	x0,	(zts_sance_idx_t2)
