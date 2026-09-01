@@ -656,7 +656,7 @@ zgitci_frob_c000_mv_cont:
 	lw	a1,	4(t0)
 	lw	a2,	8(t0)
 	lw	a3,	0xC(t0)
-
+	// TODO: .i xu lo su'o co'e cu mapti tu'a la'oi .lw.
 	jal	zgitci_frob
 
 	lw	ra,	(sp)
