@@ -412,6 +412,10 @@ zgitci_frob_1_pwm_csr:
 	addi	csr_j_t0,	div_j_t3,	-4
 	// TODO
 
+	// se morji: PWM_CHx_CSR_OFFSET(x)	x * 0x14
+	//           PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
+	#define	top_j_t0	t0
+	addi	top_j_t0,	csr_j_t0,	0x10
 	# PWM_CHx_TOP_OFFSET
 	# ???
 	# TODO
