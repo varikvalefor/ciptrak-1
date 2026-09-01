@@ -642,13 +642,12 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	addi	ctr_t2,	ctr_t2,	-1
 
-	// | metfo: andi	t3,	a3,	0xFFFF0000
 	srli	t3,	a3,	16
-	slli	t3,	t3,	16
+	// add	t3,	ctr_t2,	t3	// mv OIQqIiSz
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
-	add	t3,	ctr_t2,	t3	// lw opt
+	pack	t3,	t3,	ctr_t2	// OIQqIiSz.  lw opt
 	sw	t3,	0xC(t0)
 	ret
 
