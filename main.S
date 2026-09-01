@@ -648,8 +648,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
-	add	a3,	ctr_t2,	t3	// lw opt
-	sw	a3,	0xC(t0)
+	add	t3,	ctr_t2,	t3	// lw opt
+	sw	t3,	0xC(t0)
 	ret
 
 zgitci_frob_c000_mv_cont:
