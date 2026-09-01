@@ -636,11 +636,7 @@ zgitci_frob_c000_mv:
 	srli	ctr_t2,	t2,	16
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 
-	// TODO: .i ma krinu
-	// .i na morji lo du'u zu'edji ma kau
-	// .i xu tolsnuti fa lo su'u sucta
-	// .i na morji lo du'u xu kau mapti lo sidbo
-
+zgitci_frob_c000_mv_cont_cnino_ctr:
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
 	addi	ctr_t2,	ctr_t2,	-1
