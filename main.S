@@ -626,6 +626,7 @@ zgitci_frob_c000_mv:
 	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
 
 	#define	ctr_t2	t2
+	// | metfo: andi	ctr_t0,	a3,	0xFFFF
 	slli	t2,	a3,	16
 	srli	ctr_t2,	t2,	16
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
