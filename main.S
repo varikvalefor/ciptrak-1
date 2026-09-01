@@ -240,7 +240,7 @@ main_incri:
 	 */
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	rem	t3,	temci_t1,       t2
+	rem	t3,	temci_t1,	t2
 	rem	t5,	temci_t1,	t4
 	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
@@ -248,20 +248,20 @@ main_incri:
 	rem	a3,	temci_t1,	a2
 
 	bnez	t3,	main_incri_next_t5
-	addi    t2,     t2,     1
-	sw      t2,     (CUR_PATN_SEZVATI(0))(vrc_s1)
+	addi	t2,	t2,	1
+	sw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 main_incri_next_t5:
 	bnez	t5,	main_incri_next_a0
-	addi    t4,     t4,     1
-	sw      t4,     (CUR_PATN_SEZVATI(1))(vrc_s1)
+	addi	t4,	t4,	1
+	sw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 main_incri_next_a0:
 	bnez	a1,	main_incri_next_a2
-	addi    a0,     a0,     1
-	sw      a0,     (CUR_PATN_SEZVATI(2))(vrc_s1)
+	addi	a0,	a0,	1
+	sw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 main_incri_next_a2:
 	bnez	a3,	main_reset_denpa
-	addi    a2,     a2,     1
-	sw      a2,     (CUR_PATN_SEZVATI(3))(vrc_s1)
+	addi	a2,	a2,	1
+	sw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
 	addi	temci_t1,	temci_t1,	1
 	sw	temci_t1,	CUR_TEMCI(vrc_s1)
