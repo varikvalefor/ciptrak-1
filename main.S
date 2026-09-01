@@ -240,7 +240,7 @@ main_incri:
 	 */
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	rem	t3,     temci_t1,       t2
+	rem	t3,	temci_t1,       t2
 	rem	t5,	temci_t1,	t4
 	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
