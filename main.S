@@ -482,7 +482,7 @@ zgitci_frob_check_2:
 	beqz	t1,	zgitci_frob_check_2_0out
 	li	t1,	1
 	amoadd.w	x0,	t1,	(zts_sance_idx_t2)
-	j	zgitci_frob_check_2_fanmo
+	ret
 zgitci_frob_check_2_0out:
 	sw	x0,	(zts_sance_idx_t2)
 zgitci_frob_check_2_fanmo:
