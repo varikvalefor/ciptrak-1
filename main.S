@@ -637,11 +637,11 @@ zgitci_frob_c000_mv:
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 
 zgitci_frob_c000_mv_cont_cnino_ctr:
+	addi	ctr_t2,	ctr_t2,	-1
+
 	// | metfo: andi	t3,	a3,	0xFFFF0000
 	srli	t3,	a3,	16
 	slli	t3,	t3,	16
-
-	addi	ctr_t2,	ctr_t2,	-1
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
