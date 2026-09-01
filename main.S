@@ -359,8 +359,8 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
 zgitci_frob_1_pwm_aktigau_se_lidne:
 	#define	gpio_ctrl_j_t0	t0
-	// se morji: IO_BANK0_GPIOx_CTRL(x)  0x004 + 0x008 * x
-	slli    t0,     pwm_slice_a5,        (1 + 3) # 8 * PIN
+	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
+	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
@@ -386,7 +386,7 @@ zgitci_frob_1_pwm_div:
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	// se morji: PWM_CHx_DIV_OFFSET(x)   4 + x * 0x14
+	// se morji: PWM_CHx_DIV_OFFSET(x)	4 + x * 0x14
 	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
 	sw	t0,	SIVNI_DIV_OFFSET(div_j_t3)
@@ -429,7 +429,7 @@ zgitci_frob_1_pwm_csr:
 	/* ni'o la .varik. na te cadga fi tu'a lo me'oi .DIV. */
 
 zgitci_frob_1_pwm_idx:
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	lw	t1,	(t0)
@@ -468,7 +468,7 @@ zgitci_frob_check_2:
 	sh1add	zts_j_t1,	t2,	t1
 
 	#define	zts_sance_idx_t2	t2
-	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 	addi	t2,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
 	slli	zts_sance_idx_t2,	t2,	2
 
@@ -512,7 +512,7 @@ zgitci_frob_damri:
 	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
 	#define	idx_j_t0	t0
-	// se morji: CUR_ZGITCI_SAMP_IDX(x)  4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
+	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
 	sh2add	idx_j_t0,	vrc_s1,	t0
 
@@ -530,8 +530,8 @@ zgitci_frob_damri_sezvati_incr_post:
 	// TODO: curval_a5 = ?
 
 zgitci_frob_damri_sha:
-	bexti   t0,     a2,     SIVNI_A2_SHA256_NOISE_BIT
-	beqz    t0,     zgitci_frob_damri_sha_post
+	bexti	t0,	a2,	SIVNI_A2_SHA256_NOISE_BIT
+	beqz	t0,	zgitci_frob_damri_sha_post
 
 	li	t0,	1
 	sw	t0,	CUR_SHA_EN(vrc_s1)
@@ -552,7 +552,7 @@ zgitci_frob_damri_sha:
 	add	curval_a5,	curval_a5,	sha_t0
 	j	zgitci_frob_damri_sha_min
 zgitci_frob_damri_sha_jdika:
-	sub     curval_a5,      curval_a5,      sha_t0
+	sub	curval_a5,	curval_a5,	sha_t0
 zgitci_frob_damri_sha_min:
 	minu	curval_a5,	curval_a5,	x0
 zgitci_frob_damri_cusku:
@@ -752,7 +752,7 @@ zgitci_frob_c000_denpa:
 	li	t0,	0xC0000010
 	bne	a0,	t0,	zgitci_frob_deaf_xosc
 
-	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
+	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
 	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
 	sh2add	denpa_j_t0,	vrc_s1,	t0
@@ -858,7 +858,7 @@ zgitci_frob_deaf_setsivni:
 
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_0
 	beqz	t0,	zgitci_frob_deaf_setsivni_i2
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
 	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
@@ -866,7 +866,7 @@ zgitci_frob_deaf_setsivni:
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s1,	t0
@@ -959,7 +959,7 @@ vrici_frob_dispatch:
 	j	vrici_frob_denpaV
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
-	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
+	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
 	sh2add	denpa_j_t0,	vrc_s1,	t0
 
@@ -967,7 +967,7 @@ vrici_frob_denpa:
 
 	ret
 vrici_frob_j:
-	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	addi	t1,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t1,	vrc_s1,	t1
 
@@ -996,7 +996,7 @@ vrici_frob_0:
 vrici_frob_jog:
 	#define	SIVNI_SIGN_BIT	23
 	#define	sezvati_j_t0	t0
-	// se morji: CUR_PATN_SEZVATI(x)     4 * (22 + x)
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	sezvati_j_t0,	vrc_s1,	t0
 
@@ -1019,7 +1019,7 @@ vrici_frob_jog_sesumji:
 	ret
 // | TODO: .i xu mapti
 vrici_frob_sivni:
-	// se morji: CUR_ZGITCI_SIVNI(x)     4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 	sw	datni_a5,	(t0)
@@ -1030,7 +1030,7 @@ vrici_frob_denpaV:
 	#define	zt_idx_t0	t0
 	srli	zt_idx_t0,	datni_a5,	22	// b[23], b[22]
 
-	// se morji: CUR_DENPA_INST(x)       4 * (CUR_DENPA_INST_OFFSET + x)
+	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
 	#define	denpa_j_t0	t0
 	sh2add	denpa_j_t0,	vrc_s1,	t0
