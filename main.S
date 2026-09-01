@@ -618,9 +618,9 @@ zgitci_frob_c000_mv:
 	#define	sezvati_a2	a2
 	// | a0 `elem` [0xC0000001, 0xC0000002]?
 	li	t0,	0xC0000000 + 1
-	sub	t0,	a0,	t0
-	li	t1,	1
-	bgtu	t0,	t1,	zgitci_frob_c000_sutra
+	sub	t1,	a0,	t0
+	li	t2,	1
+	bgtu	t1,	t2,	zgitci_frob_c000_sutra
 
 	// TODO: .i ma krinu
 	// .i na morji lo du'u zu'edji ma kau
@@ -696,7 +696,8 @@ zgitci_frob_c000_mv_post:
  * ?
  */
 zgitci_frob_c000_sutra:
-	li	t0,	0xC0000002
+	// se morji: t0 = 0xC0000000 + 1
+	addi	t0,	t0,	1	// 0xC0000002
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
 	addi	sp,	sp,	-(4*4)
