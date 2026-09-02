@@ -861,7 +861,7 @@ zgitci_frob_deaf_bixygau:
  * [sivni2]
  */
 zgitci_frob_deaf_setsivni:
-	li	t0,	0xDEAF0002
+	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_slurp
 
 	#define	A1_SIVNI_ENABLE_BIT_0	0
