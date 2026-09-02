@@ -903,7 +903,7 @@ zgitci_frob_slurp:
 	#define	flash_j_a2	a2
 
 	li	t0,	0xDEAF0003
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_sw
 
 	li	t0,	DMA_BASE
 
@@ -918,6 +918,21 @@ zgitci_frob_slurp:
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
 	li	t1,	1 || DMA_CTRL_DATA_SIZE_WORD
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(t0)
+
+	ret
+
+zgitci_frob_sw:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_nope
+
+	#define	judri_a1	a1
+	#define	data_a2	a2
+
+	sw	data_a2,	(judri_a1)
+
+	beqz	a3,	zgitci_frob_sw_post
+	mv	a5,	a3
+	jal	vrici_frob
 
 	ret
 
