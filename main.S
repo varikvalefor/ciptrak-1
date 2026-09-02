@@ -234,20 +234,20 @@ main_lupe_tcidu_lupe_co_cmalu_fanmo:
 main_incri:
 	/* DROP [at][01234567] */
 
-	#define	temci_t1	t1
-	lw	temci_t1,	CUR_TEMCI(vrc_s1)
+	#define	temci_t0	t0
+	lw	temci_t0,	CUR_TEMCI(vrc_s1)
 
 	/* TODO
 	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u jai zilmasno
 	 */
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	rem	t3,	temci_t1,	t2
-	rem	t5,	temci_t1,	t4
+	rem	t3,	temci_t0,	t2
+	rem	t5,	temci_t0,	t4
 	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	rem	a1,	temci_t1,	a0
-	rem	a3,	temci_t1,	a2
+	rem	a1,	temci_t0,	a0
+	rem	a3,	temci_t0,	a2
 
 	bnez	t3,	main_incri_next_t5
 	addi	t2,	t2,	1
@@ -265,8 +265,8 @@ main_incri_next_a2:
 	addi	a2,	a2,	1
 	sw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
-	addi	temci_t1,	temci_t1,	1
-	sw	temci_t1,	CUR_TEMCI(vrc_s1)
+	addi	temci_t0,	temci_t0,	1
+	sw	temci_t0,	CUR_TEMCI(vrc_s1)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
