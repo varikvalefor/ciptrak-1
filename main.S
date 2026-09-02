@@ -821,7 +821,7 @@ zgitci_frob_deaf_xosc:
  * [zt2: 0xXXXXXXXX]
  */
 zgitci_frob_deaf_bixygau:
-	li	t0,	0xDEAF0001
+	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_deaf_setsivni
 
 	#define	judri0_t0	t0
