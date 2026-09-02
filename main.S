@@ -893,7 +893,7 @@ zgitci_frob_deaf_setsivni_post:
  * ?
  */
 zgitci_frob_slurp:
-	// TODO: .i xu mapti  .i simlu fi fy fe le ka ce'u sampu
+	// TODO: .i xu mapti  .i simlu fi vy fe le ka ce'u sampu
 	#define	ram_j_a1	a1
 	#define	flash_j_a2	a2
 
