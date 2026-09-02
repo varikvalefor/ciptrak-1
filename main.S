@@ -657,6 +657,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
 zgitci_frob_c000_mv_cont:
+	/* DROP t[3-6] */
+
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
