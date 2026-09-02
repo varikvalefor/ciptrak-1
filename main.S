@@ -662,12 +662,10 @@ zgitci_frob_c000_mv_cont:
 	sw	patn_a1,	(judri_j_t1)
 
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
-	lw	t0,	(judri_j_t1)
-	lw	t1,	(sezvati_j_t0)
 	addi	sp,	sp,	-4	// lw opt
 	// sw	ra,	(sp)	// mv ApIDJx61
 
-	add	t0,	t0,	t1
+	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	(t0)
 	lw	a1,	4(t0)
 	lw	a2,	8(t0)
