@@ -114,6 +114,7 @@ main_init_xosc:
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
 main_init_xosc_cipra:
 main_init_xosc_cipra_lupe:
+	#define	resets_t2	t2
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	li	t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
@@ -123,7 +124,7 @@ main_init_periph:
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
 	li	t1,	(1<<RESETS_SHA256_BIT) + (1<<RESETS_PIO2_BIT) + (1<<RESETS_PIO1_BIT) + (1<<RESETS_PIO0_BIT) + (1<<RESETS_DMA_BIT)
-	sw	t1,	(t2)
+	sw	t1,	(resets_t2)
 
 main_lupe_pre:
 	#define	vrc_s1	s1
