@@ -123,7 +123,7 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIO2_BIT) | (1<<RESETS_PIO1_BIT) | (1<<RESETS_PIO0_BIT) | (1<<RESETS_DMA_BIT)
+	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
 	sw	t1,	(resets_t2)
 
 main_lupe_pre:
