@@ -640,23 +640,23 @@ zgitci_frob_c000_mv:
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	slli	t2,	a3,	16
 	srli	ctr_t2,	t2,	16
-	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
-
 zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
-	addi	ctr_t2,	ctr_t2,	-1
+	addi	t4,	ctr_t2,	-1
 
 	srli	t3,	a3,	16
 	// add	t3,	ctr_t2,	t3	// mv OIQqIiSz
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
-	pack	t3,	t3,	ctr_t2	// OIQqIiSz.  lw opt
-	sw	t3,	0xC(t0)
-	ret
+	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
+	sw	t3,	0xC(t0)
+
+	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+	ret
 zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
