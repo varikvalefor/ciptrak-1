@@ -720,7 +720,7 @@ zgitci_frob_c000_sutra:
 	srli	s3,	t0,	16
 	sh2add	max_s3,	judri_s2,	t0
 
-	lw	t0,	(judri_s2)	// preload
+	lw	s4,	(judri_s2)	// preload
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[0-7] */
 
@@ -728,10 +728,10 @@ zgitci_frob_c000_sutra_lupe:
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_s2,	judri_s2,	4
 
-	lw	a0,	0x0(t0)
-	lw	a1,	0x4(t0)
-	lw	a2,	0x8(t0)
-	lw	a3,	0xC(t0)
+	lw	a0,	0x0(s4)
+	lw	a1,	0x4(s4)
+	lw	a2,	0x8(s4)
+	lw	a3,	0xC(s4)
 	lw	s4,	(judri_s2)	// preload
 	jal	zgitci_frob
 
