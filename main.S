@@ -603,7 +603,7 @@ zgitci_frob_check_pio_gpio_post:
 	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
 	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
 
-	li	t0,	1 || (0<<2)
+	li	t0,	1 || (1<<2)
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
 
 	ret
