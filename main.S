@@ -1024,7 +1024,7 @@ vrici_frob_0:
 vrici_frob_jog:
 	#define	SIVNI_SIGN_BIT	23
 	#define	sezvati_j_t0	t0
-	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	sezvati_j_t0,	vrc_s1,	t0
 
