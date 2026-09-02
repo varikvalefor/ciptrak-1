@@ -614,7 +614,7 @@ zgitci_frob_check_pio_gpio_post:
 /*
  * MV
  *
- * 0xC000000[12]
+ * 0xC0000001
  *
  * [patn: 0xXXXXXXXX]
  *
@@ -625,11 +625,8 @@ zgitci_frob_check_pio_gpio_post:
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
-	// | a0 `elem` [0xC0000001, 0xC0000002]?
-	li	t0,	0xC0000000 + 1
-	sub	t1,	a0,	t0
-	li	t2,	1
-	bgtu	t1,	t2,	zgitci_frob_c000_sutra
+	li	t0,	0xC0000001
+	bne	a0,	t0,	zgitci_frob_c000_sutra
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (22 + x)
 	//		CUR_PATN_JUDRI(x)	4 * (26 + x)
