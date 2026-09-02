@@ -573,7 +573,7 @@ zgitci_frob_damri_cusku:
 /*
  * PIO
  *
- * 0x0001000X
+ * 0x0001000[12]
  *
  * [judri: 0xXXXXXXXX]
  *
