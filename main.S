@@ -508,6 +508,7 @@ zgitci_frob_check_2_fanmo:
  * ?
  */
 zgitci_frob_damri:
+	#define	SIVNI_A2_NLEV_BIT	1
 	#define	SIVNI_A2_SHA256_NOISE_BIT	0
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
@@ -544,7 +545,7 @@ zgitci_frob_damri_sha:
 
 	#define	nlev_t2	t2
 	clz	t1,	curval_a5
-	srli	t2,	a2,	1
+	srli	t2,	a2,	SIVNI_A2_NLEV_BIT
 	andi	nlev_t2,	t2,	0b11
 	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
