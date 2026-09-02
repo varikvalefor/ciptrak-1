@@ -661,9 +661,6 @@ zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
-	bexti	t2,	a0,	0
-	beqz	t2,	zgitci_frob_c000_mv_post
-
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 	lw	t0,	(judri_j_t1)
 	lw	t1,	(sezvati_j_t0)
@@ -680,7 +677,7 @@ zgitci_frob_c000_mv_cont:
 
 	lw	ra,	(sp)
 	addi	sp,	sp,	4
-zgitci_frob_c000_mv_post:
+
 	ret
 
 /*
