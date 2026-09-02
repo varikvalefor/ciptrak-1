@@ -362,7 +362,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 zgitci_frob_1_pwm_aktigau_se_lidne:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN
+	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
