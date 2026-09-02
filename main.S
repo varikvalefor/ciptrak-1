@@ -1056,7 +1056,7 @@ vrici_frob_denpaV:
 	#define	SIVNI_IDX_BIT_0	22
 	#define	SIVNI_IDX_BIT_1	23
 	#define	zt_idx_t0	t0
-	srli	zt_idx_t0,	datni_a5,	22	// b[23], b[22]
+	srli	zt_idx_t0,	datni_a5,	SIVNI_IDX_BIT_0	// b[23], b[22]
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
