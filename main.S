@@ -648,8 +648,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	addi	t4,	ctr_t2,	-1
 	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
-	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
-	lw	t0,	(judri_j_t1)
+	add	t5,	judri_j_t1,	sezvati_j_t0
+	lw	t0,	(t5)
 	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
 	sw	t3,	0xC(t0)
