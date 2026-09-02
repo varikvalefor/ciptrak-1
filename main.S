@@ -902,7 +902,7 @@ zgitci_frob_slurp:
 	#define	ram_j_a1	a1
 	#define	flash_j_a2	a2
 
-	li	t0,	0xDEAF0003
+	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_sw
 
 	li	t0,	DMA_BASE
