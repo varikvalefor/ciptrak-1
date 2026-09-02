@@ -743,7 +743,7 @@ zgitci_frob_c000_sutra_post:
 	lw	ra,	(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
-	lw	s3,	0xC(sp)
+	lw	s4,	0xC(sp)
 	addi	sp,	sp,	(4*4)
 
 	ret
