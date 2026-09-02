@@ -644,10 +644,9 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
-	addi	t4,	ctr_t2,	-1
-
 	srli	t3,	a3,	16
-	// add	t3,	ctr_t2,	t3	// mv OIQqIiSz
+	addi	t4,	ctr_t2,	-1
+	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
 	add	judri_j_t1,	judri_j_t1,	sezvati_j_t0
 	lw	t0,	(judri_j_t1)
