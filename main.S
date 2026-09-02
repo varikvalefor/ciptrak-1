@@ -748,9 +748,9 @@ zgitci_frob_c000_sutra_post:
  *
  * [nidenpa: 0xXXXXXXXX]
  *
- * ?
+ * [vrici1]
  *
- * ?
+ * [vrici2]
  */
 zgitci_frob_c000_denpa:
 	li	t0,	0xC0000010
@@ -763,8 +763,12 @@ zgitci_frob_c000_denpa:
 
 	sw	a1,	(denpa_j_t0)
 
-	// TODO: .i xu cadga fa lo nu zukte lo frica
-	// .i la .varik. cu te smimlu fi le ka ce'u sampu kei je cu jinvi le du'u zo'oi .jal. jai zilmasno
+	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
+	mv	a5,	a2
+	jal	vrici_frob
+	// .i jinvi le du'u la'oi .sw. na jai sarcu kei fo zo'e joi le du'u la'oi .vrici_frob. na jai rinka tu'a la'oi .a3.
+	mv	a5,	a3
+	jal	vrici_frob
 
 	ret
 /*
