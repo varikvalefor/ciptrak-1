@@ -584,9 +584,12 @@ zgitci_frob_damri_cusku:
  * ?
  */
 zgitci_frob_check_pio:
-	li	t0,	0x0001000F
-	or	t1,	a0,	t0
-	bne	t1,	t0,	zgitci_frob_c000_mv
+	/* a0 `elem` [0x00010001, 0x00010002]? */
+	// | metfo: addi	t0,	a0,	-0x00010001
+	bclri	t0,	a0,	16
+	addi	t0,	t0,	-1
+	li	t1,	1
+	bgtu	t0,	t1,	zgitci_frob_c000_mv
 	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
