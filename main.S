@@ -959,7 +959,7 @@ zgitci_frob_nope:
  * DROP t[0-7] a5
  */
 vrici_frob:
-	#define	SIVNI_NILZILCMI	6
+	#define	SIVNI_NILZILCMI	7
 	srli	t0,	a5,	(6 * 4)	// 3 bytes
 	li	t1,	SIVNI_NILZILCMI
 	ble	t0,	t1,	vrici_frob_dispatch_pre
@@ -991,6 +991,8 @@ vrici_frob_dispatch:
 	j	vrici_frob_sivni
 	// | 6
 	j	vrici_frob_denpaV
+	// | 7
+	j	vrici_frob_denpaWfi
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
@@ -1074,4 +1076,12 @@ vrici_frob_denpaV:
 
 	sw	datni_a5,	(denpa_j_t0)
 
+	ret
+vrici_frob_denpaWfi:
+	/*
+	 * TODO
+	 *
+	 * .i djica lo su'u ga ce'o la'oi .wfi. basti pe'a lo me'oi .XOSC. co'e pe le ro moi be lo'i co'e be la'oi .main_lupe. gi ga ce'o me'oi .wfi. denpa gi ga ce'o basti pe'a lo me'oi .wfi. co'e
+	 * .i jijyji'i le du'u cumki fa lo nu filri'a tu'a lo vidni me'oi .demo.
+	 */
 	ret
