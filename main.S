@@ -363,7 +363,7 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
-	li	t1,	IO_BANK0_BASE + IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
+	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	4 # GPIO PWM
 	/* | .i sruma lo du'u mapti va'o zo'e */
