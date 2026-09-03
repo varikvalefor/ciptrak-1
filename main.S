@@ -1081,7 +1081,7 @@ vrici_frob_denpaWfi:
 	/*
 	 * TODO
 	 *
-	 * .i djica lo su'u ga ce'o la'oi .wfi. basti pe'a lo me'oi .XOSC. co'e pe le ro moi be lo'i co'e be la'oi .main_lupe. gi ga ce'o me'oi .wfi. denpa gi ga ce'o basti pe'a lo me'oi .wfi. co'e
+	 * .i djica lo su'u ga ce'o la'oi .wfi. basti pe'a lo me'oi .XOSC. co'e pe le ro moi be lo'i co'e be la'oi .main_lupe. gi ga ce'o me'oi .wfi. denpa gi ga ce'o basti pe'a lo me'oi .wfi. co'e  .i jinvi le du'u frili cumki fa lo nu me'oi .jal. co'e la'oi .vrici_frob_denpaWfi_datni. se ri'a lo nu basti pe'a fa lo me'oi .XOSC. co'e
 	 * .i jijyji'i le du'u cumki fa lo nu filri'a tu'a lo vidni me'oi .demo.
 	 */
 	ret
