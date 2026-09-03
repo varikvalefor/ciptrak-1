@@ -593,7 +593,7 @@ zgitci_frob_check_pio:
 	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
 	// .i la'e di'u srana lo me'oi .GPIO. co'e
 zgitci_frob_check_pio_gpio_post:
-	#define	dma_t1	t0
+	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
 
 	andi	t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
