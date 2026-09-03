@@ -711,8 +711,8 @@ zgitci_frob_c000_sutra:
 	#define	max_s3	s3
 	#define	judri_s2	s2
 	mv	judri_s2,	a1
-	slli	s3,	a2,	16
-	srli	s3,	t0,	16
+	slli	t0,	a2,	16
+	srli	t0,	t0,	16
 	sh2add	max_s3,	judri_s2,	t0
 
 	lw	t0,	(judri_s2)	// preload
