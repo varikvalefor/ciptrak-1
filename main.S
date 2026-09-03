@@ -703,11 +703,10 @@ zgitci_frob_c000_sutra:
 	addi	t0,	t0,	1	// 0xC0000002
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
-	addi	sp,	sp,	-(4*4)
+	addi	sp,	sp,	-(3*4)
 	sw	ra,	(sp)
 	sw	s2,	4(sp)
 	sw	s3,	8(sp)
-	sw	s4,	0xC(sp)
 
 	#define	max_s3	s3
 	#define	judri_s2	s2
@@ -716,7 +715,7 @@ zgitci_frob_c000_sutra:
 	srli	s3,	t0,	16
 	sh2add	max_s3,	judri_s2,	t0
 
-	lw	s4,	(judri_s2)	// preload
+	lw	t0,	(judri_s2)	// preload
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[0-7] */
 
@@ -724,20 +723,19 @@ zgitci_frob_c000_sutra_lupe:
 	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_s2,	judri_s2,	4
 
-	lw	a0,	0x0(s4)
-	lw	a1,	0x4(s4)
-	lw	a2,	0x8(s4)
-	lw	a3,	0xC(s4)
-	lw	s4,	(judri_s2)	// preload
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 	jal	zgitci_frob
 
+	lw	t0,	(judri_s2)
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
 	lw	ra,	(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
-	lw	s4,	0xC(sp)
-	addi	sp,	sp,	(4*4)
+	addi	sp,	sp,	(3*4)
 
 	ret
 
