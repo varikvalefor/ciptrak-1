@@ -918,6 +918,17 @@ zgitci_frob_slurp:
 
 	ret
 
+/*
+ * SW
+ *
+ * [0xDEAF0004]
+ *
+ * [judri]
+ *
+ * [datni]
+ *
+ * [vriciDatni]
+ */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_nope
