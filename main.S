@@ -366,9 +366,9 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	// addi	t0,	t0,	4	# IO_BANK0_GPIOx_CTRL_OFFSET
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
-	li	t2,	4 # GPIO PWM
+	li	t1,	4 # GPIO PWM
 	/* | .i sruma lo du'u mapti va'o zo'e */
-	sw	t2,	(gpio_ctrl_j_t0)
+	sw	t1,	(gpio_ctrl_j_t0)
 	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_div:
 	#define	div_t0	t0
