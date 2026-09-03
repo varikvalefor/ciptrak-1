@@ -1085,3 +1085,5 @@ vrici_frob_denpaWfi:
 	 * .i jijyji'i le du'u cumki fa lo nu filri'a tu'a lo vidni me'oi .demo.
 	 */
 	ret
+vrici_frob_denpaWfi_datni:
+	ret
