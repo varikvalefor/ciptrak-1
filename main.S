@@ -304,6 +304,12 @@ main_lupe_zgike:
 main_reset_denpa:
 	/* DROP [at][01234567] */
 
+	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
+	j	main_reset_denpa_lupe	// 2B
+	wfi
+	sw	??,	0(main_reset_denpa)	// ? = j main_reset_denpa_lupe
+	j	main_lupe
+
 	# .i denpa fi tu'a la'oi .XOSC.
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
@@ -1077,30 +1083,8 @@ vrici_frob_denpaV:
 
 	ret
 vrici_frob_denpaWfi:
-	/*
-	 * TODO
-	 *
-	 * .i djica lo su'u ga ce'o la'oi .wfi. basti pe'a lo me'oi .XOSC. co'e pe le ro moi be lo'i co'e be la'oi .main_lupe. gi ga ce'o me'oi .wfi. denpa gi ga ce'o basti pe'a lo me'oi .wfi. co'e  .i jinvi le du'u frili cumki fa lo nu me'oi .jal. co'e la'oi .vrici_frob_denpaWfi_datni. se ri'a lo nu basti pe'a fa lo me'oi .XOSC. co'e
-	 * .i jijyji'i le du'u cumki fa lo nu filri'a tu'a lo vidni me'oi .demo.
-	 */
-	li	t1,	0x10500073	// wfi
-	la	t0,	main_reset_denpa
-	sw	t1,	(t0)
-	la	t1,	vrici_frob_denpaWfi_datni
-	??	// TODO: t1 <= t1
-	??	// TODO: t1 = jr t1
-	sw	t1,	4(t0)
+	// TODO: .i xu banzuka
 	li	t1,	0x0001	// nop
-	sh	t1,	6(t0)
-	sh	t1,	0xA(t0)	// bnez clr
-	sh	t1,	0xC(t0)	// bnez clr
-	ret
-vrici_frob_denpaWfi_datni:
 	la	t0,	main_reset_denpa
-	li	t1,	0x400482B7	// lui	t0,	0x40048;	xosc
 	sw	t1,	(t0)
-	li	t1,	0x02C1	// addi	t0,	t0,	16;	xosc;	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
-	sh	t1,	4(t0)
-	li	t1,	0x00229303	// lh	t1,	2(t0)
-	sw	t1,	6(t0)	// TODO: bullshit; 6 `mod` 4 /= 0
-	j	main_lupe
+	ret
