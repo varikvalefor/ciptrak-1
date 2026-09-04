@@ -306,11 +306,11 @@ main_reset_denpa:
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_reset_denpa_lupe	// 2B
-	wfi
+	wfi	// 4B
 	// | j	main_reset_denpa_lupe
-	li	t0,	(101<<13) | (??<<2) | (01<<0)
-	sh	t0,	0(main_reset_denpa)
-	j	main_lupe
+	li	t0,	(101<<13) | (??<<2) | (01<<0)	// (4 + 2)B
+	sh	t0,	0(main_reset_denpa)	// 2B
+	j	main_lupe	// 2B
 
 	# .i denpa fi tu'a la'oi .XOSC.
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
