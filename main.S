@@ -1100,5 +1100,5 @@ vrici_frob_denpaWfi_datni:
 	li	t1,	0x02C1	// addi	t0,	t0,	16;	xosc;	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	4(t0)
 	li	t1,	0x00229303	// lh	t1,	2(t0)
-	sw	t1,	6(t0)
+	sw	t1,	6(t0)	// TODO: bullshit; 6 `mod` 4 /= 0
 	j	main_lupe
