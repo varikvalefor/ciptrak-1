@@ -1089,12 +1089,14 @@ vrici_frob_denpaWfi:
 	la	t1,	vrici_frob_denpaWfi_datni
 	??	// TODO: t1 = jr t1
 	sw	t1,	4(t0)
+	li	t1,	0x0001	// nop
+	sw	t1,	6(t0)
 	ret
 vrici_frob_denpaWfi_datni:
 	la	t0,	main_reset_denpa
 	li	t1,	0x400482B7	// lui	t0,	0x40048;	xosc
 	sw	t1,	(t0)
-	li	t1,	0x02C1	// addi	t0,	t0,	16;	xosc
+	li	t1,	0x02C1	// addi	t0,	t0,	16;	xosc;	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	4(t0)
 	li	t1,	0x00229303	// lh	t1,	2(t0)
 	sw	t1,	6(t0)
