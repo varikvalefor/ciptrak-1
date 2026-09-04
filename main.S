@@ -466,7 +466,7 @@ zgitci_frob_1_pwm_idx:
 zgitci_frob_check_2:
 	// | (a0 `elem` [2,3])?
 	addi	t0,	a0,	-2
-	li	t1,	2
+	li	t1,	1
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
 	# todo
 	#define	zts_id_t0	t0
