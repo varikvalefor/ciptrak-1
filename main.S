@@ -1091,7 +1091,7 @@ vrici_frob_denpaWfi:
 	??	// TODO: t1 = jr t1
 	sw	t1,	4(t0)
 	li	t1,	0x0001	// nop
-	sw	t1,	6(t0)
+	sh	t1,	6(t0)
 	ret
 vrici_frob_denpaWfi_datni:
 	la	t0,	main_reset_denpa
