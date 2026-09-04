@@ -305,7 +305,7 @@ main_reset_denpa:
 	/* DROP [at][01234567] */
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
-	j	main_reset_denpa_lupe	// 2B
+	c.j	main_reset_denpa_lupe	// 2B
 	wfi
 	sh	??,	0(main_reset_denpa)	// ? = j main_reset_denpa_lupe
 	j	main_lupe
