@@ -1092,6 +1092,8 @@ vrici_frob_denpaWfi:
 	sw	t1,	4(t0)
 	li	t1,	0x0001	// nop
 	sh	t1,	6(t0)
+	sh	t1,	0xA(t0)	// bnez clr
+	sh	t1,	0xC(t0)	// bnez clr
 	ret
 vrici_frob_denpaWfi_datni:
 	la	t0,	main_reset_denpa
