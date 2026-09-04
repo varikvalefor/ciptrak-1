@@ -307,7 +307,7 @@ main_reset_denpa:
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	j	main_reset_denpa_lupe	// 2B
 	wfi
-	sw	??,	0(main_reset_denpa)	// ? = j main_reset_denpa_lupe
+	sh	??,	0(main_reset_denpa)	// ? = j main_reset_denpa_lupe
 	j	main_lupe
 
 	# .i denpa fi tu'a la'oi .XOSC.
