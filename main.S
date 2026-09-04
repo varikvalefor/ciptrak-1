@@ -308,7 +308,7 @@ main_reset_denpa:
 	c.j	main_reset_denpa_lupe	// 2B
 	wfi
 	// | j	main_reset_denpa_lupe
-	li	t0,	(??<<13) | (??<<2) | (??<<0)
+	li	t0,	(101<<13) | (??<<2) | (??<<0)
 	sh	t0,	0(main_reset_denpa)
 	j	main_lupe
 
