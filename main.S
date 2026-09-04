@@ -378,6 +378,7 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	sw	t1,	(gpio_ctrl_j_t0)
 	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_div:
+	// TODO: .i xu mapti
 	#define	div_t0	t0
 	srli	t0,	a1,	2
 	// | metfo: andi	t0,	t0,	0b11111111111111
