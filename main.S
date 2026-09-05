@@ -305,14 +305,15 @@ main_reset_denpa:
 	/* DROP [at][01234567] */
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
-	c.j	main_reset_denpa_lupe	// 2B
-	// | c.j	main_reset_denpa_lupe
+	c.j	main_reset_denpa_prelupe	// 2B
+	// | c.j	main_reset_denpa_prelupe
 	li	t0,	(101<<13) | (((4+4+2+2+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
 	sh	t0,	0(main_reset_denpa)	// 2B
 	wfi	// 4B
 	j	main_lupe	// 2B
 
 	# .i denpa fi tu'a la'oi .XOSC.
+main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
 	lh	t1,	2(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
