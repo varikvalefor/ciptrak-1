@@ -308,7 +308,7 @@ main_reset_denpa:
 	c.j	main_reset_denpa_lupe	// 2B
 	wfi	// 4B
 	// | j	main_reset_denpa_lupe
-	li	t0,	(101<<13) | (??<<2) | (01<<0)	// (4 + 2)B
+	li	t0,	(101<<13) | (((4+4+2+2+2)/2)<<2) | (01<<0)	// TODO: .i xu mapti
 	sh	t0,	0(main_reset_denpa)	// 2B
 	j	main_lupe	// 2B
 
