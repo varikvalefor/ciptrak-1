@@ -306,7 +306,7 @@ main_reset_denpa:
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_reset_denpa_lupe	// 2B
-	// | j	main_reset_denpa_lupe
+	// | c.j	main_reset_denpa_lupe
 	li	t0,	(101<<13) | (((4+4+2+2+2)/2)<<2) | (01<<0)	// TODO: .i xu mapti
 	sh	t0,	0(main_reset_denpa)	// 2B
 	wfi	// 4B
