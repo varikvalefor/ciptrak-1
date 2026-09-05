@@ -984,7 +984,7 @@ vrici_frob_dispatch:
 	auipc	t1,	0
 	add	t0,	t0,	t1
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	j	t0
+	jr	t0
 	// | 0
 	ret
 	// | 1
