@@ -1080,9 +1080,9 @@ vrici_frob_sivni:
 	sh2add	t0,	vrc_s1,	t0
 	sw	datni_a5,	(t0)
 	ret
-/* | [0x00][idx: 0bXX][datni: 0bXX + 0xXXXXXX] */
+/* | [0x00][idx: 0bXX][datni: 0bXX + 0xXXXXX] */
 vrici_frob_denpaV:
-	#define	SIVNI_IDX_BIT_0	(2 + 6 * 4)
+	#define	SIVNI_IDX_BIT_0	(2 + 5 * 4)
 	#define	SIVNI_IDX_BIT_1	(1 + SIVNI_IDX_BIT_0)
 	#define	zt_idx_t0	t0
 	srli	zt_idx_t0,	datni_a5,	SIVNI_IDX_BIT_0	// b[23], b[22]
