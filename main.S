@@ -318,6 +318,13 @@ main_reset_denpa_prelupe:
 main_reset_denpa_lupe:
 	lh	t1,	2(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
 	bnez	t1,	main_reset_denpa_lupe
+main_reset_denpa_barda:
+	lw	t0,	CUR_XOSC_SNIDU
+	srli	t0,	t0,	16
+	addi	t0,	t0,	1
+main_reset_denpa_barda_lupe:
+	addi	t0,	t0,	-1
+	bnez	t0,	main_reset_denpa_barda_lupe
 
 	j	main_lupe
 
