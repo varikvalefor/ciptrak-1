@@ -402,7 +402,7 @@ zgitci_frob_1_pwm_div:
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
 	addi	t4,	pwm_base_a6,	4
-	add	pwm_j_t3,	t3,	t4
+	add	div_j_t3,	t3,	t4
 
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
