@@ -1048,6 +1048,7 @@ vrici_frob_0:
 	sw	x0,	(t0)
 
 	ret
+/* | [0x00][sign: 0bX] [rJudri: 0bXXX 0xXXXXX] */
 vrici_frob_jog:
 	#define	SIVNI_SIGN_BIT	23
 	#define	sezvati_j_t0	t0
