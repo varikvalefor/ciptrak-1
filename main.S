@@ -577,7 +577,7 @@ zgitci_frob_damri_sha:
 zgitci_frob_damri_sha_jdika:
 	sub	curval_a5,	curval_a5,	sha_t0
 zgitci_frob_damri_sha_min:
-	minu	curval_a5,	curval_a5,	x0
+	min	curval_a5,	curval_a5,	x0
 zgitci_frob_damri_cusku:
 
 	/* TODO: cusku pe'a */
