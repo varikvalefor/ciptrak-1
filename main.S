@@ -133,7 +133,7 @@ main_lupe:
 main_lupe_xosc_counter:
 	lw	t1,	CUR_XOSC_SNIDU(vrc_s1)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
-	sw	t1,	(t0)
+	sh	t1,	(t0)	// 15:0; ds 561
 
 main_lupe_sha:
 	/* DROP [at][01234567] */
