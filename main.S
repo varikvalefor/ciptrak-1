@@ -526,6 +526,7 @@ zgitci_frob_check_2_fanmo:
 zgitci_frob_damri:
 	#define	SIVNI_A2_NLEV_BIT	1
 	#define	SIVNI_A2_SHA256_NOISE_BIT	0
+	#define	SIVNI_A2_TONGA_BIT	(4 * 4)
 	li	t0,	0x0000004
 	bne	a0,	t0,	zgitci_frob_check_pio
 
