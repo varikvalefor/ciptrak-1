@@ -252,23 +252,23 @@ main_incri:
 	rem	a1,	temci_t0,	a0
 	rem	a3,	temci_t0,	a2
 
-	bnez	t3,	main_incri_next_t5
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	bnez	t3,	main_incri_next_t5
 	addi	t2,	t2,	1
 	sw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 main_incri_next_t5:
-	bnez	t5,	main_incri_next_a0
 	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	bnez	t5,	main_incri_next_a0
 	addi	t4,	t4,	1
 	sw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 main_incri_next_a0:
-	bnez	a1,	main_incri_next_a2
 	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	bnez	a1,	main_incri_next_a2
 	addi	a0,	a0,	1
 	sw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 main_incri_next_a2:
-	bnez	a3,	main_reset_denpa
 	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	bnez	a3,	main_reset_denpa
 	addi	a2,	a2,	1
 	sw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
