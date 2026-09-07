@@ -243,34 +243,34 @@ main_incri:
 	/* TODO
 	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u jai zilmasno
 	 */
-	lw	t2,	(CUR_DENPA_INST(0))(vrc_s1)
-	lw	t4,	(CUR_DENPA_INST(1))(vrc_s1)
-	rem	t3,	temci_t0,	t2
-	rem	t5,	temci_t0,	t4
-	lw	a0,	(CUR_DENPA_INST(2))(vrc_s1)
-	lw	a2,	(CUR_DENPA_INST(3))(vrc_s1)
-	rem	a1,	temci_t0,	a0
-	rem	a3,	temci_t0,	a2
+	lw	t1,	(CUR_DENPA_INST(0))(vrc_s1)
+	lw	t3,	(CUR_DENPA_INST(1))(vrc_s1)
+	rem	t2,	temci_t0,	t1
+	rem	t4,	temci_t0,	t3
+	lw	t6,	(CUR_DENPA_INST(2))(vrc_s1)
+	lw	a1,	(CUR_DENPA_INST(3))(vrc_s1)
+	rem	a0,	temci_t0,	t6
+	rem	a2,	temci_t0,	a1
 
-	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	bnez	t3,	main_incri_next_t5
-	addi	t2,	t2,	1
-	sw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-main_incri_next_t5:
-	lw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	bnez	t5,	main_incri_next_a0
-	addi	t4,	t4,	1
-	sw	t4,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-main_incri_next_a0:
-	lw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	bnez	a1,	main_incri_next_a2
-	addi	a0,	a0,	1
-	sw	a0,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-main_incri_next_a2:
-	lw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	bnez	a3,	main_reset_denpa
-	addi	a2,	a2,	1
-	sw	a2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	lw	t1,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	bnez	t2,	main_incri_next_t4
+	addi	t1,	t1,	1
+	sw	t1,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+main_incri_next_t4:
+	lw	t3,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	bnez	t4,	main_incri_next_t6
+	addi	t3,	t3,	1
+	sw	t3,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+main_incri_next_t6:
+	lw	t6,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	bnez	a0,	main_incri_next_a1
+	addi	t6,	t6,	1
+	sw	t6,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+main_incri_next_a1:
+	lw	a1,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	bnez	a2,	main_reset_denpa
+	addi	a1,	a1,	1
+	sw	a1,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
 	addi	temci_t0,	temci_t0,	1
 	sw	temci_t0,	CUR_TEMCI(vrc_s1)
