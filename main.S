@@ -909,7 +909,7 @@ zgitci_frob_deaf_setsivni_post:
  *
  * [judri_flash]
  *
- * [?: 0xXXX][nibarda: 0xXXXXX]
+ * [?: 0xXX][dmaIdx: 0xX][nibarda: 0xXXXXX]
  *
  * ?
  */
@@ -918,22 +918,32 @@ zgitci_frob_slurp:
 	#define	ram_j_a1	a1
 	#define	flash_j_a2	a2
 
+	#define	A2_SIVNI_DMA_BIT	(5 * 4)
+
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_sw
 
+	#define	dma_read_j_t0	t0
+	#define	dma_idx_t2	t2
+	srli	t2,	a3,	A2_SIVNI_DMA_BIT
+	andi	dma_idx_t2,	t2,	0xF
 	li	t0,	DMA_BASE
+	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
+	li	t1,	0x40
+	mul	t2,	dma_idx_t2,	t1
+	add	dma_read_j_t0,	t0,	t2
 
-	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0))(t0)
+	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
-	sw	flash_j_a2,	(DMA_CHx_READ_ADDR_OFFSET(0))(t0)
+	sw	flash_j_a2,	(dma_read_j_t0)
 
 	slli	t1,	a3,	(8 - 5) * 4
 	srli	t1,	a3,	(8 - 5) * 4
-	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(t0)
+	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
 	li	t1,	1 | DMA_CTRL_DATA_SIZE_WORD
-	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(t0)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	ret
 
