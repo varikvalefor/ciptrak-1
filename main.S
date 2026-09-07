@@ -240,6 +240,8 @@ main_lupe_tcidu_lupe_ld_cur_fanmo:
 main_incri:
 	/* DROP [at][0-7] */
 
+	/* TODO: .i xu frili cumki fa lo nu jdikygau pe'a fi le ka ce'u barda */
+
 	lw	t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	lw	t1,	(CUR_DENPA_INST(0))(vrc_s1)
 	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
