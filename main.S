@@ -932,7 +932,7 @@ zgitci_frob_slurp:
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0))(t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
-	li	t1,	1 || DMA_CTRL_DATA_SIZE_WORD
+	li	t1,	1 | DMA_CTRL_DATA_SIZE_WORD
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(0))(t0)
 
 	ret
