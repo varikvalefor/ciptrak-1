@@ -230,6 +230,7 @@ main_lupe_tcidu_ld_cur:
 main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// addi	ctr_a0,	ctr_a0,	-1	// mv OcrdTMFf
 	addi	judri_j_a1,	judri_j_a1,	4
+	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
