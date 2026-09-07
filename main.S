@@ -249,7 +249,7 @@ main_incri:
 	lw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(0))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	slt	a0,	denpa_t1,	incri_t0
+	sltu	a0,	denpa_t1,	incri_t0
 	sh2add	sezvati_t2,	sezvati_t2,	a0
 	binvi	a0,	a0,	1	// ...not
 	mul	incri_t0,	incri_t0,	a0
@@ -259,7 +259,7 @@ main_incri:
 	lw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(1))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	slt	a0,	denpa_t1,	incri_t0
+	sltu	a0,	denpa_t1,	incri_t0
 	sh2add	sezvati_t2,	sezvati_t2,	a0
 	binvi	a0,	a0,	1
 	mul	incri_t0,	incri_t0,	a0
@@ -269,7 +269,7 @@ main_incri:
 	lw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(2))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	slt	a0,	denpa_t1,	incri_t0
+	sltu	a0,	denpa_t1,	incri_t0
 	sh2add	sezvati_t2,	sezvati_t2,	a0
 	binvi	a0,	a0,	1
 	mul	incri_t0,	incri_t0,	a0
@@ -279,7 +279,7 @@ main_incri:
 	lw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(3))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	slt	a0,	denpa_t1,	incri_t0
+	sltu	a0,	denpa_t1,	incri_t0
 	sh2add	sezvati_t2,	sezvati_t2,	a0
 	binvi	a0,	a0,	1
 	mul	incri_t0,	incri_t0,	a0
