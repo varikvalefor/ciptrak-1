@@ -488,7 +488,7 @@ zgitci_frob_check_2:
 	addi	t0,	a0,	-2
 	li	t1,	1
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
-	# todo
+	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
