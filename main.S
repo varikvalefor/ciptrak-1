@@ -543,6 +543,7 @@ zgitci_frob_damri:
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
+	nop	// zgitci_frob_damri_sezvati_incr sync
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
 	lw	t1,	(idx_j_t0)
