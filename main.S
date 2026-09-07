@@ -77,8 +77,9 @@ cur: .word	0,				/* 0 */ \
 	 */ \
 	0,	/* 38 / 0x29 | SHA_EN */\
 	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */ \
-	0,	0,	0,	0	/* 42 / 2A | SIVNI */ \
-	/* ^ .i zgitci pe'a sivni datni */
+	0,	0,	0,	0,	/* 42 / 2A | SIVNI */ \
+	/* ^ .i zgitci pe'a sivni datni */ \
+	0,	0,	0,	0	/* 46 / 2E | ZGITCI TEMCI */
 
 #define	CUR_TEMCI	4 * 0
 #define	CUR_XOSC_SNIDU	4 * 1
@@ -96,6 +97,8 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_SHA_EN	4 * CUR_SHA_EN_OFFSET
 #define	CUR_ZGITCI_SIVNI_OFFSET	39
 #define	CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+#define	CUR_INCRI_IDX_OFFSET	43
+#define	CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 
 .global main
 
@@ -237,45 +240,37 @@ main_lupe_tcidu_lupe_ld_cur_fanmo:
 main_incri:
 	/* DROP [at][0-7] */
 
-	#define	temci_t0	t0
-	lw	temci_t0,	CUR_TEMCI(vrc_s1)
-
-	/* TODO
-	 * .i xu frili cumki fa lo nu jdikygau pe'a fi lo ka ce'u jai zilmasno
-	 */
+	lw	t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	lw	t1,	(CUR_DENPA_INST(0))(vrc_s1)
-	lw	t3,	(CUR_DENPA_INST(1))(vrc_s1)
-	rem	t2,	temci_t0,	t1
-	rem	t4,	temci_t0,	t3
-	lw	t6,	(CUR_DENPA_INST(2))(vrc_s1)
-	lw	a1,	(CUR_DENPA_INST(3))(vrc_s1)
-	rem	a0,	temci_t0,	t6
-	rem	a2,	temci_t0,	a1
+	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	slt	a0,	t0,	t1
+	add	t2,	t2,	a0
+	mul	t2,	t2,	a0
+	sw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 
-	addi	temci_t0,	temci_t0,	1
-	sw	temci_t0,	CUR_TEMCI(vrc_s1)
+	lw	t0,	(CUR_INCRI_IDX(1))(vrc_s1)
+	lw	t1,	(CUR_DENPA_INST(1))(vrc_s1)
+	lw	t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	slt	a0,	t0,	t1
+	add	t2,	t2,	a0
+	mul	t2,	t2,	a0
+	sw	t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 
-	/* DROP t0 */
+	lw	t0,	(CUR_INCRI_IDX(2))(vrc_s1)
+	lw	t1,	(CUR_DENPA_INST(2))(vrc_s1)
+	lw	t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	slt	a0,	t0,	t1
+	add	t2,	t2,	a0
+	mul	t2,	t2,	a0
+	sw	t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 
-	lw	t1,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	bnez	t2,	main_incri_next_t4
-	addi	t1,	t1,	1
-	sw	t1,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-main_incri_next_t4:
-	lw	t3,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	bnez	t4,	main_incri_next_t6
-	addi	t3,	t3,	1
-	sw	t3,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-main_incri_next_t6:
-	lw	t6,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	bnez	a0,	main_incri_next_a1
-	addi	t6,	t6,	1
-	sw	t6,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-main_incri_next_a1:
-	lw	a1,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	bnez	a2,	main_reset_denpa
-	addi	a1,	a1,	1
-	sw	a1,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	lw	t0,	(CUR_INCRI_IDX(3))(vrc_s1)
+	lw	t1,	(CUR_DENPA_INST(3))(vrc_s1)
+	lw	t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	slt	a0,	t0,	t1
+	add	t2,	t2,	a0
+	mul	t2,	t2,	a0
+	sw	t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
