@@ -875,6 +875,8 @@ zgitci_frob_deaf_bixygau:
  * [sivni2]
  */
 zgitci_frob_deaf_setsivni:
+	/* TODO: .i xu ronsa la'oi .SW. */
+
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_slurp
 
