@@ -75,7 +75,7 @@ cur: .word	0,				/* 0 */ \
 	 * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a \
 	 * \
 	 */ \
-	0,	/* 38 / 0x26 | SHA_EN */\
+	0,	/* 41 / 0x29 | SHA_EN */\
 	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */ \
 	0,	0,	0,	0	/* 42 / 2A | SIVNI */ \
 	/* ^ .i zgitci pe'a sivni datni */
@@ -92,9 +92,9 @@ cur: .word	0,				/* 0 */ \
 #define	CUR_ZGITCI_SAMP_IDX_OFFSET	30
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 #define	CUR_SHA_OFFSET	4 * 34
-#define	CUR_SHA_EN_OFFSET	38
+#define	CUR_SHA_EN_OFFSET	41
 #define	CUR_SHA_EN	4 * CUR_SHA_EN_OFFSET
-#define	CUR_ZGITCI_SIVNI_OFFSET	39
+#define	CUR_ZGITCI_SIVNI_OFFSET	42
 #define	CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 
 .global main
