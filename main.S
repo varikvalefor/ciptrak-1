@@ -309,7 +309,7 @@ main_lupe_zgike:
 	// 9 by 9
 
 main_reset_denpa:
-	/* DROP [at][01234567] */
+	/* DROP [at][0-7] */
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_reset_denpa_prelupe	// 2B
