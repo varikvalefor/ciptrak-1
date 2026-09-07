@@ -235,7 +235,7 @@ main_lupe_tcidu_lupe_ld_cur_fanmo:
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
 main_incri:
-	/* DROP [at][01234567] */
+	/* DROP [at][0-7] */
 
 	#define	temci_t0	t0
 	lw	temci_t0,	CUR_TEMCI(vrc_s1)
