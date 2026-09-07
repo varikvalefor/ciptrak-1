@@ -388,7 +388,8 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
-	j	zgitci_frob_1_pwm_aktigau_se_lidne
+
+	//	j	zgitci_frob_1_pwm_aktigau_se_lidne	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
