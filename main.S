@@ -335,7 +335,7 @@ main_reset_denpa:
 main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lh	t1,	2(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
+	lh	t1,	0(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
 	lh	t0,	(2 + CUR_XOSC_SNIDU)(vrc_s1)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
