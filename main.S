@@ -358,12 +358,12 @@ zgitci_frob_1_pwm_xu_akti:
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	pwm_slice_a5	a5
-	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
+	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
 	li	t1,	PWM_EN_OFFSET
 	add	t0,	pwm_base_a6,	t1
 	lw	t0,	(t0)
-	// TODO: .i xu lo su'o co'e cu mapti tu'a la'oi .lw.
+	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
 	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_aktigau:
