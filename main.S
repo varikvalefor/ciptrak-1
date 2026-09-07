@@ -388,6 +388,8 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	sw	t1,	(gpio_ctrl_j_t0)
 	j	zgitci_frob_1_pwm_aktigau_se_lidne
 zgitci_frob_1_pwm_div:
+	/* DROP t[0-6] */
+
 	// TODO: .i xu mapti
 	#define	div_t0	t0
 	srli	t0,	a1,	2
