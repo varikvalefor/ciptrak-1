@@ -251,7 +251,7 @@ main_incri:
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 	slt	a0,	denpa_t1,	incri_t0
 	add	sezvati_t2,	sezvati_t2,	a0
-	binvi	a0,	a0,	1
+	binvi	a0,	a0,	1	// ...not
 	mul	incri_t0,	incri_t0,	a0
 	sw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	sw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
