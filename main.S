@@ -378,6 +378,8 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
 zgitci_frob_1_pwm_aktigau_se_lidne:
+	/* DROP t[0-6] */
+
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
