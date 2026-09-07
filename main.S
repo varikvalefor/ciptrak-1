@@ -242,37 +242,49 @@ main_incri:
 
 	/* TODO: .i xu frili cumki fa lo nu jdikygau pe'a fi le ka ce'u barda */
 
-	lw	t0,	(CUR_INCRI_IDX(0))(vrc_s1)
-	lw	t1,	(CUR_DENPA_INST(0))(vrc_s1)
-	lw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	slt	a0,	t0,	t1
-	add	t2,	t2,	a0
-	mul	t2,	t2,	a0
-	sw	t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	#define	incri_t0	t0
+	#define	denpa_t1	t1
+	#define sezvati_t2	t2
 
-	lw	t0,	(CUR_INCRI_IDX(1))(vrc_s1)
-	lw	t1,	(CUR_DENPA_INST(1))(vrc_s1)
-	lw	t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	slt	a0,	t0,	t1
-	add	t2,	t2,	a0
-	mul	t2,	t2,	a0
-	sw	t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	lw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
+	lw	denpa_t1,	(CUR_DENPA_INST(0))(vrc_s1)
+	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
+	slt	a0,	denpa_t1,	incri_t0
+	add	sezvati_t2,	sezvati_t2,	a0
+	binvi	a0,	a0,	1
+	mul	incri_t0,	incri_t0,	a0
+	sw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
+	sw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 
-	lw	t0,	(CUR_INCRI_IDX(2))(vrc_s1)
-	lw	t1,	(CUR_DENPA_INST(2))(vrc_s1)
-	lw	t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	slt	a0,	t0,	t1
-	add	t2,	t2,	a0
-	mul	t2,	t2,	a0
-	sw	t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	lw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s1)
+	lw	denpa_t1,	(CUR_DENPA_INST(1))(vrc_s1)
+	lw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
+	slt	a0,	denpa_t1,	incri_t0
+	add	sezvati_t2,	sezvati_t2,	a0
+	binvi	a0,	a0,	1
+	mul	incri_t0,	incri_t0,	a0
+	sw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s1)
+	sw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 
-	lw	t0,	(CUR_INCRI_IDX(3))(vrc_s1)
-	lw	t1,	(CUR_DENPA_INST(3))(vrc_s1)
-	lw	t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	slt	a0,	t0,	t1
-	add	t2,	t2,	a0
-	mul	t2,	t2,	a0
-	sw	t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	lw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s1)
+	lw	denpa_t1,	(CUR_DENPA_INST(2))(vrc_s1)
+	lw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+	slt	a0,	denpa_t1,	incri_t0
+	add	sezvati_t2,	sezvati_t2,	a0
+	binvi	a0,	a0,	1
+	mul	incri_t0,	incri_t0,	a0
+	sw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s1)
+	sw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
+
+	lw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s1)
+	lw	denpa_t1,	(CUR_DENPA_INST(3))(vrc_s1)
+	lw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
+	slt	a0,	denpa_t1,	incri_t0
+	add	sezvati_t2,	sezvati_t2,	a0
+	binvi	a0,	a0,	1
+	mul	incri_t0,	incri_t0,	a0
+	sw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s1)
+	sw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
