@@ -191,6 +191,8 @@ main_lupe_tcidu:
 	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a2,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
+	/* DROP t[0-6] */
+
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	addi	ctr_a0,	ctr_a0,	-1	// OcrdTMFf.  lw opt
