@@ -208,7 +208,7 @@ main_lupe_tcidu_lupe_co_barda:
 	li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_1
 	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
-	lw	t5,	(datni_cur_j_a2)
+	lw	t5,	(datni_cur_j_a2)	// temp
 	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
 	beq	t5,	datni_t3,	main_lupe_tcidu_ld_cur
 
