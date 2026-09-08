@@ -226,6 +226,7 @@ main_lupe_tcidu_ld_cur:
 	lw	datni2_t4,	4(datni_j_t2)
 	sw	datni_t3,	(datni_cur_j_a2)
 	sw	datni2_t4,	4(datni_cur_j_a2)
+
 	lw	datni_t3,	8(datni_j_t2)
 	lw	datni2_t4,	0xC(datni_j_t2)
 	sw	datni_t3,	8(datni_cur_j_a2)
