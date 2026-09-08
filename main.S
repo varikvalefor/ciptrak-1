@@ -245,44 +245,45 @@ main_incri:
 	#define	incri_t0	t0
 	#define	denpa_t1	t1
 	#define sezvati_t2	t2
+	#define	lt_t1	t1
 
 	lw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(0))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
-	sltu	a0,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	a0
-	binvi	a0,	a0,	0	// ...not
-	mul	incri_t0,	incri_t0,	a0
+	sltu	lt_t1,	denpa_t1,	incri_t0
+	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
+	binvi	lt_t1,	lt_t1,	0	// ...not
+	mul	incri_t0,	incri_t0,	lt_t1
 	sw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s1)
 	sw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s1)
 
 	lw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(1))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
-	sltu	a0,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	a0
-	binvi	a0,	a0,	0
-	mul	incri_t0,	incri_t0,	a0
+	sltu	lt_t1,	denpa_t1,	incri_t0
+	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
+	binvi	lt_t1,	lt_t1,	0
+	mul	incri_t0,	incri_t0,	lt_t1
 	sw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s1)
 	sw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s1)
 
 	lw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(2))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
-	sltu	a0,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	a0
-	binvi	a0,	a0,	0
-	mul	incri_t0,	incri_t0,	a0
+	sltu	lt_t1,	denpa_t1,	incri_t0
+	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
+	binvi	lt_t1,	lt_t1,	0
+	mul	incri_t0,	incri_t0,	lt_t1
 	sw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s1)
 	sw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s1)
 
 	lw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s1)
 	lw	denpa_t1,	(CUR_DENPA_INST(3))(vrc_s1)
 	lw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
-	sltu	a0,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	a0
-	binvi	a0,	a0,	0
-	mul	incri_t0,	incri_t0,	a0
+	sltu	lt_t1,	denpa_t1,	incri_t0
+	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
+	binvi	lt_t1,	lt_t1,	0
+	mul	incri_t0,	incri_t0,	lt_t1
 	sw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s1)
 	sw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s1)
 
