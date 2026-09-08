@@ -967,7 +967,7 @@ zgitci_frob_slurp:
 	sw	flash_j_a2,	(dma_read_j_t0)
 
 	slli	t1,	a3,	(8 - 5) * 4
-	srli	t1,	a3,	(8 - 5) * 4
+	srli	t1,	t1,	(8 - 5) * 4
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
