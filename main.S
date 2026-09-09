@@ -375,6 +375,9 @@ zgitci_frob_1_pwm_xu_akti:
 	li	pwm_base_a6,	PWM_BASE
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
+	#define	SIVNI_A1_DIV_BIT	2
+	#define	SIVNI_A1_JDIKA_BIT	2 + 12
+	#define	SIVNI_A1_ZENBA_BIT	1 + SIVNI_A1_JDIKA_BIT
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
