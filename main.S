@@ -1164,7 +1164,7 @@ vrici_frob_sio:
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
 	add	t1,	t1,	t2
-	li	t6,	5	// SIO fn; mv o5ZapudM
+	// li	t6,	5	// SIO fn; mv o5ZapudM
 	sw	t6,	(t1)
 vrici_frob_sio_post_init:
 	li	t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
