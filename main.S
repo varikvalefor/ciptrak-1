@@ -625,7 +625,7 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXXXXXXXXXX][idx: 0bX][nibarda: 0bXXXXX]
+ * [?: 0x????][?: 0bXX 0xXX][idx: 0bX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
