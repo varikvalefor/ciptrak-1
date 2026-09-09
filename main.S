@@ -1177,13 +1177,13 @@ vrici_frob_sio_post_init:
 	la	inst_j_t3	vrici_frob_sio_bclr_inst
 	lw	inst_t4,	(inst_j_t3)
 
-	bexti	val_t4,	a5,	SIVNI_VALUE_BIT
-	slli	t5,	val_t4,	29
-	xor	inst_t3,	inst_t3,	t5
-	slli	t5,	t5,	1
-	xor	inst_t3,	inst_t3,	t5
-	sw	inst_t3,	(inst_j_t3)
+	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
+	li	t6,	1610612736
+	mul	t6,	val_t5,	t6	// t6 = t5 * 3 * 2 ^ 29; xor 0b11
+	xor	inst_t4,	inst_t4,	t6
+	sw	inst_t4,	(inst_j_t3)
 vrici_frob_sio_bclr_inst:
-	bclr	t2,	t2,	pin_t0
-	sw	t2,	(t1)
+	bclr	sio_val_t2,	sio_val_t2,	pin_t0
+	sw	sio_val_t2,	(sio_j_t1)
+	sw	inst_t4,	(inst_j_t3)	// reset
 	ret
