@@ -75,7 +75,7 @@ cur: .word	0,				/* 0 */ \
 	 * .i la .varik. na jinvi le du'u sarcu fa lo nu zmadu fi le ka ce'u cunso pe'a \
 	 * \
 	 */ \
-	0,	/* 38 / 0x29 | SHA_EN */\
+	0,	/* 38 / 0x29 | SHA_EN */ \
 	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */ \
 	0,	0,	0,	0,	/* 42 / 2A | SIVNI */ \
 	/* ^ .i zgitci pe'a sivni datni */ \
