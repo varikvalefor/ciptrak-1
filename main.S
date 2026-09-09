@@ -625,7 +625,7 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXXXXXXXXXX][idx: 0bX][nibarda: 0bXXXXX]
+ * [?: 0x????][?: 0bXX 0xXX][idx: 0bX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
@@ -638,8 +638,12 @@ zgitci_frob_check_pio:
 	addi	t0,	t0,	-1
 	li	t1,	1
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
-	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
-	// .i la'e di'u srana lo me'oi .GPIO. co'e
+
+	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
+	slli	t0,	zgitci_a4,	3
+	li	t1,	IO_BANK0_BASE + 4
+	add	t0,	t0,	t1
+	sw	??,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
@@ -1164,7 +1168,7 @@ vrici_frob_sio:
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
 	add	t1,	t1,	t2
-	li	t6,	5	// SIO fn; mv o5ZapudM
+	// li	t6,	5	// SIO fn; mv o5ZapudM
 	sw	t6,	(t1)
 vrici_frob_sio_post_init:
 	// serious shit
