@@ -1157,7 +1157,7 @@ vrici_frob_sio:
 	// TODO: .i xu banuzka
 	li	t1,	SIO_BASE + GPIO_OE_SET_OFFSET
 	lw	t2,	(t1)
-	li	t6,	5
+	li	t6,	5	// o5ZapudM.  lw opt
 	bset	t2,	t2,	pin_t0
 	sw	t2,	(t1)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
