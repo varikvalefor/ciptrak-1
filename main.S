@@ -627,13 +627,14 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXX 0xXX][idx: 0bX][nibarda: 0bX 0xX]
+ * [?: 0x????][?: 0bXXX][pioIdx: 0xXXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
  * ?
  */
 zgitci_frob_check_pio:
+	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	16
@@ -645,7 +646,10 @@ zgitci_frob_check_pio:
 	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
 	add	t0,	t0,	t1
-	sw	??,	(t0)
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
+	andi	t1,	t1,	0b11
+	addi	t1,	t1,	6
+	sw	t1	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
