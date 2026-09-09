@@ -1178,6 +1178,7 @@ vrici_frob_sio_post_init:
 	lw	inst_t4,	(inst_j_t3)
 
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
+	// | s/bclr/bset/?
 	slli	t6,	val_t5,	29
 	xor	inst_t4,	inst_t4,	t6
 	slli	t6,	t6,	1
