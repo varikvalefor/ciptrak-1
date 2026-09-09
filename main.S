@@ -1162,7 +1162,7 @@ vrici_frob_sio:
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
-	addi	t1,	t1,	t2
+	add	t1,	t1,	t2
 	li	t2,	5	// SIO fn
 	sw	t2,	(t1)
 vrici_frob_sio_post_init:
