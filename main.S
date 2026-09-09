@@ -182,7 +182,6 @@ main_lupe_tcidu:
 	#define	ctr_a0	a0
 	#define	sezvati_j_a1	a1
 	#define	datni_cur_j_a2	a2
-	#define	judri_t0	t0
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	4
