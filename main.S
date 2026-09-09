@@ -358,7 +358,7 @@ zgitci_frob:
  *
  * 0x1
  *
- * [?: 0xXXXX 0bXX][div: 0xXXX][slice: 0bXX]
+ * [?: 0xXXXX] [zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
  * ?
  *
