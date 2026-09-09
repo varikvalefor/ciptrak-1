@@ -426,6 +426,7 @@ zgitci_frob_1_pwm_div:
 	bexti	zenba_t1,	a1,	17
 	bexti	jdika_t2,	a1,	16
 
+	// se morji: PWM_CHx_DIV_OFFSET(x)	4 + x * 0x14
 	#define	div_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
@@ -435,7 +436,6 @@ zgitci_frob_1_pwm_div:
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	// se morji: PWM_CHx_DIV_OFFSET(x)	4 + x * 0x14
 	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
