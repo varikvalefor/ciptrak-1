@@ -1179,6 +1179,10 @@ vrici_frob_sio_post_init:
 
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
 	// | s/bclr/bset/?
+	// .i vy jinvi fo tu'a le se .urli be zoi .urli. https://docs.riscv.org/reference/isa/v20260120/unpriv/b-st-ext.html .urli. fe ga je...
+	// * le du'u lo me'oi .bclr. co'e cu se tarmi pe'a la'e zoi zoi. 0100100[rs2][rs1]001[rd ]0110011 .zoi. gi
+	// * le du'u lo me'oi .bset. co'e cu se tarmi pe'a la'e zoi zoi. 0010100[rs2][rs1]001[rd ]0110011 .zoi.
+	// .i vy jinvi le du'u lo me'oi .xor. co'e cu mapti
 	slli	t6,	val_t5,	29
 	xor	inst_t4,	inst_t4,	t6
 	slli	t6,	t6,	1
