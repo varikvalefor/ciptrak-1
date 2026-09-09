@@ -1017,7 +1017,7 @@ zgitci_frob_nope:
  * DROP t[0-7] a5
  */
 vrici_frob:
-	#define	SIVNI_NILZILCMI	7
+	#define	SIVNI_NILZILCMI	8
 	#define	klesi_t0	t0
 	srli	klesi_t0,	a5,	(6 * 4)	// 3 bytes
 	li	t1,	SIVNI_NILZILCMI
@@ -1052,6 +1052,8 @@ vrici_frob_dispatch:
 	j	vrici_frob_denpaV
 	// | 7
 	j	vrici_frob_denpaWfi
+	// | 8
+	j	vrici_frob_sio
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
@@ -1143,4 +1145,25 @@ vrici_frob_denpaWfi:
 	li	t1,	0x0001	// nop
 	la	t0,	main_reset_denpa
 	sh	t1,	(t0)
+	ret
+/* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
+vrici_frob_sio:
+	#define	SIVNI_VALUE_BIT	5
+	#define	SIVNI_RESET_BIT	6
+	#define	pin_t0	t0
+	andi	pin_t0,	a5,	31
+	bexti	t1,	a5,	SIVNI_RESET_BIT
+	beqz	t1,	vrici_frob_sio_post_init
+	// TODO: init, innit
+vrici_frob_sio_post_init:
+	li	t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
+	lw	t2,	(t1)
+	bexti	t3,	a5,	SIVNI_VALUE_BIT
+	beqz	t3,	vrici_frob_sio_s0
+	bset	t2,	t2,	pin_t0
+	sw	t2,	(t1)
+	ret
+vrici_frob_sio_s0:
+	bclr	t2,	t2,	pin_t0
+	sw	t2,	(t1)
 	ret
