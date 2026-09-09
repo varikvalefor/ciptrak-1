@@ -1166,14 +1166,24 @@ vrici_frob_sio:
 	li	t2,	5	// SIO fn
 	sw	t2,	(t1)
 vrici_frob_sio_post_init:
-	li	t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
-	lw	t2,	(t1)
-	bexti	t3,	a5,	SIVNI_VALUE_BIT
-	beqz	t3,	vrici_frob_sio_s0
-	bset	t2,	t2,	pin_t0
-	sw	t2,	(t1)
-	ret
-vrici_frob_sio_s0:
+	// serious shit
+	#define	sio_j_t1	t1
+	#define	sio_val_t2	t2
+	#define	inst_j_t3	t3
+	#define	inst_t4	t4
+	#define	val_t5	t5
+	li	sio_j_t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
+	lw	sio_val_t2,	(sio_j_t1)
+	la	inst_j_t3	vrici_frob_sio_bclr_inst
+	lw	inst_t4,	(inst_j_t3)
+
+	bexti	val_t4,	a5,	SIVNI_VALUE_BIT
+	slli	t5,	val_t4,	29
+	xor	inst_t3,	inst_t3,	t5
+	slli	t5,	t5,	1
+	xor	inst_t3,	inst_t3,	t5
+	sw	inst_t3,	(inst_j_t3)
+vrici_frob_sio_bclr_inst:
 	bclr	t2,	t2,	pin_t0
 	sw	t2,	(t1)
 	ret
