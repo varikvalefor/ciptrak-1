@@ -1178,8 +1178,9 @@ vrici_frob_sio_post_init:
 	lw	inst_t4,	(inst_j_t3)
 
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	li	t6,	1610612736
-	mul	t6,	val_t5,	t6	// t6 = t5 * 3 * 2 ^ 29; xor 0b11
+	slli	t6,	val_t5,	29
+	xor	inst_t4,	inst_t4,	t6
+	slli	t6,	t6,	1
 	xor	inst_t4,	inst_t4,	t6
 	sw	inst_t4,	(inst_j_t3)
 vrici_frob_sio_bclr_inst:
