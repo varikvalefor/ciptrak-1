@@ -358,7 +358,7 @@ zgitci_frob:
  *
  * 0x1
  *
- * [?: 0xXXXXXXX][?: 0bXX][slice: 0bXX]
+ * [?: 0xXXXX][div: 0bXX 0xXXX][slice: 0bXX]
  *
  * ?
  *
