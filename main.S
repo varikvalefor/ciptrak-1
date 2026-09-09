@@ -416,7 +416,7 @@ zgitci_frob_1_pwm_div:
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// | metfo: andi	t0,	a1,	0b11111111111111
+	// | t0 = a1 >> 2 & (2^12 - 1)
 	slli	t0,	a1,	(32 - 14)
 	srli	div_t0,	t0,	((32 - 14) + 2)
 	#define	zenba_t1	t1
