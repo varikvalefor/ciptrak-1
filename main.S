@@ -638,8 +638,12 @@ zgitci_frob_check_pio:
 	addi	t0,	t0,	-1
 	li	t1,	1
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
-	// TODO: .aktigau pe'a lo me'oi .PIO. co'e
-	// .i la'e di'u srana lo me'oi .GPIO. co'e
+
+	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
+	slli	t0,	zgitci_a4,	3
+	li	t1,	IO_BANK0_BASE + 4
+	add	t0,	t0,	t1
+	sw	??,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
