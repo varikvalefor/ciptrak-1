@@ -1003,7 +1003,7 @@ zgitci_frob_sw:
 	beqz	a3,	zgitci_frob_sw_post
 	mv	a5,	a3
 	jal	vrici_frob
-
+zgitci_frob_sw_post:
 	ret
 
 /*
