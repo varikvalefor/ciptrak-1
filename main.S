@@ -376,8 +376,8 @@ zgitci_frob_1_pwm_xu_akti:
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	SIVNI_A1_DIV_BIT	2
-	#define	SIVNI_A1_JDIKA_BIT	2 + 12
-	#define	SIVNI_A1_ZENBA_BIT	1 + SIVNI_A1_JDIKA_BIT
+	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
+	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
@@ -421,7 +421,7 @@ zgitci_frob_1_pwm_div:
 	#define	div_t0	t0
 	// | t0 = a1 >> 2 & (2^12 - 1)
 	slli	t0,	a1,	(32 - SIVNI_A1_JDIKA_BIT)
-	srli	div_t0,	t0,	((32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
+	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	// | TODO: .i xu mapti
