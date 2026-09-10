@@ -358,7 +358,7 @@ zgitci_frob:
  *
  * 0x1
  *
- * [?: 0xXXXX] [zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
+ * [?: 0xXXX][?: 0bXXX][akti: 0bX][zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
  * ?
  *
@@ -378,8 +378,12 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_DIV_BIT	2
 	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
+	#define	SIVNI_A1_AKTI_BIT	(1 + SIVNI_A1_AKTI_BIT)
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
+
+	bexti	t0,	a1,	SIVNI_A1_AKTI_BIT
+	bnez	t0,	zgitci_frob_1_pwm_div
 
 	li	t1,	PWM_EN_OFFSET
 	add	t0,	pwm_base_a6,	t1
