@@ -1102,8 +1102,8 @@ vrici_frob_0:
 	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t0)	// CUR_PATN_JUDRI
 	lw	t0,	(t0)
 
-	add	t1,	t1,	datni_a5
-	add	t0,	t0,	t1
+	sh2add	t1,	t1,	datni_a5
+	sh2add	t0,	t0,	t1
 
 	sw	x0,	(t0)
 
@@ -1146,14 +1146,13 @@ vrici_frob_denpaV:
 	#define	SIVNI_IDX_BIT_1	(1 + SIVNI_IDX_BIT_0)
 	#define	zt_idx_t0	t0
 	srli	zt_idx_t0,	datni_a5,	SIVNI_IDX_BIT_0	// b[23], b[22]
+	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_1
+	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_0
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
 	#define	denpa_j_t0	t0
 	sh2add	denpa_j_t0,	vrc_s1,	t0
-
-	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_1
-	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_0
 
 	sw	datni_a5,	(denpa_j_t0)
 
