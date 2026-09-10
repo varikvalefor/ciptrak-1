@@ -536,12 +536,10 @@ zgitci_frob_check_2:
 	// TODO: PWM crap
 
 	bexti	t1,	a0,	0
-	beqz	t1,	zgitci_frob_check_2_0out
 	addi	zts_a5,	zts_a5,	1
+	mul	zts_a5,	zts_a5,	t1
 	sw	zts_a5,	(zts_sance_idx_t2)
 	ret
-zgitci_frob_check_2_0out:
-	sw	x0,	(zts_sance_idx_t2)
 zgitci_frob_check_2_fanmo:
 	ret
 /*
