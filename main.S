@@ -1040,7 +1040,7 @@ vrici_frob_dispatch_pre:
 	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	slli	t0,	klesi_t0,	2
+	slli	t0,	klesi_t0,	1
 	addi	t0,	t0,	3 * 4	// auipc + add + j
 	auipc	t1,	0
 	add	t0,	t0,	t1
