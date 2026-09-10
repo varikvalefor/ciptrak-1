@@ -358,7 +358,7 @@ zgitci_frob:
  *
  * 0x1
  *
- * [?: 0xXXXXXXX][?: 0bXX][slice: 0bXX]
+ * [?: 0xXXXX] [zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
  * ?
  *
@@ -375,6 +375,9 @@ zgitci_frob_1_pwm_xu_akti:
 	li	pwm_base_a6,	PWM_BASE
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
+	#define	SIVNI_A1_DIV_BIT	2
+	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
+	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
@@ -416,15 +419,14 @@ zgitci_frob_1_pwm_div:
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// srli	t0,	a1,	2	// mv CnIsf5yv
-	// | metfo: andi	t0,	t0,	0b11111111111111
-	slli	t0,	t0,	(32 - 14)
-	srli	div_t0,	t0,	((32 - 14) + 2)	// CnIsf5yv.
+	// | t0 = (a1 >> 2) & (2^12 - 1)
+	slli	t0,	a1,	(32 - SIVNI_A1_JDIKA_BIT)
+	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	// | TODO: .i xu mapti
-	bexti	zenba_t1,	a1,	17
-	bexti	jdika_t2,	a1,	16
+	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
+	bexti	jdika_t2,	a1,	SIVNI_A1_JDIKA_BIT
 
 	// se morji: PWM_CHx_DIV_OFFSET(x)	4 + x * 0x14
 	#define	div_j_t3	t3
@@ -625,13 +627,14 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXX 0xXX][idx: 0bX][nibarda: 0bX 0xX]
+ * [?: 0x????][?: 0bXXX][pioIdx: 0xXXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
  * ?
  */
 zgitci_frob_check_pio:
+	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	16
@@ -643,7 +646,10 @@ zgitci_frob_check_pio:
 	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
 	add	t0,	t0,	t1
-	sw	??,	(t0)
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
+	andi	t1,	t1,	0b11
+	addi	t1,	t1,	6
+	sw	t1	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
@@ -1003,7 +1009,7 @@ zgitci_frob_sw:
 	beqz	a3,	zgitci_frob_sw_post
 	mv	a5,	a3
 	jal	vrici_frob
-
+zgitci_frob_sw_post:
 	ret
 
 /*
@@ -1031,33 +1037,33 @@ vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	// | metfo: andi	datni_a5,	datni_a5,	0x00FFFFFF
 	slli	a5,	a5,	(2 * 4)
-	srli	datni_a5,	datni_a5,	(2 * 4)
+	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	slli	t0,	klesi_t0,	2
+	slli	t0,	klesi_t0,	1
 	addi	t0,	t0,	3 * 4	// auipc + add + j
 	auipc	t1,	0
 	add	t0,	t0,	t1
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	jr	t0
+	c.jr	t0
 	// | 0
 	ret
 	// | 1
-	j	vrici_frob_denpa
+	c.j	vrici_frob_denpa
 	// | 2
-	j	vrici_frob_j
+	c.j	vrici_frob_j
 	// | 3
-	j	vrici_frob_0
+	c.j	vrici_frob_0
 	// | 4
-	j	vrici_frob_jog
+	c.j	vrici_frob_jog
 	// | 5
-	j	vrici_frob_sivni
+	c.j	vrici_frob_sivni
 	// | 6
-	j	vrici_frob_denpaV
+	c.j	vrici_frob_denpaV
 	// | 7
-	j	vrici_frob_denpaWfi
+	c.j	vrici_frob_denpaWfi
 	// | 8
-	j	vrici_frob_sio
+	c.j	vrici_frob_sio
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
@@ -1149,6 +1155,7 @@ vrici_frob_denpaWfi:
 	li	t1,	0x0001	// nop
 	la	t0,	main_reset_denpa
 	sh	t1,	(t0)
+	fence.i
 	ret
 /* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
