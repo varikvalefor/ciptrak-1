@@ -1155,6 +1155,7 @@ vrici_frob_denpaWfi:
 	li	t1,	0x0001	// nop
 	la	t0,	main_reset_denpa
 	sh	t1,	(t0)
+	fence.i
 	ret
 /* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
