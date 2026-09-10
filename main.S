@@ -1078,6 +1078,7 @@ vrici_frob_j:
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
 
+	// .i xu cadga fa tu'a lo me'oi .slli. co'e
 	sw	datni_a5,	(t0)
 
 	ret
