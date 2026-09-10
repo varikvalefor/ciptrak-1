@@ -1178,30 +1178,18 @@ vrici_frob_sio:
 	// li	t6,	5	// SIO fn; mv o5ZapudM
 	sw	t6,	(t1)
 vrici_frob_sio_post_init:
-	// serious shit
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
-	#define	inst_j_t3	t3
-	#define	inst_t4	t4
-	#define	val_t5	t5
 	li	sio_j_t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
 	lw	sio_val_t2,	(sio_j_t1)
-	la	inst_j_t3,	vrici_frob_sio_bclr_inst
-	lw	inst_t4,	(inst_j_t3)
 
+	// bitmask
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	// | s/bclr/bset/?
-	// .i vy jinvi fo tu'a le se .urli be zoi .urli. https://docs.riscv.org/reference/isa/v20260120/unpriv/b-st-ext.html .urli. fe ga je...
-	// * le du'u lo me'oi .bclr. co'e cu se tarmi pe'a la'e zoi zoi. 0100100[rs2][rs1]001[rd ]0110011 .zoi. gi
-	// * le du'u lo me'oi .bset. co'e cu se tarmi pe'a la'e zoi zoi. 0010100[rs2][rs1]001[rd ]0110011 .zoi.
-	// .i vy jinvi le du'u lo me'oi .xor. co'e cu mapti
-	slli	t6,	val_t5,	29
-	xor	inst_t4,	inst_t4,	t6
-	slli	t6,	t6,	1
-	xor	inst_t4,	inst_t4,	t6
-	sw	inst_t4,	(inst_j_t3)
-vrici_frob_sio_bclr_inst:
-	bclr	sio_val_t2,	sio_val_t2,	pin_t0
+	li	t3,	-1
+	bclr	t3,	t3,	pin_t0
+	slli	t4,	val_t5,	pin_t0
+	add	t3,	t3,	t4
+
+	and	sio_val_t2,	sio_val_t2,	t3
 	sw	sio_val_t2,	(sio_j_t1)
-	sw	inst_t4,	(inst_j_t3)	// reset
 	ret
