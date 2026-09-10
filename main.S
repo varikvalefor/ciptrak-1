@@ -1045,25 +1045,25 @@ vrici_frob_dispatch:
 	auipc	t1,	0
 	add	t0,	t0,	t1
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	jr	t0
+	c.jr	t0
 	// | 0
 	ret
 	// | 1
-	j	vrici_frob_denpa
+	c.j	vrici_frob_denpa
 	// | 2
-	j	vrici_frob_j
+	c.j	vrici_frob_j
 	// | 3
-	j	vrici_frob_0
+	c.j	vrici_frob_0
 	// | 4
-	j	vrici_frob_jog
+	c.j	vrici_frob_jog
 	// | 5
-	j	vrici_frob_sivni
+	c.j	vrici_frob_sivni
 	// | 6
-	j	vrici_frob_denpaV
+	c.j	vrici_frob_denpaV
 	// | 7
-	j	vrici_frob_denpaWfi
+	c.j	vrici_frob_denpaWfi
 	// | 8
-	j	vrici_frob_sio
+	c.j	vrici_frob_sio
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
