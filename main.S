@@ -330,6 +330,7 @@ main_reset_denpa:
 	li	t0,	(101<<13) | (((2+4+2+2+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
 	la	t1,	main_reset_denpa
 	sh	t0,	0(t1)	// 2B
+	fence.i
 	wfi	// 4B
 	j	main_lupe	// 2B
 
