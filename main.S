@@ -1185,7 +1185,7 @@ vrici_frob_sio_post_init:
 
 	// bitmask
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	li	t3,	-1
+	addi	t3,	x0,	-1
 	bclr	t3,	t3,	pin_t0
 	slli	t4,	val_t5,	pin_t0
 	add	t3,	t3,	t4
