@@ -1172,7 +1172,7 @@ vrici_frob_sio_post_init:
 
 	li	sio_j_t1,	SIO_BASE + GPIO_OUT_SET_OFFSET
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	not	val_t5,	val_t5
+	binvi	val_t5,	val_t5,	0
 	sh3add	sio_j_t1,	sio_j_t1,	val_t5
 
 	bset	t0,	x0,	val_t5
