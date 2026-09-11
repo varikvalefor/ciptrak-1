@@ -1161,8 +1161,8 @@ vrici_frob_sio:
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
 	add	t1,	t1,	t2
-	li	t3,	5
-	sw	t3,	(t1)
+	li	t2,	5
+	sw	t2,	(t1)
 
 	li	sio_j_t1,	SIO_BASE
 	bset	t2,	x0,	pin_t0	// temp
