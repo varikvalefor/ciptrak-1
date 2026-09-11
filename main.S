@@ -878,7 +878,7 @@ zgitci_frob_deaf_bixygau:
 	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
 
 	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
-	slli	judri_t0,	t0,	t1
+	slli	judri_t0,	t0,	3
 
 	// metfo: ga naja co'e gi...
 	//        addi	t0,	t0,	0x10000000
