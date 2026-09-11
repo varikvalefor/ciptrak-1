@@ -648,7 +648,7 @@ zgitci_frob_check_pio:
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
 	andi	t1,	t1,	0b11
 	addi	t1,	t1,	6
-	sw	t1	(t0)
+	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
@@ -962,8 +962,7 @@ zgitci_frob_slurp:
 	andi	dma_idx_t2,	t2,	0xF
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	li	t1,	0x40
-	mul	t2,	dma_idx_t2,	t1
+	slli	t2,	dma_idx_t2,	6	// * 64
 	add	dma_read_j_t0,	t0,	t2
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
@@ -1033,11 +1032,11 @@ vrici_frob_dispatch_pre:
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	slli	t0,	klesi_t0,	1
-	addi	t0,	t0,	3 * 4	// auipc + add + j
-	auipc	t1,	0
-	add	t0,	t0,	t1
+	addi	t0,	t0,	2 + 2 * 4	// auipc + add + j
+	auipc	t1,	0	// 4B
+	add	t0,	t0,	t1	// 4B
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	c.jr	t0
+	c.jr	t0	// 2B
 	// | 0
 	ret
 	// | 1
@@ -1160,19 +1159,19 @@ vrici_frob_sio:
 	// TODO: .i xu banuzka
 	li	t1,	SIO_BASE + GPIO_OE_SET_OFFSET
 	lw	t2,	(t1)
-	li	t6,	5	// o5ZapudM.  lw opt
+	li	t3,	5	// o5ZapudM.  lw opt
 	bset	t2,	t2,	pin_t0
 	sw	t2,	(t1)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
 	add	t1,	t1,	t2
-	// li	t6,	5	// SIO fn; mv o5ZapudM
-	sw	t6,	(t1)
+	// li	t3,	5	// SIO fn; mv o5ZapudM
+	sw	t3,	(t1)
 vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
-	li	sio_j_t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
+	li	sio_j_t1,	SIO_BASE + GPIO_OUT_OFFSET
 	lw	sio_val_t2,	(sio_j_t1)
 
 	// bitmask
