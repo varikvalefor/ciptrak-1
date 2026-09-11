@@ -1174,6 +1174,9 @@ vrici_frob_sio_post_init:
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
 	not	val_t5,	val_t5
 	sh3add	sio_j_t1,	sio_j_t1,	val_t5
+
 	bset	t0,	x0,	val_t5
+
 	sw	t0,	(sio_j_t1)
+
 	ret
