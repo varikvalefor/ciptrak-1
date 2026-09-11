@@ -875,9 +875,6 @@ zgitci_frob_deaf_bixygau:
 
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 
-	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
-	slli	t0,	t0,	3
-
 	// metfo: ga naja co'e gi...
 	//        addi	t0,	t0,	0x10000000
 	//
@@ -885,7 +882,8 @@ zgitci_frob_deaf_bixygau:
 	// .i ku'i jinvi ga je le du'u lakne fa lo nu pilno lo me'oi .DATA. judri gi le du'u la'e zo'oi .0x10000000. pa moi lo'i me'oi .DATA. judri
 	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
 	slli	t1,	t1,	(28 - 1)
-	or	judri0_t0,	t0,	t1
+	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
+	sh3add	judri0_t0,	t1,	t0
 
 	sw	a2,	0(judri0_t0)
 	sw	a3,	4(judri0_t0)
