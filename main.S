@@ -1165,7 +1165,7 @@ vrici_frob_sio:
 	sw	t3,	(t1)
 
 	li	sio_t1,	SIO_BASE
-	bset	t2,	x0,	pin_t0
+	bset	t2,	x0,	pin_t0	// temp
 	sw	t2,	GPIO_OE_SET_OFFSET(sio_t1)
 vrici_frob_sio_post_init:
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
