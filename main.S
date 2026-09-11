@@ -452,7 +452,6 @@ zgitci_frob_1_pwm_div_slilu:
 	addi	t1,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	sivni_j_t1,	vrc_s1,	t1
 	lw	t2,	(sivni_j_t1)
-	lh	div0_t6,	0(div_j_t3)	// lw opt
 	la	t4,	zgitci_frob_1_pwm_div_slilu_sesumji
 	lw	t5,	(t4)
 
@@ -463,8 +462,10 @@ zgitci_frob_1_pwm_div_slilu:
 	xor	t5,	t5,	t2
 	sw	t5,	(t4)
 
+	lh	div0_t6,	0(div_j_t3)	// Vgg71qqM.  lw opt
 	fence.i
 zgitci_frob_1_pwm_div_slilu_sesumji:
+	// lh	div0_t6,	0(div_j_t3)	// mv Vgg71qqM
 	sub	div0_t6,	div0_t6,	div_t0
 	sh	div0_t6,	0(div_j_t3)
 
