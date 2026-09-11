@@ -215,11 +215,11 @@ main_lupe_tcidu_lupe_vimcu:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	#define	sivni_t5	t5
+	#define	sivni_t4	t4
 	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
 	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
-	sh2add	sivni_t5,	vrc_s1,	sivniP_t4
-	sw	x0,	(sivni_t5)
+	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
+	sw	x0,	(sivni_t4)
 main_lupe_tcidu_ld_cur:
 	#define	datni2_t4	t4
 	// lw	datni_t3,	(datni_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
