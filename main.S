@@ -1156,16 +1156,16 @@ vrici_frob_sio:
 	bexti	t1,	a5,	SIVNI_RESET_BIT
 	beqz	t1,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
-	li	sio_t6,	SIO_BASE
-	bset	t2,	x0,	pin_t0
-	li	t3,	5	// o5ZapudM.  lw opt
-	sw	t2,	GPIO_OE_SET_OFFSET(sio_t6)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
 	add	t1,	t1,	t2
 	// li	t3,	5	// SIO fn; mv o5ZapudM
 	sw	t3,	(t1)
+	li	sio_t6,	SIO_BASE
+	bset	t2,	x0,	pin_t0
+	li	t3,	5	// o5ZapudM.  lw opt
+	sw	t2,	GPIO_OE_SET_OFFSET(sio_t6)
 vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
