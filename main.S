@@ -676,6 +676,7 @@ zgitci_frob_check_pio_gpio_post:
  * [?: 0xXXXXXXX 0bXX][zt: 0bXX]
  *
  * [diff]
+ * ^ .i barda ki'u zo'e joi le su'u djica lo nu mapti tu'a lo se sumji
  *
  * ?
  */
