@@ -639,7 +639,7 @@ zgitci_frob_check_pio:
 	bclri	t0,	a0,	16
 	addi	t0,	t0,	-1
 	li	t1,	1
-	bgtu	t0,	t1,	zgitci_frob_c000_mv
+	bgtu	t0,	t1,	zgitci_frob_ditto
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t0,	zgitci_a4,	3
@@ -665,6 +665,41 @@ zgitci_frob_check_pio_gpio_post:
 
 	li	t0,	1 | (1<<2)
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
+
+	ret
+
+/*
+ * DITTO
+ *
+ * 0x00010003
+ *
+ * [?: 0xXXXXXXX 0bXX][zt: 0bXX]
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_ditto:
+	li	t0,	0x00010003
+	bne	a0,	t0,	zgitci_frob_c000_mv
+
+	addi	sp,	sp,	-4
+	sw	ra,	0(sp)
+
+	// se morji: CUR_ZGITCI0(x)		4 * (6 + 4 * x)
+	andi	t0,	a1,	0b11
+	slli	t0,	t0,	2
+	addi	t0,	t0,	6
+	sh2add	t0,	vrc_s1,	t0
+
+	lw	a0,	0(t0)
+	lw	a1,	4(t0)
+	lw	a2,	8(t0)
+	lw	a3,	0xC(t0)
+	jal	zgitci_frob
+
+	lw	ra,	0(sp)
+	addi	sp,	sp,	4
 
 	ret
 
