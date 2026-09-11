@@ -962,8 +962,7 @@ zgitci_frob_slurp:
 	andi	dma_idx_t2,	t2,	0xF
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	li	t1,	0x40
-	mul	t2,	dma_idx_t2,	t1
+	slli	t2,	dma_idx_t2,	6	// * 64
 	add	dma_read_j_t0,	t0,	t2
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
