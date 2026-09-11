@@ -1172,8 +1172,8 @@ vrici_frob_sio_post_init:
 	binvi	val_t5,	val_t5,	0
 	sh3add	sio_t1,	sio_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	t0,	x0,	val_t5
+	bset	t2,	x0,	val_t5
 
-	sw	t0,	GPIO_OUT_SET_OFFSET(sio_t1)
+	sw	t2,	GPIO_OUT_SET_OFFSET(sio_t1)
 
 	ret
