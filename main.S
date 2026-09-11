@@ -1151,7 +1151,7 @@ vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
 	#define	SIVNI_RESET_BIT	6
 	#define	pin_t0	t0
-	#define	sio_t1	t1
+	#define	sio_j_t1	t1
 	andi	pin_t0,	a5,	31
 	bexti	t1,	a5,	SIVNI_RESET_BIT
 	beqz	t1,	vrici_frob_sio_post_init
@@ -1164,16 +1164,16 @@ vrici_frob_sio:
 	li	t3,	5
 	sw	t3,	(t1)
 
-	li	sio_t1,	SIO_BASE
+	li	sio_j_t1,	SIO_BASE
 	bset	t2,	x0,	pin_t0	// temp
-	sw	t2,	GPIO_OE_SET_OFFSET(sio_t1)
+	sw	t2,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
 	binvi	val_t5,	val_t5,	0
-	sh3add	sio_t1,	sio_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
+	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
 	bset	t2,	x0,	val_t5
 
-	sw	t2,	GPIO_OUT_SET_OFFSET(sio_t1)
+	sw	t2,	GPIO_OUT_SET_OFFSET(sio_j_t1)
 
 	ret
