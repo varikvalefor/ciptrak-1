@@ -1157,9 +1157,8 @@ vrici_frob_sio:
 	beqz	t1,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 	li	sio_t6,	SIO_BASE
-	lw	t2,	GPIO_OE_SET_OFFSET(sio_t6)
+	bset	t2,	x0,	pin_t0
 	li	t3,	5	// o5ZapudM.  lw opt
-	bset	t2,	t2,	pin_t0
 	sw	t2,	GPIO_OE_SET_OFFSET(sio_t6)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
