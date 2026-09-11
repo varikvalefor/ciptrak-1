@@ -1036,10 +1036,10 @@ vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	slli	t0,	klesi_t0,	1
 	addi	t0,	t0,	3 * 4	// auipc + add + j
-	auipc	t1,	0
-	add	t0,	t0,	t1
+	auipc	t1,	0	// 4B
+	add	t0,	t0,	t1	// 4B
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	c.jr	t0
+	c.jr	t0	// 2B
 	// | 0
 	ret
 	// | 1
