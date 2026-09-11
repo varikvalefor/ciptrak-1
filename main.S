@@ -464,6 +464,8 @@ zgitci_frob_1_pwm_div_slilu:
 
 	lh	div0_t4,	0(div_j_t3)	// Vgg71qqM.  lw opt
 	fence.i
+
+	/* DROP t[245] */
 zgitci_frob_1_pwm_div_slilu_sesumji:
 	// lh	div0_t4,	0(div_j_t3)	// mv Vgg71qqM
 	sub	div0_t4,	div0_t4,	div_t0
