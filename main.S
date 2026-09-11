@@ -1124,7 +1124,7 @@ vrici_frob_0:
 	lw	t0,	(t0)
 
 	sh2add	t1,	t1,	datni_a5
-	sh2add	t0,	t0,	t1
+	add	t0,	t0,	t1
 
 	sw	x0,	(t0)
 
@@ -1208,16 +1208,14 @@ vrici_frob_sio:
 vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
-	li	sio_j_t1,	SIO_BASE + GPIO_OUT_OFFSET
-	lw	sio_val_t2,	(sio_j_t1)
 
-	// bitmask
+	li	sio_j_t1,	SIO_BASE + GPIO_OUT_SET_OFFSET
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	addi	t3,	x0,	-1
-	bclr	t3,	t3,	pin_t0
-	slli	t4,	val_t5,	pin_t0
-	add	t3,	t3,	t4
+	binvi	val_t5,	val_t5,	0
+	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	and	sio_val_t2,	sio_val_t2,	t3
-	sw	sio_val_t2,	(sio_j_t1)
+	bset	t0,	x0,	val_t5
+
+	sw	t0,	(sio_j_t1)
+
 	ret
