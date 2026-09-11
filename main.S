@@ -1167,9 +1167,6 @@ vrici_frob_sio:
 	li	t3,	5	// o5ZapudM.  lw opt
 	sw	t2,	GPIO_OE_SET_OFFSET(sio_t1)
 vrici_frob_sio_post_init:
-	#define	sio_j_t1	t1
-	#define	sio_val_t2	t2
-
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
 	binvi	val_t5,	val_t5,	0
 	sh3add	sio_t1,	sio_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
