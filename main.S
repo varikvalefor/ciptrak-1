@@ -1173,7 +1173,7 @@ vrici_frob_sio:
 vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
-	li	sio_j_t1,	SIO_BASE + SIO_GPIO_OUT_OFFSET
+	li	sio_j_t1,	SIO_BASE + GPIO_OUT_OFFSET
 	lw	sio_val_t2,	(sio_j_t1)
 
 	// bitmask
