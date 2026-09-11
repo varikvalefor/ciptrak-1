@@ -675,13 +675,15 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [?: 0xXXXXXXX 0bXX][zt: 0bXX]
  *
- * ?
+ * [diff]
  *
  * ?
  */
 zgitci_frob_ditto:
 	li	t0,	0x00010003
 	bne	a0,	t0,	zgitci_frob_c000_mv
+
+	#define	diff_a2	a2
 
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
@@ -691,6 +693,7 @@ zgitci_frob_ditto:
 	slli	t0,	t0,	2
 	addi	t0,	t0,	6
 	sh2add	t0,	vrc_s1,	t0
+	add	t0,	t0,	diff_a2
 
 	lw	a0,	0(t0)
 	lw	a1,	4(t0)
