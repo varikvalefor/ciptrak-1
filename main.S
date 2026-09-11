@@ -291,7 +291,7 @@ main_incri:
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
-	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) (4 * (x + CUR_ZGITCI0(z)))(vrc_s1)
+	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) ((4 * x) + CUR_ZGITCI0(z))(vrc_s1)
 	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 0)
 	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0)
 	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0)
