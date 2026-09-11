@@ -1085,7 +1085,7 @@ vrici_frob_0:
 	lw	t0,	(t0)
 
 	sh2add	t1,	t1,	datni_a5
-	sh2add	t0,	t0,	t1
+	add	t0,	t0,	t1
 
 	sw	x0,	(t0)
 
