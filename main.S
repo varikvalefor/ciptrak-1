@@ -1170,11 +1170,10 @@ vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
 
-	li	sio_j_t1,	SIO_BASE
+	li	sio_j_t1,	SIO_BASE + GPIO_OUT_CLR_OFFSET
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
 	slli	t0,	val_t5,	3	// * (GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET)
-	addi	t0,	t0,	GPIO_OUT_SET_OFFSET
-	add	sio_j_t1,	sio_j_t1,	t0
+	sub	sio_j_t1,	sio_j_t1,	t0
 	bset	t0,	x0,	val_t5
 	sw	t0,	(sio_j_t1)
 	ret
