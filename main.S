@@ -648,7 +648,7 @@ zgitci_frob_check_pio:
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
 	andi	t1,	t1,	0b11
 	addi	t1,	t1,	6
-	sw	t1	(t0)
+	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t1	t1
 	li	dma_t1,	DMA_BASE
