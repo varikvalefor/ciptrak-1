@@ -456,11 +456,11 @@ zgitci_frob_1_pwm_div_slilu:
 	la	t4,	zgitci_frob_1_pwm_div_slilu_sesumji
 	lw	sub_inst_t5,	(t4)
 
-	bexti	t2,	t2,	0
+	bexti	t1,	t1,	0
 	// | s/sub/add/?
 	// p585 riscv-unprivileged.pdf
-	slli	t2,	t2,	30
-	xor	t6,	sub_inst_t5,	t2
+	slli	t1,	t1,	30
+	xor	t6,	sub_inst_t5,	t1
 	sw	t6,	(t4)
 	fence.i
 
