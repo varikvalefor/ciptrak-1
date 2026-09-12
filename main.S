@@ -706,16 +706,15 @@ zgitci_frob_c000_mv_cont:
 
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 	addi	sp,	sp,	-4
-	// sw	ra,	(sp)	// mv ApIDJx61
+	sw	ra,	0(sp)
 
-	lw	a0,	(sezvati_a2)
-	lw	a1,	4(sezvati_a2)
-	lw	a2,	8(sezvati_a2)
-	lw	a3,	0xC(sezvati_a2)
-	sw	ra,	(sp)	// ApIDJx61.  lw opt
+	lw	a0,	0x0(sezvati_a2)
+	lw	a1,	0x4(sezvati_a2)
+	lw	a2,	0x8(sezvati_a2)
+	lw	a3,	0x0xC(sezvati_a2)
 	jal	zgitci_frob
 
-	lw	ra,	(sp)
+	lw	ra,	0(sp)
 	addi	sp,	sp,	4
 
 	ret
@@ -745,7 +744,7 @@ zgitci_frob_c000_sutra:
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
 	addi	sp,	sp,	-(3*4)
-	sw	ra,	(sp)
+	sw	ra,	0(sp)
 	sw	s2,	4(sp)
 	sw	s3,	8(sp)
 
@@ -770,7 +769,7 @@ zgitci_frob_c000_sutra_lupe:
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
-	lw	ra,	(sp)
+	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
 	addi	sp,	sp,	(3*4)
@@ -1015,9 +1014,9 @@ vrici_frob_dispatch_pre:
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	slli	t0,	klesi_t0,	1
-	addi	t0,	t0,	2 + 2 * 4	// auipc + add + j
 	auipc	t1,	0	// 4B
 	add	t0,	t0,	t1	// 4B
+	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	c.jr	t0	// 2B
 	// | 0
