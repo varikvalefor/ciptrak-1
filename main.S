@@ -511,7 +511,7 @@ zgitci_frob_1_pwm_idx:
  * .i xu cadga fa lo nu pilno lo re moi be lo'i rucyca'a lo me'oi .PWM. co'e
  * .i la .varik. cu jinvi le du'u lo me'oi .PWM. co'e cu mapti tu'a lo sance datnyvei pe'a
  *
- * [?: 0xXXXXX][sid: 0xXXX]
+ * [?: 0xXXXX 0bXXX][blackout: 0bX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
@@ -520,6 +520,7 @@ zgitci_frob_1_pwm_idx:
  *
  */
 zgitci_frob_check_2:
+	#define	SIVNI_A1_BLACKOUT_BIT	(3 * 4)
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
 	// li	t0,	0xFFF	// 2c
@@ -547,8 +548,7 @@ zgitci_frob_check_2:
 
 	// TODO: PWM crap
 
-	// | TODO: .i na mapti tu'a la'oi .master.
-	bexti	t1,	a0,	0
+	bexti	t1,	a1,	SIVNI_A1_BLACKOUT_BIT
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
 	sw	zts_a5,	(zts_sance_idx_t2)
