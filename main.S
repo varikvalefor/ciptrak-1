@@ -544,6 +544,8 @@ zgitci_frob_check_2:
 	mul	t1,	zgitci_a4,	t1
 	add	pwm_csr_a6,	a6,	t1
 
+	sw	pwmval_t0,	(PWM_CHx_TOP_OFFSET(0) - PWM_CHx_CSR_OFFSET(0))(pwm_csr_a6)
+
 	// TODO: PWM crap
 
 	bexti	t1,	a0,	0
