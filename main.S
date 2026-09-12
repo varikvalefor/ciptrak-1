@@ -1159,9 +1159,8 @@ vrici_frob_sio:
 	// TODO: .i xu banuzka
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	temp_t2,	IO_BANK0_BASE + 4
-	add	t1,	t1,	temp_t2
+	sh3add	t1,	t1,	temp_t2	// 8 = 2 ^ 3
 	li	temp_t2,	5
 	sw	temp_t2,	(t1)
 
