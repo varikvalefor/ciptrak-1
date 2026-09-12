@@ -203,6 +203,7 @@ main_lupe_tcidu_lupe_co_barda:
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_j_t2)	// zT9L5TrS.
+	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
@@ -229,7 +230,7 @@ main_lupe_tcidu_ld_cur:
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
-	addi	judri_j_a1,	judri_j_a1,	4
+	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
