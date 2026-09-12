@@ -511,7 +511,7 @@ zgitci_frob_1_pwm_idx:
  * .i xu cadga fa lo nu pilno lo re moi be lo'i rucyca'a lo me'oi .PWM. co'e
  * .i la .varik. cu jinvi le du'u lo me'oi .PWM. co'e cu mapti tu'a lo sance datnyvei pe'a
  *
- * [?: 0bXXXXX][sid: 0xXXX]
+ * [?: 0xXXXXX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
@@ -983,9 +983,8 @@ vrici_frob_dispatch_pre:
 	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	slli	t0,	klesi_t0,	1
 	auipc	t1,	0	// 4B
-	add	t0,	t0,	t1	// 4B
+	sh1add	t0,	t0,	t1	// 4B
 	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	c.jr	t0	// 2B
