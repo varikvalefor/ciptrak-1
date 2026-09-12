@@ -215,11 +215,11 @@ main_lupe_tcidu_lupe_vimcu:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	#define	sivni_t5	t5
+	#define	sivni_t4	t4
 	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
 	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
-	sh2add	sivni_t5,	vrc_s1,	sivniP_t4
-	sw	x0,	(sivni_t5)
+	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
+	sw	x0,	(sivni_t4)
 main_lupe_tcidu_ld_cur:
 	#define	datni2_t4	t4
 	// lw	datni_t3,	(datni_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
@@ -883,19 +883,15 @@ zgitci_frob_deaf_bixygau:
 
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 
-	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
 	// metfo: ga naja co'e gi...
 	//        addi	t0,	t0,	0x10000000
 	//
 	// .i jinvi le du'u lo me'oi .idx. cu jai to'e filri'a tu'a lo barda judri
 	// .i ku'i jinvi ga je le du'u lakne fa lo nu pilno lo me'oi .DATA. judri gi le du'u la'e zo'oi .0x10000000. pa moi lo'i me'oi .DATA. judri
+	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
 	slli	t1,	t1,	(28 - 1)
-	or	t0,	t0,	t1
-
-	// | + t1 * 8
-	// .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
-	bexti	t1,	a1,	0
-	sh3add	judri0_t0,	t0,	t1
+	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
+	sh3add	judri0_t0,	t1,	t0
 
 	sw	a2,	0(judri0_t0)
 	sw	a3,	4(judri0_t0)
@@ -1042,9 +1038,9 @@ vrici_frob_dispatch_pre:
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	slli	t0,	klesi_t0,	1
-	addi	t0,	t0,	2 + 2 * 4	// auipc + add + j
 	auipc	t1,	0	// 4B
 	add	t0,	t0,	t1	// 4B
+	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	c.jr	t0	// 2B
 	// | 0
@@ -1097,7 +1093,7 @@ vrici_frob_0:
 	lw	t0,	(t0)
 
 	sh2add	t1,	t1,	datni_a5
-	sh2add	t0,	t0,	t1
+	add	t0,	t0,	t1
 
 	sw	x0,	(t0)
 
@@ -1181,16 +1177,14 @@ vrici_frob_sio:
 vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
 	#define	sio_val_t2	t2
-	li	sio_j_t1,	SIO_BASE + GPIO_OUT_OFFSET
-	lw	sio_val_t2,	(sio_j_t1)
 
-	// bitmask
+	li	sio_j_t1,	SIO_BASE + GPIO_OUT_SET_OFFSET
 	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	addi	t3,	x0,	-1
-	bclr	t3,	t3,	pin_t0
-	slli	t4,	val_t5,	pin_t0
-	add	t3,	t3,	t4
+	binvi	val_t5,	val_t5,	0
+	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	and	sio_val_t2,	sio_val_t2,	t3
-	sw	sio_val_t2,	(sio_j_t1)
+	bset	t0,	x0,	val_t5
+
+	sw	t0,	(sio_j_t1)
+
 	ret
