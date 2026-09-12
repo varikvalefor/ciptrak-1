@@ -1153,10 +1153,11 @@ vrici_frob_sio:
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
-	andi	pin_t0,	a5,	31
 	bexti	t1,	a5,	SIVNI_RESET_BIT
 	beqz	t1,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
+
+	andi	pin_t0,	a5,	31
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	temp_t2,	IO_BANK0_BASE + 4
