@@ -462,9 +462,9 @@ zgitci_frob_1_pwm_div_slilu:
 	slli	t2,	t2,	30
 	xor	t6,	sub_inst_t5,	t2
 	sw	t6,	(t4)
+	fence.i
 
 	lh	div0_t4,	0(div_j_t3)	// Vgg71qqM.  lw opt
-	fence.i
 zgitci_frob_1_pwm_div_slilu_sesumji:
 	// lh	div0_t4,	0(div_j_t3)	// mv Vgg71qqM
 	sub	div0_t4,	div0_t4,	div_t0
