@@ -447,7 +447,6 @@ zgitci_frob_1_pwm_div_slilu:
 	/* DROP t[012456] */
 	#define	sivni_j_t1	t1
 	#define	sub_inst_t5	t5
-	#define	div0_t6	t6
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	addi	t1,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
@@ -464,6 +463,7 @@ zgitci_frob_1_pwm_div_slilu:
 	sw	t6,	(t4)
 	fence.i
 
+	#define	div0_t6	t6
 	lh	div0_t6,	0(div_j_t3)	// Vgg71qqM.  lw opt
 zgitci_frob_1_pwm_div_slilu_sesumji:
 	// lh	div0_t6,	0(div_j_t3)	// mv Vgg71qqM
