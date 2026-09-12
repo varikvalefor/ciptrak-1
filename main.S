@@ -190,11 +190,9 @@ main_lupe_tcidu:
 	#define	judri_t0	t0
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
-	#define	sivni_t6	t6
 	li	ctr_a0,	4
 	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a2,	vrc_s1,	CUR_ZGITCI0(0)
-	li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
@@ -207,18 +205,21 @@ main_lupe_tcidu_lupe_co_barda:
 	lw	datni_t3,	(datni_j_t2)	// zT9L5TrS.
 	// | .i la .varik. cu jimpe le du'u cumki fa lo nu na pilno
 	// .i ku'i la .varik. cu jinvi le du'u na'e vecnu pe'a tu'a zo'oi .li. ri'a tu'a zo'oi .lw.
+	li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_1
 	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
-	sub	sivni_t6,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
+	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
 	beq	t5,	datni_t3,	main_lupe_tcidu_ld_cur
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
-	// sub	sivni_t6,	sivni_t6,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
-	sh2add	sivni_t6,	vrc_s1,	sivni_t6
-	sw	x0,	(sivni_t6)
+	#define	sivni_t4	t4
+	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
+	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
+	sw	x0,	(sivni_t4)
 main_lupe_tcidu_ld_cur:
 	#define	datni2_t4	t4
 	// lw	datni_t3,	(datni_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
