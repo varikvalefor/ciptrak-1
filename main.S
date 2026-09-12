@@ -190,7 +190,7 @@ main_lupe_tcidu:
 	#define	judri_t0	t0
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
-	li	ctr_a0,	4
+	li	ctr_a0,	-4
 	addi	judri_j_a1,	vrc_s1,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a2,	vrc_s1,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
@@ -198,7 +198,7 @@ main_lupe_tcidu_lupe_co_barda:
 
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
-	addi	ctr_a0,	ctr_a0,	-1	// OcrdTMFf.  lw opt
+	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	#define	datni_j_t2	t2
 	add	datni_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -209,7 +209,7 @@ main_lupe_tcidu_lupe_co_barda:
 	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
-	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
+	add	sivniP_t4,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
 	beq	t5,	datni_t3,	main_lupe_tcidu_ld_cur
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
@@ -217,7 +217,7 @@ main_lupe_tcidu_lupe_vimcu:
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t4	t4
 	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
-	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	// add	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = - 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
 	sw	x0,	(sivni_t4)
 main_lupe_tcidu_ld_cur:
@@ -232,7 +232,7 @@ main_lupe_tcidu_ld_cur:
 	sw	datni_t3,	8(datni_cur_j_a2)
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
-	// addi	ctr_a0,	ctr_a0,	-1	// mv OcrdTMFf
+	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
 	addi	judri_j_a1,	judri_j_a1,	4
 	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
