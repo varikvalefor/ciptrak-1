@@ -1160,9 +1160,8 @@ vrici_frob_sio:
 	bset	t2,	t2,	pin_t0
 	sw	t2,	(t1)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
-	add	t1,	t1,	t2
+	sh3add	t1,	t2,	pin_t0	// 8 = 2 ^ 3
 	// li	t3,	5	// SIO fn; mv o5ZapudM
 	sw	t3,	(t1)
 vrici_frob_sio_post_init:
