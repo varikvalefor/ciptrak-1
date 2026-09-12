@@ -1152,8 +1152,8 @@ vrici_frob_sio:
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
-	bexti	t1,	a5,	SIVNI_RESET_BIT
-	beqz	t1,	vrici_frob_sio_post_init
+	bexti	t0,	a5,	SIVNI_RESET_BIT
+	beqz	t0,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 
 	andi	pin_t0,	a5,	31
