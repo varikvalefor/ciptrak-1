@@ -760,7 +760,7 @@ zgitci_frob_c000_sutra:
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
 	addi	sp,	sp,	-(3*4)
-	sw	ra,	(sp)
+	sw	ra,	0(sp)
 	sw	s2,	4(sp)
 	sw	s3,	8(sp)
 
@@ -785,7 +785,7 @@ zgitci_frob_c000_sutra_lupe:
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
-	lw	ra,	(sp)
+	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
 	addi	sp,	sp,	(3*4)
