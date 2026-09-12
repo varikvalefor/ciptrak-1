@@ -458,7 +458,7 @@ zgitci_frob_1_pwm_div_slilu:
 	add	div0_t1,	div0_t1,	t2
 	sh	div_t0,	0(div_j_t3)
 
-	/* DROP t[12]
+	/* DROP t[12] */
 
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_sampu:
