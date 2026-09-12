@@ -1145,14 +1145,14 @@ vrici_frob_denpaWfi:
 	sh	t1,	(t0)
 	fence.i
 	ret
-/* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
+/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
-	#define	SIVNI_RESET_BIT	6
+	#define	SIVNI_INIT_BIT	6
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
-	bexti	t0,	a5,	SIVNI_RESET_BIT
+	bexti	t0,	a5,	SIVNI_INIT_BIT
 	beqz	t0,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 
