@@ -390,7 +390,7 @@ zgitci_frob_1_pwm_xu_akti:
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
+	bnez	t1,	zgitci_frob_1_pwm_ctrl
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -405,7 +405,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-zgitci_frob_1_pwm_aktigau_se_lidne:
+zgitci_frob_1_pwm_ctrl:
 	/* DROP t[0-6] */
 
 	#define	gpio_ctrl_j_t0	t0
@@ -417,7 +417,7 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
 
-	//	j	zgitci_frob_1_pwm_aktigau_se_lidne	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
+	//	j	zgitci_frob_1_pwm_ctrl	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
@@ -499,7 +499,7 @@ zgitci_frob_1_pwm_idx:
  *
  * [23]
  *
- * [?: 0bXXXXX][sid: 0xXXX]
+ * [?: 0xXXXXX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
@@ -530,12 +530,22 @@ zgitci_frob_check_2:
 	// do it now, kid
 	#define	pwmval_t0	t0
 	#define	zts_a5	a5
+	#define	pwm_csr_a6	a6
 	/* .i la .varik. na birti lo du'u xu kau dukse le ka ce'u sampu
 	   .i xu zmadu fa lo nu zmiku pe'a lo nu se meirmoi muvgau pe'a
 	   TODO: FACKI */
 	lw	zts_a5,	(zts_j_t1)
+	li	a6,	PWM_BASE
 	add	t0,	zts_a5,	zts_sance_idx_t2
 	lw	pwmval_t0,	(t0)
+
+	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
+	li	t1,	0x14
+	mul	t1,	zgitci_a4,	t1
+	add	pwm_csr_a6,	a6,	t1
+	// DROP t1
+
+	sw	pwmval_t0,	(PWM_CHx_TOP_OFFSET(0) - PWM_CHx_CSR_OFFSET(0))(pwm_csr_a6)
 
 	// TODO: PWM crap
 
@@ -1031,9 +1041,8 @@ vrici_frob_dispatch_pre:
 	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	slli	t0,	klesi_t0,	1
 	auipc	t1,	0	// 4B
-	add	t0,	t0,	t1	// 4B
+	sh1add	t0,	t0,	t1	// 4B
 	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	c.jr	t0	// 2B
