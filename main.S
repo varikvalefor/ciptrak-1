@@ -696,9 +696,9 @@ zgitci_frob_ditto:
 	sh2add	t0,	vrc_s1,	t0
 	add	t0,	t0,	diff_a2
 
-	lw	a0,	0(t0)
-	lw	a1,	4(t0)
-	lw	a2,	8(t0)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
 	lw	a3,	0xC(t0)
 	jal	zgitci_frob
 
