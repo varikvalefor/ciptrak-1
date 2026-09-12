@@ -462,12 +462,12 @@ zgitci_frob_1_pwm_div_slilu:
 	// fence.i	// mv Vgg71qqM
 
 	#define	div0_t1	t1
-	lh	div0_t1,	0(div_j_t3)
+	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 	fence.i	// Vgg71qqM.  lh opt
 zgitci_frob_1_pwm_div_slilu_sesumji:
 	sub	div0_t1,	div0_t1,	div_t0
 	sw	sub_inst_t5,	(sub_inst_j_t4)
-	sh	div0_t1,	0(div_j_t3)
+	sh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 
 	/* DROP t[45] */
 
