@@ -462,12 +462,12 @@ zgitci_frob_1_pwm_div_slilu:
 	slli	t1,	t1,	30
 	xor	t6,	sub_inst_t5,	t1
 	sw	t6,	(sub_inst_j_t4)
-	fence.i
+	// fence.i	// mv Vgg71qqM
 
 	#define	div0_t1	t1
-	lh	div0_t1,	0(div_j_t3)	// Vgg71qqM.  lw opt
+	lh	div0_t1,	0(div_j_t3)
+	fence.i	// Vgg71qqM.  lw opt
 zgitci_frob_1_pwm_div_slilu_sesumji:
-	// lh	div0_t1,	0(div_j_t3)	// mv Vgg71qqM
 	sub	div0_t1,	div0_t1,	div_t0
 	sw	sub_inst_t5,	(sub_inst_j_t4)
 	sh	div0_t1,	0(div_j_t3)
