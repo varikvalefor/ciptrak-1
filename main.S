@@ -547,6 +547,7 @@ zgitci_frob_check_2:
 
 	// TODO: PWM crap
 
+	// | TODO: .i na mapti tu'a la'oi .master.
 	bexti	t1,	a0,	0
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
