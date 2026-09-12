@@ -453,7 +453,7 @@ zgitci_frob_1_pwm_div_slilu:
 
 	// cnino te frinu
 	lh	div0_t1,	0(div_j_t3)
-	bexti	t0,	t2,	0
+	bexti	t2,	t2,	0
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
 	mul	t2,	div_t0,	t2
