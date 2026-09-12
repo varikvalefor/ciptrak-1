@@ -436,7 +436,7 @@ zgitci_frob_1_pwm_div:
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	#define	SIVNI_DIV_OFFSET	4
+	#define	SIVNI_DIV_OFFSET	0
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
@@ -450,13 +450,13 @@ zgitci_frob_1_pwm_div_slilu:
 	lw	t2,	(sivni_j_t1)
 
 	// cnino te frinu
-	lh	div0_t1,	0(div_j_t3)
+	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 	bexti	t2,	t2,	0
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
 	mul	t2,	div_t0,	t2
 	add	div0_t1,	div0_t1,	t2
-	sh	div_t0,	0(div_j_t3)
+	sh	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 
 	/* DROP t[12] */
 
