@@ -720,17 +720,16 @@ zgitci_frob_c000_mv_cont:
 
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 	addi	sp,	sp,	-4
-	// sw	ra,	(sp)	// mv ApIDJx61
+	sw	ra,	0(sp)
 
 	add	t0,	sezvati_a2,	patn_a1
-	lw	a0,	(t0)
-	lw	a1,	4(t0)
-	lw	a2,	8(t0)
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
 	lw	a3,	0xC(t0)
-	sw	ra,	(sp)	// ApIDJx61.  lw opt
 	jal	zgitci_frob
 
-	lw	ra,	(sp)
+	lw	ra,	0(sp)
 	addi	sp,	sp,	4
 
 	ret
@@ -761,7 +760,7 @@ zgitci_frob_c000_sutra:
 	bne	a0,	t0,	zgitci_frob_c000_denpa
 
 	addi	sp,	sp,	-(3*4)
-	sw	ra,	(sp)
+	sw	ra,	0(sp)
 	sw	s2,	4(sp)
 	sw	s3,	8(sp)
 
@@ -786,7 +785,7 @@ zgitci_frob_c000_sutra_lupe:
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
-	lw	ra,	(sp)
+	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
 	addi	sp,	sp,	(3*4)
@@ -1154,13 +1153,13 @@ vrici_frob_denpaWfi:
 	sh	t1,	(t0)
 	fence.i
 	ret
-/* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
+/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
-	#define	SIVNI_RESET_BIT	6
+	#define	SIVNI_INIT_BIT	6
 	#define	pin_t0	t0
 	andi	pin_t0,	a5,	31
-	bexti	t1,	a5,	SIVNI_RESET_BIT
+	bexti	t1,	a5,	SIVNI_INIT_BIT
 	beqz	t1,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 	li	t1,	SIO_BASE + GPIO_OE_SET_OFFSET
@@ -1169,9 +1168,8 @@ vrici_frob_sio:
 	bset	t2,	t2,	pin_t0
 	sw	t2,	(t1)
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t1,	pin_t0,	3	// 8 = 2 ^ 3
 	li	t2,	IO_BANK0_BASE + 4
-	add	t1,	t1,	t2
+	sh3add	t1,	t2,	pin_t0	// 8 = 2 ^ 3
 	// li	t3,	5	// SIO fn; mv o5ZapudM
 	sw	t3,	(t1)
 vrici_frob_sio_post_init:
@@ -1183,7 +1181,7 @@ vrici_frob_sio_post_init:
 	binvi	val_t5,	val_t5,	0
 	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	t0,	x0,	val_t5
+	bset	t0,	x0,	pin_t0
 
 	sw	t0,	(sio_j_t1)
 
