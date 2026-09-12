@@ -360,8 +360,9 @@ zgitci_frob:
 	sltu	t0,	a0,	t0
 	mul	a0,	a0,	t0
 
-	auipc	t0,	(2 + 4 + 2)	// 2B
+	auipc	t0,	0	// 2B
 	sh1add	t0,	t0,	a0	// 4B
+	addi	t0,	t0,	2 + 4 + 2 + 2	// 2B
 	c.jr	t0	// 2B
 	// dispatch
 	ret
