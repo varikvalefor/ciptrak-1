@@ -436,7 +436,7 @@ zgitci_frob_1_pwm_div:
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	#define	SIVNI_DIV_OFFSET	4
+	#define	SIVNI_DIV_OFFSET	0
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
