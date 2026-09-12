@@ -463,13 +463,13 @@ zgitci_frob_1_pwm_div_slilu:
 	sw	t6,	(t4)
 	fence.i
 
-	#define	div0_t6	t6
-	lh	div0_t6,	0(div_j_t3)	// Vgg71qqM.  lw opt
+	#define	div0_t1	t1
+	lh	div0_t1,	0(div_j_t3)	// Vgg71qqM.  lw opt
 zgitci_frob_1_pwm_div_slilu_sesumji:
-	// lh	div0_t6,	0(div_j_t3)	// mv Vgg71qqM
-	sub	div0_t6,	div0_t6,	div_t0
+	// lh	div0_t1,	0(div_j_t3)	// mv Vgg71qqM
+	sub	div0_t1,	div0_t1,	div_t0
 	sw	sub_inst_t5,	(t4)
-	sh	div0_t6,	0(div_j_t3)
+	sh	div0_t1,	0(div_j_t3)
 
 	/* DROP t[45] */
 
