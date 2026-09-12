@@ -129,6 +129,12 @@ main_init_periph:
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
 	sw	t1,	(resets_t2)
 
+	// | ni'o xu dukse
+	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
+	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	li	t1,	(2<<4) - 1
+	sw	t0,	(t1)
+
 main_lupe_pre:
 	#define	vrc_s1	s1
 	la	vrc_s1,	cur
