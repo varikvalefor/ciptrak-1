@@ -499,7 +499,7 @@ zgitci_frob_1_pwm_idx:
  *
  * [23]
  *
- * [?: 0bXXXXX][sid: 0xXXX]
+ * [?: 0xXXXXX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
