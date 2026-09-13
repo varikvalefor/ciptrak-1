@@ -134,6 +134,18 @@ main_init_periph:
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
 	li	t1,	(2<<4) - 1
 	sw	t0,	(t1)
+main_init_periph_pwm_reset:
+	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
+	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
+	sw	t1,	(t0)
+
+	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
+main_init_periph_pwm_reset_denpa:
+	lw	t2,	(t0)
+	and	t2,	t2,	t1
+	bne	t1,	t2,	main_init_periph_pwm_reset_denpa
 
 main_lupe_pre:
 	#define	vrc_s1	s1
@@ -386,25 +398,11 @@ zgitci_frob_1_pwm_xu_akti:
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
 	li	t1,	PWM_EN_OFFSET
-	add	t0,	pwm_base_a6,	t1
+	add	t1,	pwm_base_a6,	t1
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
-	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_ctrl
-zgitci_frob_1_pwm_aktigau:
-	/* DROP t[0-6] */
-
-	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
-	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(t0)
-
-	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
-	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
-zgitci_frob_1_pwm_aktigau_denpa:
-	lw	t2,	(t0)
-	and	t2,	t2,	t1
-	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
+	bset	t0,	t0,	pwm_slice_a5
+	sw	t0,	0(t1)
 zgitci_frob_1_pwm_ctrl:
 	/* DROP t[0-6] */
 
