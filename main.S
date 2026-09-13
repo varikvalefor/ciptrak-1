@@ -129,6 +129,12 @@ main_init_periph:
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
 	sw	t1,	(resets_t2)
 
+	// | ni'o xu dukse
+	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
+	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	li	t1,	(2<<4) - 1
+	sw	t0,	(t1)
+
 main_lupe_pre:
 	#define	vrc_s0	s1
 	la	vrc_s0,	cur
@@ -190,7 +196,7 @@ main_lupe_tcidu:
 	#define	judri_t0	t0
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
-	li	ctr_a0,	4
+	li	ctr_a0,	-4
 	addi	judri_j_a1,	vrc_s0,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a2,	vrc_s0,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
@@ -198,42 +204,45 @@ main_lupe_tcidu_lupe_co_barda:
 
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
-	addi	ctr_a0,	ctr_a0,	-1	// OcrdTMFf.  lw opt
-	#define	datni_j_t2	t2
-	add	datni_j_t2,	judri_t0,	sezvati_t1
+	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
+	#define	datni_niho_j_t2	t2
+	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
-	lw	datni_t3,	(datni_j_t2)	// zT9L5TrS.
-	// | .i la .varik. cu jimpe le du'u cumki fa lo nu na pilno
-	// .i ku'i la .varik. cu jinvi le du'u na'e vecnu pe'a tu'a zo'oi .li. ri'a tu'a zo'oi .lw.
-	li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_1
+	lw	datni_t3,	(datni_niho_j_t2)	// zT9L5TrS.
+	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
-	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// NZwe53kb_2.  lw opt
+	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_ld_cur
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t4	t4
+<<<<<<< HEAD
 	// li	sivniP_t4,	CUR_ZGITCI_SIVNI_OFFSET + 4	// .i ronsa zo'e pe zoi zoi. NZwe53kb_1 .zoi.
 	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s0,	sivniP_t4
+=======
+	// add	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = - 4 + CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
+>>>>>>> master
 	sw	x0,	(sivni_t4)
 main_lupe_tcidu_ld_cur:
 	#define	datni2_t4	t4
-	// lw	datni_t3,	(datni_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
-	lw	datni2_t4,	4(datni_j_t2)
+	// lw	datni_t3,	(datni_niho_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
+	lw	datni2_t4,	4(datni_niho_j_t2)
 	sw	datni_t3,	(datni_cur_j_a2)
 	sw	datni2_t4,	4(datni_cur_j_a2)
 
-	lw	datni_t3,	8(datni_j_t2)
-	lw	datni2_t4,	0xC(datni_j_t2)
+	lw	datni_t3,	8(datni_niho_j_t2)
+	lw	datni2_t4,	0xC(datni_niho_j_t2)
 	sw	datni_t3,	8(datni_cur_j_a2)
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
-	// addi	ctr_a0,	ctr_a0,	-1	// mv OcrdTMFf
-	addi	judri_j_a1,	judri_j_a1,	4
+	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
+	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
@@ -387,7 +396,7 @@ zgitci_frob_1_pwm_xu_akti:
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_aktigau_se_lidne
+	bnez	t1,	zgitci_frob_1_pwm_ctrl
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -402,7 +411,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-zgitci_frob_1_pwm_aktigau_se_lidne:
+zgitci_frob_1_pwm_ctrl:
 	/* DROP t[0-6] */
 
 	#define	gpio_ctrl_j_t0	t0
@@ -414,7 +423,7 @@ zgitci_frob_1_pwm_aktigau_se_lidne:
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
 
-	//	j	zgitci_frob_1_pwm_aktigau_se_lidne	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
+	//	j	zgitci_frob_1_pwm_ctrl	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
@@ -496,7 +505,7 @@ zgitci_frob_1_pwm_idx:
  *
  * [23]
  *
- * [?: 0bXXXXX][sid: 0xXXX]
+ * [?: 0xXXXXX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
@@ -527,12 +536,22 @@ zgitci_frob_check_2:
 	// do it now, kid
 	#define	pwmval_t0	t0
 	#define	zts_a5	a5
+	#define	pwm_csr_a6	a6
 	/* .i la .varik. na birti lo du'u xu kau dukse le ka ce'u sampu
 	   .i xu zmadu fa lo nu zmiku pe'a lo nu se meirmoi muvgau pe'a
 	   TODO: FACKI */
 	lw	zts_a5,	(zts_j_t1)
+	li	a6,	PWM_BASE
 	add	t0,	zts_a5,	zts_sance_idx_t2
 	lw	pwmval_t0,	(t0)
+
+	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
+	li	t1,	0x14
+	mul	t1,	zgitci_a4,	t1
+	add	pwm_csr_a6,	a6,	t1
+	// DROP t1
+
+	sw	pwmval_t0,	(PWM_CHx_TOP_OFFSET(0) - PWM_CHx_CSR_OFFSET(0))(pwm_csr_a6)
 
 	// TODO: PWM crap
 
@@ -1028,9 +1047,8 @@ vrici_frob_dispatch_pre:
 	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	slli	t0,	klesi_t0,	1
 	auipc	t1,	0	// 4B
-	add	t0,	t0,	t1	// 4B
+	sh1add	t0,	t0,	t1	// 4B
 	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
 	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
 	c.jr	t0	// 2B
@@ -1145,13 +1163,13 @@ vrici_frob_denpaWfi:
 	sh	t1,	(t0)
 	fence.i
 	ret
-/* [0x00][0xXXXX][0bX][reset: 0bX][val: 0bX][pin:0bXXXXX] */
+/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
-	#define	SIVNI_RESET_BIT	6
+	#define	SIVNI_INIT_BIT	6
 	#define	pin_t0	t0
 	andi	pin_t0,	a5,	31
-	bexti	t1,	a5,	SIVNI_RESET_BIT
+	bexti	t1,	a5,	SIVNI_INIT_BIT
 	beqz	t1,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 	li	t1,	SIO_BASE + GPIO_OE_SET_OFFSET
@@ -1173,7 +1191,7 @@ vrici_frob_sio_post_init:
 	binvi	val_t5,	val_t5,	0
 	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	t0,	x0,	val_t5
+	bset	t0,	x0,	pin_t0
 
 	sw	t0,	(sio_j_t1)
 
