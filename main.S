@@ -673,7 +673,8 @@ zgitci_frob_check_pio_gpio_post:
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t1)
 
-	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
+	slli	t0,	a2,	3 + 4 * 3
+	srli	t0,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
 	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
 
 	li	t0,	1 | (1<<2)
