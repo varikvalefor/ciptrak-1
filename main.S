@@ -410,8 +410,6 @@ zgitci_frob_1_pwm_ctrl:
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
-
-	//	j	zgitci_frob_1_pwm_ctrl	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
@@ -633,7 +631,7 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXXX][pioIdx: 0xXXX][nibarda: 0bX 0xX]
+ * [?: 0xXXXXXX][?: 0bX][pioIdx: 0bXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
@@ -649,29 +647,27 @@ zgitci_frob_check_pio:
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
-	add	t0,	t0,	t1
+	sh3add	t0,	t1,	zgitci_a4
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
 	andi	t1,	t1,	0b11
-	addi	t1,	t1,	6
-	sw	t1,	(t0)
+	addi	t2,	t1,	6
+	sw	t2,	(t0)
 zgitci_frob_check_pio_gpio_post:
-	#define	dma_t1	t1
-	li	dma_t1,	DMA_BASE
+	#define	dma_t0	t0
+	li	dma_t0,	DMA_BASE
 
-	#define	max_t0	t0
-	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
+
+	#define	max_t1	t1
+	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
-	sw	max_t0,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t1)
+	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
-	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t1)
+	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
-	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
-	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
-
-	li	t0,	1 | (1<<2)
-	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
+	li	t1,	1 | (1<<2)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
 
 	ret
 
