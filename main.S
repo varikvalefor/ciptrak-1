@@ -639,7 +639,7 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x???][?: 0bXXX][pioIdx: 0xXXX][nibarda: 0bX 0xX]
+ * [?: 0xXXXXXX][?: 0bX][pioIdx: 0bXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
@@ -658,8 +658,8 @@ zgitci_frob_check_pio:
 	li	t1,	IO_BANK0_BASE + 4
 	add	t0,	t0,	t1
 	sh3add	t0,	t1,	zgitci_a4
-	slli	t1,	a2,	3 + 4 * 3
-	srli	t1,	t1,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
+	andi	t1,	t1,	0b11
 	addi	t1,	t1,	6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
@@ -673,8 +673,8 @@ zgitci_frob_check_pio_gpio_post:
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
-	slli	t1,	a2,	3 + 4 * 3
-	srli	t1,	t1,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
+	andi	t1,	t1,	0b11
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	li	t1,	1 | (1<<2)
