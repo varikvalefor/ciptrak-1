@@ -355,7 +355,7 @@ main_reset_denpa_barda_lupe:
 #define	zgitci_a4	a4
 /* TODO: .i xu cadga fa lo nu bixygau pe'a fi lo me'oi .switch. co'e  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti tu'a lo so'i co'e... kei jenai ku'i le ka ce'u mapti tu'a lo ke jai .indika ke'e namcu */
 zgitci_frob:
-	bnez	a0,	zgitci_frob_mapti_0
+	bnez	a0,	zgitci_frob_1_pwm
 	ret
 
 /* PWM
