@@ -660,11 +660,13 @@ zgitci_frob_check_pio:
 	sh3add	t0,	t1,	zgitci_a4
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
 	andi	t1,	t1,	0b11
-	addi	t1,	t1,	6
-	sw	t1,	(t0)
+	addi	t2,	t1,	6
+	sw	t2,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t0	t0
 	li	dma_t0,	DMA_BASE
+
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	#define	max_t1	t1
 	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
@@ -672,10 +674,6 @@ zgitci_frob_check_pio_gpio_post:
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
-
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
-	andi	t1,	t1,	0b11
-	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	li	t1,	1 | (1<<2)
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
