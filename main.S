@@ -658,7 +658,8 @@ zgitci_frob_check_pio:
 	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
 	add	t0,	t0,	t1
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
+	slli	t1,	a2,	3 + 4 * 3
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
 	andi	t1,	t1,	0b11
 	addi	t1,	t1,	6
 	sw	t1,	(t0)
