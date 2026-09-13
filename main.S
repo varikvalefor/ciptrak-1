@@ -849,6 +849,7 @@ zgitci_frob_deaf_xosc:
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
+	zext.h	t0,	a1
 	sh	t0,	CUR_XOSC_SNIDU(vrc_s1)
 
 	bexti	t0,	a2,	SIVNI_X1_BIT	// temp
