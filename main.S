@@ -860,6 +860,8 @@ zgitci_frob_deaf_xosc:
 	srli	t1,	t1,	4 * (8 - 3)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
+zgitci_frob_deaf_xosc_post:
+	ret
 
 /*
  * BIXYGAU PE'A
