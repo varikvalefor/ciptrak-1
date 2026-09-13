@@ -595,7 +595,7 @@ zgitci_frob_damri_sezvati_incr_post:
 
 zgitci_frob_damri_sha:
 	bexti	t0,	a2,	SIVNI_A2_SHA256_NOISE_BIT
-	beqz	t0,	zgitci_frob_damri_sha_post
+	beqz	t0,	zgitci_frob_damri_cusku
 
 	li	t0,	1
 	sw	t0,	CUR_SHA_EN(vrc_s1)
