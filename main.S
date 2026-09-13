@@ -341,7 +341,7 @@ main_reset_denpa:
 main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lh	t1,	0(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
+	lh	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
 	lh	t0,	CUR_XOSC_SNIDU(vrc_s1)
@@ -421,12 +421,11 @@ zgitci_frob_1_pwm_div:
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// | t0 = (a1 >> 2) & (2^12 - 1)
+	// | t0 = (a1 >> SIVNI_A1_JDIKA_BIT) & (2^12 - 1)
 	slli	t0,	a1,	(32 - SIVNI_A1_JDIKA_BIT)
 	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
-	// | TODO: .i xu mapti
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
 	bexti	jdika_t2,	a1,	SIVNI_A1_JDIKA_BIT
 
@@ -434,13 +433,14 @@ zgitci_frob_1_pwm_div:
 	#define	div_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
-	addi	t4,	pwm_base_a6,	4
 	add	div_j_t3,	t3,	t4
 
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	#define	SIVNI_DIV_OFFSET	0
+	// DROP t[456]
+
+	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
