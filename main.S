@@ -460,7 +460,7 @@ zgitci_frob_1_pwm_div_slilu:
 	addi	t2,	t2,	-1
 	mul	t2,	div_t0,	t2
 	add	div0_t1,	div0_t1,	t2
-	sh	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
+	sh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 
 	/* DROP t[12] */
 
