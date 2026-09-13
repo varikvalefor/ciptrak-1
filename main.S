@@ -674,7 +674,7 @@ zgitci_frob_check_pio_gpio_post:
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
 	slli	t1,	a2,	3 + 4 * 3
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
+	srli	t1,	t1,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	li	t1,	1 | (1<<2)
