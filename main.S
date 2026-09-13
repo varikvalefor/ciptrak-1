@@ -655,9 +655,9 @@ zgitci_frob_check_pio:
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
 	add	t0,	t0,	t1
+	sh3add	t0,	t1,	zgitci_a4
 	slli	t1,	a2,	3 + 4 * 3
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
 	andi	t1,	t1,	0b11
