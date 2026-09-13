@@ -1147,7 +1147,6 @@ vrici_frob_denpaV:
 
 	ret
 vrici_frob_denpaWfi:
-	// TODO: .i xu banzuka
 	li	t1,	0x0001	// nop
 	la	t0,	main_reset_denpa
 	sh	t1,	(t0)
