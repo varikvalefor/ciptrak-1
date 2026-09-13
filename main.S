@@ -341,7 +341,7 @@ main_reset_denpa:
 main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lh	t1,	0(t0)	// TODO: .i xu mapti  .i morji le du'u mu'oi glibau. little-endian .glibau.
+	lh	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
 	lh	t0,	CUR_XOSC_SNIDU(vrc_s1)
@@ -416,19 +416,16 @@ zgitci_frob_1_pwm_ctrl:
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
-
-	//	j	zgitci_frob_1_pwm_ctrl	// TODO: .i mapti ma  .i na morji lo du'u cusku ki'u ma kau
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// | t0 = (a1 >> 2) & (2^12 - 1)
+	// | t0 = (a1 >> SIVNI_A1_JDIKA_BIT) & (2^12 - 1)
 	slli	t0,	a1,	(32 - SIVNI_A1_JDIKA_BIT)
 	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
-	// | TODO: .i xu mapti
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
 	bexti	jdika_t2,	a1,	SIVNI_A1_JDIKA_BIT
 
@@ -436,11 +433,12 @@ zgitci_frob_1_pwm_div:
 	#define	div_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
-	addi	t4,	pwm_base_a6,	4
 	add	div_j_t3,	t3,	t4
 
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
+
+	// DROP t[456]
 
 	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
@@ -639,7 +637,7 @@ zgitci_frob_damri_cusku:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0x????][?: 0bXXX][pioIdx: 0xXXX][nibarda: 0bX 0xX]
+ * [?: 0xXXXXXX][?: 0bX][pioIdx: 0bXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
  *   .i lo me'oi .nibarda. cu te sumji li pa lo ni barda fa lo'i velski be lo me'oi .PIO. co'e
  *
@@ -655,29 +653,27 @@ zgitci_frob_check_pio:
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t0,	zgitci_a4,	3
 	li	t1,	IO_BANK0_BASE + 4
-	add	t0,	t0,	t1
+	sh3add	t0,	t1,	zgitci_a4
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
 	andi	t1,	t1,	0b11
-	addi	t1,	t1,	6
-	sw	t1,	(t0)
+	addi	t2,	t1,	6
+	sw	t2,	(t0)
 zgitci_frob_check_pio_gpio_post:
-	#define	dma_t1	t1
-	li	dma_t1,	DMA_BASE
+	#define	dma_t0	t0
+	li	dma_t0,	DMA_BASE
 
-	#define	max_t0	t0
-	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
+
+	#define	max_t1	t1
+	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
-	sw	max_t0,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t1)
+	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
-	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t1)
+	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
-	li	t0,	??	// TODO: .i mapti fa lo xo moi be lo'i me'oi .PIO. co'e
-	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
-
-	li	t0,	1 | (1<<2)
-	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
+	li	t1,	1 | (1<<2)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
 
 	ret
 
@@ -1151,7 +1147,6 @@ vrici_frob_denpaV:
 
 	ret
 vrici_frob_denpaWfi:
-	// TODO: .i xu banzuka
 	li	t1,	0x0001	// nop
 	la	t0,	main_reset_denpa
 	sh	t1,	(t0)
