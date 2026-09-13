@@ -659,7 +659,7 @@ zgitci_frob_check_pio:
 	add	t0,	t0,	t1
 	sh3add	t0,	t1,	zgitci_a4
 	slli	t1,	a2,	3 + 4 * 3
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
+	srli	t1,	t1,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
 	addi	t1,	t1,	6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
