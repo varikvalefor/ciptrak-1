@@ -663,22 +663,22 @@ zgitci_frob_check_pio:
 	addi	t1,	t1,	6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
-	#define	dma_t1	t1
-	li	dma_t1,	DMA_BASE
+	#define	dma_t0	t0
+	li	dma_t0,	DMA_BASE
 
-	#define	max_t0	t0
-	andi	max_t0,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	#define	max_t1	t1
+	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
-	sw	max_t0,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t1)
+	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
-	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t1)
+	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
-	slli	t0,	a2,	3 + 4 * 3
-	srli	t0,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
-	sw	t0,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t1)
+	slli	t1,	a2,	3 + 4 * 3
+	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT + 3 + 4 * 3
+	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
-	li	t0,	1 | (1<<2)
-	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t1)
+	li	t1,	1 | (1<<2)
+	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
 
 	ret
 
