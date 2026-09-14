@@ -648,7 +648,7 @@ zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_MASK	0b11
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
-	bclri	t0,	a0,	16
+	bclri	t0,	a0,	4*4
 	addi	t0,	t0,	-1
 	li	t1,	1
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
