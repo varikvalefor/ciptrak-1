@@ -645,6 +645,7 @@ zgitci_frob_damri_cusku:
  */
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
+	#define	SIVNI_A2_PIOIDX_MASK	0b11
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	16
@@ -656,7 +657,7 @@ zgitci_frob_check_pio:
 	li	t1,	IO_BANK0_BASE + 4
 	sh3add	t0,	t1,	zgitci_a4
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
-	andi	t1,	t1,	0b11
+	andi	t1,	t1,	SIVNI_A2_PIOIDX_MASK
 	addi	t1,	t1,	6	// p590 DS; pio0 = 6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
