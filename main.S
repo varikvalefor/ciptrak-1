@@ -364,6 +364,7 @@ zgitci_frob:
 	addi	t0,	t0,	2 + 4 + 2 + 2	// 2B
 	c.jr	t0	// 2B
 	// dispatch
+	// | 0
 	ret
 	c.j	zgitci_frob_1_pwm
 	c.j	zgitci_frob_check_2
