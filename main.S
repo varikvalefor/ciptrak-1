@@ -996,21 +996,13 @@ vrici_frob_dispatch:
 	c.jr	t0	// 2B
 	// | 0
 	ret
-	// | 1
 	c.j	vrici_frob_denpa
-	// | 2
 	c.j	vrici_frob_j
-	// | 3
 	c.j	vrici_frob_0
-	// | 4
 	c.j	vrici_frob_jog
-	// | 5
 	c.j	vrici_frob_sivni
-	// | 6
 	c.j	vrici_frob_denpaV
-	// | 7
 	c.j	vrici_frob_denpaWfi
-	// | 8
 	c.j	vrici_frob_sio
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
