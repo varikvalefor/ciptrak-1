@@ -686,7 +686,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * [?: 0xXXXX][ctr: 0xXXXX]
+ * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
@@ -727,7 +727,14 @@ zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
+	/* DROP t[01] */
+
+	bexti	t0,	SIVNI_J_BIT
+	bnez	t0,	zgitci_frob_c000_mv_frob
+	ret
+zgitci_frob_c000_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
+
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
