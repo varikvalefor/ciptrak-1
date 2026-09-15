@@ -1111,15 +1111,10 @@ vrici_frob_jog:
 
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
-	beqz	sign_t1,	vrici_frob_jog_sesumji	// DROP t1
-	// | ni'o jimpe le du'u la'oi .sh2add. mapti  .i ku'i jinvi le du'u zmadu le me'oi .slli. co'e cu zmadu fi le ka ce'u panra la'oi .vrici_frob_jog_sesumji. le ka ce'u jai snidu
-	slli	datni_a5,	datni_a5,	2
-	add	sezvati_t2,	sezvati_t2,	datni_a5
-	sw	sezvati_t2,	(sezvati_j_t0)
-	ret
-vrici_frob_jog_sesumji:
-	slli	datni_a5,	datni_a5,	2
-	sub	sezvati_t2,	sezvati_t2,	datni_a5
+	slli	t1,	sign_t1,	1
+	addi	t1,	t1,	-1
+	mul	t1,	datni_a5,	t1	// s/add/sub/?
+	add	sezvati_t2,	sezvati_t2,	t1
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 // | TODO: .i xu mapti
