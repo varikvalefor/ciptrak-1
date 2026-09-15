@@ -804,7 +804,7 @@ zgitci_frob_c000_sutra_post:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s1,	t0
-	sw	judri_s2,	t0
+	sw	judri_s2,	(t0)
 zgitci_frob_c000_fanmo:
 	ret
 
