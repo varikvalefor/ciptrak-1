@@ -447,33 +447,22 @@ zgitci_frob_1_pwm_div_basti:
 zgitci_frob_1_pwm_div_slilu:
 	/* DROP t[012456] */
 	#define	sivni_j_t1	t1
-	#define	sub_inst_j_t4	t4
-	#define	sub_inst_t5	t5
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	addi	t1,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	sivni_j_t1,	vrc_s1,	t1
 	lw	t2,	(sivni_j_t1)
-	la	sub_inst_j_t4,	zgitci_frob_1_pwm_div_slilu_sesumji
-	lw	sub_inst_t5,	(sub_inst_j_t4)
 
-	bexti	t1,	t1,	0
-	// | s/sub/add/?
-	// p585 riscv-unprivileged.pdf
-	slli	t1,	t1,	30
-	xor	t6,	sub_inst_t5,	t1
-	sw	t6,	(sub_inst_j_t4)
-	// fence.i	// mv Vgg71qqM
-
-	#define	div0_t1	t1
+	// cnino te frinu
 	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
-	fence.i	// Vgg71qqM.  lh opt
-zgitci_frob_1_pwm_div_slilu_sesumji:
-	sub	div0_t1,	div0_t1,	div_t0
-	sw	sub_inst_t5,	(sub_inst_j_t4)
+	bexti	t2,	t2,	0
+	slli	t2,	t2,	1
+	addi	t2,	t2,	-1
+	mul	t2,	div_t0,	t2
+	add	div0_t1,	div0_t1,	t2
 	sh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 
-	/* DROP t[45] */
+	/* DROP t[12] */
 
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_sampu:
