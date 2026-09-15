@@ -1155,8 +1155,8 @@ vrici_frob_sio:
 	andi	pin_t0,	a5,	31
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	temp_t2,	IO_BANK0_BASE + 4
-	sh3add	t1,	temp_t2,	pin_t0	// 8 = 2 ^ 3
+	li	t1,	IO_BANK0_BASE + 4
+	sh3add	t1,	t1,	pin_t0	// 8 = 2 ^ 3
 	li	temp_t2,	5	// SIO fn
 	sw	temp_t2,	(t1)
 
