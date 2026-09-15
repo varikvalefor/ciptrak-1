@@ -210,11 +210,11 @@ main_lupe_tcidu_lupe_co_barda:
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_niho_j_t2)	// zT9L5TrS.
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
-	beqz	datni_t3,	main_lupe_tcidu_ld_cur_fanmo
+	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
-	beq	t5,	datni_t3,	main_lupe_tcidu_ld_cur
+	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
@@ -223,7 +223,7 @@ main_lupe_tcidu_lupe_vimcu:
 	// add	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = - 4 + CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s1,	sivniP_t4
 	sw	x0,	(sivni_t4)
-main_lupe_tcidu_ld_cur:
+main_lupe_tcidu_lupe_ld_cur:
 	#define	datni2_t4	t4
 	// lw	datni_t3,	(datni_niho_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
 	lw	datni2_t4,	4(datni_niho_j_t2)
@@ -355,7 +355,7 @@ main_reset_denpa_barda_lupe:
 #define	zgitci_a4	a4
 /* TODO: .i xu cadga fa lo nu bixygau pe'a fi lo me'oi .switch. co'e  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti tu'a lo so'i co'e... kei jenai ku'i le ka ce'u mapti tu'a lo ke jai .indika ke'e namcu */
 zgitci_frob:
-	bnez	a0,	zgitci_frob_mapti_0
+	bnez	a0,	zgitci_frob_1_pwm
 	ret
 
 /* PWM
@@ -595,7 +595,7 @@ zgitci_frob_damri_sezvati_incr_post:
 
 zgitci_frob_damri_sha:
 	bexti	t0,	a2,	SIVNI_A2_SHA256_NOISE_BIT
-	beqz	t0,	zgitci_frob_damri_sha_post
+	beqz	t0,	zgitci_frob_damri_cusku
 
 	li	t0,	1
 	sw	t0,	CUR_SHA_EN(vrc_s1)
@@ -645,9 +645,10 @@ zgitci_frob_damri_cusku:
  */
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
+	#define	SIVNI_A2_PIOIDX_MASK	0b11
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
-	bclri	t0,	a0,	16
+	bclri	t0,	a0,	4*4
 	addi	t0,	t0,	-1
 	li	t1,	1
 	bgtu	t0,	t1,	zgitci_frob_c000_mv
@@ -656,9 +657,9 @@ zgitci_frob_check_pio:
 	li	t1,	IO_BANK0_BASE + 4
 	sh3add	t0,	t1,	zgitci_a4
 	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
-	andi	t1,	t1,	0b11
-	addi	t2,	t1,	6
-	sw	t2,	(t0)
+	andi	t1,	t1,	SIVNI_A2_PIOIDX_MASK
+	addi	t1,	t1,	6	// p590 DS; pio0 = 6
+	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t0	t0
 	li	dma_t0,	DMA_BASE
@@ -666,8 +667,7 @@ zgitci_frob_check_pio_gpio_post:
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	#define	max_t1	t1
-	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci no cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
-	// | TODO: .i xu frili cumki fa lo nu zengau pe'a fi le ka ce'u jai zilsutra
+	andi	max_t1,	a2,	(1<<5)-1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
@@ -860,6 +860,8 @@ zgitci_frob_deaf_xosc:
 	srli	t1,	t1,	4 * (8 - 3)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
+zgitci_frob_deaf_xosc_post:
+	ret
 
 /*
  * BIXYGAU PE'A
@@ -966,7 +968,7 @@ zgitci_frob_slurp:
 	andi	dma_idx_t2,	t2,	0xF
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	slli	t2,	dma_idx_t2,	6	// * 64
+	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
@@ -1044,21 +1046,13 @@ vrici_frob_dispatch:
 	c.jr	t0	// 2B
 	// | 0
 	ret
-	// | 1
 	c.j	vrici_frob_denpa
-	// | 2
 	c.j	vrici_frob_j
-	// | 3
 	c.j	vrici_frob_0
-	// | 4
 	c.j	vrici_frob_jog
-	// | 5
 	c.j	vrici_frob_sivni
-	// | 6
 	c.j	vrici_frob_denpaV
-	// | 7
 	c.j	vrici_frob_denpaWfi
-	// | 8
 	c.j	vrici_frob_sio
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
@@ -1111,15 +1105,10 @@ vrici_frob_jog:
 
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
-	beqz	sign_t1,	vrici_frob_jog_sesumji	// DROP t1
-	// | ni'o jimpe le du'u la'oi .sh2add. mapti  .i ku'i jinvi le du'u zmadu le me'oi .slli. co'e cu zmadu fi le ka ce'u panra la'oi .vrici_frob_jog_sesumji. le ka ce'u jai snidu
-	slli	datni_a5,	datni_a5,	2
-	add	sezvati_t2,	sezvati_t2,	datni_a5
-	sw	sezvati_t2,	(sezvati_j_t0)
-	ret
-vrici_frob_jog_sesumji:
-	slli	datni_a5,	datni_a5,	2
-	sub	sezvati_t2,	sezvati_t2,	datni_a5
+	slli	t1,	sign_t1,	1
+	addi	t1,	t1,	-1
+	mul	t1,	datni_a5,	t1	// s/add/sub/?
+	add	sezvati_t2,	sezvati_t2,	t1
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 // | TODO: .i xu mapti
@@ -1166,9 +1155,9 @@ vrici_frob_sio:
 	andi	pin_t0,	a5,	31
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	temp_t2,	IO_BANK0_BASE + 4
-	sh3add	t1,	temp_t2,	pin_t0	// 8 = 2 ^ 3
-	li	temp_t2,	5
+	li	t1,	IO_BANK0_BASE + 4
+	sh3add	t1,	t1,	pin_t0	// 8 = 2 ^ 3
+	li	temp_t2,	5	// SIO fn
 	sw	temp_t2,	(t1)
 
 	li	sio_j_t1,	SIO_BASE
