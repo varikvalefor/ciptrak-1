@@ -663,7 +663,7 @@ zgitci_frob_check_pio_gpio_post:
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	#define	max_t1	t1
-	andi	max_t1,	a2,	31	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	andi	max_t1,	a2,	(1<<5)-1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
@@ -1056,15 +1056,10 @@ vrici_frob_jog:
 
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(sezvati_j_t0)
-	beqz	sign_t1,	vrici_frob_jog_sesumji	// DROP t1
-	// | ni'o jimpe le du'u la'oi .sh2add. mapti  .i ku'i jinvi le du'u zmadu le me'oi .slli. co'e cu zmadu fi le ka ce'u panra la'oi .vrici_frob_jog_sesumji. le ka ce'u jai snidu
-	slli	datni_a5,	datni_a5,	2
-	add	sezvati_t2,	sezvati_t2,	datni_a5
-	sw	sezvati_t2,	(sezvati_j_t0)
-	ret
-vrici_frob_jog_sesumji:
-	slli	datni_a5,	datni_a5,	2
-	sub	sezvati_t2,	sezvati_t2,	datni_a5
+	slli	t1,	sign_t1,	1
+	addi	t1,	t1,	-1
+	mul	t1,	datni_a5,	t1	// s/add/sub/?
+	add	sezvati_t2,	sezvati_t2,	t1
 	sw	sezvati_t2,	(sezvati_j_t0)
 	ret
 // | TODO: .i xu mapti
@@ -1102,32 +1097,29 @@ vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
 	#define	SIVNI_INIT_BIT	6
 	#define	pin_t0	t0
-	andi	pin_t0,	a5,	31
-	bexti	t1,	a5,	SIVNI_INIT_BIT
-	beqz	t1,	vrici_frob_sio_post_init
-	// TODO: .i xu banuzka
-	li	t1,	SIO_BASE + GPIO_OE_SET_OFFSET
-	lw	t2,	(t1)
-	li	t3,	5	// o5ZapudM.  lw opt
-	bset	t2,	t2,	pin_t0
-	sw	t2,	(t1)
-	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	t2,	IO_BANK0_BASE + 4
-	sh3add	t1,	t2,	pin_t0	// 8 = 2 ^ 3
-	// li	t3,	5	// SIO fn; mv o5ZapudM
-	sw	t3,	(t1)
-vrici_frob_sio_post_init:
 	#define	sio_j_t1	t1
-	#define	sio_val_t2	t2
-	#define	val_t5	t5
+	#define	temp_t2	t2
+	bexti	t0,	a5,	SIVNI_INIT_BIT
+	beqz	t0,	vrici_frob_sio_post_init
+	// TODO: .i xu banuzka
 
-	li	sio_j_t1,	SIO_BASE + GPIO_OUT_SET_OFFSET
-	bexti	val_t5,	a5,	SIVNI_VALUE_BIT
-	binvi	val_t5,	val_t5,	0
-	sh3add	sio_j_t1,	sio_j_t1,	val_t5	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
+	andi	pin_t0,	a5,	31
 
-	bset	t0,	x0,	pin_t0
+	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
+	li	t1,	IO_BANK0_BASE + 4
+	sh3add	t1,	t1,	pin_t0	// 8 = 2 ^ 3
+	li	temp_t2,	5	// SIO fn
+	sw	temp_t2,	(t1)
 
-	sw	t0,	(sio_j_t1)
+	li	sio_j_t1,	SIO_BASE
+	bset	temp_t2,	x0,	pin_t0	// temp
+	sw	temp_t2,	GPIO_OE_SET_OFFSET(sio_j_t1)
+vrici_frob_sio_post_init:
+	bexti	temp_t2,	a5,	SIVNI_VALUE_BIT
+	binvi	temp_t2,	temp_t2,	0
+	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
+
+	bset	temp_t2,	x0,	pin_t0
+	sw	temp_t2,	GPIO_OUT_SET_OFFSET(sio_j_t1)
 
 	ret
