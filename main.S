@@ -30,6 +30,8 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
+#define	REG_ALIAS_XOR_BITS	0x1000
+#define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
 #define	PADS_BANK0_GPIO0_ISO_BIT	8
 
