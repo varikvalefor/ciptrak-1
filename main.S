@@ -1090,7 +1090,7 @@ zgitci_frob_sutcmaci:
 	srli	max_a7,	a2,	5 * 4
 	add	max_a7,	max_a7,	cur_j_a0
 
-	sll	t5,	sesumji_t0
+	sll	t5,	sesumji_t0,	slli_t1
 .sumji_lupe:
 	/* DROP t[3-6] */
 	addi	cur_j_a0,	cur_j_a0,	4
