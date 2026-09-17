@@ -1074,7 +1074,11 @@ zgitci_frob_sutcmaci:
 	sh2add	a0,	vrc_s0,	a0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t4,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET - 1	// temp
-	sh2add	cur_j_a0,	a0,	t4
+	sh2add	a0,	a0,	t4
+	// offset
+	slli	t4,	a3,	4 * (8 - 3)
+	srli	t4,	t4,	4 * (8 - 3)
+	add	cur_j_a0,	cur_j_a0,	t4
 
 	#define	max_a7	a7
 	srli	max_a7,	a2,	5 * 4
