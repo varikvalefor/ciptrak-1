@@ -1098,7 +1098,7 @@ zgitci_frob_sutcmaci:
 	sll	t5,	sesumji_t0
 .sumji_lupe_op:
 	.option norvc
-	add	t4,	t4,	t5
+	add	t4,	t3,	t5
 	.option rvc
 	and	t4,	t4,	clip_a5
 	and	t3,	t3,	clipN_a5
