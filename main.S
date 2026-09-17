@@ -450,12 +450,11 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	sivni_j_t1	t1
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	addi	t1,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
-	sh2add	sivni_j_t1,	vrc_s1,	t1
-	lw	t2,	(sivni_j_t1)
+	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
+	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
 	addi	t3,	t2,	1	// temp
-	sw	t3,	(sivni_j_t1)
+	sw	t3,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
 	// cnino te frinu
 	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
