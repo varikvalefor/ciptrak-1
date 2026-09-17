@@ -1079,7 +1079,7 @@ zgitci_frob_sutcmaci:
 	srli	max_a6,	a1,	3 * 4
 .sumji_lupe:
 	addi	cur_j_a0,	cur_j_a0,	4
-	lw	t4,	(cur_j_a0)
+	lw	t3,	(cur_j_a0)
 
 	// TODO: zukte
 
