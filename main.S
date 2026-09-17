@@ -1085,13 +1085,18 @@ zgitci_frob_sutcmaci:
 	lw	t3,	(cur_j_a0)
 
 	sll	t5,	sesumji_t0
-	add	t4,	t4,	t5
+.sumji_lupe_op:
+	c.add	t4,	t4,	t5
 	and	t4,	t4,	clip_a5
 	and	t3,	t3,	clipN_a5
 	or	t3,	t3,	t4
 	// sw	t3,	(cur_j_a0)	// TODO: cikre pe'a
 
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
+
+	la	t3,	.sumji_lupe_op
+	li	t4,	0x9EFA	// c.add	t4,	t4,	t5
+	sw	t4,	(t3)
 
 	ret
 
