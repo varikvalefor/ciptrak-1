@@ -1083,10 +1083,8 @@ zgitci_frob_sutcmaci:
 	lw	t3,	(cur_j_a0)
 
 	not	clip_a5,	clip_a5
-	and	t4,	t3
-	srl	t4,	t4,	slli_t1
-	add	t4,	t4,	sesumji_t0
-	sll	t4,	t4,	slli_t1
+	sll	t5,	sesumji_t0
+	add	t4,	t4,	t5
 	and	t4,	t4,	clip_a5
 	not	clip_a5,	clip_a5
 	and	t3,	t3,	clip_a5
