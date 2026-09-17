@@ -615,14 +615,11 @@ zgitci_frob_damri_sha:
 
 	// | TODO: .i xu cadga fa lo nu frica
 	bexti	t1,	sha_t0,	0	// temp
-	beqz	t1,	zgitci_frob_damri_sha_jdika
-	add	curval_a5,	curval_a5,	sha_t0
-	j	zgitci_frob_damri_sha_min
-zgitci_frob_damri_sha_jdika:
-	sub	curval_a5,	curval_a5,	sha_t0
-zgitci_frob_damri_sha_min:
+	slli	t1,	t1,	1
+	addi	t1,	t1,	-1
+	mul	t1,	sha_t0,	t1
+	add	curval_a5,	curval_a5,	t1
 	min	curval_a5,	curval_a5,	x0
-zgitci_frob_damri_cusku:
 
 	/* TODO: cusku pe'a */
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
