@@ -1020,7 +1020,7 @@ zgitci_frob_sw_post:
  *
  * ?
  *
- * [judri]
+ * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
  */
 zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
