@@ -1035,7 +1035,7 @@ zgitci_frob_sutcmaci:
 
 	auipc	t1,	0	// ?B
 	sh1add	t1,	t1,	sectaipe_t0	// ?B
-	addi	t1,	t1,	??	// 4B
+	addi	t1,	t1,	(? + ? + 4)	// 4B
 
 	// dispatch
 	ret
