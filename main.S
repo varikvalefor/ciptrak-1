@@ -1078,6 +1078,7 @@ zgitci_frob_sutcmaci:
 	#define	max_a6	a6
 	srli	max_a6,	a1,	3 * 4
 .sumji_lupe:
+	/* DROP t[3-6] */
 	addi	cur_j_a0,	cur_j_a0,	4
 	lw	t3,	(cur_j_a0)
 
