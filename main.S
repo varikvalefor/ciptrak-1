@@ -1080,6 +1080,7 @@ zgitci_frob_sutcmaci:
 	srli	t4,	t4,	4 * (8 - 3)
 	add	cur_j_a0,	cur_j_a0,	t4
 
+	#define	swd_j_a1	a1
 	srli	t4,	a3,	4 * 3	// temp
 	slli	t4,	t4,	4 * (8 - 3)
 	srli	t4,	t4,	4 * (8 - 3)
