@@ -1077,7 +1077,7 @@ zgitci_frob_sutcmaci:
 	sh2add	cur_j_a0,	a0,	t4
 
 	#define	max_a7	a7
-	srli	max_a7,	a1,	3 * 4
+	srli	max_a7,	a2,	5 * 4
 	add	max_a7,	max_a7,	cur_j_a0
 .sumji_lupe:
 	/* DROP t[3-6] */
