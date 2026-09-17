@@ -448,6 +448,7 @@ zgitci_frob_1_pwm_div_basti:
 zgitci_frob_1_pwm_div_slilu:
 	/* DROP t[012456] */
 	#define	sivni_j_t1	t1
+	#define	div0_t4	t4
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
