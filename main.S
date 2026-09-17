@@ -1097,6 +1097,7 @@ zgitci_frob_sutcmaci:
 
 	addi	cur_j_a0,	cur_j_a0,	4
 	addi	swd_j_a1,	swd_j_a1,	4
+
 .sumji_lupe_op:
 	.option norvc
 	add	t4,	t3,	t5
