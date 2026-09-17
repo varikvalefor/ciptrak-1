@@ -1047,9 +1047,27 @@ zgitci_frob_sutcmaci:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][_: 0xXXX]
 	 *
-	 * a2.  [?: 0xXXXXX 0bXX][srli: 0bXXXXX][slli: 0bXXXXX]
+	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0bXXXXX][slli: 0bXXXXX]
 	 */
 	// TODO
+
+	#define	sesumji_t0	t0
+	#define	slli_t1	t1
+	#define	nibarda_t2	t2
+	#define	clip_t3	t3
+	srli	sesumji_t0,	a1,	4 * 3
+	andi	slli_t1,	a2,	(1<<5) - 1
+	srli	t2,	a2,	5
+	andi	nibarda_t2,	t2,	(1<<5) - 1
+
+	li	t3,	1
+	addi	t4,	nibarda_t2,	1
+	slli	t3,	t3,	nibarda_t2
+	addi	t3,	t3,	-1
+	not	t3,	t3
+	sll	clip_t3,	t3,	slli_t1
+
+	// TODO: zukte
 
 	ret
 
