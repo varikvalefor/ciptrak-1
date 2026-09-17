@@ -454,6 +454,9 @@ zgitci_frob_1_pwm_div_slilu:
 	sh2add	sivni_j_t1,	vrc_s1,	t1
 	lw	t2,	(sivni_j_t1)
 
+	addi	t3,	t2,	1	// temp
+	sw	t3,	(sivni_j_t1)
+
 	// cnino te frinu
 	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
 	bexti	t2,	t2,	0
