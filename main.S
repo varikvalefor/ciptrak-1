@@ -1027,7 +1027,7 @@ zgitci_frob_sutcmaci:
 	bne	t0,	a0,	zgitci_frob_nope
 
 	#define	sectaipe_t0	t0
-	#define	SIVNI_SECTAIPE_NILZILCMI	0
+	#define	SIVNI_SECTAIPE_NILZILCMI	1
 	slli	t0,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
@@ -1039,8 +1039,12 @@ zgitci_frob_sutcmaci:
 
 	// dispatch
 	ret
+	c.j	.sumji
 
 	// TODO: .i smimlu la'oi .SLURP. je ku'i cu jai filri'a tu'a lo sampu je fancu
+
+.sumji:
+	// TODO
 
 	ret
 
