@@ -1088,7 +1088,7 @@ zgitci_frob_sutcmaci:
 	and	t4,	t4,	clip_a5
 	and	t3,	t3,	clipN_a5
 	or	t3,	t3,	t4
-	sw	t3,	(cur_j_a0)
+	// sw	t3,	(cur_j_a0)	// TODO: cikre pe'a
 
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
 
