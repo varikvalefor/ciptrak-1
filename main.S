@@ -1062,7 +1062,6 @@ zgitci_frob_sutcmaci:
 	andi	nibarda_t2,	t2,	(1<<5) - 1
 
 	li	t3,	1
-	addi	t4,	nibarda_t2,	1
 	sll	t3,	t3,	nibarda_t2
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
