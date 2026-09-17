@@ -1016,7 +1016,7 @@ zgitci_frob_sw_post:
  *
  * [0xDEAF00004]
  *
- * ?
+ * [?: 0xXXXXX][sectaipe: 0xXXX]
  *
  * ?
  *
@@ -1025,6 +1025,10 @@ zgitci_frob_sw_post:
 zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_nope
+
+	#define	sectaipe_t0	t0
+	slli	t0,	4 * (8 - 3)
+	srli	sectaipe_t0,	t0,	4 * (8 - 3)
 
 	// TODO: .i smimlu la'oi .SLURP. je ku'i cu jai filri'a tu'a lo sampu je fancu
 
