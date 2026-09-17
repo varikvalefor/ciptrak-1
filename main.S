@@ -1045,9 +1045,9 @@ zgitci_frob_sutcmaci:
 
 .sumji:
 	/*
-	 * a0.  [sesumji: 0xXXXXX][_: 0xXXX]
+	 * a1.  [sesumji: 0xXXXXX][_: 0xXXX]
 	 *
-	 * a1.  [?: 0xXXXXX 0bXX][srli: 0bXXXXX][slli: 0bXXXXX]
+	 * a2.  [?: 0xXXXXX 0bXX][srli: 0bXXXXX][slli: 0bXXXXX]
 	 */
 	// TODO
 
