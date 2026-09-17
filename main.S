@@ -453,8 +453,8 @@ zgitci_frob_1_pwm_div_slilu:
 	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
-	addi	t3,	t2,	1	// temp
-	sw	t3,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+	addi	t4,	t2,	1	// temp
+	sw	t4,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
 	// cnino te frinu
 	lh	div0_t1,	SIVNI_DIV_OFFSET(div_j_t3)
