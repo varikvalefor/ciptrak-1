@@ -1074,11 +1074,16 @@ zgitci_frob_sutcmaci:
 	sh2add	a0,	vrc_s0,	a0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t4,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET - 1	// temp
-	sh2add	a0,	a0,	t4
+	sh2add	a5,	a0,	t4
 	// offset
 	slli	t4,	a3,	4 * (8 - 3)
 	srli	t4,	t4,	4 * (8 - 3)
 	add	cur_j_a0,	cur_j_a0,	t4
+
+	srli	t4,	a3,	4 * 3	// temp
+	slli	t4,	t4,	4 * (8 - 3)
+	srli	t4,	t4,	4 * (8 - 3)
+	add	swd_j_a1,	a5,	t4
 
 	#define	max_a7	a7
 	srli	max_a7,	a2,	5 * 4
@@ -1086,6 +1091,7 @@ zgitci_frob_sutcmaci:
 .sumji_lupe:
 	/* DROP t[3-6] */
 	addi	cur_j_a0,	cur_j_a0,	4
+	addi	swd_j_a1,	swd_j_a1,	4
 	lw	t3,	(cur_j_a0)
 
 	sll	t5,	sesumji_t0
@@ -1094,7 +1100,7 @@ zgitci_frob_sutcmaci:
 	and	t4,	t4,	clip_a5
 	and	t3,	t3,	clipN_a5
 	or	t3,	t3,	t4
-	// sw	t3,	(cur_j_a0)	// TODO: cikre pe'a
+	sw	t3,	(swd_j_a1)
 
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
 
