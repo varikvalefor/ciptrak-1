@@ -1055,6 +1055,7 @@ zgitci_frob_sutcmaci:
 	#define	slli_t1	t1
 	#define	nibarda_t2	t2
 	#define	clip_a5	a5
+	#define	clipN_a6	a6
 	srli	sesumji_t0,	a1,	4 * 3
 	andi	slli_t1,	a2,	(1<<5) - 1
 	srli	t2,	a2,	5
@@ -1064,8 +1065,8 @@ zgitci_frob_sutcmaci:
 	addi	t4,	nibarda_t2,	1
 	slli	t3,	t3,	nibarda_t2
 	addi	t3,	t3,	-1
-	not	t3,	t3
 	sll	clip_a5,	t3,	slli_t1
+	not	clipN_a6,	clip_a5
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	cur_j_a0	a0
@@ -1075,23 +1076,21 @@ zgitci_frob_sutcmaci:
 	addi	t4,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET - 1	// temp
 	sh2add	cur_j_a0,	a0,	t4
 
-	#define	max_a6	a6
-	srli	max_a6,	a1,	3 * 4
+	#define	max_a7	a7
+	srli	max_a7,	a1,	3 * 4
 .sumji_lupe:
 	/* DROP t[3-6] */
 	addi	cur_j_a0,	cur_j_a0,	4
 	lw	t3,	(cur_j_a0)
 
-	not	clip_a5,	clip_a5
 	sll	t5,	sesumji_t0
 	add	t4,	t4,	t5
 	and	t4,	t4,	clip_a5
-	not	clip_a5,	clip_a5
-	and	t3,	t3,	clip_a5
+	and	t3,	t3,	clipN_a5
 	or	t3,	t3,	t4
 	sw	t3,	(cur_j_a0)
 
-	blt	cur_j_a0,	max_a6,	.sumji_lupe
+	blt	cur_j_a0,	max_a7,	.sumji_lupe
 
 	ret
 
