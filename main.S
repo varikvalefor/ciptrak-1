@@ -453,19 +453,19 @@ zgitci_frob_1_pwm_div_slilu:
 	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
-	lh	div0_t2,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
+	lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
 
-	addi	t4,	t2,	1	// temp
-	sw	t4,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+	addi	t5,	t2,	1	// temp
+	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
 	// cnino te frinu
-	// lh	div0_t2,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
-	bexti	t4,	t4,	0
-	slli	t4,	t4,	1
-	addi	t4,	t4,	-1
-	mul	t4,	div_t0,	t4
-	add	div0_t2,	div0_t2,	t4
-	sh	div0_t2,	SIVNI_DIV_OFFSET(div_j_t3)
+	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
+	bexti	t5,	div0_t4,	0
+	slli	t5,	t5,	1
+	addi	t5,	t5,	-1
+	mul	t5,	div_t0,	t5
+	add	div0_t4,	div0_t4,	t5
+	sh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)
 
 	/* DROP t[12] */
 
