@@ -1096,7 +1096,7 @@ zgitci_frob_sutcmaci:
 
 	la	t3,	.sumji_lupe_op
 	li	t4,	0x9EFA	// c.add	t4,	t4,	t5
-	sw	t4,	(t3)
+	sh	t4,	(t3)
 
 	ret
 
