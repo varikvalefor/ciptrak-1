@@ -1067,6 +1067,14 @@ zgitci_frob_sutcmaci:
 	not	t3,	t3
 	sll	clip_t3,	t3,	slli_t1
 
+	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
+	#define	cur_j_a0	a0
+	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
+	sh2add	a0,	vrc_s0,	a0
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
+	addi	t4,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET	// temp
+	sh2add	cur_j_a0,	a0,	t4
+	
 	// TODO: zukte
 
 	ret
