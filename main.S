@@ -1063,7 +1063,7 @@ zgitci_frob_sutcmaci:
 
 	li	t3,	1
 	addi	t4,	nibarda_t2,	1
-	slli	t3,	t3,	nibarda_t2
+	sll	t3,	t3,	nibarda_t2
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
 	not	clipN_a6,	clip_a5
