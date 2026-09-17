@@ -1044,6 +1044,11 @@ zgitci_frob_sutcmaci:
 	// TODO: .i smimlu la'oi .SLURP. je ku'i cu jai filri'a tu'a lo sampu je fancu
 
 .sumji:
+	/*
+	 * a0.  [sesumji: 0xXXXXX][_: 0xXXX]
+	 *
+	 * a1.  [?: 0xXXXXX 0bXX][srli: 0bXXXXX][slli: 0bXXXXX]
+	 */
 	// TODO
 
 	ret
