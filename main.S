@@ -1082,7 +1082,16 @@ zgitci_frob_sutcmaci:
 	addi	cur_j_a0,	cur_j_a0,	4
 	lw	t3,	(cur_j_a0)
 
-	// TODO: zukte
+	not	clip_a5,	clip_a5
+	and	t4,	t3
+	srl	t4,	t4,	slli_t1
+	add	t4,	t4,	sesumji_t0
+	sll	t4,	t4,	slli_t1
+	and	t4,	t4,	clip_a5
+	not	clip_a5,	clip_a5
+	and	t3,	t3,	clip_a5
+	or	t3,	t3,	t4
+	sw	t3,	(cur_j_a0)
 
 	blt	cur_j_a0,	max_a6,	.sumji_lupe
 
