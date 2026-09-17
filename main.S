@@ -999,7 +999,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_sutcmaci
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
@@ -1010,6 +1010,24 @@ zgitci_frob_sw:
 	mv	a5,	a3
 	jal	vrici_frob
 zgitci_frob_sw_post:
+	ret
+
+/* QUICK MATHS
+ *
+ * [0xDEAF00004]
+ *
+ * ?
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_sutcmaci:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_nope
+
+	// TODO: .i smimlu la'oi .SLURP. je ku'i cu jai filri'a tu'a lo sampu je fancu
+
 	ret
 
 /*
