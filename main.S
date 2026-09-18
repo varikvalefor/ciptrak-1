@@ -197,9 +197,11 @@ main_lupe_tcidu:
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
+	#define	datni_niho_j_t2	t2
+	mv	datni_niho_j_t2,	sezvati_j_a1
 	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	#define	datni_t3	t3
-	lw	datni_t3,	(sezvati_j_a1)	// zT9L5TrS.
+	lw	datni_t3,	(datni_niho_j_t2)	// zT9L5TrS.
 	// | .i la .varik. cu jimpe le du'u cumki fa lo nu na pilno
 	// .i ku'i la .varik. cu jinvi le du'u na'e vecnu pe'a tu'a zo'oi .li. ri'a tu'a zo'oi .lw.
 	addi	sezvati_j_a1,	sezvati_j_a1,	4	// zMWcmLmU.  lw opt
@@ -218,13 +220,13 @@ main_lupe_tcidu_lupe_vimcu:
 	sw	x0,	(sivni_t4)
 main_lupe_tcidu_lupe_ld_cur:
 	#define	datni2_t4	t4
-	// lw	datni_t3,	(sezvati_j_a1)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
-	lw	datni2_t4,	4(sezvati_j_a1)
+	// lw	datni_t3,	(datni_niho_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
+	lw	datni2_t4,	4(datni_niho_j_t2)
 	sw	datni_t3,	(datni_cur_j_a2)
 	sw	datni2_t4,	4(datni_cur_j_a2)
 
-	lw	datni_t3,	8(sezvati_j_a1)
-	lw	datni2_t4,	0xC(sezvati_j_a1)
+	lw	datni_t3,	8(datni_niho_j_t2)
+	lw	datni2_t4,	0xC(datni_niho_j_t2)
 	sw	datni_t3,	8(datni_cur_j_a2)
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
