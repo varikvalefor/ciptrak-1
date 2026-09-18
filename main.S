@@ -53,7 +53,7 @@ patton:	.word	1,	2,	3,	4, \
 */
 sanceListe: .word	0,	0,	0,	0
 
-cur: .word	0,				/* 0 */ \
+cur: .word	-1,				/* 0 */ \
 	/* ^ .i temci namcu */ \
 	0,				/* 1 */ \
 	/* ^ .i .indika lo du'u ma kau me'oi .XOSC. snidu pe'a lo pu'u denpa fo tu'a la'o zoi. main_lupe .zoi. */ \
@@ -146,15 +146,19 @@ main_lupe_xosc_counter:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
+main_reset_temci:
+	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+	addi	t0,	t0,	1
+	sw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+
 main_lupe_sha:
 	/* DROP [at][01234567] */
 	#define	sha256_a0	a0
 
-	lw	t0,	CUR_SHA_EN(vrc_s0)
-	li	t1,	1	// x48Xyorh.  lw opt
-	beqz	t0,	main_lupe_tcidu
+	lw	t1,	CUR_SHA_EN(vrc_s0)
+	li	t2,	1	// x48Xyorh.  lw opt
+	beqz	t1,	main_lupe_tcidu
 
-	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
 	li	sha256_a0,	SHA256_BASE	// lw opt
 	andi	t0,	t0,	0xF
 	bnez	t0,	main_lupe_tcidu
@@ -325,11 +329,6 @@ main_lupe_zgike:
 	// 7 by 7
 	// 8 by 8
 	// 9 by 9
-
-main_reset_temci:
-	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
-	addi	t0,	t0,	1
-	sw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
 
 main_reset_denpa:
 	/* DROP [at][0-7] */
