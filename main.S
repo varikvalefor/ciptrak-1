@@ -326,6 +326,11 @@ main_lupe_zgike:
 	// 8 by 8
 	// 9 by 9
 
+main_reset_temci:
+	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+	addi	t0,	t0,	1
+	sw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+
 main_reset_denpa:
 	/* DROP [at][0-7] */
 
