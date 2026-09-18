@@ -160,7 +160,8 @@ main_lupe_sha:
 	li	t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
-	li	sha256_a0,	SHA256_BASE	// lw opt
+	li	sha256_a0,	SHA256_BASE
+
 	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
