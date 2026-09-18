@@ -1092,7 +1092,7 @@ zgitci_frob_sutcmaci:
 
 	sll	t5,	sesumji_t0,	slli_t1
 .sumji_lupe:
-	/* DROP t[3-6] */
+	/* DROP t[346] */
 	lw	t3,	4(cur_j_a0)
 
 	addi	cur_j_a0,	cur_j_a0,	4
