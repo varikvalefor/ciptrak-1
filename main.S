@@ -149,6 +149,7 @@ main_lupe_xosc_counter:
 main_reset_temci:
 	#define	temci_t0	t0
 	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+	lw	t1,	CUR_SHA_EN(vrc_s0)	// xOrtNIYQ.  lw opt
 	addi	temci_t0,	t0,	1
 	sw	temci_t0,	CUR_TEMCI_OFFSET(vrc_s0)
 
@@ -156,7 +157,7 @@ main_lupe_sha:
 	/* DROP [at][01234567] */
 	#define	sha256_a0	a0
 
-	lw	t1,	CUR_SHA_EN(vrc_s0)
+	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
 	li	t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
