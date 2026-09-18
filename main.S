@@ -198,7 +198,7 @@ main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
 	#define	datni_niho_j_t2	t2
-	mv	datni_niho_j_t2,	sezvati_j_a1
+	lw	datni_niho_j_t2,	(sezvati_j_a1)
 	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	#define	datni_t3	t3
 	lw	datni_t3,	(datni_niho_j_t2)	// zT9L5TrS.
