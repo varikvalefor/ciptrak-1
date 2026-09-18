@@ -461,11 +461,13 @@ zgitci_frob_1_pwm_div_slilu:
 	addi	t5,	t2,	1	// temp
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
+	#define	temci_t5,	t5
 	// cnino te frinu
+	lw	temci_t5,	CUR_TEMCI(vrc_s0)
 	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
 	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT
 	andi	t2,	t2,	(1<<4) - 1
-	bext	t2,	div0_t4,	t2
+	bext	t2,	temci_t5,	t2	//	DROP t5
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
 	mul	t2,	div_t0,	t2
