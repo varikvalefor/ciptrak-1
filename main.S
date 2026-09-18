@@ -750,11 +750,12 @@ zgitci_frob_c000_mv_cont:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0xXXXX][nibarda: 0xXXXX]
+ * [?: 0xXXX][?: 0bXXX][jog: 0bX][nibarda: 0xXXXX]
  *
  * ?
  */
 zgitci_frob_c000_sutra:
+	#define	SIVNI_A1_JOG_BIT	4 * 4
 	addi	sp,	sp,	-(3*4)
 	sw	ra,	0(sp)
 	sw	s2,	4(sp)
@@ -786,6 +787,13 @@ zgitci_frob_c000_sutra_post:
 	lw	s3,	8(sp)
 	addi	sp,	sp,	(3*4)
 
+	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
+	beqz	t0,	zgitci_frob_c000_fanmo
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
+	sh2add	t0,	vrc_s1,	t0
+	sw	judri_s2,	(t0)
+zgitci_frob_c000_fanmo:
 	ret
 
 /*
