@@ -723,7 +723,7 @@ zgitci_frob_c000_mv_cont:
 	lw	a0,	0x0(sezvati_a2)
 	lw	a1,	0x4(sezvati_a2)
 	lw	a2,	0x8(sezvati_a2)
-	lw	a3,	0x0xC(sezvati_a2)
+	lw	a3,	0xC(sezvati_a2)
 	jal	zgitci_frob
 
 	lw	ra,	0(sp)
