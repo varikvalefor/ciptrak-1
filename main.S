@@ -147,9 +147,10 @@ main_lupe_xosc_counter:
 	sh	t1,	(t0)	// 15:0; ds 561
 
 main_reset_temci:
+	#define	temci_t0	t0
 	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
-	addi	t0,	t0,	1
-	sw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
+	addi	temci_t0,	t0,	1
+	sw	temci_t0,	CUR_TEMCI_OFFSET(vrc_s0)
 
 main_lupe_sha:
 	/* DROP [at][01234567] */
@@ -160,7 +161,7 @@ main_lupe_sha:
 	beqz	t1,	main_lupe_tcidu
 
 	li	sha256_a0,	SHA256_BASE	// lw opt
-	andi	t0,	t0,	0xF
+	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
 	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
