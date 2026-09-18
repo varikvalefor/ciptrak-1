@@ -1076,7 +1076,7 @@ zgitci_frob_sutcmaci:
 	addi	t4,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET - 1	// temp
 	sh2add	a5,	a0,	t4
 	// offset
-	slli	t4,	a3,	4 * (8 - 3)
+	slli	t4,	a3,	4 * (8 - 3)	// temp
 	srli	t4,	t4,	4 * (8 - 3)
 	add	cur_j_a0,	cur_j_a0,	t4
 
