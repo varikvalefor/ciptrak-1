@@ -204,7 +204,7 @@ main_lupe_tcidu_lupe_co_barda:
 	lw	datni_t3,	(datni_niho_j_t2)	// zT9L5TrS.
 	// | .i la .varik. cu jimpe le du'u cumki fa lo nu na pilno
 	// .i ku'i la .varik. cu jinvi le du'u na'e vecnu pe'a tu'a zo'oi .li. ri'a tu'a zo'oi .lw.
-	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
+	addi	sezvati_j_a1,	sezvati_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t5,	(datni_cur_j_a2)	// temp
@@ -231,7 +231,7 @@ main_lupe_tcidu_lupe_ld_cur:
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
-	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
+	// addi	sezvati_j_a1,	sezvati_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
