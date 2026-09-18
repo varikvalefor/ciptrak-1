@@ -30,6 +30,8 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
+#define	REG_ALIAS_XOR_BITS	0x1000
+#define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
 #define	PADS_BANK0_GPIO0_ISO_BIT	8
 
@@ -385,8 +387,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
-	li	t1,	PWM_EN_OFFSET
-	add	t0,	pwm_base_a6,	t1
+	addi	t0,	pwm_base_a6,	PWM_EN_OFFSET
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
@@ -433,7 +434,8 @@ zgitci_frob_1_pwm_div:
 	#define	div_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
-	add	div_j_t3,	t3,	t4
+	addi	t3,	t3,	4
+	add	div_j_t3,	pwm_base_a6,	t3
 
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
@@ -537,7 +539,7 @@ zgitci_frob_check_2:
 	add	t0,	zts_a5,	zts_sance_idx_t2
 	lw	pwmval_t0,	(t0)
 
-	// se morji: PWM_CHx_CSR_OFFSET(x)   x * 0x14
+	// se morji: PWM_CHx_CSR_OFFSET(x)	x * 0x14
 	li	t1,	0x14
 	mul	t1,	zgitci_a4,	t1
 	add	pwm_csr_a6,	a6,	t1
