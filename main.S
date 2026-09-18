@@ -83,8 +83,8 @@ cur: .word	0,				/* 0 */ \
 	/* ^ .i zgitci pe'a sivni datni */ \
 	0,	0,	0,	0	/* 46 / 2E | ZGITCI TEMCI */
 
-#define	CUR_TEMCI	4 * 0
-#define	CUR_XOSC_SNIDU	4 * 1
+#define	CUR_TEMCI_OFFSET	4 * 0
+#define	CUR_XOSC_SNIDU_OFFSET	4 * 1
 #define	CUR_DENPA_INST_OFFSET	2
 #define	CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 #define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
@@ -154,7 +154,7 @@ main_lupe_pre:
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
-	lh	t1,	CUR_XOSC_SNIDU(vrc_s0)
+	lh	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
@@ -166,7 +166,7 @@ main_lupe_sha:
 	li	t1,	1	// x48Xyorh.  lw opt
 	beqz	t0,	main_lupe_tcidu
 
-	lw	t0,	CUR_TEMCI(vrc_s0)
+	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
 	li	sha256_a0,	SHA256_BASE	// lw opt
 	andi	t0,	t0,	0xF
 	bnez	t0,	main_lupe_tcidu
@@ -358,7 +358,7 @@ main_reset_denpa_lupe:
 	lh	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
-	lh	t0,	CUR_XOSC_SNIDU(vrc_s0)
+	lh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 	addi	t0,	t0,	1	// underflow
 main_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
@@ -757,11 +757,12 @@ zgitci_frob_c000_mv_cont:
  *
  * [judri: 0xXXXXXXXX]
  *
- * [?: 0xXXXX][nibarda: 0xXXXX]
+ * [?: 0xXXX][?: 0bXXX][jog: 0bX][nibarda: 0xXXXX]
  *
  * ?
  */
 zgitci_frob_c000_sutra:
+	#define	SIVNI_A1_JOG_BIT	4 * 4
 	// se morji: t0 = 0xC0000000 + 1
 	addi	t0,	t0,	1	// 0xC0000002
 	bne	a0,	t0,	zgitci_frob_c000_denpa
@@ -797,6 +798,13 @@ zgitci_frob_c000_sutra_post:
 	lw	s3,	8(sp)
 	addi	sp,	sp,	(3*4)
 
+	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
+	beqz	t0,	zgitci_frob_c000_fanmo
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
+	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
+	sh2add	t0,	vrc_s1,	t0
+	sw	judri_s2,	(t0)
+zgitci_frob_c000_fanmo:
 	ret
 
 /*
@@ -848,7 +856,7 @@ zgitci_frob_deaf_xosc:
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
-	sh	t0,	CUR_XOSC_SNIDU(vrc_s0)
+	sh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 
 	bexti	t0,	a2,	SIVNI_X1_BIT	// temp
 	beqz	t0,	zgitci_frob_deaf_xosc_post
