@@ -1042,9 +1042,9 @@ zgitci_frob_sutcmaci:
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	max	sectaipe_t0,	sectaipe_t0,	t1
 
-	auipc	t1,	0	// ?B
+	auipc	t1,	0	// 4B
 	sh1add	t1,	t1,	sectaipe_t0	// ?B
-	addi	t1,	t1,	(? + ? + 4)	// 4B
+	addi	t1,	t1,	(4 + ? + 4)	// 4B
 
 	// dispatch
 	c.j	.sisti
