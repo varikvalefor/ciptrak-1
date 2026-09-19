@@ -738,7 +738,8 @@ zgitci_frob_c000_mv_cont:
 
 	/* DROP t[01] */
 
-	bexti	t0,	SIVNI_J_BIT
+	#define	SIVNI_A3_J_BIT	4 * 4
+	bexti	t0,	a3,	SIVNI_A3_J_BIT
 	bnez	t0,	zgitci_frob_c000_mv_frob
 	ret
 zgitci_frob_c000_mv_frob:
