@@ -1053,8 +1053,6 @@ zgitci_frob_sutcmaci:
 	c.j	.mul
 	c.j	.div
 
-	// TODO: .i smimlu la'oi .SLURP. je ku'i cu jai filri'a tu'a lo sampu je fancu
-
 .sisti:
 	ret
 .sumji:
