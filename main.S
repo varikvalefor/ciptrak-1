@@ -1069,7 +1069,6 @@ zgitci_frob_sutcmaci:
 	#define	slli_t1	t1
 	#define	nibarda_t2	t2
 	#define	clip_a5	a5
-	#define	clipN_a6	a6
 	srli	sesumji_t0,	a1,	4 * 3
 	andi	slli_t1,	a2,	(1<<5) - 1
 	srli	t2,	a2,	5
@@ -1079,7 +1078,6 @@ zgitci_frob_sutcmaci:
 	bset	t3,	x0,	t4
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
-	not	clipN_a6,	clip_a5
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	cur_j_a0	a0
@@ -1116,7 +1114,7 @@ zgitci_frob_sutcmaci:
 	add	t4,	t3,	t5
 	.option rvc
 	and	t4,	t4,	clip_a5
-	and	t3,	t3,	clipN_a5
+	andn	t3,	t3,	clip_a5
 	or	t3,	t3,	t4
 	sw	t3,	(swd_j_a1)
 
