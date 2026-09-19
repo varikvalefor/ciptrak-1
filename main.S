@@ -1066,6 +1066,7 @@ zgitci_frob_sutcmaci:
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
 	#define	nibarda_t2	t2
+	#define	sesumjiX_t5	t5
 	#define	clip_a5	a5
 	srli	sesumji_t0,	a1,	4 * 3
 	andi	slli_t1,	a2,	(1<<5) - 1
@@ -1098,7 +1099,7 @@ zgitci_frob_sutcmaci:
 	srli	max_a7,	a2,	5 * 4
 	add	max_a7,	max_a7,	cur_j_a0
 
-	sll	t5,	sesumji_t0,	slli_t1
+	sll	sesumjiX_t5,	sesumji_t0,	slli_t1
 .sumji_lupe:
 	/* DROP t[346] */
 	lw	t3,	4(cur_j_a0)
@@ -1108,7 +1109,7 @@ zgitci_frob_sutcmaci:
 
 .sumji_lupe_op:
 	.option norvc
-	add	t4,	t3,	t5
+	add	t4,	t3,	sesumjiX_t5
 	.option rvc
 	and	t4,	t4,	clip_a5
 	andn	t3,	t3,	clip_a5
