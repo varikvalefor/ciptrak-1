@@ -1142,6 +1142,7 @@ zgitci_frob_sutcmaci:
 	la	t3,	.sumji_lupe_op
 	li	t4,	0x03EECEB3	// add	t4,	t4,	t5
 	sw	t4,	0(t3)
+	fence.i
 
 	c.j	.sumji
 
