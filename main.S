@@ -1075,7 +1075,7 @@ zgitci_frob_sutcmaci:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
-	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0bXXXXX][slli: 0bXXXXX]
+	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
 	#define	sesumji_t0	t0
