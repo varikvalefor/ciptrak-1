@@ -357,8 +357,8 @@ main_reset_denpa_lupe:
 
 	beqz	t2,	main_lupe
 main_reset_denpa_barda:
-	addi	t0,	t0,	1	// underflow
 	lh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
+	addi	t0,	t0,	1	// underflow
 main_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
 	bnez	t0,	main_reset_denpa_barda_lupe
