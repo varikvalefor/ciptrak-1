@@ -1057,7 +1057,8 @@ zgitci_frob_sutcmaci:
 	slli	t0,	a1,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
-	max	sectaipe_t0,	sectaipe_t0,	t1
+	sltu	t1,	t0,	t1
+	mul	sectaipe_t0,	t0,	t1
 
 	auipc	t1,	0	// 4B
 	sh1add	t1,	t1,	sectaipe_t0	// 4B
