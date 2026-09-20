@@ -1053,7 +1053,7 @@ zgitci_frob_sutcmaci:
 
 	#define	sectaipe_t0	t0
 	#define	SIVNI_SECTAIPE_NILZILCMI	4
-	slli	t0,	4 * (8 - 3)
+	slli	t0,	a1,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	max	sectaipe_t0,	sectaipe_t0,	t1
