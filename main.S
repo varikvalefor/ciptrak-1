@@ -349,7 +349,7 @@ main_reset_denpa:
 
 	# .i denpa fi tu'a la'oi .XOSC.
 main_reset_denpa_prelupe:
-	lw	t2,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)	// lw opt
+	lw	t2,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)	// lw opt
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
 	lh	t1,	0(t0)
