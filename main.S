@@ -1075,7 +1075,6 @@ zgitci_frob_sutcmaci:
 	 *
 	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0bXXXXX][slli: 0bXXXXX]
 	 */
-	// TODO
 
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
