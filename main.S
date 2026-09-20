@@ -1046,6 +1046,7 @@ zgitci_frob_sw_post:
  * ?
  *
  * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
+ * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
  */
 zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
