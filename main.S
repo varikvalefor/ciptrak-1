@@ -135,7 +135,7 @@ main_init_periph:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
-	li	t1,	(2<<4) - 1
+	li	t1,	(1<<4) - 1
 	sw	t0,	(t1)
 
 main_lupe_pre:
