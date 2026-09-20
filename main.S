@@ -396,20 +396,14 @@ zgitci_frob:
 zgitci_frob_1_pwm:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
-zgitci_frob_1_pwm_xu_akti:
-	#define	pwm_base_a6	a6
-	li	pwm_base_a6,	PWM_BASE
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	SIVNI_A1_DIV_BIT	2
 	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	pwm_slice_a5	a5
-	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
-	lw	t0,	PWM_EN_OFFSET(t1)
-	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
-	bset	t0,	t0,	pwm_slice_a5
-	sw	t0,	0(t1)
+	#define	pwm_base_a6	a6
+	li	pwm_base_a6,	PWM_BASE
 zgitci_frob_1_pwm_ctrl:
 	/* DROP t[0-6] */
 
