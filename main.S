@@ -1073,7 +1073,7 @@ zgitci_frob_sutcmaci:
 	ret
 .sumji:
 	/*
-	 * a1.  [sesumji: 0xXXXXX][_: 0xXXX]
+	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
 	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0bXXXXX][slli: 0bXXXXX]
 	 */
