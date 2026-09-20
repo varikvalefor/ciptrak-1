@@ -355,15 +355,10 @@ main_reset_denpa_lupe:
 	lh	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 
-	beqz	t2,	main_lupe
 main_reset_denpa_barda:
-	lh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
-	addi	t0,	t0,	1	// underflow
-main_reset_denpa_barda_lupe:
-	addi	t0,	t0,	-1
-	bnez	t0,	main_reset_denpa_barda_lupe
-
-	j	main_lupe
+	beqz	t2,	main_lupe
+	addi	t2,	t2,	-1
+	j	main_reset_denpa_barda
 
 #define	zgitci_a4	a4
 /* TODO: .i xu cadga fa lo nu bixygau pe'a fi lo me'oi .switch. co'e  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti tu'a lo so'i co'e... kei jenai ku'i le ka ce'u mapti tu'a lo ke jai .indika ke'e namcu */
