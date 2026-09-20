@@ -87,7 +87,8 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_XOSC_SNIDU_OFFSET	4 * 1
 #define	CUR_DENPA_INST_OFFSET	2
 #define	CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-#define	CUR_ZGITCI0(x)		4 * (6 + 4 * x)
+#define	CUR_ZGITCI0_OFFSET	6
+#define	CUR_ZGITCI0(x)		4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 #define	CUR_PATN_SEZVATI_OFFSET	22
 #define	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 #define	CUR_PATN_JUDRI_OFFSET	26
@@ -246,7 +247,7 @@ main_lupe_tcidu_lupe_ld_cur:
 main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
 	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
-	// | se morji: CUR_ZGITCI0(x)	4 * (6 + 4 * x)
+	// | se morji: CUR_ZGITCI0(x)	4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
@@ -303,7 +304,7 @@ main_incri:
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
-	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) ((4 * x) + CUR_ZGITCI0(z))(vrc_s0)
+	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) (x + CUR_ZGITCI0(z))(vrc_s0)
 	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 0)
 	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0)
 	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0)
@@ -353,7 +354,7 @@ main_reset_denpa_lupe:
 	lh	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
-	lh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
+	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
 	addi	t0,	t0,	1	// underflow
 main_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
@@ -698,7 +699,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * [?: 0xXXXX][ctr: 0xXXXX]
+ * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
@@ -739,7 +740,15 @@ zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
 	sw	patn_a1,	(judri_j_t1)
 
+	/* DROP t[01] */
+
+	#define	SIVNI_A3_J_BIT	4 * 4
+	bexti	t0,	a3,	SIVNI_A3_J_BIT
+	bnez	t0,	zgitci_frob_c000_mv_frob
+	ret
+zgitci_frob_c000_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
+
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
@@ -995,8 +1004,8 @@ zgitci_frob_slurp:
 
 	sw	flash_j_a2,	(dma_read_j_t0)
 
-	slli	t1,	a3,	(8 - 5) * 4
-	srli	t1,	t1,	(8 - 5) * 4
+	slli	t1,	a3,	4 * (8 - 5)
+	srli	t1,	t1,	4 * (8 - 5)
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
@@ -1041,21 +1050,19 @@ zgitci_frob_nope:
  * VRICI
  * .i pilno lo me'oi .a5... tu'a lo vrici  .i go'i
  *
- * [klesi: 0xFF][?: 0xXXXXXX]
+ * [?: 0xXXXXXX][klesi: 0xFF]
  *
  * DROP t[0-7] a5
  */
 vrici_frob:
 	#define	SIVNI_NILZILCMI	8
 	#define	klesi_t0	t0
-	srli	klesi_t0,	a5,	(6 * 4)	// 3 bytes
+	andi	klesi_t0,	a5,	0xFF
 	li	t1,	SIVNI_NILZILCMI
 	ble	klesi_t0,	t1,	vrici_frob_dispatch_pre
 	ret
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
-	// | metfo: andi	datni_a5,	datni_a5,	0x00FFFFFF
-	slli	a5,	a5,	(2 * 4)
 	srli	datni_a5,	a5,	(2 * 4)
 vrici_frob_dispatch:
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
