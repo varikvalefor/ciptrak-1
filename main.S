@@ -1117,8 +1117,12 @@ zgitci_frob_sutcmaci:
 	sh2add	a0,	vrc_s0,	a0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t3,	cur_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
+	lw	t4,	0(a0)
+	lw	t5,	0(t3)
+	// slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
+	add	cur_j_a0,	t4,	t5
 	// offset
-	slli	t2,	a3,	4 * (8 - 3)	// temp
+	// slli	t2,	a3,	4 * (8 - 3)	// mv 3qcJrH8V
 	srli	t2,	t2,	4 * (8 - 3)
 	sh2add	cur_j_a0,	a0,	t2
 
