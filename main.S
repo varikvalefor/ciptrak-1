@@ -1120,9 +1120,9 @@ zgitci_frob_sutcmaci:
 	sh2add	cur_j_a0,	a0,	t2
 
 	#define	swd_j_a1	a1
-	slli	t3,	a3,	4 * (8 - (3 + 3))	// temp
-	srli	t3,	t3,	4 * (8 - 3)
-	sh2add	swd_j_a1,	a5,	t3
+	slli	t2,	a3,	4 * (8 - (3 + 3))	// temp
+	srli	t2,	t2,	4 * (8 - 3)
+	sh2add	swd_j_a1,	a5,	t2
 
 	#define	diff_t2	t2
 
