@@ -1088,6 +1088,8 @@ zgitci_frob_sutcmaci:
 	 * a2.  [?: 0xXXXXX] [diff: 0bXX][nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
+	/* DROP t[0-6] a[57] */
+
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
 	#define	nibarda_t2	t2
