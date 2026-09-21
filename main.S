@@ -1114,7 +1114,7 @@ zgitci_frob_sutcmaci:
 	#define	swd_j_a1	a1
 	slli	t3,	a3,	4 * (8 - (3 + 3))	// temp
 	srli	t3,	t3,	4 * (8 - 3)
-	add	swd_j_a1,	a5,	t3
+	sh2add	swd_j_a1,	a5,	t3
 
 	#define	max_a7	a7
 	srli	max_a7,	a3,	6 * 4
