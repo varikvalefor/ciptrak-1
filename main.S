@@ -1118,15 +1118,15 @@ zgitci_frob_sutcmaci:
 	sh2add	swd_j_a1,	a5,	t3
 
 	#define	diff_t2	t2
-	srli	t3,	a2,	SIVNI_A2_DIFF_BIT
-	bset	diff_t2,	x0,	t3
 
 	#define	max_a7	a7
+	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
 	srli	max_a7,	a3,	6 * 4
-	sll	max_a7,	max_a7,	t3
+	sll	max_a7,	max_a7,	t2
 	add	max_a7,	cur_j_a0,	max_a7
 
-	/* DROP t3 */
+	#define	diff_t2	t2
+	bset	diff_t2,	x0,	t2
 
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 .sumji_lupe:
