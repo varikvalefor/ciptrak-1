@@ -1164,9 +1164,9 @@ zgitci_frob_sutcmaci:
 
 	c.j	.sumji
 .mul:
-	la	t3,	.sumji_lupe_op
-	li	t4,	0x03	// s/add/mul/
-	sb	t4,	3(t3)
+	la	t0,	.sumji_lupe_op
+	li	t1,	0x03	// s/add/mul/
+	sb	t1,	3(t0)
 	fence.i
 
 	c.j	.sumji
