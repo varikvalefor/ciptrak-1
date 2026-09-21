@@ -1176,9 +1176,9 @@ zgitci_frob_sutcmaci:
 	sw	t4,	0(t3)
 	fence.i
 .rem:
-	la	t3,	.sumji_lupe_op
-	li	t4,	0x03EEEEB3	// rem	t4,	t4,	t5
-	sw	t4,	0(t3)
+	la	t0,	.sumji_lupe_op
+	li	t1,	0x03EEEEB3	// rem	t4,	t4,	t5
+	sw	t1,	0(t0)
 	fence.i
 
 	c.j	.sumji
