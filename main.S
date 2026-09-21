@@ -1093,12 +1093,12 @@ zgitci_frob_sutcmaci:
 	srli	t2,	a2,	4 + 1
 	andi	nibarda_t2,	t2,	(1<<5) - 1
 
-	addi	t4,	nibarda_t2,	1
-	bset	t3,	x0,	t4
+	addi	t3,	nibarda_t2,	1
+	bset	t3,	x0,	t3
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
 
-	/* DROP t[234] */
+	/* DROP t[23] */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	cur_j_a0	a0
