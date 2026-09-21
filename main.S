@@ -1116,7 +1116,7 @@ zgitci_frob_sutcmaci:
 	add	swd_j_a1,	a5,	t4
 
 	#define	max_a7	a7
-	srli	max_a7,	a2,	5 * 4
+	srli	max_a7,	a3,	6 * 4
 	add	max_a7,	max_a7,	cur_j_a0
 
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
