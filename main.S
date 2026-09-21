@@ -1064,6 +1064,9 @@ zgitci_frob_sutcmaci:
 	sltu	t1,	t0,	t1
 	mul	sectaipe_t0,	t0,	t1
 
+	#define	inst_j_a6	a6
+	la	inst_j_a6,	.sumji_lupe_op
+
 	auipc	t1,	0	// 4B
 	sh1add	t1,	t1,	sectaipe_t0	// 4B
 	addi	t1,	t1,	(4 + 4 + 4)	// 4B
@@ -1150,35 +1153,30 @@ zgitci_frob_sutcmaci:
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
 	/* DROP t[34] */
 
-	la	t0,	.sumji_lupe_op
 	li	t1,	0x01EE8EB3	// add	t4,	t4,	t5
-	sw	t1,	(t0)
+	sw	t1,	(inst_j_a6)
 	fence.i
 
 	ret
 .sesumji:
-	la	t0,	.sumji_lupe_op
 	li	t1,	0x41	// s/add/sub
-	sb	t1,	3(t0)
+	sb	t1,	3(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
 .mul:
-	la	t0,	.sumji_lupe_op
 	li	t1,	0x03	// s/add/mul/
-	sb	t1,	3(t0)
+	sb	t1,	3(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
 .div:
-	la	t0,	.sumji_lupe_op
 	li	t1,	0x03EECEB3	// div	t4,	t4,	t5
-	sw	t1,	0(t0)
+	sw	t1,	0(inst_j_a6)
 	fence.i
 .rem:
-	la	t0,	.sumji_lupe_op
 	li	t1,	0x03EEEEB3	// rem	t4,	t4,	t5
-	sw	t1,	0(t0)
+	sw	t1,	0(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
