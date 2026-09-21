@@ -1153,30 +1153,30 @@ zgitci_frob_sutcmaci:
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
 	/* DROP t[34] */
 
-	li	t1,	0x01EE8EB3	// add	t4,	t4,	t5
-	sw	t1,	(inst_j_a6)
+	li	t0,	0x01EE8EB3	// add	t4,	t4,	t5
+	sw	t0,	(inst_j_a6)
 	fence.i
 
 	ret
 .sesumji:
-	li	t1,	0x41	// s/add/sub
-	sb	t1,	3(inst_j_a6)
+	li	t0,	0x41	// s/add/sub
+	sb	t0,	3(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
 .mul:
-	li	t1,	0x03	// s/add/mul/
-	sb	t1,	3(inst_j_a6)
+	li	t0,	0x03	// s/add/mul/
+	sb	t0,	3(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
 .div:
-	li	t1,	0x03EECEB3	// div	t4,	t4,	t5
-	sw	t1,	0(inst_j_a6)
+	li	t0,	0x03EECEB3	// div	t4,	t4,	t5
+	sw	t0,	0(inst_j_a6)
 	fence.i
 .rem:
-	li	t1,	0x03EEEEB3	// rem	t4,	t4,	t5
-	sw	t1,	0(inst_j_a6)
+	li	t0,	0x03EEEEB3	// rem	t4,	t4,	t5
+	sw	t0,	0(inst_j_a6)
 	fence.i
 
 	c.j	.sumji
