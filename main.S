@@ -1150,9 +1150,9 @@ zgitci_frob_sutcmaci:
 	blt	cur_j_a0,	max_a7,	.sumji_lupe
 	/* DROP t[34] */
 
-	la	t3,	.sumji_lupe_op
-	li	t4,	0x01EE8EB3	// add	t4,	t4,	t5
-	sw	t4,	(t3)
+	la	t0,	.sumji_lupe_op
+	li	t1,	0x01EE8EB3	// add	t4,	t4,	t5
+	sw	t1,	(t0)
 	fence.i
 
 	ret
