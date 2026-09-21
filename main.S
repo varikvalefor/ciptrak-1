@@ -1109,7 +1109,7 @@ zgitci_frob_sutcmaci:
 	// offset
 	slli	t3,	a3,	4 * (8 - 3)	// temp
 	srli	t3,	t3,	4 * (8 - 3)
-	add	cur_j_a0,	a0,	t3
+	sh2add	cur_j_a0,	a0,	t3
 
 	#define	swd_j_a1	a1
 	slli	t3,	a3,	4 * (8 - (3 + 3))	// temp
