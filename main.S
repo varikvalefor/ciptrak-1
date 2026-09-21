@@ -1090,7 +1090,7 @@ zgitci_frob_sutcmaci:
 	#define	clip_a5	a5
 	srli	sesumji_t0,	a1,	4 * 3
 	andi	slli_t1,	a2,	(1<<5) - 1
-	srli	t2,	a2,	5
+	srli	t2,	a2,	4 + 1
 	andi	nibarda_t2,	t2,	(1<<5) - 1
 
 	addi	t4,	nibarda_t2,	1	// temp
