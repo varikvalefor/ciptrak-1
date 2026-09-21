@@ -1098,6 +1098,8 @@ zgitci_frob_sutcmaci:
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
 
+	/* DROP t[234] */
+
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	cur_j_a0	a0
 	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
