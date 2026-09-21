@@ -1080,7 +1080,7 @@ zgitci_frob_sutcmaci:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
-	 * a2.  [?: 0xXXXXX 0bXX][nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 * a2.  [?: 0xXXXXX] [diff: 0bXX][nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
 	#define	sesumji_t0	t0
@@ -1088,6 +1088,7 @@ zgitci_frob_sutcmaci:
 	#define	nibarda_t2	t2
 	#define	sesumjiX_t0	t0
 	#define	clip_a5	a5
+	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
 	srli	sesumji_t0,	a1,	4 * 3
 	andi	slli_t1,	a2,	(1<<5) - 1
 	srli	t2,	a2,	4 + 1
@@ -1116,17 +1117,24 @@ zgitci_frob_sutcmaci:
 	srli	t3,	t3,	4 * (8 - 3)
 	sh2add	swd_j_a1,	a5,	t3
 
+	#define	diff_t2	t2
+	srli	t3,	a2,	SIVNI_A2_DIFF_BIT
+	bset	diff_t2,	x0,	t3
+
 	#define	max_a7	a7
 	srli	max_a7,	a3,	6 * 4
-	sh2add	max_a7,	cur_j_a0,	max_a7
+	sll	max_a7,	max_a7,	t3
+	add	max_a7,	cur_j_a0,	max_a7
+
+	/* DROP t3 */
 
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 .sumji_lupe:
 	/* DROP t[123456] */
 	lw	t3,	4(cur_j_a0)
 
-	addi	cur_j_a0,	cur_j_a0,	4
-	addi	swd_j_a1,	swd_j_a1,	4
+	add	cur_j_a0,	cur_j_a0,	diff_t2
+	add	swd_j_a1,	swd_j_a1,	diff_t2
 
 .sumji_lupe_op:
 	.option norvc
