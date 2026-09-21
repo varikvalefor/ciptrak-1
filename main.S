@@ -1117,7 +1117,7 @@ zgitci_frob_sutcmaci:
 
 	#define	max_a7	a7
 	srli	max_a7,	a3,	6 * 4
-	add	max_a7,	max_a7,	cur_j_a0
+	sh2add	max_a7,	cur_j_a0,	max_a7
 
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 .sumji_lupe:
