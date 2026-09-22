@@ -917,7 +917,7 @@ zgitci_frob_deaf_xosc_post:
  *
  * 0xDEAF0001
  *
- * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
+ * [judriP: 0xXXXXXXX][?: 0bX] [remoi: 0bX][flash: 0bX][idx: 0bX]
  *
  * [zt1: 0xXXXXXXXX]
  *
@@ -930,6 +930,7 @@ zgitci_frob_deaf_bixygau:
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 	#define	A1_SIVNI_FLASH_BIT	1
+	#define	A1_SIVNI_REMOI_BIT	3
 
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 
@@ -944,8 +945,10 @@ zgitci_frob_deaf_bixygau:
 	sh3add	judri0_t0,	t1,	t0
 
 	sw	a2,	0(judri0_t0)
+	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
+	beqz	t1,	.fanmo
 	sw	a3,	4(judri0_t0)
-
+.fanmo:
 	ret
 
 /*
