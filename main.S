@@ -705,7 +705,7 @@ zgitci_frob_ditto:
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
-	// se morji: CUR_ZGITCI0(x)		4 * (6 + 4 * x)
+	// se morji: CUR_ZGITCI0(x)		4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 	andi	t0,	a1,	0b11
 	slli	t0,	t0,	2
 	addi	t0,	t0,	6
