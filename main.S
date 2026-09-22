@@ -994,9 +994,9 @@ zgitci_frob_slurp:
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
-	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
-
 	sw	flash_j_a2,	(dma_read_j_t0)
+
+	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	slli	t1,	a3,	4 * (8 - 5)
 	srli	t1,	t1,	4 * (8 - 5)
