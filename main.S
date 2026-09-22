@@ -135,7 +135,7 @@ main_init_periph:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
-	li	t1,	(2<<4) - 1
+	li	t1,	(1<<4) - 1
 	sw	t0,	(t1)
 
 main_lupe_pre:
@@ -423,7 +423,6 @@ zgitci_frob_1_pwm_ctrl:
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
-	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
@@ -819,7 +818,7 @@ zgitci_frob_c000_sutra_post:
 	beqz	t0,	zgitci_frob_c000_fanmo
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s1,	t0
+	sh2add	t0,	vrc_s0,	t0
 	sw	judri_s2,	(t0)
 zgitci_frob_c000_fanmo:
 	ret
@@ -1086,7 +1085,7 @@ vrici_frob_denpa:
 
 	ret
 vrici_frob_j:
-	// se morji: CUR_PATN_SEZVATI(x)	4 * (22 + x)
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s0,	t0
 
