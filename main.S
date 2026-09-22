@@ -399,7 +399,7 @@ zgitci_frob_1_pwm_xu_akti:
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_ctrl
+	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -414,7 +414,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-zgitci_frob_1_pwm_ctrl:
+zgitci_frob_1_pwm_gpioctrl:
 	/* DROP t[0-6] */
 
 	#define	gpio_ctrl_j_t0	t0
