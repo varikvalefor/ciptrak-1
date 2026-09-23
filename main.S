@@ -1057,8 +1057,10 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_SECTAIPE_NILZILCMI	6
 	slli	t0,	a1,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
+	//
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	sltu	t1,	t0,	t1
+	//
 	mul	sectaipe_t0,	t0,	t1
 
 	#define	inst_j_a6	a6
