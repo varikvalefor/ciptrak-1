@@ -139,7 +139,7 @@ main_init_periph:
 	sw	t0,	(t1)
 
 main_lupe_pre:
-	#define	vrc_s0	s1
+	#define	vrc_s0	s0
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
