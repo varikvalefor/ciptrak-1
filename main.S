@@ -1095,8 +1095,9 @@ zgitci_frob_sutcmaci:
 	#define	nibarda_t2	t2
 	#define	sesumjiX_t0	t0
 	#define	clip_a5	a5
+	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
-	srli	sesumji_t0,	a1,	4 * 3
+	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 
 	/* DROP a[01] */
 
