@@ -1101,6 +1101,7 @@ zgitci_frob_sutcmaci:
 	/* DROP a[01] */
 
 	andi	slli_t1,	a2,	(1<<5) - 1
+
 	srli	t2,	a2,	4 + 1
 	andi	nibarda_t2,	t2,	(1<<5) - 1
 
