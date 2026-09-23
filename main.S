@@ -374,7 +374,7 @@ zgitci_frob:
  *
  * [?: 0xXXXX] [zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
- * ?
+ * [?: 0xXXXX][top: 0xXXXX]
  *
  * ?
  *
@@ -399,7 +399,7 @@ zgitci_frob_1_pwm_xu_akti:
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_ctrl
+	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
@@ -414,7 +414,7 @@ zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
 	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-zgitci_frob_1_pwm_ctrl:
+zgitci_frob_1_pwm_gpioctrl:
 	/* DROP t[0-6] */
 
 	#define	gpio_ctrl_j_t0	t0
@@ -423,7 +423,6 @@ zgitci_frob_1_pwm_ctrl:
 	li	t1,	IO_BANK0_BASE + 4 // "
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
-	/* | .i sruma lo du'u mapti va'o zo'e */
 	sw	t1,	(gpio_ctrl_j_t0)
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
@@ -467,6 +466,10 @@ zgitci_frob_1_pwm_div_sampu:
 zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
+zgitci_frob_1_pwm_top:
+	// se morji: PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
+	#define	SIVNI_TOP_OFFSET	0x10
+	sh	a2,	(SIVNI_TOP_OFFSET - SIVNI_DIV_OFFSET)(div_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
 	 * .i djica tu'a la'oi .A_INV. ji la'oi .PH_CORRECT. ji la'oi .DIVMODE. ji ma
@@ -477,12 +480,6 @@ zgitci_frob_1_pwm_csr:
 
 	#define	SIVNI_CSR_OFFSET	0
 	// TODO
-
-	// se morji: PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
-	#define	SIVNI_TOP_OFFSET	0x10
-	# PWM_CHx_TOP_OFFSET
-	# ???
-	# TODO
 
 	# PWM_CHx_CC_OFFSET
 	# ???
@@ -997,9 +994,9 @@ zgitci_frob_slurp:
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
-	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
-
 	sw	flash_j_a2,	(dma_read_j_t0)
+
+	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	slli	t1,	a3,	4 * (8 - 5)
 	srli	t1,	t1,	4 * (8 - 5)
