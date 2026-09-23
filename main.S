@@ -1160,7 +1160,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t[34] */
 
 	li	t0,	0x01EE8EB3	// add	t4,	t4,	t5
-	sw	t0,	(inst_j_a6)
+	sw	t0,	0(inst_j_a6)
 	fence.i
 
 	ret
