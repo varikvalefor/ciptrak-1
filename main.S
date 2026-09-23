@@ -403,7 +403,7 @@ zgitci_frob_1_pwm:
 	#define	pwm_slice_a5	a5
 	#define	pwm_base_a6	a6
 	li	pwm_base_a6,	PWM_BASE
-zgitci_frob_1_pwm_ctrl:
+zgitci_frob_1_pwm_gpioctrl:
 	/* DROP t[0-6] */
 
 	#define	gpio_ctrl_j_t0	t0
