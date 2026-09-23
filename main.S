@@ -150,7 +150,7 @@ main_init_periph_pwm_reset_denpa:
 	bne	t1,	t2,	main_init_periph_pwm_reset_denpa
 
 main_lupe_pre:
-	#define	vrc_s0	s1
+	#define	vrc_s0	s0
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
