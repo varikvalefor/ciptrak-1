@@ -481,7 +481,7 @@ zgitci_frob_1_pwm_div_slilu:
 	add	div0_t4,	div0_t4,	t2
 	sh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)
 
-	/* DROP t[12] */
+	/* DROP t[012456] */
 
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_sampu:
