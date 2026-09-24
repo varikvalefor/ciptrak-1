@@ -381,7 +381,7 @@ zgitci_frob:
 	c.j	zgitci_frob_damri
 	c.j	zgitci_frob_check_pio
 	c.j	zgitci_frob_mv
-	c.j	zgitci_frob_c000_sutra
+	c.j	zgitci_frob_sutra
 	c.j	zgitci_frob_c000_denpa
 	c.j	zgitci_frob_deaf_xosc
 	c.j	zgitci_frob_deaf_setsivni
@@ -792,7 +792,7 @@ zgitci_frob_mv_frob:
  *
  * ?
  */
-zgitci_frob_c000_sutra:
+zgitci_frob_sutra:
 	#define	SIVNI_A1_JOG_BIT	4 * 4
 	addi	sp,	sp,	-(3*4)
 	sw	ra,	0(sp)
@@ -804,7 +804,7 @@ zgitci_frob_c000_sutra:
 	mv	judri_s2,	a1
 	zext.h	t0,	a2
 	sh2add	max_s3,	judri_s2,	t0
-zgitci_frob_c000_sutra_lupe:
+zgitci_frob_sutra_lupe:
 	/* DROP t[0-7] */
 
 	lw	t0,	(judri_s2)
@@ -818,8 +818,8 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a3,	0xC(t0)
 	jal	zgitci_frob
 
-	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
-zgitci_frob_c000_sutra_post:
+	blt	judri_s2,	max_s3,	zgitci_frob_sutra_lupe
+zgitci_frob_sutra_post:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
