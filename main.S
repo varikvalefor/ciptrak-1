@@ -1213,7 +1213,7 @@ zgitci_frob_sutcmaci:
 	sw	t0,	0(inst_j_a6)
 	fence.i
 .rem:
-	li	t0,	0x03EEEEB3	// rem	t4,	t4,	t5
+	li	t0,	0x025E6EB3	// rem	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
 	fence.i
 
