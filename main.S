@@ -1219,7 +1219,7 @@ zgitci_frob_sutcmaci:
 
 	c.j	.sumji
 .basti:
-	li	t0,	0x00028E93
+	li	t0,	0x00028E93	// mv t4,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
 	fence.i
 
