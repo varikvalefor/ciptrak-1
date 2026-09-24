@@ -139,7 +139,7 @@ main_init_periph:
 	sw	t0,	(t1)
 
 main_lupe_pre:
-	#define	vrc_s0	s1
+	#define	vrc_s0	s0
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
@@ -372,7 +372,7 @@ zgitci_frob:
  *
  * 0x1
  *
- * [?: 0xXXXX] [zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
+ * [?: 0xXXX][seslilu: 0xX][zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
  * [?: 0xXXXX][top: 0xXXXX]
  *
@@ -392,6 +392,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_DIV_BIT	2
 	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
+	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
@@ -454,11 +455,35 @@ zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
-	/* TODO
-	 *
-	 * .i slilu ma
-	 */
-	j	zgitci_frob_1_pwm_csr
+	/* DROP t[12456] */
+	#define	sivni_j_t1	t1
+	#define	div0_t4	t4
+
+	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
+	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+
+	lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
+
+	addi	t5,	t2,	1	// temp
+	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+
+	#define	temci_t5	t5
+	// cnino te frinu
+	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
+	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
+	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
+	andi	t2,	t2,	(1<<4) - 1
+	bext	t2,	temci_t5,	t2	//	DROP t5
+	slli	t2,	t2,	1
+	addi	t2,	t2,	-1
+	mul	t2,	div_t0,	t2
+	add	div0_t4,	div0_t4,	t2
+	sh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)
+
+	/* DROP t[012456] */
+
+	j	zgitci_frob_1_pwm_top
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	SIVNI_DIV_OFFSET(div_j_t3)
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_sampu_zenba
