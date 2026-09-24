@@ -455,7 +455,7 @@ zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
-	/* DROP t[012456] */
+	/* DROP t[12456] */
 	#define	sivni_j_t1	t1
 	#define	div0_t4	t4
 
@@ -472,7 +472,7 @@ zgitci_frob_1_pwm_div_slilu:
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
 	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
-	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT
+	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
 	andi	t2,	t2,	(1<<4) - 1
 	bext	t2,	temci_t5,	t2	//	DROP t5
 	slli	t2,	t2,	1
@@ -481,9 +481,9 @@ zgitci_frob_1_pwm_div_slilu:
 	add	div0_t4,	div0_t4,	t2
 	sh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)
 
-	/* DROP t[12] */
+	/* DROP t[012456] */
 
-	j	zgitci_frob_1_pwm_csr
+	j	zgitci_frob_1_pwm_top
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	SIVNI_DIV_OFFSET(div_j_t3)
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_sampu_zenba
