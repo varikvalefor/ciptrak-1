@@ -455,7 +455,7 @@ zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
-	/* DROP t[012456] */
+	/* DROP t[12456] */
 	#define	sivni_j_t1	t1
 	#define	div0_t4	t4
 
