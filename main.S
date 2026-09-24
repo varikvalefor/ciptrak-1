@@ -379,7 +379,7 @@ zgitci_frob:
 	c.j	zgitci_frob_1_pwm
 	c.j	zgitci_frob_check_2
 	c.j	zgitci_frob_damri
-	c.j	zgitci_frob_pio
+	c.j	zgitci_frob_check_pio
 	c.j	zgitci_frob_mv
 	c.j	zgitci_frob_c000_sutra
 	c.j	zgitci_frob_c000_denpa
