@@ -399,8 +399,8 @@ zgitci_frob_1_pwm_xu_akti:
 	addi	t0,	pwm_base_a6,	PWM_EN_OFFSET
 	lw	t0,	(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
-	bext	t1,	t0,	pwm_slice_a5
-	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
+	bext	t0,	t0,	pwm_slice_a5
+	bnez	t0,	zgitci_frob_1_pwm_gpioctrl
 zgitci_frob_1_pwm_aktigau:
 	/* DROP t[0-6] */
 
