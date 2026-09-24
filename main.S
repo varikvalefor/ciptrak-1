@@ -1065,6 +1065,8 @@ zgitci_frob_sw_post:
 /*
  * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
  * .i zu'edji tu'a lo nu la'oi .BIXYGAU. jai filri'a lo nu basygau pe'a lo zgitci co'e
+ * .i ji'a na pilno  .i krinu la'e di'u fa zo'e joi le su'u jinvi le du'u mapti lo su'o co'e jenai ku'i cu jai sarcu
+ * .i la .varik. cu jinvi le du'u filri'a fa tu'a la'oi .07666161de31f8ecad0550eb9e6de32d36f00076.
  *
  * 0xDEAF0005
  *
@@ -1074,31 +1076,6 @@ zgitci_frob_sw_post:
  *
  * [vrc: 0xXXXXXXXX]
  */
-zgitci_frob_deaf_bixygau2:
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
-
-	#define	judri0_t0	t0
-	#define	A1_SIVNI_JUDRIP_OFFSET	4
-	#define	A1_SIVNI_FLASH_BIT	1
-
-	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
-
-	// metfo: ga naja co'e gi...
-	//        addi	t0,	t0,	0x10000000
-	//
-	// .i jinvi le du'u lo me'oi .idx. cu jai to'e filri'a tu'a lo barda judri
-	// .i ku'i jinvi ga je le du'u lakne fa lo nu pilno lo me'oi .DATA. judri gi le du'u la'e zo'oi .0x10000000. pa moi lo'i me'oi .DATA. judri
-	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
-	slli	t1,	t1,	(28 - 1)
-	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
-	sh3add	judri0_t0,	t1,	t0
-
-	sw	a2,	0(judri0_t0)
-	mv	a5,	a3
-	jal	vrici_frob
-
-	ret
 
 /*
  * NOPE.AVI
