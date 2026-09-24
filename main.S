@@ -483,7 +483,7 @@ zgitci_frob_1_pwm_div_slilu:
 
 	/* DROP t[012456] */
 
-	j	zgitci_frob_1_pwm_csr
+	j	zgitci_frob_1_pwm_top
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	SIVNI_DIV_OFFSET(div_j_t3)
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_sampu_zenba
