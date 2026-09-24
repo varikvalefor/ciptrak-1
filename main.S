@@ -1209,7 +1209,7 @@ zgitci_frob_sutcmaci:
 
 	c.j	.sumji
 .div:
-	li	t0,	0x03EECEB3	// div	t4,	t4,	t5
+	li	t0,	0x025E4EB3	// div	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
 	fence.i
 .rem:
