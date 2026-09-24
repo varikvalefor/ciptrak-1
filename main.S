@@ -380,7 +380,7 @@ zgitci_frob:
 	c.j	zgitci_frob_check_2
 	c.j	zgitci_frob_damri
 	c.j	zgitci_frob_check_pio
-	c.j	zgitci_frob_mv
+	c.j	zgitci_frob_c000_mv
 	c.j	zgitci_frob_c000_sutra
 	c.j	zgitci_frob_c000_denpa
 	c.j	zgitci_frob_deaf_xosc
