@@ -1219,8 +1219,11 @@ zgitci_frob_sutcmaci:
 
 	c.j	.sumji
 .basti:
-	// TODO
-	ret
+	li	t0,	0x00028E93
+	sw	t0,	0(inst_j_a6)
+	fence.i
+
+	c.j	.sumji
 
 /*
  * NOPE.AVI
