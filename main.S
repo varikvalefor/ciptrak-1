@@ -380,7 +380,7 @@ zgitci_frob:
 	c.j	zgitci_frob_check_2
 	c.j	zgitci_frob_damri
 	c.j	zgitci_frob_check_pio
-	c.j	zgitci_frob_c000_mv
+	c.j	zgitci_frob_mv
 	c.j	zgitci_frob_c000_sutra
 	c.j	zgitci_frob_c000_denpa
 	c.j	zgitci_frob_deaf_xosc
@@ -714,7 +714,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
-zgitci_frob_c000_mv:
+zgitci_frob_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
 
@@ -729,7 +729,7 @@ zgitci_frob_c000_mv:
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
-zgitci_frob_c000_mv_cont_cnino_ctr:
+zgitci_frob_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
@@ -743,9 +743,9 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	sw	t3,	0xC(t0)
 
-	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+	beqz	ctr_t2,	zgitci_frob_mv_cont
 	ret
-zgitci_frob_c000_mv_cont:
+zgitci_frob_mv_cont:
 	/* DROP t[3-6] */
 
 	sw	sezvati_a2,	(sezvati_j_t0)
@@ -755,9 +755,9 @@ zgitci_frob_c000_mv_cont:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	zgitci_frob_c000_mv_frob
+	bnez	t0,	zgitci_frob_mv_frob
 	ret
-zgitci_frob_c000_mv_frob:
+zgitci_frob_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
 	addi	sp,	sp,	-4
