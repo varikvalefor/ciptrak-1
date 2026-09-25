@@ -544,6 +544,8 @@ zgitci_frob_check_2:
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
+	// | metfo: andi t0,   a1,     0xFFF
+	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
 	slli	t0,	a1,	4 * (8 - 3)	// 1c
