@@ -550,7 +550,7 @@ zgitci_frob_check_2:
 	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
-	sh1add	zts_j_t1,	t2,	t1
+	sh2add	zts_j_t1,	t2,	zts_id_t0
 
 	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
