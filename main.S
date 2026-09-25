@@ -460,7 +460,7 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	div0_t4	t4
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
+	sh2add	sivni_j_t1,	vrc_s0,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
 	lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
