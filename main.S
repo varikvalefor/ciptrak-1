@@ -147,7 +147,7 @@ main_lupe_xosc_counter:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
-main_reset_temci:
+main_lupe_reset_temci:
 	#define	temci_t0	t0
 	lw	t0,	CUR_TEMCI_OFFSET(vrc_s0)
 	lw	t1,	CUR_SHA_EN(vrc_s0)	// xOrtNIYQ.  lw opt
