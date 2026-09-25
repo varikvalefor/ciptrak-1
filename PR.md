@@ -5,4 +5,4 @@
 
 .i la .varik. cu jinvi ga je...
 * le du'u zengau pe'a fi le ka ce'u jai zilsutra je le ka ce'u cmalu gi
-* ku'i le du'u formato bixygau pe'a le su'o pa fancu
+* ku'i le du'u formato bixygau pe'a le su'o pa fancu noi la'oi .zgitci_frob_check_2. mupli tu'a ke'a
