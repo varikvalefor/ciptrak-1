@@ -994,7 +994,7 @@ zgitci_frob_deaf_setsivni_post:
  *
  * [judri_mem]
  *
- * [judri_flash]
+ * [temuvdu_judri]
  *
  * [?: 0xXX][dmaIdx: 0xX][nibarda: 0xXXXXX]
  *
@@ -1003,7 +1003,7 @@ zgitci_frob_deaf_setsivni_post:
 zgitci_frob_slurp:
 	// TODO: .i xu mapti  .i simlu fi vy fe le ka ce'u sampu
 	#define	ram_j_a1	a1
-	#define	flash_j_a2	a2
+	#define	temuvdu_j_a2	a2
 
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
 
@@ -1019,7 +1019,7 @@ zgitci_frob_slurp:
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
-	sw	flash_j_a2,	(dma_read_j_t0)
+	sw	temuvdu_j_a2,	(dma_read_j_t0)
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
