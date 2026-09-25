@@ -842,7 +842,7 @@ zgitci_frob_c000_sutra_post:
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s0,	t0
 	sw	judri_s2,	(t0)
-zgitci_frob_c000_fanmo:
+zgitci_frob_c000_sutra_fanmo:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
