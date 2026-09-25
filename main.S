@@ -994,7 +994,7 @@ zgitci_frob_deaf_setsivni_post:
  *
  * [judri_mem]
  *
- * [temuvdu_flash_judri]
+ * [temuvdu_judri]
  *
  * [?: 0xX 0bXXX][flash2: 0bX][dmaIdx: 0xX][nibarda: 0xXXXXX]
  *
