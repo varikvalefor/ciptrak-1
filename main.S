@@ -143,7 +143,6 @@ main_init_periph_pwm_reset:
 	sw	t1,	(t0)
 
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
-	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 main_init_periph_pwm_reset_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
