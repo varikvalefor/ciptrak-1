@@ -207,7 +207,8 @@ main_lupe_tcidu:
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	-4
-	addi	judri_j_a1,	vrc_s0,	CUR_PATN_JUDRI(0)
+	addi	a1,	vrc_s0,	CUR_PATN_JUDRI(0)
+	lw	judri_j_a1,	(a1)
 	addi	datni_cur_j_a2,	vrc_s0,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
@@ -732,7 +733,8 @@ zgitci_frob_c000_mv:
 	#define	judri_j_t1	t1
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	sezvati_j_t0,	vrc_s0,	t0
-	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
+	addi	t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
+	lw	judri_j_t1,	(t1)
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
