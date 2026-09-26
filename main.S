@@ -780,6 +780,8 @@ zgitci_frob_c000_mv_cont:
 zgitci_frob_c000_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
+	lw	patn_a1,	(patn_a1)	// deref
+
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
