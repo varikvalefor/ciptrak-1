@@ -1197,7 +1197,7 @@ vrici_frob_sio:
 	beqz	t0,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 
-	andi	pin_t0,	a5,	31
+	andi	pin_t0,	a5,	((1<<5) - 1)
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
