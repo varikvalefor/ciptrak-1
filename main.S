@@ -448,7 +448,7 @@ zgitci_frob_1_pwm_div:
 
 	// DROP t[456]
 
-	#define	SIVNI_DIV_OFFSET	4
+	#define	SIVNI_DIV_OFFSET	4	// TODO: .i jinvi le du'u mapti fa lo nu cikre pe'a
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
