@@ -740,11 +740,7 @@ zgitci_frob_c000_mv:
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
 
-	la	t3,	patton
-	add	t1,	t1,	t3
 	lw	judri_j_t1,	(t1)	// oBvZEzSo.  lw opt
-
-	/* DROP t3 */
 zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
