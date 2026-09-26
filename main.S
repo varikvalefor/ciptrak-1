@@ -351,7 +351,7 @@ main_reset_denpa:
 main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lh	t1,	0(t0)
+	lhu	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
 	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
