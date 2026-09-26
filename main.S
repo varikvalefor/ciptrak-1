@@ -1161,7 +1161,7 @@ zgitci_frob_sutcmaci:
 
 	#define	max_a7	a7
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
-	srli	max_a7,	a3,	6 * 4
+	srli	max_a7,	a3,	6 * 4	// TODO: .i ma krinu
 	sll	max_a7,	max_a7,	t2
 	add	max_a7,	cur_j_a0,	max_a7
 
