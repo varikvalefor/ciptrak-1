@@ -1156,9 +1156,11 @@ zgitci_frob_sutcmaci:
 	#define	swd_j_a1	a1
 	// | metfo: andi	t2,	a3,	0x00FFF00
 	//          srli	t2,	t2,	2 * 4
-	slli	t2,	a3,	4 * (8 - (3 + 3))	// temp
+	slli	t2,	a3,	4 * (8 - (3 + 3))
 	srli	t2,	t2,	4 * (8 - 3)
 	sh2add	swd_j_a1,	t3,	t2
+
+	/* DROP t2 */
 
 	#define	max_a7	a7
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
