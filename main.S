@@ -1171,8 +1171,9 @@ zgitci_frob_sutcmaci:
 	bset	diff_t2,	x0,	t2
 
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
+
+	/* DROP t[13456] */
 .sumji_lupe:
-	/* DROP t[123456] */
 	lw	t3,	4(cur_j_a0)
 
 	add	cur_j_a0,	cur_j_a0,	diff_t2
