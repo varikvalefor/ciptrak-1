@@ -1079,6 +1079,7 @@ zgitci_frob_sutcmaci:
 
 	#define	sectaipe_t0	t0
 	#define	SIVNI_SECTAIPE_NILZILCMI	6
+	#define	SIVNI_A3_NIBARDA_BIT	(4 * 6)
 	slli	t0,	a1,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
 	//
@@ -1161,7 +1162,7 @@ zgitci_frob_sutcmaci:
 
 	#define	max_a7	a7
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
-	srli	max_a7,	a3,	6 * 4	// TODO: .i ma krinu
+	srli	max_a7,	a3,	SIVNI_A3_NIBARDA_BIT
 	sll	max_a7,	max_a7,	t2
 	add	max_a7,	cur_j_a0,	max_a7
 
