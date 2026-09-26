@@ -1165,11 +1165,11 @@ zgitci_frob_sutcmaci:
 
 	/* DROP (t2|a4) */
 
-	#define	max_a7	a7
+	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
-	srli	max_a7,	a3,	SIVNI_A3_NIBARDA_BIT
-	sll	max_a7,	max_a7,	t2
-	add	max_a7,	cur_j_a0,	max_a7
+	srli	max_a4,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	max_a4,	max_a4,	t2
+	add	max_a4,	cur_j_a0,	max_a4
 
 	/* DROP t[3-6] */
 
@@ -1194,7 +1194,7 @@ zgitci_frob_sutcmaci:
 	or	t3,	t3,	t4
 	sw	t3,	0(swd_j_a1)
 
-	blt	cur_j_a0,	max_a7,	.sumji_lupe
+	blt	cur_j_a0,	max_a4,	.sumji_lupe
 	/* DROP t[34] */
 
 	li	t0,	0x005E0EB3	// add	t4,	t3,	sesumjiX_t0
