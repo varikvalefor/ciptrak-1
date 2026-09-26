@@ -214,8 +214,8 @@ main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
 	lw	judri_t0,	(judri_j_a1)
-	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
+	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
