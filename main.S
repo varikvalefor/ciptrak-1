@@ -143,7 +143,7 @@ main_lupe_pre:
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
-	lh	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
+	lhu	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
