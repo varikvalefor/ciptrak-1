@@ -1189,7 +1189,7 @@ vrici_frob_denpaWfi:
 /* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
-	#define	SIVNI_INIT_BIT	6
+	#define	SIVNI_INIT_BIT	(1 + SIVNI_VALUE_BIT)
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
