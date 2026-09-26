@@ -1198,7 +1198,7 @@ zgitci_frob_sutcmaci:
 
 	ret
 .sesumji:
-	li	t0,	0x41	// s/add/sub
+	li	t0,	0x41	// s/add/sub/
 	sb	t0,	3(inst_j_a6)
 	fence.i
 
