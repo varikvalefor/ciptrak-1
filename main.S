@@ -1121,6 +1121,7 @@ zgitci_frob_sutcmaci:
 	#define	sesumjiX_t0	t0
 	#define	clip_a5	a5
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
+	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
 	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
 	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 
@@ -1128,7 +1129,7 @@ zgitci_frob_sutcmaci:
 
 	andi	slli_t1,	a2,	(1<<5) - 1
 
-	srli	t2,	a2,	4 + 1
+	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
 	andi	bit_nibarda_t2,	t2,	(1<<5) - 1
 
 	addi	t3,	bit_nibarda_t2,	1
