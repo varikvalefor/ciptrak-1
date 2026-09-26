@@ -1154,6 +1154,7 @@ zgitci_frob_sutcmaci:
 	sh2add	cur_j_a0,	a0,	t2
 
 	#define	swd_j_a1	a1
+	// | metfo: andi	t2,	a3,	0x00FFF00; srli	t2,	t2,	2 * 4
 	slli	t2,	a3,	4 * (8 - (3 + 3))	// temp
 	srli	t2,	t2,	4 * (8 - 3)
 	sh2add	swd_j_a1,	t3,	t2
