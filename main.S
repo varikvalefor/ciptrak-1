@@ -734,11 +734,13 @@ zgitci_frob_c000_mv:
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	sezvati_j_t0,	vrc_s0,	t0
 	addi	t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
-	lw	judri_j_t1,	(t1)
+	// lw	judri_j_t1,	(t1)	// mv oBvZEzSo
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
+
+	lw	judri_j_t1,	(t1)	// oBvZEzSo.  lw opt
 zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
