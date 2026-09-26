@@ -208,9 +208,7 @@ main_lupe_tcidu:
 	#define	sivniP_t4	t4
 	li	ctr_a0,	-4
 	addi	a1,	vrc_s0,	CUR_PATN_JUDRI(0)
-	lw	a1,	(a1)
-	la	a2,	patton
-	add	judri_j_a1, a1,	a2
+	lw	judri_j_a1,	(a1)
 	addi	datni_cur_j_a2,	vrc_s0,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
