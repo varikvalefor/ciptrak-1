@@ -716,7 +716,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
+ * [?: 0xXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
