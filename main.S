@@ -1147,7 +1147,9 @@ zgitci_frob_sutcmaci:
 	addi	t3,	cur_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
 	lw	t4,	0(a0)	// judri
 	lw	t5,	0(t3)	// sezvati
+
 	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
+
 	add	cur_j_a0,	t4,	t5
 	// offset
 	// slli	t2,	a3,	4 * (8 - 3)	// mv 3qcJrH8V
