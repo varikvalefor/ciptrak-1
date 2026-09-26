@@ -1168,7 +1168,7 @@ zgitci_frob_sutcmaci:
 	sll	max_a7,	max_a7,	t2
 	add	max_a7,	cur_j_a0,	max_a7
 
-	/* DROP t[2-6] */
+	/* DROP t[3-6] */
 
 	#define	diff_t2	t2
 	bset	diff_t2,	x0,	t2
