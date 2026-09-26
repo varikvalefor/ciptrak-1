@@ -396,8 +396,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
-	addi	t0,	pwm_base_a6,	PWM_EN_OFFSET
-	lw	t0,	(t0)
+	lw	t0,	PWM_EN_OFFSET(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t0,	t0,	pwm_slice_a5
 	bnez	t0,	zgitci_frob_1_pwm_gpioctrl
@@ -410,7 +409,6 @@ zgitci_frob_1_pwm_aktigau:
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
-	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
