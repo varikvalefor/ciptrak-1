@@ -408,7 +408,7 @@ zgitci_frob_1_pwm_aktigau:
 	sw	t1,	(t0)
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
