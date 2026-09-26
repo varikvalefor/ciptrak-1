@@ -1110,7 +1110,7 @@ zgitci_frob_sutcmaci:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
-	 * a2.  [?: 0xXXXXX] [diff: 0bXX][nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 * a2.  [?: 0xXXXXX] [diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
 	/* DROP t[0-6] a[57] */
