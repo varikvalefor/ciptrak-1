@@ -136,7 +136,7 @@ main_init_periph:
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
 	li	t1,	(1<<4) - 1
-	sw	t0,	(t1)
+	sw	t1,	(t0)
 
 main_lupe_pre:
 	#define	vrc_s0	s0
