@@ -1094,7 +1094,7 @@ zgitci_frob_sutcmaci:
 	addi	t1,	t1,	(4 + 4 + 4)	// 4B
 
 	// dispatch
-	c.j	.sisti
+	c.jr	ra
 	c.j	.sumji
 	c.j	.sesumji
 	c.j	.mul
@@ -1102,8 +1102,6 @@ zgitci_frob_sutcmaci:
 	c.j	.rem
 	c.j	.basti
 
-.sisti:
-	ret
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
