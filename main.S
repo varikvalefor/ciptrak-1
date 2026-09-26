@@ -833,11 +833,6 @@ zgitci_frob_c000_sutra_lupe:
 
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
-	lw	ra,	0(sp)
-	lw	s2,	4(sp)
-	lw	s3,	8(sp)
-	addi	sp,	sp,	(3*4)
-
 	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
 	beqz	t0,	zgitci_frob_c000_fanmo
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
@@ -845,6 +840,10 @@ zgitci_frob_c000_sutra_post:
 	sh2add	t0,	vrc_s0,	t0
 	sw	judri_s2,	(t0)
 zgitci_frob_c000_fanmo:
+	lw	ra,	0(sp)
+	lw	s2,	4(sp)
+	lw	s3,	8(sp)
+	addi	sp,	sp,	(3*4)
 	ret
 
 /*
@@ -993,7 +992,7 @@ zgitci_frob_deaf_setsivni_post:
  *
  * [judri_mem]
  *
- * [judri_flash]
+ * [temuvdu_judri]
  *
  * [?: 0xXX][dmaIdx: 0xX][nibarda: 0xXXXXX]
  *
@@ -1002,7 +1001,7 @@ zgitci_frob_deaf_setsivni_post:
 zgitci_frob_slurp:
 	// TODO: .i xu mapti  .i simlu fi vy fe le ka ce'u sampu
 	#define	ram_j_a1	a1
-	#define	flash_j_a2	a2
+	#define	temuvdu_j_a2	a2
 
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
 
@@ -1018,7 +1017,7 @@ zgitci_frob_slurp:
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
-	sw	flash_j_a2,	(dma_read_j_t0)
+	sw	temuvdu_j_a2,	(dma_read_j_t0)
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
