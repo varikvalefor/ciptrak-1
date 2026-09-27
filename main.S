@@ -1197,7 +1197,7 @@ zgitci_frob_sutcmaci:
 	sw	t3,	0(swd_j_a1)
 
 	blt	cur_j_a0,	max_a4,	.sumji_lupe
-	/* DROP t[34] */
+	/* DROP t[0-6] */
 
 	li	t0,	0x005E0EB3	// add	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
