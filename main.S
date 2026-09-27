@@ -266,7 +266,7 @@ main_incri:
 
 	// se morji: CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 	// x = 0
-	sh2add	incri_j_a1,	vrc_s0,	CUR_INCRI_IDX_OFFSET
+	addi	incri_j_a1,	vrc_s0,	(CUR_INCRI_IDX_OFFSET<<2)
 .clupa:
 	addi	denpa_j_a2,	incri_j_a1,	4 * (CUR_DENPA_INST_OFFSET - CUR_INCRI_IDX_OFFSET)
 	addi	sezvati_j_a3,	incri_j_a1,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_INCRI_IDX_OFFSET)
