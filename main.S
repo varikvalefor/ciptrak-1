@@ -1113,6 +1113,8 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] a[57] */
 
+	// | commit 09cf778eccba964dd59d93e8944e7c51afcca9c3
+	// .i jinvi le du'u filri'a lo nu rapli cusku pe'a
 	fence.i
 
 	#define	sesumji_t0	t0
