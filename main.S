@@ -373,6 +373,8 @@ zgitci_frob:
 	sh1add	t0,	t0,	a0
 	c.jr	t0
 .dispatch:
+	/* DROP a0 */
+
 	// | 0
 	ret
 	c.j	zgitci_frob_1_pwm
