@@ -269,7 +269,6 @@ main_incri:
 	// se morji: CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 	addi	t0,	a0,	CUR_INCRI_IDX_OFFSET
 	sh2add	incri_j_a1,	vrc_s0,	t0
-	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	addi	denpa_j_a2,	incri_j_a1,	4 * (CUR_DENPA_INST_OFFSET - CUR_INCRI_IDX_OFFSET)
 	addi	sezvati_j_a3,	incri_j_a1,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_INCRI_IDX_OFFSET)
 	//
