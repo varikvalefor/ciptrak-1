@@ -382,8 +382,8 @@ zgitci_frob:
  *
  */
 zgitci_frob_1_pwm:
-	li	t1,	1
-	bne	a0,	t1,	zgitci_frob_check_2
+	li	t0,	1
+	bne	a0,	t0,	zgitci_frob_check_2
 zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_base_a6	a6
 	li	pwm_base_a6,	PWM_BASE
