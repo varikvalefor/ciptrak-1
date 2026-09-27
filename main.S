@@ -1113,6 +1113,8 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] a[57] */
 
+	fence.i
+
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
 	#define	bit_nibarda_t2	t2
@@ -1197,37 +1199,31 @@ zgitci_frob_sutcmaci:
 
 	li	t0,	0x005E0EB3	// add	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
-	fence.i
 
 	ret
 .sesumji:
 	li	t0,	0x41	// s/add/sub/
 	sb	t0,	3(inst_j_a6)
-	fence.i
 
 	c.j	.sumji
 .mul:
 	li	t0,	0x03	// s/add/mul/
 	sb	t0,	3(inst_j_a6)
-	fence.i
 
 	c.j	.sumji
 .div:
 	li	t0,	0x025E4EB3	// div	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
-	fence.i
 
 	c.j	.sumji
 .rem:
 	li	t0,	0x025E6EB3	// rem	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
-	fence.i
 
 	c.j	.sumji
 .basti:
 	li	t0,	0x00028E93	// mv t4,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
-	fence.i
 
 	c.j	.sumji
 
