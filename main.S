@@ -1096,7 +1096,6 @@ zgitci_frob_sutcmaci:
 	la	t1,	.dispatch
 	sh1add	t1,	t1,	sectaipe_t0
 	c.jr	t1
-
 .dispatch:
 	c.jr	ra
 	c.j	.sumji
