@@ -681,7 +681,7 @@ zgitci_frob_check_pio:
 	bclri	t0,	a0,	4*4
 	addi	t0,	t0,	-1
 	li	t1,	1
-	bgtu	t0,	t1,	zgitci_frob_c000_mv
+	bgtu	t0,	t1,	zgitci_frob_ditto
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
@@ -704,6 +704,45 @@ zgitci_frob_check_pio_gpio_post:
 
 	li	t1,	1 | (1<<2)
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
+
+	ret
+
+/*
+ * DITTO
+ *
+ * 0x00010003
+ *
+ * [?: 0xXXXXXXX 0bXX][zt: 0bXX]
+ *
+ * [diff]
+ * ^ .i barda ki'u zo'e joi le su'u djica lo nu mapti tu'a lo se sumji
+ *
+ * ?
+ */
+zgitci_frob_ditto:
+	li	t0,	0x00010003
+	bne	a0,	t0,	zgitci_frob_c000_mv
+
+	#define	diff_a2	a2
+
+	addi	sp,	sp,	-4
+	sw	ra,	0(sp)
+
+	// se morji: CUR_ZGITCI0(x)		4 * (CUR_ZGITCI0_OFFSET + 4 * x)
+	andi	t0,	a1,	0b11
+	slli	t0,	t0,	2
+	addi	t0,	t0,	6
+	sh2add	t0,	vrc_s1,	t0
+	add	t0,	t0,	diff_a2
+
+	lw	a0,	0x0(t0)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
+	jal	zgitci_frob
+
+	lw	ra,	0(sp)
+	addi	sp,	sp,	4
 
 	ret
 
