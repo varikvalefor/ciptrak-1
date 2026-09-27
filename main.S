@@ -1154,12 +1154,11 @@ zgitci_frob_sutcmaci:
 	lw	t4,	0(a0)	// judri
 	lw	t5,	0(cur_sz_t3)	// sezvati
 
+	// offset
 	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
+	srli	t2,	t2,	4 * (8 - 3)
 
 	add	cur_j_a0,	t4,	t5
-	// offset
-	// slli	t2,	a3,	4 * (8 - 3)	// mv 3qcJrH8V
-	srli	t2,	t2,	4 * (8 - 3)
 	sh2add	cur_j_a0,	a0,	t2
 
 	#define	swd_j_a1	a1
