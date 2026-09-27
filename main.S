@@ -364,7 +364,7 @@ main_reset_denpa_barda_lupe:
 
 #define	zgitci_a4	a4
 zgitci_frob:
-	#define	NILZILCMI	11
+	#define	NILZILCMI	10
 	li	t0,	NILZILCMI
 	sltu	t0,	a0,	t0
 	mul	a0,	a0,	t0
