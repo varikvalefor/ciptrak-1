@@ -752,6 +752,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
+	/* DROP t4 */
+
 	sw	t3,	0xC(t0)
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
