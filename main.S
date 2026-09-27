@@ -350,9 +350,9 @@ main_lupe_reset_denpa:
 	# .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
-main_reset_denpa_lupe:
+main_lupe_reset_denpa_lupe:
 	lh	t1,	0(t0)
-	bnez	t1,	main_reset_denpa_lupe
+	bnez	t1,	main_lupe_reset_denpa_lupe
 main_reset_denpa_barda:
 	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
 	addi	t0,	t0,	1	// underflow
