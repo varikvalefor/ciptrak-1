@@ -136,14 +136,14 @@ main_init_periph:
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
 	li	t1,	(1<<4) - 1
-	sw	t0,	(t1)
+	sw	t1,	(t0)
 
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
-	lh	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
+	lhu	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
@@ -351,10 +351,10 @@ main_reset_denpa:
 main_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_reset_denpa_lupe:
-	lh	t1,	0(t0)
+	lhu	t1,	0(t0)
 	bnez	t1,	main_reset_denpa_lupe
 main_reset_denpa_barda:
-	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
+	lhu	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
 	addi	t0,	t0,	1	// underflow
 main_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
@@ -396,8 +396,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
-	addi	t0,	pwm_base_a6,	PWM_EN_OFFSET
-	lw	t0,	(t0)
+	lw	t0,	PWM_EN_OFFSET(t0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
 	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
@@ -409,8 +408,7 @@ zgitci_frob_1_pwm_aktigau:
 	sw	t1,	(t0)
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
-	li	t1,	(1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT)
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
@@ -450,7 +448,7 @@ zgitci_frob_1_pwm_div:
 
 	// DROP t[456]
 
-	#define	SIVNI_DIV_OFFSET	4
+	#define	SIVNI_DIV_OFFSET	4	// TODO: .i jinvi le du'u mapti fa lo nu cikre pe'a
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
@@ -460,10 +458,10 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	div0_t4	t4
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
+	sh2add	sivni_j_t1,	vrc_s0,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
-	lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
+	lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
 
 	addi	t5,	t2,	1	// temp
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
@@ -471,7 +469,7 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	temci_t5	t5
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
-	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
+	// lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
 	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
 	andi	t2,	t2,	(1<<4) - 1
 	bext	t2,	temci_t5,	t2	//	DROP t5
@@ -550,7 +548,7 @@ zgitci_frob_check_2:
 	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
-	sh1add	zts_j_t1,	t2,	t1
+	sh2add	zts_j_t1,	t2,	zts_id_t0
 
 	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
@@ -718,7 +716,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
+ * [?: 0xXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
@@ -746,10 +744,10 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
 	add	t5,	judri_j_t1,	sezvati_j_t0
-	lw	t0,	(t5)
+	lw	t6,	(t5)
 	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
-	sw	t3,	0xC(t0)
+	sw	t3,	0xC(t6)
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
@@ -1100,13 +1098,12 @@ vrici_frob:
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	(2 * 4)
-vrici_frob_dispatch:
+
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	auipc	t1,	0	// 4B
-	sh1add	t0,	t0,	t1	// 4B
-	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
-	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	c.jr	t0	// 2B
+	la	t1,	vrici_frob_dispatch
+	sh1add	t1,	t1,	klesi_t0
+	c.jr	t1
+vrici_frob_dispatch:
 	// | 0
 	ret
 	c.j	vrici_frob_denpa
