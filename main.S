@@ -271,7 +271,7 @@ main_incri:
 	addi	denpa_j_a2,	incri_j_a1,	4 * (CUR_DENPA_INST_OFFSET - CUR_INCRI_IDX_OFFSET)
 	addi	sezvati_j_a3,	incri_j_a1,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_INCRI_IDX_OFFSET)
 	//
-	lw	incri_t1,	0(incri_j_a1)
+	lw	incri_t0,	0(incri_j_a1)
 	lw	denpa_t1,	0(denpa_j_a2)
 	lw	sezvati_t2,	0(sezvati_j_a3)
 	sltu	lt_t1,	denpa_t1,	incri_t0
