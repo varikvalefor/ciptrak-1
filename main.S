@@ -251,7 +251,7 @@ main_lupe_tcidu_lupe_ld_cur_fanmo:
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
 
-main_incri:
+main_lupe_incri:
 	/* DROP [at][0-7] */
 
 	/* TODO: .i xu frili cumki fa lo nu jdikygau pe'a fi le ka ce'u barda */
