@@ -264,11 +264,10 @@ main_incri:
 	#define	denpa_j_a2	a2
 	#define	sezvati_j_a3	a3
 
-	li	a0,	0
-.clupa:
 	// se morji: CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
-	addi	t0,	a0,	CUR_INCRI_IDX_OFFSET
-	sh2add	incri_j_a1,	vrc_s0,	t0
+	// x = 0
+	sh2add	incri_j_a1,	vrc_s0,	CUR_INCRI_IDX_OFFSET
+.clupa:
 	addi	denpa_j_a2,	incri_j_a1,	4 * (CUR_DENPA_INST_OFFSET - CUR_INCRI_IDX_OFFSET)
 	addi	sezvati_j_a3,	incri_j_a1,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_INCRI_IDX_OFFSET)
 	//
@@ -282,11 +281,11 @@ main_incri:
 	sw	incri_t0,	0(incri_j_a1)
 	sw	sezvati_t2,	0(sezvati_j_a1)
 
-	li	a0,	1
+	addi	incri_j_a1,	incri_j_a1,	4
 	jal	.clupa
-	li	a0,	2
+	addi	incri_j_a1,	incri_j_a1,	4
 	jal	.clupa
-	li	a0,	3
+	addi	incri_j_a1,	incri_j_a1,	4
 	jal	.clupa
 
 main_lupe_zgike:
