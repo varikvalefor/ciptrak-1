@@ -334,14 +334,14 @@ main_lupe_zgike:
 	// 8 by 8
 	// 9 by 9
 
-main_reset_denpa:
+main_lupe_reset_denpa:
 	/* DROP [at][0-7] */
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_reset_denpa_prelupe	// 2B
 	// | c.j	main_reset_denpa_prelupe
 	li	t0,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
-	la	t1,	main_reset_denpa	// 4B
+	la	t1,	main_lupe_reset_denpa	// 4B
 	sh	t0,	0(t1)	// 2B
 	fence.i	// 4B
 	wfi	// 4B
