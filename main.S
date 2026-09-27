@@ -363,14 +363,32 @@ main_reset_denpa_barda_lupe:
 	j	main_lupe
 
 #define	zgitci_a4	a4
-/* TODO: .i xu cadga fa lo nu bixygau pe'a fi lo me'oi .switch. co'e  .i la .varik. cu jinvi le du'u zmadu fi le ka ce'u mapti tu'a lo so'i co'e... kei jenai ku'i le ka ce'u mapti tu'a lo ke jai .indika ke'e namcu */
 zgitci_frob:
-	bnez	a0,	zgitci_frob_1_pwm
+	#define	NILZILCMI	11
+	li	t0,	NILZILCMI
+	sltu	t0,	a0,	t0
+	mul	a0,	a0,	t0
+
+	auipc	t0,	0	// 4B
+	sh1add	t0,	t0,	a0	// 4B
+	c.addi	t0,	4 + 4 + 2 + 2	// 2B
+	c.jr	t0	// 2B
+	// dispatch
+	// | 0
 	ret
+	c.j	zgitci_frob_1_pwm
+	c.j	zgitci_frob_check_2
+	c.j	zgitci_frob_damri
+	c.j	zgitci_frob_check_pio
+	c.j	zgitci_frob_mv
+	c.j	zgitci_frob_sutra
+	c.j	zgitci_frob_c000_denpa
+	c.j	zgitci_frob_deaf_xosc
+	c.j	zgitci_frob_deaf_setsivni
+	c.j	zgitci_frob_slurp
+	c.j	zgitci_frob_slurp
 
 /* PWM
- *
- * 0x1
  *
  * [?: 0xXXX][seslilu: 0xX][zenba/jdika: 0bXX][div: 0xXXX][slice: 0bXX]
  *
@@ -378,12 +396,8 @@ zgitci_frob:
  *
  * ?
  *
- * ?
- *
  */
 zgitci_frob_1_pwm:
-	li	t1,	1
-	bne	a0,	t1,	zgitci_frob_check_2
 zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_base_a6	a6
 	li	pwm_base_a6,	PWM_BASE
@@ -525,9 +539,7 @@ zgitci_frob_1_pwm_idx:
  * .i xu cadga fa lo nu pilno lo re moi be lo'i rucyca'a lo me'oi .PWM. co'e
  * .i la .varik. cu jinvi le du'u lo me'oi .PWM. co'e cu mapti tu'a lo sance datnyvei pe'a
  *
- * [23]
- *
- * [?: 0xXXXXX][sid: 0xXXX]
+ * [?: 0xXXXX 0bXXX][blackout: 0bX][sid: 0xXXX]
  * ^ .i lo se pilno cu meirmoi lo me'oi .sid. lo co'e be la'oi .sanceListe.
  *
  * ?
@@ -536,10 +548,7 @@ zgitci_frob_1_pwm_idx:
  *
  */
 zgitci_frob_check_2:
-	// | (a0 `elem` [2,3])?
-	addi	t0,	a0,	-2
-	li	t1,	1
-	bgeu	t0,	t1,	zgitci_frob_c000_mv
+	#define	SIVNI_A1_BLACKOUT_BIT	(3 * 4)
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
 	// li	t0,	0xFFF	// 2c
@@ -577,7 +586,7 @@ zgitci_frob_check_2:
 
 	// TODO: PWM crap
 
-	bexti	t1,	a0,	0
+	bexti	t1,	a1,	SIVNI_A1_BLACKOUT_BIT
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
 	sw	zts_a5,	(zts_sance_idx_t2)
@@ -586,8 +595,6 @@ zgitci_frob_check_2_fanmo:
 	ret
 /*
  * DAMRI
- *
- * 0x00000004
  *
  * [cnino: 0bX][tonga: 0bXXXXXXXXXXXXXXX][nibarda: 0xXXXX]
  *
@@ -599,8 +606,6 @@ zgitci_frob_damri:
 	#define	SIVNI_A2_NLEV_BIT	1
 	#define	SIVNI_A2_SHA256_NOISE_BIT	0
 	#define	SIVNI_A1_TONGA_BIT	(4 * 4)
-	li	t0,	0x0000004
-	bne	a0,	t0,	zgitci_frob_check_pio
 
 	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
@@ -663,8 +668,6 @@ zgitci_frob_damri_cusku:
 /*
  * PIO
  *
- * 0x0001000[12]
- *
  * [judri: 0xXXXXXXXX]
  *
  * [?: 0xXXXXXX][?: 0bX][pioIdx: 0bXX][nibarda: 0bX 0xX]
@@ -675,13 +678,6 @@ zgitci_frob_damri_cusku:
  */
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
-	#define	SIVNI_A2_PIOIDX_MASK	0b11
-	/* a0 `elem` [0x00010001, 0x00010002]? */
-	// | metfo: addi	t0,	a0,	-0x00010001
-	bclri	t0,	a0,	4*4
-	addi	t0,	t0,	-1
-	li	t1,	1
-	bgtu	t0,	t1,	zgitci_frob_c000_mv
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
@@ -710,19 +706,15 @@ zgitci_frob_check_pio_gpio_post:
 /*
  * MV
  *
- * 0xC0000001
- *
  * [patn: 0xXXXXXXXX]
  *
  * [sezvati: 0xXXXXXXXX]
  *
  * [?: 0xXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
-zgitci_frob_c000_mv:
+zgitci_frob_mv:
 	#define	patn_a1	a1
 	#define	sezvati_a2	a2
-	li	t0,	0xC0000001
-	bne	a0,	t0,	zgitci_frob_c000_sutra
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
@@ -735,7 +727,7 @@ zgitci_frob_c000_mv:
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
-zgitci_frob_c000_mv_cont_cnino_ctr:
+zgitci_frob_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
@@ -749,9 +741,9 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	sw	t3,	0xC(t6)
 
-	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+	beqz	ctr_t2,	zgitci_frob_mv_cont
 	ret
-zgitci_frob_c000_mv_cont:
+zgitci_frob_mv_cont:
 	/* DROP t[3-6] */
 
 	sw	sezvati_a2,	(sezvati_j_t0)
@@ -761,9 +753,9 @@ zgitci_frob_c000_mv_cont:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	zgitci_frob_c000_mv_frob
+	bnez	t0,	zgitci_frob_mv_frob
 	ret
-zgitci_frob_c000_mv_frob:
+zgitci_frob_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
 	addi	sp,	sp,	-4
@@ -792,20 +784,14 @@ zgitci_frob_c000_mv_frob:
  *
  * == aX ==
  *
- * 0xC0000002
- *
  * [judri: 0xXXXXXXXX]
  *
  * [?: 0xXXX][?: 0bXXX][jog: 0bX][nibarda: 0xXXXX]
  *
  * ?
  */
-zgitci_frob_c000_sutra:
+zgitci_frob_sutra:
 	#define	SIVNI_A1_JOG_BIT	4 * 4
-	// se morji: t0 = 0xC0000000 + 1
-	addi	t0,	t0,	1	// 0xC0000002
-	bne	a0,	t0,	zgitci_frob_c000_denpa
-
 	addi	sp,	sp,	-(3*4)
 	sw	ra,	0(sp)
 	sw	s2,	4(sp)
@@ -816,7 +802,7 @@ zgitci_frob_c000_sutra:
 	mv	judri_s2,	a1
 	zext.h	t0,	a2
 	sh2add	max_s3,	judri_s2,	t0
-zgitci_frob_c000_sutra_lupe:
+zgitci_frob_sutra_lupe:
 	/* DROP t[0-7] */
 
 	lw	t0,	(judri_s2)
@@ -830,8 +816,8 @@ zgitci_frob_c000_sutra_lupe:
 	lw	a3,	0xC(t0)
 	jal	zgitci_frob
 
-	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
-zgitci_frob_c000_sutra_post:
+	blt	judri_s2,	max_s3,	zgitci_frob_sutra_lupe
+zgitci_frob_sutra_post:
 	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
 	beqz	t0,	zgitci_frob_c000_fanmo
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
@@ -848,8 +834,6 @@ zgitci_frob_c000_fanmo:
 /*
  * DENPA BIXYGAU PE'A
  *
- * 0xC0000010
- *
  * [nidenpa: 0xXXXXXXXX]
  *
  * [vrici1]
@@ -857,9 +841,6 @@ zgitci_frob_c000_fanmo:
  * [vrici2]
  */
 zgitci_frob_c000_denpa:
-	li	t0,	0xC0000010
-	bne	a0,	t0,	zgitci_frob_deaf_xosc
-
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
 	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
@@ -878,8 +859,6 @@ zgitci_frob_c000_denpa:
 /*
  * XOSC BIXYGAU PE'A
  *
- * 0xDEAF0000
- *
  * 0xXXXX [dp: 0xXXXX]
  * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
  *
@@ -891,8 +870,6 @@ zgitci_frob_c000_denpa:
  */
 zgitci_frob_deaf_xosc:
 	#define	SIVNI_X1_BIT	1 + 4 * 3
-	li	t0,	0xDEAF0000
-	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
 	sh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 
@@ -912,8 +889,6 @@ zgitci_frob_deaf_xosc_post:
  * BIXYGAU PE'A
  * .i zu'edji tu'a lo nu la'oi .BIXYGAU. jai filri'a lo nu basygau pe'a lo zgitci co'e
  *
- * 0xDEAF0001
- *
  * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
  *
  * [zt1: 0xXXXXXXXX]
@@ -921,9 +896,6 @@ zgitci_frob_deaf_xosc_post:
  * [zt2: 0xXXXXXXXX]
  */
 zgitci_frob_deaf_bixygau:
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_deaf_setsivni
-
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 	#define	A1_SIVNI_FLASH_BIT	1
@@ -948,8 +920,6 @@ zgitci_frob_deaf_bixygau:
 /*
  * SET SIVNI
  *
- * 0xDEAF0002
- *
  * [?: 0xXXXXXXX][offset:0bXX][e: 0bXX]
  *
  * [sivni1]
@@ -958,9 +928,6 @@ zgitci_frob_deaf_bixygau:
  */
 zgitci_frob_deaf_setsivni:
 	/* TODO: .i xu ronsa la'oi .SW. */
-
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_slurp
 
 	#define	A1_SIVNI_ENABLE_BIT_0	0
 	#define	A1_SIVNI_ENABLE_BIT_1	1
@@ -987,8 +954,6 @@ zgitci_frob_deaf_setsivni_post:
 
 /* SLURP
  *
- * 0xDEAF0003
- *
  * [judri_mem]
  *
  * [temuvdu_judri]
@@ -1003,9 +968,6 @@ zgitci_frob_slurp:
 	#define	temuvdu_j_a2	a2
 
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
-
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_sw
 
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
@@ -1033,8 +995,6 @@ zgitci_frob_slurp:
 /*
  * SW
  *
- * [0xDEAF0004]
- *
  * [judri]
  *
  * [datni]
@@ -1042,9 +1002,6 @@ zgitci_frob_slurp:
  * [vriciDatni]
  */
 zgitci_frob_sw:
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
-
 	#define	judri_a1	a1
 	#define	data_a2	a2
 
@@ -1054,12 +1011,6 @@ zgitci_frob_sw:
 	mv	a5,	a3
 	jal	vrici_frob
 zgitci_frob_sw_post:
-	ret
-
-/*
- * NOPE.AVI
- */
-zgitci_frob_nope:
 	ret
 
 /*
