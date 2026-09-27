@@ -356,9 +356,9 @@ main_lupe_reset_denpa_lupe:
 main_lupe_reset_denpa_barda:
 	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
 	addi	t0,	t0,	1	// underflow
-main_reset_denpa_barda_lupe:
+main_lupe_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
-	bnez	t0,	main_reset_denpa_barda_lupe
+	bnez	t0,	main_lupe_reset_denpa_barda_lupe
 
 	j	main_lupe
 
