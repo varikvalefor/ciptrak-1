@@ -136,14 +136,14 @@ main_init_periph:
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
 	li	t1,	(1<<4) - 1
-	sw	t0,	(t1)
+	sw	t1,	(t0)
 
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
 main_lupe:
 main_lupe_xosc_counter:
-	lh	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
+	lhu	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 	sh	t1,	(t0)	// 15:0; ds 561
 
@@ -339,7 +339,7 @@ main_lupe_reset_denpa:
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_lupe_reset_denpa_prelupe	// 2B
-	// | c.j	main_reset_denpa_prelupe
+	// | c.j	main_lupe_reset_denpa_prelupe
 	li	t0,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
 	la	t1,	main_lupe_reset_denpa	// 4B
 	sh	t0,	0(t1)	// 2B
@@ -351,10 +351,10 @@ main_lupe_reset_denpa:
 main_lupe_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_lupe_reset_denpa_lupe:
-	lh	t1,	0(t0)
+	lhu	t1,	0(t0)
 	bnez	t1,	main_lupe_reset_denpa_lupe
 main_lupe_reset_denpa_barda:
-	lh	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
+	lhu	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
 	addi	t0,	t0,	1	// underflow
 main_lupe_reset_denpa_barda_lupe:
 	addi	t0,	t0,	-1
@@ -448,7 +448,7 @@ zgitci_frob_1_pwm_div:
 
 	// DROP t[456]
 
-	#define	SIVNI_DIV_OFFSET	4
+	#define	SIVNI_DIV_OFFSET	4	// TODO: .i jinvi le du'u mapti fa lo nu cikre pe'a
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 	j	zgitci_frob_1_pwm_csr
@@ -458,10 +458,10 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	div0_t4	t4
 
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	sh2add	sivni_j_t1,	vrc_s1,	zgitci_a4
+	sh2add	sivni_j_t1,	vrc_s0,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
-	lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
+	lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
 
 	addi	t5,	t2,	1	// temp
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
@@ -469,7 +469,7 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	temci_t5	t5
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
-	// lh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
+	// lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
 	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
 	andi	t2,	t2,	(1<<4) - 1
 	bext	t2,	temci_t5,	t2	//	DROP t5
@@ -550,7 +550,7 @@ zgitci_frob_check_2:
 	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
-	sh1add	zts_j_t1,	t2,	t1
+	sh2add	zts_j_t1,	t2,	zts_id_t0
 
 	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
@@ -718,7 +718,7 @@ zgitci_frob_check_pio_gpio_post:
  *
  * [sezvati: 0xXXXXXXXX]
  *
- * [?: 0xXXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
+ * [?: 0xXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
 	#define	patn_a1	a1
@@ -837,7 +837,7 @@ zgitci_frob_c000_sutra_lupe:
 	blt	judri_s2,	max_s3,	zgitci_frob_c000_sutra_lupe
 zgitci_frob_c000_sutra_post:
 	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
-	beqz	t0,	zgitci_frob_c000_fanmo
+	beqz	t0,	zgitci_frob_c000_sutra_fanmo
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
 	sh2add	t0,	vrc_s0,	t0
@@ -1184,7 +1184,7 @@ vrici_frob_denpaV:
 	ret
 vrici_frob_denpaWfi:
 	li	t1,	0x0001	// nop
-	la	t0,	main_reset_denpa
+	la	t0,	main_lupe_reset_denpa
 	sh	t1,	0(t0)
 	fence.i
 	ret
