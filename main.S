@@ -1203,6 +1203,7 @@ zgitci_frob_sutcmaci:
 	sw	t0,	0(inst_j_a6)
 
 	ret
+
 .sesumji:
 	li	t0,	0x41	// s/add/sub/
 	sb	t0,	3(inst_j_a6)
