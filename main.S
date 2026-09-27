@@ -408,7 +408,7 @@ zgitci_frob_1_pwm_aktigau:
 	sw	t1,	(t0)
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET	// TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 zgitci_frob_1_pwm_aktigau_denpa:
 	lw	t2,	(t0)
 	and	t2,	t2,	t1
@@ -744,10 +744,10 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
 	add	t5,	judri_j_t1,	sezvati_j_t0
-	lw	t0,	(t5)
+	lw	t6,	(t5)
 	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
-	sw	t3,	0xC(t0)
+	sw	t3,	0xC(t6)
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
