@@ -270,11 +270,8 @@ main_incri:
 	addi	t0,	a0,	CUR_INCRI_IDX_OFFSET
 	sh2add	incri_j_a1,	vrc_s0,	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-	addi	t0,	a0,	CUR_DENPA_INST_OFFSET
-	sh2add	denpa_j_a2,	vrc_s0,	t0
-	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	a0,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	sezvati_j_a3,	vrc_s0,	t0
+	addi	denpa_j_a2,	incri_j_a1,	4 * (CUR_DENPA_INST_OFFSET - CUR_INCRI_IDX_OFFSET)
+	addi	sezvati_j_a3,	incri_j_a1,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_INCRI_IDX_OFFSET)
 	//
 	lw	incri_t1,	0(incri_j_a1)
 	lw	denpa_t1,	0(denpa_j_a2)
