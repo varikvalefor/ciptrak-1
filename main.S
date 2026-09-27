@@ -1165,7 +1165,7 @@ zgitci_frob_sutcmaci:
 	srli	t2,	t2,	4 * (8 - 3)
 	sh2add	swd_j_a1,	t3,	t2
 
-	/* DROP (t2|a4) */
+	/* DROP (t[23]|a4) */
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
