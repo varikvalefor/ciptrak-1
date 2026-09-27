@@ -279,7 +279,7 @@ main_incri:
 	binvi	lt_t1,	lt_t1,	0
 	mul	incri_t0,	incri_t0,	lt_t1
 	sw	incri_t0,	0(incri_j_a1)
-	sw	sezvati_t2,	0(sezvati_j_a1)
+	sw	sezvati_t2,	0(sezvati_j_a3)
 
 	addi	incri_j_a1,	incri_j_a1,	4
 	jal	.clupa
