@@ -1126,7 +1126,6 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
 	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
-	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 
 	/* DROP a[01] */
 
@@ -1139,6 +1138,9 @@ zgitci_frob_sutcmaci:
 	bset	t3,	x0,	t3
 	addi	t3,	t3,	-1
 	sll	clip_a5,	t3,	slli_t1
+
+	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 
 	/* DROP t[23] */
 
@@ -1178,8 +1180,6 @@ zgitci_frob_sutcmaci:
 
 	#define	diff_t2	t2
 	bset	diff_t2,	x0,	t2
-
-	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 
 	/* DROP t[13456] */
 .sumji_lupe:
