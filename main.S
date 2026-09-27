@@ -1216,6 +1216,8 @@ zgitci_frob_sutcmaci:
 	li	t0,	0x025E4EB3	// div	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
 	fence.i
+
+	c.j	.sumji
 .rem:
 	li	t0,	0x025E6EB3	// rem	t4,	t3,	sesumjiX_t0
 	sw	t0,	0(inst_j_a6)
