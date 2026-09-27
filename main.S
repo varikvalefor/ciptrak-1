@@ -1255,13 +1255,12 @@ vrici_frob:
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	(2 * 4)
-vrici_frob_dispatch:
+
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	auipc	t1,	0	// 4B
-	sh1add	t0,	t0,	t1	// 4B
-	addi	t0,	t0,	2 + 3 * 4	// 4B; auipc + add + j + addi
-	// | le se djica: pc <= pc + 4 * (a5 >> (6 * 4))
-	c.jr	t0	// 2B
+	la	t1,	vrici_frob_dispatch
+	sh1add	t1,	t1,	klesi_t0
+	c.jr	t1
+vrici_frob_dispatch:
 	// | 0
 	ret
 	c.j	vrici_frob_denpa
