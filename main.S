@@ -369,11 +369,10 @@ zgitci_frob:
 	sltu	t0,	a0,	t0
 	mul	a0,	a0,	t0
 
-	auipc	t0,	0	// 4B
-	sh1add	t0,	t0,	a0	// 4B
-	c.addi	t0,	4 + 4 + 2 + 2	// 2B
-	c.jr	t0	// 2B
-	// dispatch
+	la	t0,	.dispatch
+	sh1add	t0,	t0,	a0
+	c.jr	t0
+.dispatch:
 	// | 0
 	ret
 	c.j	zgitci_frob_1_pwm
