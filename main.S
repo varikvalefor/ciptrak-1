@@ -1091,11 +1091,12 @@ zgitci_frob_sutcmaci:
 	// .i ku'i la .varik. cu cusku le me'oi .la. co'e ki'u zo'e joi le su'u vo'a jinvi le du'u lidne se ri'a lo nu na sarcu fa lo nu rapli pe'a cusku */
 	la	inst_j_a6,	.sumji_lupe_op
 
-	auipc	t1,	0	// 4B
-	sh1add	t1,	t1,	sectaipe_t0	// 4B
-	addi	t1,	t1,	(4 + 4 + 4)	// 4B
+	la	t1,	.dispatch
+	sh1add	t1,	t1,	sectaipe_t0
+	c.jr	t1
 
 	// dispatch
+.dispatch:
 	c.jr	ra
 	c.j	.sumji
 	c.j	.sesumji
