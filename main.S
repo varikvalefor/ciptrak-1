@@ -826,8 +826,6 @@ zgitci_frob_c000_sutra_lupe:
 	/* DROP t[0-7] */
 
 	lw	t0,	(judri_s2)
-	// | loop crap
-	// .i jinvi le du'u rinka lo me'oi .lw. co'e je ke zmadu be fi le ka ce'u zilsutra
 	addi	judri_s2,	judri_s2,	4
 
 	lw	a0,	0x0(t0)
