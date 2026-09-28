@@ -669,6 +669,7 @@ zgitci_frob_damri_cusku:
  * 0x0001000[12]
  *
  * [judri: 0xXXXXXXXX]
+ * ^ .i judri zo'e poi djica lo nu lo me'oi .PIO. c'e cu zukte pe'a zo'e pe ke'a
  *
  * [?: 0xXXXXXX][?: 0bX][pioIdx: 0bXX][nibarda: 0bX 0xX]
  * ^ .i srana lo se meirmoi be lo me'oi .idx. bei lo'i me'oi .PIO.
