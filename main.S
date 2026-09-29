@@ -340,9 +340,9 @@ main_lupe_reset_denpa:
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_lupe_reset_denpa_prelupe	// 2B
 	// | c.j	main_lupe_reset_denpa_prelupe
-	li	t0,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
-	la	t1,	main_lupe_reset_denpa	// 4B
-	sh	t0,	0(t1)	// 2B
+	li	t1,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
+	la	t0,	main_lupe_reset_denpa	// 4B
+	sh	t1,	0(t0)	// 2B
 	fence.i	// 4B
 	wfi	// 4B
 	j	main_lupe	// 2B
