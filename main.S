@@ -235,16 +235,16 @@ main_lupe_tcidu_lupe_vimcu:
 	sh2add	sivni_t2,	vrc_s0,	sivniP_t2
 	sw	x0,	(sivni_t2)
 main_lupe_tcidu_lupe_ld_cur:
-	#define	datni2_t4	t4
+	#define	datni2_t2	t2
 	// lw	datni_t1,	(datni_niho_j_t0)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
-	lw	datni2_t4,	4(datni_niho_j_t0)
+	lw	datni2_t2,	4(datni_niho_j_t0)
 	sw	datni_t1,	(datni_cur_j_a2)
-	sw	datni2_t4,	4(datni_cur_j_a2)
+	sw	datni2_t2,	4(datni_cur_j_a2)
 
 	lw	datni_t1,	8(datni_niho_j_t0)
-	lw	datni2_t4,	0xC(datni_niho_j_t0)
+	lw	datni2_t2,	0xC(datni_niho_j_t0)
 	sw	datni_t1,	8(datni_cur_j_a2)
-	sw	datni2_t4,	0xC(datni_cur_j_a2)
+	sw	datni2_t2,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (CUR_ZGITCI0_OFFSET + 4 * x)
