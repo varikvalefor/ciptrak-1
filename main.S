@@ -1152,7 +1152,7 @@ zgitci_frob_sutcmaci:
 	#define	cur_sz_j_t3	t3
 	addi	cur_sz_j_t3,	cur_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
 	lw	t4,	0(a0)	// judri
-	lw	t5,	0(cur_sz_t3)	// sezvati
+	lw	t5,	0(cur_sz_j_t3)	// sezvati
 
 	// offset
 	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
