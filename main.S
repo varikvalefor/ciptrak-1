@@ -1113,12 +1113,12 @@ zgitci_frob_sutcmaci:
 
 	la	t1,	.s_ops
 	sh2add	t1,	t1,	sectaipe_t0
-	lw	t2,	0(t1)
+	lw	t1,	0(t1)
 	la	t0,	.sumji_lupe_op
-	sw	t2,	0(t0)
+	sw	t1,	0(t0)
 	fence.i
 
-	/* DROP t[0-2] */
+	/* DROP t[01] */
 
 	andi	slli_t1,	a2,	(1<<5) - 1
 
