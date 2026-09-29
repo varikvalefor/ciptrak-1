@@ -1093,18 +1093,6 @@ zgitci_frob_sutcmaci:
 	// .i ku'i la .varik. cu cusku le me'oi .la. co'e ki'u zo'e joi le su'u vo'a jinvi le du'u lidne se ri'a lo nu na sarcu fa lo nu rapli pe'a cusku */
 	la	inst_j_a6,	.sumji_lupe_op
 
-	la	t1,	.dispatch
-	sh1add	t1,	t1,	sectaipe_t0
-	c.jr	t1
-.dispatch:
-	c.jr	ra
-	c.j	.sumji
-	c.j	.sesumji
-	c.j	.mul
-	c.j	.div
-	c.j	.rem
-	c.j	.basti
-
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
@@ -1114,8 +1102,11 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] a[57] */
 
-	// | commit 09cf778eccba964dd59d93e8944e7c51afcca9c3
-	// .i jinvi le du'u filri'a lo nu rapli cusku pe'a
+	la	t1,	.sop
+	sh2add	t1,	t1,	sectaipe_t0
+	lw	t2,	0(t1)
+	la	t0,	.sumji_lupe_op
+	sw	t2,	0(t0)
 	fence.i
 
 	#define	sesumji_t0	t0
@@ -1204,32 +1195,18 @@ zgitci_frob_sutcmaci:
 	sw	t0,	0(inst_j_a6)
 
 	ret
-
-.sesumji:
-	li	t0,	0x41	// s/add/sub/
-	sb	t0,	3(inst_j_a6)
-
-	c.j	.sumji
-.mul:
-	li	t0,	0x03	// s/add/mul/
-	sb	t0,	3(inst_j_a6)
-
-	c.j	.sumji
-.div:
-	li	t0,	0x025E4EB3	// div	t4,	t3,	sesumjiX_t0
-	sw	t0,	0(inst_j_a6)
-
-	c.j	.sumji
-.rem:
-	li	t0,	0x025E6EB3	// rem	t4,	t3,	sesumjiX_t0
-	sw	t0,	0(inst_j_a6)
-
-	c.j	.sumji
-.basti:
-	li	t0,	0x00028E93	// mv t4,	sesumjiX_t0
-	sw	t0,	0(inst_j_a6)
-
-	c.j	.sumji
+.sop:
+	.option norvc
+	nop	// 0
+	.option rvc
+	add	t4,	t3,	sesumjiX_t0	// 1
+	sub	t4,	t3,	sesumjiX_t0
+	mul	t4,	t3,	sesumjiX_t0
+	div	t4,	t3,	sesumjiX_t0
+	rem	t4,	t3,	sesumjiX_t0
+	.option norvc
+	mv	t4,	sesumjiX_t0	// 6
+	.option rvc
 
 /*
  * NOPE.AVI
