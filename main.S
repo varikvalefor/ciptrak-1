@@ -222,9 +222,9 @@ main_lupe_tcidu_lupe_co_barda:
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
-	lw	t5,	(datni_cur_j_a2)	// temp
+	lw	t5,	(datni_cur_j_a2)
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
-	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
+	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur	// DROP t5
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
