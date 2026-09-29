@@ -1102,13 +1102,6 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] a[57] */
 
-	la	t1,	.sop
-	sh2add	t1,	t1,	sectaipe_t0
-	lw	t2,	0(t1)
-	la	t0,	.sumji_lupe_op
-	sw	t2,	0(t0)
-	fence.i
-
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
 	#define	bit_nibarda_t2	t2
@@ -1117,6 +1110,13 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
 	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
+
+	la	t1,	.sop
+	sh2add	t1,	t1,	sectaipe_t0
+	lw	t2,	0(t1)
+	la	t0,	.sumji_lupe_op
+	sw	t2,	0(t0)
+	fence.i
 
 	/* DROP a[01] */
 
