@@ -212,7 +212,7 @@ main_lupe_tcidu:
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
-	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
+	addi	ctr_a0,	ctr_a0,	1
 
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
@@ -246,7 +246,6 @@ main_lupe_tcidu_lupe_ld_cur:
 	sw	datni_t3,	8(datni_cur_j_a2)
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
-	// addi	ctr_a0,	ctr_a0,	1	// mv OcrdTMFf
 	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
