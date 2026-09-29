@@ -1191,9 +1191,6 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] */
 
-	li	t0,	0x005E0EB3	// add	t4,	t3,	sesumjiX_t0
-	sw	t0,	0(inst_j_a6)
-
 	ret
 .sop:
 	.option norvc
