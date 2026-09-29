@@ -1118,7 +1118,7 @@ zgitci_frob_sutcmaci:
 	sw	t2,	0(t0)
 	fence.i
 
-	/* DROP a[01] */
+	/* DROP t[0-2] */
 
 	andi	slli_t1,	a2,	(1<<5) - 1
 
