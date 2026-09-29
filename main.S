@@ -224,7 +224,7 @@ main_lupe_tcidu_lupe_co_barda:
 	beqz	datni_t1,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
 	lw	t2,	(datni_cur_j_a2)	// temp
-	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
+	addi	sivniP_t2,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t2,	datni_t1,	main_lupe_tcidu_lupe_ld_cur
 
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
