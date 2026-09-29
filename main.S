@@ -167,8 +167,8 @@ main_lupe_sha:
 	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
-	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
-	sw	t1,	SHA256_CSR_OFFSET(sha256_a0)
+	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
+	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
 
 	// not (dma design)
 	#define	dma_base_a1	a1
