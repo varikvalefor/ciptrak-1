@@ -1180,6 +1180,7 @@ zgitci_frob_sutcmaci:
 	and	t4,	t4,	clip_a5
 	andn	t3,	t3,	clip_a5
 	or	t3,	t3,	t4
+
 	sw	t3,	0(swd_j_a1)
 
 	blt	cur_j_a0,	max_a4,	.sumji_lupe
