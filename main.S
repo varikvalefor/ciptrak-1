@@ -835,9 +835,8 @@ zgitci_frob_c000_sutra_post:
 	bexti	t0,	a1,	SIVNI_A1_JOG_BIT
 	beqz	t0,	zgitci_frob_c000_fanmo
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
-	sw	judri_s2,	(t0)
+	sh2add	t0,	vrc_s0,	zgitci_a4
+	sw	judri_s2,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
 zgitci_frob_c000_fanmo:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
