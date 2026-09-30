@@ -1154,9 +1154,8 @@ vrici_frob_jog:
 // | TODO: .i xu mapti
 vrici_frob_sivni:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
-	sw	datni_a5,	(t0)
+	sh2add	t0,	vrc_s0,	zgitci_a4
+	sw	datni_a5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 	ret
 /* | [0x00][idx: 0bXX][datni: 0bXX + 0xXXXXX] */
 vrici_frob_denpaV:
