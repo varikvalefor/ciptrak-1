@@ -1167,11 +1167,10 @@ vrici_frob_denpaV:
 	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_0
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
 	#define	denpa_j_t0	t0
-	sh2add	denpa_j_t0,	vrc_s0,	t0
+	sh2add	denpa_j_t0,	vrc_s0,	zt_idx_t0
 
-	sw	datni_a5,	(denpa_j_t0)
+	sw	datni_a5,	(4 * CUR_DENPA_INST_OFFSET)(denpa_j_t0)
 
 	ret
 vrici_frob_denpaWfi:
