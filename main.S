@@ -1146,7 +1146,7 @@ zgitci_frob_sutcmaci:
 	add	a0,	t4,	t5
 	sh2add	lwd_j_a0,	a0,	t2
 
-	/* DROP t[45] */
+	/* DROP t[245] */
 
 	#define	swd_j_a1	a1
 	// | metfo: andi	t2,	a3,	0x00FFF00
