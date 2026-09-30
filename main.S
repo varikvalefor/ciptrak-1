@@ -1094,7 +1094,7 @@ zgitci_frob_sutcmaci:
 	 * a2.  [?: 0xXXXXX] [diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
-	/* DROP t0 t[2-6] a[5-7] */
+	/* DROP t[2-6] a[5-7] */
 
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
