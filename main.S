@@ -1111,8 +1111,8 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
 	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
 
-	la	t0,	.s_ops
-	sh2add	t0,	t0,	sectaipe_t0
+	la	t1,	.s_ops
+	sh2add	t0,	t1,	sectaipe_t0
 	lw	t1,	0(t0)
 	la	t0,	.sumji_lupe_op
 	sw	t1,	0(t0)
