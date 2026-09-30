@@ -396,7 +396,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
-	lw	t0,	PWM_EN_OFFSET(t0)
+	lw	t0,	PWM_EN_OFFSET(vrc_s0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
 	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
