@@ -1087,12 +1087,6 @@ zgitci_frob_sutcmaci:
 	mul	sectaipe_t0,	t0,	t1
 
 	/* DROP t1 */
-
-	#define	inst_j_a6	a6
-	// | ni'o la .varik. cu jinvi le du'u na li'armi fa le du'u pilno
-	// .i ku'i la .varik. cu cusku le me'oi .la. co'e ki'u zo'e joi le su'u vo'a jinvi le du'u lidne se ri'a lo nu na sarcu fa lo nu rapli pe'a cusku */
-	la	inst_j_a6,	.sumji_lupe_op
-
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
