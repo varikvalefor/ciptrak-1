@@ -1103,7 +1103,7 @@ zgitci_frob_sutcmaci:
 	#define	clip_a5	a5
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
-	#define	SIVNI_A2_DIFF_BIT	(2 * (1 + 4))
+	#define	SIVNI_A2_DIFF_BIT	(1 + 4 + SIVNI_A2_BIT_NIBARDA_BIT)
 
 	la	t1,	.s_ops
 	sh2add	t0,	t1,	sectaipe_t0
