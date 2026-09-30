@@ -1172,6 +1172,7 @@ zgitci_frob_sutcmaci:
 
 	add	lwd_j_a0,	lwd_j_a0,	diff_t2
 	add	swd_j_a1,	swd_j_a1,	diff_t2
+
 .sumji_lupe_op:
 	.option norvc
 	add	t4,	t3,	sesumjiX_t0
