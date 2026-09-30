@@ -1159,9 +1159,9 @@ zgitci_frob_sutcmaci:
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
-	srli	max_a4,	a3,	SIVNI_A3_NIBARDA_BIT
-	sll	max_a4,	max_a4,	t2
-	add	max_a4,	cur_j_a0,	max_a4
+	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	a4,	a4,	t2
+	add	max_a4,	cur_j_a0,	a4
 
 	/* DROP t2 */
 
