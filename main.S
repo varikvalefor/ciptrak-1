@@ -1130,12 +1130,12 @@ zgitci_frob_sutcmaci:
 	/* DROP t[123] */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	cur_j_a0	a0
+	#define	lwd_j_a0	a0
 	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
 	sh2add	a0,	vrc_s0,	a0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	#define	cur_sz_j_t3	t3
-	addi	cur_sz_j_t3,	cur_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
+	addi	cur_sz_j_t3,	lwd_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
 	lw	t4,	0(a0)	// judri
 	lw	t5,	0(cur_sz_j_t3)	// sezvati
 
@@ -1144,7 +1144,7 @@ zgitci_frob_sutcmaci:
 	srli	t2,	t2,	4 * (8 - 3)
 
 	add	a0,	t4,	t5
-	sh2add	cur_j_a0,	a0,	t2
+	sh2add	lwd_j_a0,	a0,	t2
 
 	/* DROP t[45] */
 
@@ -1161,16 +1161,16 @@ zgitci_frob_sutcmaci:
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
 	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
 	sll	a4,	a4,	t2
-	add	max_a4,	cur_j_a0,	a4
+	add	max_a4,	lwd_j_a0,	a4
 
 	#define	diff_t2	t2
 	bset	diff_t2,	x0,	t2
 
 	/* DROP t[13456] */
 .sumji_lupe:
-	lw	t3,	4(cur_j_a0)
+	lw	t3,	4(lwd_j_a0)
 
-	add	cur_j_a0,	cur_j_a0,	diff_t2
+	add	lwd_j_a0,	lwd_j_a0,	diff_t2
 	add	swd_j_a1,	swd_j_a1,	diff_t2
 .sumji_lupe_op:
 	.option norvc
