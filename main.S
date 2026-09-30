@@ -1163,15 +1163,15 @@ zgitci_frob_sutcmaci:
 	sll	a4,	a4,	t2
 	add	max_a4,	lwd_j_a0,	a4
 
-	#define	diff_a4	a4
-	bset	diff_a4,	x0,	t2
+	#define	diff_t2	t2
+	bset	diff_t2,	x0,	t2
 
 	/* DROP t[13456] */
 .sumji_lupe:
 	lw	t3,	4(lwd_j_a0)
 
-	add	lwd_j_a0,	lwd_j_a0,	diff_a4
-	add	swd_j_a1,	swd_j_a1,	diff_a4
+	add	lwd_j_a0,	lwd_j_a0,	diff_t2
+	add	swd_j_a1,	swd_j_a1,	diff_t2
 
 .sumji_lupe_op:
 	.option norvc
