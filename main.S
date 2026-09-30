@@ -861,10 +861,9 @@ zgitci_frob_c000_denpa:
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
-	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
-	sh2add	denpa_j_t0,	vrc_s0,	t0
+	slli	t0,	zgitci_a4,	2
 
-	sw	a1,	(denpa_j_t0)
+	sw	a1,	CUR_DENPA_INST_OFFSET(t0)
 
 	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
 	mv	a5,	a2
