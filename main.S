@@ -1092,7 +1092,7 @@ zgitci_frob_sutcmaci:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
-	 * a2.  [?: 0xXXXXX] [diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
 	/* DROP t[2-6] a[5-7] */
@@ -1105,6 +1105,8 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
 	#define	SIVNI_A2_DIFF_BIT	(1 + 4 + SIVNI_A2_BIT_NIBARDA_BIT)
+	#define	SIVNI_A2_DIR0_BIT	(2 + SIVNI_A2_DIFF_BIT)
+	#define	SIVNI_A2_DIR1_BIT	(1 + SIVNI_A2_DIR1_BIT)
 
 	la	t1,	.s_ops
 	sh2add	t0,	t1,	sectaipe_t0
@@ -1145,7 +1147,12 @@ zgitci_frob_sutcmaci:
 	srli	t2,	t2,	4 * (8 - 3)
 
 	add	a0,	t4,	t5
-	sh2add	lwd_j_a0,	a0,	t2
+	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
+	slli	t4,	t4,	1
+	addi	t4,	t4,	-1
+	slli	t2,	t2,	2
+	mul	t2,	t2,	t4
+	add	lwd_j_a0,	a0,	t2
 
 	/* DROP t[245] */
 
@@ -1154,9 +1161,16 @@ zgitci_frob_sutcmaci:
 	//          srli	t2,	t2,	2 * 4
 	slli	t2,	a3,	4 * (8 - (3 + 3))
 	srli	t2,	t2,	4 * (8 - 3)
+	//
+	bexti	t4,	a2,	SIVNI_A2_DIR1_BIT
+	slli	t4,	t4,	1
+	addi	t4,	t4,	-1
+	slli	t2,	t2,	2
+	mul	t2,	t2,	t4
+	//
 	sh2add	swd_j_a1,	cur_sz_j_t3,	t2
 
-	/* DROP (t3|a4) */
+	/* DROP (t[3|a4) */
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
