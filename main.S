@@ -604,21 +604,20 @@ zgitci_frob_damri:
 
 	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
-	#define	idx_j_t0	t0
+	#define	zgitci_t0	t0
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
-	sh2add	idx_j_t0,	vrc_s0,	t0
+	sh2add	zgitci_t0,	vrc_s0,	zgitci_a4
 
 	bexti	t1,	a1,	A1_SIVNI_CNINO_BIT
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
-	sw	x0,	(idx_j_t0)
+	sw	x0,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)
 	nop	// zgitci_frob_damri_sezvati_incr sync
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	lw	t1,	(idx_j_t0)
+	lw	t1,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)
 	addi	t1,	t1,	1
-	sw	t1,	(idx_j_t0)
+	sw	t1,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)
 zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
