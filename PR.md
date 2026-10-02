@@ -1,1 +1,1 @@
-# ni'o jinvi le du'u zengau pe'a le velcki le ka ce'u mapti le sidbo... ja co'e
+# ni'o co'e je cu ciksi la'oi .zgitci_frob_sutcmaci.

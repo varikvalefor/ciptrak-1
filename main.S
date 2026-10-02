@@ -1044,7 +1044,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_sutcmaci
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
@@ -1056,6 +1056,165 @@ zgitci_frob_sw:
 	jal	vrici_frob
 zgitci_frob_sw_post:
 	ret
+
+/* QUICK MATHS
+ *
+ * [0xDEAF00004]
+ *
+ * [?: 0xXXXXX][sectaipe: 0xXXX]
+ *
+ * ?
+ *
+ * ?
+ *
+ * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
+ * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
+ *   .i ji'a...
+ *   TODO: .i ma mapti tu'a lo lidne je datni
+ */
+zgitci_frob_sutcmaci:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_nope
+
+	#define	sectaipe_t0	t0
+	#define	SIVNI_SECTAIPE_NILZILCMI	7
+	#define	SIVNI_A3_NIBARDA_BIT	(4 * 6)
+	slli	t0,	a1,	4 * (8 - 3)
+	srli	t0,	t0,	4 * (8 - 3)
+	//
+	li	t1,	SIVNI_SECTAIPE_NILZILCMI
+	sltu	t1,	t0,	t1
+	//
+	mul	sectaipe_t0,	t0,	t1
+
+	/* DROP t1 */
+.sumji:
+	/*
+	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
+	 *
+	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 */
+
+	/* DROP t[2-6] a[5-7] */
+
+	#define	sesumji_t0	t0
+	#define	slli_t1	t1
+	#define	bit_nibarda_t2	t2
+	#define	sesumjiX_t0	t0
+	#define	clip_a5	a5
+	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
+	#define	SIVNI_A2_BIT_NIBARDA_BIT	(4 + 1)
+	#define	SIVNI_A2_DIFF_BIT	(1 + 4 + SIVNI_A2_BIT_NIBARDA_BIT)
+	#define	SIVNI_A2_DIR0_BIT	(2 + SIVNI_A2_DIFF_BIT)
+	#define	SIVNI_A2_DIR1_BIT	(1 + SIVNI_A2_DIR1_BIT)
+
+	la	t1,	.s_ops
+	sh2add	t0,	t1,	sectaipe_t0
+	lw	t1,	0(t0)
+	la	t0,	.sumji_lupe_op
+	sw	t1,	0(t0)
+	fence.i
+
+	/* DROP t[01] */
+
+	andi	slli_t1,	a2,	(1<<5) - 1
+
+	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
+	andi	bit_nibarda_t2,	t2,	(1<<5) - 1
+
+	addi	t3,	bit_nibarda_t2,	1	// .i mapti tu'a li no
+	bset	t3,	x0,	t3
+	addi	t3,	t3,	-1
+	sll	clip_a5,	t3,	slli_t1
+
+	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
+
+	/* DROP t[123] */
+
+	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
+	#define	lwd_j_a0	a0
+	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
+	sh2add	a0,	vrc_s0,	a0
+	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
+	#define	cur_sz_j_t3	t3
+	addi	cur_sz_j_t3,	lwd_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
+	lw	t4,	0(a0)	// judri
+	lw	t5,	0(cur_sz_j_t3)	// sezvati
+
+	// offset
+	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
+	srli	t2,	t2,	4 * (8 - 3)
+
+	add	a0,	t4,	t5
+	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
+	slli	t4,	t4,	1
+	addi	t4,	t4,	-1
+	slli	t2,	t2,	2
+	mul	t2,	t2,	t4
+	add	lwd_j_a0,	a0,	t2
+
+	/* DROP t[245] */
+
+	#define	swd_j_a1	a1
+	// | metfo: andi	t2,	a3,	0x00FFF00
+	//          srli	t2,	t2,	2 * 4
+	slli	t2,	a3,	4 * (8 - (3 + 3))
+	srli	t2,	t2,	4 * (8 - 3)
+	//
+	bexti	t4,	a2,	SIVNI_A2_DIR1_BIT
+	slli	t4,	t4,	1
+	addi	t4,	t4,	-1
+	slli	t2,	t2,	2
+	mul	t2,	t2,	t4
+	//
+	sh2add	swd_j_a1,	cur_sz_j_t3,	t2
+
+	/* DROP (t[34]|a4) */
+
+	#define	max_a4	a4
+	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
+	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	a4,	a4,	t2
+	add	max_a4,	lwd_j_a0,	a4
+
+	#define	diff_a6	a6
+	bset	diff_a6,	x0,	t2
+
+	/* DROP t[13456] */
+.sumji_lupe:
+	lw	t3,	0(lwd_j_a0)
+
+	add	lwd_j_a0,	lwd_j_a0,	diff_a6
+	add	swd_j_a1,	swd_j_a1,	diff_a6
+
+.sumji_lupe_op:
+	.option norvc
+	add	t4,	t3,	sesumjiX_t0
+	.option rvc
+	and	t4,	t4,	clip_a5
+	andn	t3,	t3,	clip_a5
+	or	t3,	t3,	t4
+
+	sw	t3,	0(swd_j_a1)
+
+	blt	cur_j_a0,	max_a4,	.sumji_lupe
+
+	/* DROP t[0-6] */
+
+	ret
+.s_ops:
+	.option norvc
+	nop	// 0
+	.option rvc
+	add	t4,	t3,	sesumjiX_t0	// 1
+	sub	t4,	t3,	sesumjiX_t0
+	mul	t4,	t3,	sesumjiX_t0
+	div	t4,	t3,	sesumjiX_t0
+	rem	t4,	t3,	sesumjiX_t0
+	.option norvc
+	mv	t4,	sesumjiX_t0	// 6
+	.option rvc
 
 /*
  * NOPE.AVI
