@@ -1168,7 +1168,7 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[13456] */
 .sumji_lupe:
-	lw	t3,	4(lwd_j_a0)
+	lw	t3,	0(lwd_j_a0)
 
 	add	lwd_j_a0,	lwd_j_a0,	diff_a6
 	add	swd_j_a1,	swd_j_a1,	diff_a6
