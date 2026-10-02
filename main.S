@@ -391,14 +391,15 @@ zgitci_frob_1_pwm:
 	li	t1,	1
 	bne	a0,	t1,	zgitci_frob_check_2
 
+	#define	pwm_base_a6	a6
+	li	pwm_base_a6,	PWM_BASE
+
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	SIVNI_A1_DIV_BIT	2
 	#define	SIVNI_A1_JDIKA_BIT	(2 + 12)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
-	#define	pwm_base_a6	a6
-	li	pwm_base_a6,	PWM_BASE
 zgitci_frob_1_pwm_gpioctrl:
 	/* DROP t[0-6] */
 
