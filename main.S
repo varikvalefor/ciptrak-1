@@ -969,9 +969,8 @@ zgitci_frob_deaf_setsivni:
 	beqz	t0,	zgitci_frob_deaf_setsivni_i2
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
-	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s0,	t0
-	sw	a2,	(t0)
+	sw	a2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
