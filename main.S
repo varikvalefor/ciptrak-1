@@ -129,17 +129,8 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
+	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(resets_t2)
-
-	// | ni'o xu dukse
-	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
-	li	t0,	PWM_BASE + PWM_EN_OFFSET
-	li	t1,	(1<<4) - 1
-	sw	t1,	(t0)
-main_init_periph_pwm_reset:
-	li      t1,     (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw      t1,     (resets_t2)
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	li      t0,     RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
@@ -147,6 +138,12 @@ main_init_periph_pwm_reset_denpa:
 	lw      t2,     (t0)
 	and     t2,     t2,     t1
 	bne     t1,     t2,     main_init_periph_pwm_reset_denpa
+
+	// | ni'o xu dukse
+	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
+	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	li	t1,	(1<<4) - 1
+	sw	t1,	(t0)
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
