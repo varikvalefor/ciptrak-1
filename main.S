@@ -1105,11 +1105,10 @@ vrici_frob_denpa:
 	ret
 vrici_frob_j:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
+	sh2add	t0,	vrc_s0,	zgitci_a4
 
 	// .i xu cadga fa tu'a lo me'oi .slli. co'e
-	sw	datni_a5,	(t0)
+	sw	datni_a5,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
 
 	ret
 
