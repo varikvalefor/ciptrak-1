@@ -597,7 +597,7 @@ zgitci_frob_check_2_fanmo:
  *
  * [cnino: 0bX][tonga: 0bXXXXXXXXXXXXXXX][nibarda: 0xXXXX]
  *
- * [0xXXXXXX][nlev: 0bXX][sha256_noise: 0bX]
+ * [0xXXXXXXX 0bX][nlev: 0bXX][sha256_noise: 0bX]
  *
  * ?
  */
