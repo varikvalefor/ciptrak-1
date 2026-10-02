@@ -625,6 +625,9 @@ zgitci_frob_damri_sezvati_incr:
 	lw	t1,	(idx_j_t0)
 	addi	t1,	t1,	1
 	sw	t1,	(idx_j_t0)
+
+	/* DROP t0 */
+
 zgitci_frob_damri_sezvati_incr_post:
 
 	// TODO: curval_a5 = ?
