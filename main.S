@@ -614,9 +614,10 @@ zgitci_frob_damri:
 zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
 	nop	// zgitci_frob_damri_sezvati_incr sync
+	nop	// zgitci_frob_damri_sezvati_incr sync
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	lw	t1,	(idx_j_t0)
+	lw	t1,	(idx_j_t0)	// 2c
 	addi	t1,	t1,	1
 	sw	t1,	(idx_j_t0)
 zgitci_frob_damri_sezvati_incr_post:
