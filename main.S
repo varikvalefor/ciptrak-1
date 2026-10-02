@@ -891,7 +891,7 @@ zgitci_frob_c000_denpa:
  *
  * 0xDEAF0000
  *
- * 0xXXXX [dp: 0xXXXX]
+ * [0xXXXX][dp: 0xXXXX]
  * ^ .i sa'u co'e ja cpedu lo nu lo me'oi .dp. cu snidu pe'a tu'a la'oi .XOSC.
  *
  * 0xXXX[?: bbb][x1: b][st: 0xXXX]
