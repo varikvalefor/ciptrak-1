@@ -122,7 +122,7 @@ main_init_xosc_cipra:
 main_init_xosc_cipra_lupe:
 	#define	resets_t2	t2
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
-	li	resets_t2,	RESETS_BASE + RESETS_RESET_OFFSET	// lw opt; main_init_periph
+	li	resets_t2,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_periph:
@@ -167,8 +167,8 @@ main_lupe_sha:
 	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
-	// li	t1,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
-	sw	t1,	SHA256_CSR_OFFSET(sha256_a0)
+	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
+	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
 
 	// not (dma design)
 	#define	dma_base_a1	a1
@@ -409,7 +409,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	pwm_slice_a5	a5
 	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
 
-	lw	t0,	PWM_EN_OFFSET(t0)
+	lw	t0,	PWM_EN_OFFSET(vrc_s0)
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
 	bext	t1,	t0,	pwm_slice_a5
 	bnez	t1,	zgitci_frob_1_pwm_gpioctrl
@@ -618,9 +618,10 @@ zgitci_frob_damri:
 zgitci_frob_damri_sezvati_reset:
 	sw	x0,	(idx_j_t0)
 	nop	// zgitci_frob_damri_sezvati_incr sync
+	nop	// zgitci_frob_damri_sezvati_incr sync
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	lw	t1,	(idx_j_t0)
+	lw	t1,	(idx_j_t0)	// 2c
 	addi	t1,	t1,	1
 	sw	t1,	(idx_j_t0)
 zgitci_frob_damri_sezvati_incr_post:
