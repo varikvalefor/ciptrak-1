@@ -1116,11 +1116,10 @@ vrici_frob_j:
 vrici_frob_0:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//           CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
+	sh2add	t0,	vrc_s0,	zgitci_a4
 
-	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t0)	// CUR_PATN_JUDRI
-	lw	t0,	(t0)
+	lw	t1,	(4 * CUR_PATN_JUDRI_OFFSET)(t0)	// CUR_PATN_JUDRI
+	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
 
 	sh2add	t1,	t1,	datni_a5
 	add	t0,	t0,	t1
