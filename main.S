@@ -550,9 +550,10 @@ zgitci_frob_check_2:
 	la	t2,	sanceListe
 	sh2add	zts_j_t1,	t2,	zts_id_t0
 
-	#define	zts_sance_idx_sr2_t2	t2
+	#define	zts_sance_idx_t2	t2
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
-	addi	zts_sance_idx_sr2_t2,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
+	addi	t2,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
+	slli	zts_sance_idx_t2,	t2,	2
 
 	// do it now, kid
 	#define	pwmval_t0	t0
@@ -563,7 +564,7 @@ zgitci_frob_check_2:
 	   TODO: FACKI */
 	lw	zts_a5,	(zts_j_t1)
 	li	a6,	PWM_BASE
-	sh2add	t0,	zts_a5,	zts_sance_idx_sr2_t2
+	add	t0,	zts_a5,	zts_sance_idx_t2
 	lw	pwmval_t0,	(t0)
 
 	// se morji: PWM_CHx_CSR_OFFSET(x)	x * 0x14
