@@ -131,6 +131,11 @@ main_init_periph:
 	 * cu zmadu fi le ka ce'u jai zilmasno */
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT) | (1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 	sw	t1,	(resets_t2)
+main_init_periph_denpa:
+	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	lw	t2,	(t0)
+	andn	t2,	t2,	t1
+	bnez	t2,	main_init_periph_denpa
 
 	li	t1,	1 << PADS_BANK0_GPIO0_ISO_BIT
 	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
