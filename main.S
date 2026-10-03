@@ -132,6 +132,17 @@ main_init_periph:
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT) | (1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 	sw	t1,	(resets_t2)
 
+	li	t1,	1 << PADS_BANK0_GPIO0_ISO_BIT
+	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
+	li	t2,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(31) + REG_ALIAS_CLR_BITS
+.lupe:
+	sw	t1,	0x0(t0)
+	sw	t1,	0x4(t0)
+	sw	t1,	0x8(t0)
+	sw	t1,	0xC(t0)
+	addi	t0,	t0,	4 * 4
+	ble	t0,	t2,	.lupe
+
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
