@@ -138,7 +138,7 @@ main_init_periph_denpa:
 main_init_gpio:
 	li	t1,	1 << PADS_BANK0_ISO_BIT
 	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
-	li	t2,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(31) + REG_ALIAS_CLR_BITS
+	addi	t2,	t0,	4 * 31
 .lupe:
 	sw	t1,	0x0(t0)
 	addi	t0,	t0,	4
