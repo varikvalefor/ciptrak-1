@@ -136,7 +136,7 @@ main_init_periph_denpa:
 	lw	t2,	(t0)
 	andn	t2,	t2,	t1
 	bnez	t2,	main_init_periph_denpa
-
+main_init_gpio:
 	li	t1,	1 << PADS_BANK0_GPIO0_ISO_BIT
 	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
 	li	t2,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(31) + REG_ALIAS_CLR_BITS
