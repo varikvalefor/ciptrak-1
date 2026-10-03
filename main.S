@@ -144,7 +144,7 @@ main_init_gpio:
 	sw	t1,	0x0(t0)
 	addi	t0,	t0,	4
 	ble	t0,	t2,	.lupe
-
+main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
