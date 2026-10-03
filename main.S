@@ -102,6 +102,8 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_INCRI_IDX_OFFSET	43
 #define	CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 
+.text
+
 .global main
 
 main:
