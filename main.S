@@ -33,7 +33,6 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
-#define	PADS_BANK0_GPIO0_ISO_BIT	8
 
 #define	FAMVLA	0xFFFFFFFF	# .i .indika lo du'u fanmo lo me'oi .pattern.  .i la .varik. cu jinvi le du'u mapti fa lo nu la'oi .FAMVLA. lamji je se se lidne lo pa moi be lo'i jai .indika pe lo me'oi .pattern.
 
@@ -137,7 +136,7 @@ main_init_periph_denpa:
 	andn	t2,	t2,	t1
 	bnez	t2,	main_init_periph_denpa
 main_init_gpio:
-	li	t1,	1 << PADS_BANK0_GPIO0_ISO_BIT
+	li	t1,	1 << PADS_BANK0_ISO_BIT
 	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
 	li	t2,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(31) + REG_ALIAS_CLR_BITS
 .lupe:
