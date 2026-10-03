@@ -153,6 +153,7 @@ main_init_pwm_en:
 	li	t1,	(1<<4) - 1
 	sw	t1,	(t0)
 
+/* ni'o co'e ja djica lo nu vimcu pe'a la'oi .CIPRA. pu lo nu me'oi .merge. */
 CIPRA:
 	li	t0,	SIO_BASE + GPIO_OUT_SET_OFFSET
 	li	t1,	1 << 25
