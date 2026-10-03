@@ -130,8 +130,9 @@ main_init_periph:
 	 * cu zmadu fi le ka ce'u jai zilmasno */
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT) | (1<<RESETS_IO_BANK0_BIT) | (1<<RESETS_PADS_BANK0_BIT)
 	sw	t1,	(resets_t2)
-main_init_periph_denpa:
+
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+main_init_periph_denpa:
 	lw	t2,	(t0)
 	andn	t2,	t2,	t1
 	bnez	t2,	main_init_periph_denpa
