@@ -120,9 +120,9 @@ main_init_xosc:
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
 main_init_xosc_cipra:
 main_init_xosc_cipra_lupe:
-	#define	resets_t2	t2
+	#define	resets_t0	t0
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
-	li	resets_t2,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
+	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
 main_init_periph:
@@ -130,7 +130,7 @@ main_init_periph:
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
-	sw	t1,	(resets_t2)
+	sw	t1,	(resets_t0)
 
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
