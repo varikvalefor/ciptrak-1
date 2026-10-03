@@ -137,10 +137,7 @@ main_init_periph:
 	li	t2,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(31) + REG_ALIAS_CLR_BITS
 .lupe:
 	sw	t1,	0x0(t0)
-	sw	t1,	0x4(t0)
-	sw	t1,	0x8(t0)
-	sw	t1,	0xC(t0)
-	addi	t0,	t0,	4 * 4
+	addi	t0,	t0,	4
 	ble	t0,	t2,	.lupe
 
 	// | ni'o xu dukse
