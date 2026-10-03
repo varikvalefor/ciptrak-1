@@ -153,6 +153,13 @@ main_init_pwm_en:
 	li	t1,	(1<<4) - 1
 	sw	t1,	(t0)
 
+CIPRA:
+	li	t0,	SIO_BASE + GPIO_OUT_SET_OFFSET
+	li	t1,	1 << 25
+	sw	t1,	(t0)
+
+	wfi
+
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
