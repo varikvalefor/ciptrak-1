@@ -135,10 +135,10 @@ main_init_periph:
 	sw	t1,	(resets_t0)
 
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
-main_init_periph_denpa:
+.denpa:
 	lw	t2,	(t0)
 	andn	t2,	t2,	t1
-	bnez	t2,	main_init_periph_denpa
+	bnez	t2,	.denpa
 
 main_init_gpio:
 	li	t1,	1 << PADS_BANK0_ISO_BIT
