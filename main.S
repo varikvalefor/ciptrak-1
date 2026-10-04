@@ -126,6 +126,7 @@ main_init_xosc_cipra_lupe:
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
+
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
@@ -138,6 +139,7 @@ main_init_periph_denpa:
 	lw	t2,	(t0)
 	andn	t2,	t2,	t1
 	bnez	t2,	main_init_periph_denpa
+
 main_init_gpio:
 	li	t1,	1 << PADS_BANK0_ISO_BIT
 	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
