@@ -150,6 +150,9 @@ main_init_gpio:
 	addi	t0,	t0,	4
 	sw	t1,	0(t0)
 	blt	t0,	t2,	.lupe
+
+	/* DROP t[0-2] */
+
 main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
