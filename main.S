@@ -1183,8 +1183,8 @@ zgitci_frob_sutcmaci:
 	slli	t4,	t4,	1
 	addi	t4,	t4,	-1
 	slli	t2,	t2,	2
-	mul	t2,	t4,	t2
-	add	lwd_j_a0,	a0,	t2
+	mul	t4,	t4,	t2
+	add	lwd_j_a0,	a0,	t4
 
 	/* DROP t[245] */
 
