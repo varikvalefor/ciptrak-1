@@ -66,7 +66,7 @@ cur: .word	-1,				/* 0 */ \
 	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
 	/* ^ .i .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
 	0,	0,	0,	0,	/* 29 / 0x1D | PTJD */ \
-	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */ \
+	/* ^ .i .indika lo du'u ma kau judri lo me'oi .pattern. */ \
 	0,	0,	0,	0,	/* 33 / 0x21 | SIDX */ \
 	/* ^ .i co'e ja me'oi .sample. se zvati */ \
 	0,	0,	0,	0,	/* 37 / 0x25 | POCKET SAND */ \
