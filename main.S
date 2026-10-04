@@ -426,6 +426,9 @@ zgitci_frob:
 	c.j	zgitci_frob_deaf_setsivni
 	c.j	zgitci_frob_slurp
 	c.j	zgitci_frob_sw
+	.option norvc
+	nop	// bixygau2
+	.option rvc
 
 /* PWM
  *
