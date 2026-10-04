@@ -140,6 +140,8 @@ main_init_periph:
 	andn	t2,	t2,	t1
 	bnez	t2,	.denpa
 
+	/* DROP t[0-2] */
+
 main_init_gpio:
 	li	t1,	1 << PADS_BANK0_ISO_BIT
 	li	t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
