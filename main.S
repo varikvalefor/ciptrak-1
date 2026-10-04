@@ -425,7 +425,7 @@ zgitci_frob:
 	c.j	zgitci_frob_deaf_xosc
 	c.j	zgitci_frob_deaf_setsivni
 	c.j	zgitci_frob_slurp
-	c.j	zgitci_frob_slurp
+	c.j	zgitci_frob_sw
 
 /* PWM
  *
