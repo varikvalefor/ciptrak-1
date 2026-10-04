@@ -135,9 +135,9 @@ main_init_periph:
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	li      t0,     RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
 main_init_periph_pwm_reset_denpa:
-	lw      t2,     (t0)
-	and     t2,     t2,     t1
-	bne     t1,     t2,     main_init_periph_pwm_reset_denpa
+	lw	t2,	(t0)
+	and	t2,	t2,	t1
+	bne	t1,	t2,	main_init_periph_pwm_reset_denpa
 
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
