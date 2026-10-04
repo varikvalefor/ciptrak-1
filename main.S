@@ -1115,7 +1115,8 @@ zgitci_frob_sutcmaci:
 	//
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	sltu	t1,	t0,	t1
-	//
+	// | .i jinvi le du'u mapti fa lo nu na'e zukte pe'a
+	// va'o lo nu lo namcu na jai .indika
 	mul	sectaipe_t0,	t0,	t1
 
 	/* DROP t1 */
