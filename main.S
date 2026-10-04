@@ -1177,7 +1177,7 @@ zgitci_frob_sutcmaci:
 	// offset
 	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
 	srli	t2,	t2,	4 * (8 - 3)
-
+	//
 	add	a0,	t4,	t5
 	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
 	slli	t4,	t4,	1
