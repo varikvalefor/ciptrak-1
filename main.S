@@ -64,7 +64,7 @@ cur: .word	-1,				/* 0 */ \
 	0,	0,	0,	0,	/* 21 / 0x15 | ZT4 */ \
 	/* ^ .i le vo co'e cu jai .indika tu'a lo zgitci */ \
 	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
-	/* ^ .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
+	/* ^ .i .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
 	0,	0,	0,	0,	/* 29 / 0x1D | PTJD */ \
 	/* ^ .i le so moi cu jai .indika lo du'u ma kau judri lo me'oi .pattern. */ \
 	0,	0,	0,	0,	/* 33 / 0x21 | SIDX */ \
