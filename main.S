@@ -144,7 +144,8 @@ main_init_periph:
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(resets_t0)
 
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
+	li      t0,     RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
 main_init_periph_pwm_reset_denpa:
 	lw	t2,	0(t0)
 	and	t2,	t2,	t1
