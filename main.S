@@ -171,22 +171,6 @@ main_init_pwm_en:
 	li	t1,	(1<<4) - 1
 	sw	t1,	(t0)
 
-/* ni'o jinvi le du'u filri'a lo co'e ja zgike co'e fa lo da'i nu vimcu pe'a la'oi .CIPRA. pu lo da'i nu me'oi .merge. */
-CIPRA:
-	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
-	li	t1,	(1<<25)
-	sw	t1,	(t0)
-
-	li	t0,	IO_BANK0_BASE + IO_BANK0_GPIOx_CTRL(25)
-	li	t1,	5	// SIO
-	sw	t1,	(t0)
-
-	li	t0,	SIO_BASE + GPIO_OUT_SET_OFFSET
-	li	t1,	1 << 25
-	sw	t1,	(t0)
-
-	wfi
-
 	/* DROP [as][0-7] t[0-6] */
 
 main_lupe_pre:
