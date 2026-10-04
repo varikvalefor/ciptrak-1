@@ -1198,7 +1198,7 @@ zgitci_frob_sutcmaci:
 	slli	t4,	t4,	1
 	addi	t4,	t4,	-1
 	slli	t2,	t2,	2
-	mul	t2,	t2,	t4
+	mul	t2,	t4,	t2
 	//
 	sh2add	swd_j_a1,	cur_sz_j_t3,	t2
 
