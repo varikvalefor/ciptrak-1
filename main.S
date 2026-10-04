@@ -1072,7 +1072,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_deaf_bixygau2
+	bne	t0,	a0,	zgitci_frob_nope
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
