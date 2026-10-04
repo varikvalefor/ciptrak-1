@@ -1185,7 +1185,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t[245] */
 
 	#define	swd_j_a1	a1
-	// | metfo: andi	t2,	a3,	0x00FFF00
+	// | metfo: andi	t2,	a3,	0x000FFF00
 	//          srli	t2,	t2,	2 * 4
 	slli	t2,	a3,	4 * (8 - (3 + 3))
 	srli	t2,	t2,	4 * (8 - 3)
