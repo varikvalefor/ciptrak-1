@@ -33,7 +33,6 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
-#define	PADS_BANK0_GPIO0_ISO_BIT	8
 
 #define	FAMVLA	0xFFFFFFFF	# .i .indika lo du'u fanmo lo me'oi .pattern.  .i la .varik. cu jinvi le du'u mapti fa lo nu la'oi .FAMVLA. lamji je se se lidne lo pa moi be lo'i jai .indika pe lo me'oi .pattern.
 
@@ -103,9 +102,21 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_INCRI_IDX_OFFSET	43
 #define	CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 
+.text
+
 .global main
 
 main:
+.option norvc
+	j	main_init
+.option rvc
+
+	.word 0xFFFFDED3
+	.word 0x11010142
+	.word 0x000001FF
+	.word 0x00000000
+	.word 0xAB123579
+
 main_init:
 main_init_oe:
 	# .i curmi tu'a lo dikca
@@ -125,13 +136,35 @@ main_init_xosc_cipra_lupe:
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
+
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
+	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(resets_t0)
 
+	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
+	li      t0,     RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+main_init_periph_pwm_reset_denpa:
+	lw	t2,	0(t0)
+	and	t2,	t2,	t1
+	bne	t2,	t1,	main_init_periph_pwm_reset_denpa
+
+	/* DROP t[0-2] */
+
+main_init_gpio:
+	li	t1,	1 << PADS_BANK0_ISO_BIT
+	li	t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
+	addi	t2,	t0,	4 * 32
+.lupe:
+	addi	t0,	t0,	4
+	sw	t1,	0(t0)
+	blt	t0,	t2,	.lupe
+
+	/* DROP t[0-2] */
+
+main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
@@ -218,6 +251,9 @@ main_lupe_tcidu_lupe_co_barda:
 
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
+
+	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
+
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -225,7 +261,7 @@ main_lupe_tcidu_lupe_co_barda:
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
-	lw	t5,	(datni_cur_j_a2)
+	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
@@ -398,27 +434,6 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
-	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
-
-	lw	t0,	PWM_EN_OFFSET(vrc_s0)
-	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
-	bext	t0,	t0,	pwm_slice_a5
-	bnez	t0,	zgitci_frob_1_pwm_gpioctrl
-zgitci_frob_1_pwm_aktigau:
-	/* DROP t[0-6] */
-
-	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
-	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(t0)
-
-	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
-zgitci_frob_1_pwm_aktigau_denpa:
-	lw	t2,	(t0)
-	and	t2,	t2,	t1
-	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-
-	/* DROP t[0-6] */
 
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
@@ -925,7 +940,7 @@ zgitci_frob_deaf_xosc_post:
  *
  * 0xDEAF0001
  *
- * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
+ * [judriP: 0xXXXXXXX][?: 0bX] [remoi: 0bX][flash: 0bX][idx: 0bX]
  *
  * [zt1: 0xXXXXXXXX]
  *
@@ -938,6 +953,7 @@ zgitci_frob_deaf_bixygau:
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 	#define	A1_SIVNI_FLASH_BIT	1
+	#define	A1_SIVNI_REMOI_BIT	3
 
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 
@@ -952,8 +968,10 @@ zgitci_frob_deaf_bixygau:
 	sh3add	judri0_t0,	t1,	t0
 
 	sw	a2,	0(judri0_t0)
+	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
+	beqz	t1,	.fanmo
 	sw	a3,	4(judri0_t0)
-
+.fanmo:
 	ret
 
 /*
@@ -1066,6 +1084,21 @@ zgitci_frob_sw:
 	jal	vrici_frob
 zgitci_frob_sw_post:
 	ret
+
+/*
+ * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
+ * .i zu'edji tu'a lo nu la'oi .BIXYGAU. jai filri'a lo nu basygau pe'a lo zgitci co'e
+ * .i ji'a na pilno  .i krinu la'e di'u fa zo'e joi le su'u jinvi le du'u mapti lo su'o co'e jenai ku'i cu jai sarcu
+ * .i la .varik. cu jinvi le du'u filri'a fa tu'a la'oi .07666161de31f8ecad0550eb9e6de32d36f00076.
+ *
+ * 0xDEAF0005
+ *
+ * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
+ *
+ * [zt1: 0xXXXXXXXX]
+ *
+ * [vrc: 0xXXXXXXXX]
+ */
 
 /*
  * NOPE.AVI
