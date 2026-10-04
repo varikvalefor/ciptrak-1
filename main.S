@@ -147,8 +147,8 @@ main_init_periph:
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
 	lw	t2,	0(t0)
-	andn	t2,	t2,	t1
-	// bnez	t2,	.denpa
+	and	t2,	t2,	t1
+	bne	t2,	t1,	.denpa
 
 	/* DROP t[0-2] */
 
