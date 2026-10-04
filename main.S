@@ -250,7 +250,6 @@ main_lupe_tcidu_lupe_co_barda:
 	addi	ctr_a0,	ctr_a0,	1
 
 	lw	judri_t0,	(judri_j_a1)
-	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 main_lupe_tcidu_lupe_co_barda_post_svlw:
 	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
