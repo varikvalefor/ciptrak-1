@@ -242,8 +242,7 @@ main_lupe_tcidu:
 	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	-4
-	addi	a1,	vrc_s0,	CUR_PATN_JUDRI(0)
-	lw	judri_j_a1,	(a1)
+	addi	judri_j_a1,	vrc_s0,	CUR_PATN_JUDRI(0)
 	addi	datni_cur_j_a2,	vrc_s0,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
