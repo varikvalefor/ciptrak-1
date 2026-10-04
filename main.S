@@ -1175,7 +1175,7 @@ zgitci_frob_sutcmaci:
 	lw	t5,	0(cur_sz_j_t3)	// sezvati
 
 	// offset
-	slli	t2,	a3,	4 * (8 - 3)	// 3qcJrH8V.  lw opt
+	slli	t2,	a3,	4 * (8 - 3)
 	srli	t2,	t2,	4 * (8 - 3)
 	//
 	add	a0,	t4,	t5
