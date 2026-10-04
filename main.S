@@ -136,7 +136,7 @@ main_init_periph:
 
 	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
-	lw	t2,	(t0)
+	lw	t2,	0(t0)
 	andn	t2,	t2,	t1
 	bnez	t2,	.denpa
 
