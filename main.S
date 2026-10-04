@@ -1154,15 +1154,15 @@ zgitci_frob_sutcmaci:
 	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
 	andi	bit_nibarda_t2,	t2,	(1<<5) - 1
 
-	addi	t3,	bit_nibarda_t2,	1	// .i mapti tu'a li no
-	bset	t3,	x0,	t3
-	addi	t3,	t3,	-1
-	sll	clip_a5,	t3,	slli_t1
+	addi	t2,	bit_nibarda_t2,	1	// .i mapti tu'a li no
+	bset	t2,	x0,	t2
+	addi	t2,	t2,	-1
+	sll	clip_a5,	t2,	slli_t1
 
 	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 
-	/* DROP t[123] */
+	/* DROP t[12] */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	lwd_j_a0	a0
