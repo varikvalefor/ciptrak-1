@@ -1177,22 +1177,21 @@ vrici_frob_0:
 /* | [0x00][sign: 0bX] [rJudri: 0bXXX 0xXXXXX] */
 vrici_frob_jog:
 	#define	SIVNI_SIGN_BIT	23
-	#define	sezvati_j_t0	t0
+	#define	ztx_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	sezvati_j_t0,	vrc_s0,	t0
+	sh2add	ztx_j_t0,	vrc_s0,	zgitci_a4
 
 	#define	sign_t1	t1
 	bexti	sign_t1,	datni_a5,	SIVNI_SIGN_BIT
 	bclri	datni_a5,	datni_a5,	SIVNI_SIGN_BIT
 
 	#define	sezvati_t2	t2
-	lw	sezvati_t2,	(sezvati_j_t0)
+	lw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
 	slli	t1,	sign_t1,	1
 	addi	t1,	t1,	-1
 	mul	t1,	datni_a5,	t1	// s/add/sub/?
 	add	sezvati_t2,	sezvati_t2,	t1
-	sw	sezvati_t2,	(sezvati_j_t0)
+	sw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
 	ret
 // | TODO: .i xu mapti
 vrici_frob_sivni:
