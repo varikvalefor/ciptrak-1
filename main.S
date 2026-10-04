@@ -138,6 +138,8 @@ main_init_periph:
 	li	t1,	(1<<4) - 1
 	sw	t1,	(t0)
 
+	/* DROP [as][0-7] t[0-6] */
+
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
