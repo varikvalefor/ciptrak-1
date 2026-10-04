@@ -254,14 +254,17 @@ main_lupe_tcidu_lupe_co_barda:
 	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 main_lupe_tcidu_lupe_co_barda_post_svlw:
+	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
+
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
 	lw	datni_t3,	0(datni_niho_j_t2)	// zT9L5TrS.
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
+main_lupe_tcidu_lupe_vimcu:
+	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 
-	lw	t5,	(datni_cur_j_a2)	// temp
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
@@ -952,7 +955,7 @@ zgitci_frob_deaf_xosc_post:
  *
  * 0xDEAF0001
  *
- * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
+ * [judriP: 0xXXXXXXX][?: 0bX] [remoi: 0bX][flash: 0bX][idx: 0bX]
  *
  * [zt1: 0xXXXXXXXX]
  *
@@ -965,6 +968,7 @@ zgitci_frob_deaf_bixygau:
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_OFFSET	4
 	#define	A1_SIVNI_FLASH_BIT	1
+	#define	A1_SIVNI_REMOI_BIT	3
 
 	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
 
@@ -979,8 +983,10 @@ zgitci_frob_deaf_bixygau:
 	sh3add	judri0_t0,	t1,	t0
 
 	sw	a2,	0(judri0_t0)
+	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
+	beqz	t1,	.fanmo
 	sw	a3,	4(judri0_t0)
-
+.fanmo:
 	ret
 
 /*
@@ -1093,6 +1099,21 @@ zgitci_frob_sw:
 	jal	vrici_frob
 zgitci_frob_sw_post:
 	ret
+
+/*
+ * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
+ * .i zu'edji tu'a lo nu la'oi .BIXYGAU. jai filri'a lo nu basygau pe'a lo zgitci co'e
+ * .i ji'a na pilno  .i krinu la'e di'u fa zo'e joi le su'u jinvi le du'u mapti lo su'o co'e jenai ku'i cu jai sarcu
+ * .i la .varik. cu jinvi le du'u filri'a fa tu'a la'oi .07666161de31f8ecad0550eb9e6de32d36f00076.
+ *
+ * 0xDEAF0005
+ *
+ * [judriP: 0xXXXXXXX][?: 0bXX][flash: 0bX][idx: 0bX]
+ *
+ * [zt1: 0xXXXXXXXX]
+ *
+ * [vrc: 0xXXXXXXXX]
+ */
 
 /*
  * NOPE.AVI
