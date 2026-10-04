@@ -135,7 +135,7 @@ main_init_xosc_cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
-	// beqz	t1,	main_init_xosc_cipra_lupe
+	beqz	t1,	main_init_xosc_cipra_lupe
 
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
