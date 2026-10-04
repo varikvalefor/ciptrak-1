@@ -186,6 +186,8 @@ CIPRA:
 
 	wfi
 
+	/* DROP [as][0-7] t[0-6] */
+
 main_lupe_pre:
 	#define	vrc_s0	s0
 	la	vrc_s0,	cur
