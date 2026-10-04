@@ -33,7 +33,6 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
-#define	PADS_BANK0_GPIO0_ISO_BIT	8
 
 #define	FAMVLA	0xFFFFFFFF	# .i .indika lo du'u fanmo lo me'oi .pattern.  .i la .varik. cu jinvi le du'u mapti fa lo nu la'oi .FAMVLA. lamji je se se lidne lo pa moi be lo'i jai .indika pe lo me'oi .pattern.
 
@@ -98,9 +97,21 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_ZGITCI_SIVNI_OFFSET	39
 #define	CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 
+.text
+
 .global main
 
 main:
+.option norvc
+	j	main_init
+.option rvc
+
+	.word 0xFFFFDED3
+	.word 0x11010142
+	.word 0x000001FF
+	.word 0x00000000
+	.word 0xAB123579
+
 main_init:
 main_init_oe:
 	# .i curmi tu'a lo dikca
@@ -120,13 +131,35 @@ main_init_xosc_cipra_lupe:
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	main_init_xosc_cipra_lupe
+
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_PIOx_BIT(2)) | (1<<RESETS_PIOx_BIT(1)) | (1<<RESETS_PIOx_BIT(0)) | (1<<RESETS_DMA_BIT)
+	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(resets_t0)
 
+	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
+	li      t0,     RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+main_init_periph_pwm_reset_denpa:
+	lw	t2,	0(t0)
+	and	t2,	t2,	t1
+	bne	t2,	t1,	main_init_periph_pwm_reset_denpa
+
+	/* DROP t[0-2] */
+
+main_init_gpio:
+	li	t1,	1 << PADS_BANK0_ISO_BIT
+	li	t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
+	addi	t2,	t0,	4 * 32
+.lupe:
+	addi	t0,	t0,	4
+	sw	t1,	0(t0)
+	blt	t0,	t2,	.lupe
+
+	/* DROP t[0-2] */
+
+main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
 	li	t0,	PWM_BASE + PWM_EN_OFFSET
@@ -390,27 +423,6 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
-	// andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// mv PD8xy0By
-
-	lw	t0,	PWM_EN_OFFSET(vrc_s0)
-	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS	// PD8xy0By.  lw opt
-	bext	t0,	t0,	pwm_slice_a5
-	bnez	t0,	zgitci_frob_1_pwm_gpioctrl
-zgitci_frob_1_pwm_aktigau:
-	/* DROP t[0-6] */
-
-	li	t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS
-	li	t1,	(1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(t0)
-
-	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li	t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
-zgitci_frob_1_pwm_aktigau_denpa:
-	lw	t2,	(t0)
-	and	t2,	t2,	t1
-	bne	t1,	t2,	zgitci_frob_1_pwm_aktigau_denpa
-
-	/* DROP t[0-6] */
 
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
