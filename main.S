@@ -135,7 +135,7 @@ main_init_xosc_cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
-	beqz	t1,	main_init_xosc_cipra_lupe
+	// beqz	t1,	main_init_xosc_cipra_lupe
 
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
@@ -148,7 +148,7 @@ main_init_periph:
 .denpa:
 	lw	t2,	0(t0)
 	andn	t2,	t2,	t1
-	bnez	t2,	.denpa
+	// bnez	t2,	.denpa
 
 	/* DROP t[0-2] */
 
@@ -172,6 +172,14 @@ main_init_pwm_en:
 
 /* ni'o jinvi le du'u filri'a lo co'e ja zgike co'e fa lo da'i nu vimcu pe'a la'oi .CIPRA. pu lo da'i nu me'oi .merge. */
 CIPRA:
+	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
+	li	t1,	(1<<25)
+	sw	t1,	(t0)
+
+	li	t0,	IO_BANK0_BASE + IO_BANK0_GPIOx_CTRL(25)
+	li	t1,	5	// SIO
+	sw	t1,	(t0)
+
 	li	t0,	SIO_BASE + GPIO_OUT_SET_OFFSET
 	li	t1,	1 << 25
 	sw	t1,	(t0)
