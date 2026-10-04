@@ -107,6 +107,16 @@ cur: .word	-1,				/* 0 */ \
 .global main
 
 main:
+.option norvc
+	j	main_init
+.option rvc
+
+	.word 0xFFFFDED3
+	.word 0x11010142
+	.word 0x000001FF
+	.word 0x00000000
+	.word 0xAB123579
+
 main_init:
 main_init_oe:
 	# .i curmi tu'a lo dikca
