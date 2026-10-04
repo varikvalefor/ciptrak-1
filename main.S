@@ -142,12 +142,12 @@ main_init_periph:
 
 main_init_gpio:
 	li	t1,	1 << PADS_BANK0_ISO_BIT
-	li	t0,	PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS
-	addi	t2,	t0,	4 * 31
+	li	t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
+	addi	t2,	t0,	4 * 32
 .lupe:
-	sw	t1,	0(t0)
 	addi	t0,	t0,	4
-	ble	t0,	t2,	.lupe
+	sw	t1,	0(t0)
+	blt	t0,	t2,	.lupe
 main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
