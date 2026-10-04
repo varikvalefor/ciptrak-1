@@ -1094,7 +1094,7 @@ zgitci_frob_sw_post:
  *
  * [?: 0xXXXXX][sectaipe: 0xXXX]
  *
- * ?
+ * [sivni]
  *
  * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
  * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
