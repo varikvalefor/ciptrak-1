@@ -118,13 +118,12 @@ main_init_xosc:
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
-main_init_xosc_cipra:
-main_init_xosc_cipra_lupe:
+.cipra_lupe:
 	#define	resets_t0	t0
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
-	beqz	t1,	main_init_xosc_cipra_lupe
+	beqz	t1,	.cipra_lupe
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
