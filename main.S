@@ -405,8 +405,6 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
-zgitci_frob_1_pwm_gpioctrl:
-	/* DROP t[0-6] */
 
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
