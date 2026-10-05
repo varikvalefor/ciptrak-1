@@ -873,7 +873,7 @@ zgitci_frob_c000_sutra_rejgau:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	sh2add	t0,	vrc_s0,	zgitci_a4
 	sw	judri_s2,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
-zgitci_frob_c000_fanmo:
+zgitci_frob_c000_sutra_fanmo:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
