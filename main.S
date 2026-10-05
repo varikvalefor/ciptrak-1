@@ -1160,7 +1160,7 @@ zgitci_frob_sutcmaci:
 	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 
-	/* DROP t[12] */
+	/* DROP t[12] a1 */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	lwd_j_a0	a0
