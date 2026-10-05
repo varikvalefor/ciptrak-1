@@ -1172,6 +1172,8 @@ zgitci_frob_sutcmaci:
 	lw	judri_t4,	(4 * CUR_PATN_JUDRI_OFFSET)(vrcX_a0)
 	lw	sezvati_t5,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
 
+	/* DROP a0 */
+
 	#define	offset_t2	t2
 	// offset
 	slli	t2,	a3,	4 * (8 - 3)
