@@ -1226,11 +1226,11 @@ zgitci_frob_sutcmaci:
 
 .sumji_lupe_op:
 	.option norvc
-	add	t4,	t1,	sesumjiX_t0
+	add	t2,	t1,	sesumjiX_t0
 	.option rvc
-	and	t4,	t4,	clip_a5
+	and	t2,	t2,	clip_a5
 	andn	t1,	t1,	clip_a5
-	or	t1,	t1,	t4
+	or	t1,	t1,	t2
 
 	sw	t1,	0(swd_j_a1)
 
