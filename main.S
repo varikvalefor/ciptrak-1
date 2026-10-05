@@ -1219,20 +1219,20 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[123456] a3 */
 .sumji_lupe:
-	lw	t3,	0(lwd_j_a0)
+	lw	t1,	0(lwd_j_a0)
 
 	add	lwd_j_a0,	lwd_j_a0,	diff_a6
 	add	swd_j_a1,	swd_j_a1,	diff_a6
 
 .sumji_lupe_op:
 	.option norvc
-	add	t4,	t3,	sesumjiX_t0
+	add	t4,	t1,	sesumjiX_t0
 	.option rvc
 	and	t4,	t4,	clip_a5
-	andn	t3,	t3,	clip_a5
-	or	t3,	t3,	t4
+	andn	t1,	t1,	clip_a5
+	or	t1,	t1,	t4
 
-	sw	t3,	0(swd_j_a1)
+	sw	t1,	0(swd_j_a1)
 
 	blt	lwd_j_a0,	max_a4,	.sumji_lupe
 
