@@ -1170,7 +1170,7 @@ zgitci_frob_sutcmaci:
 	#define	cur_sz_j_t3	t3
 	#define	judri_t4	t4
 	#define	sezvati_t5	t5
-	addi	cur_sz_j_t3,	lwd_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
+	addi	cur_sz_j_t3,	a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
 	lw	judri_t4,	0(a0)
 	lw	sezvati_t5,	0(cur_sz_j_t3)
 
