@@ -1240,13 +1240,11 @@ zgitci_frob_sutcmaci:
 .s_ops:
 	.option norvc
 	nop	// 0
-	.option rvc
 	add	t4,	t3,	sesumjiX_t0	// 1
 	sub	t4,	t3,	sesumjiX_t0
 	mul	t4,	t3,	sesumjiX_t0
 	div	t4,	t3,	sesumjiX_t0
 	rem	t4,	t3,	sesumjiX_t0
-	.option norvc
 	mv	t4,	sesumjiX_t0	// 6
 	.option rvc
 
