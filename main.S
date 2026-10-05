@@ -1189,7 +1189,7 @@ zgitci_frob_sutcmaci:
 	mul	offset_t2,	offset_t2,	t4,
 	add	lwd_j_a0,	a1,	offset_t2
 
-	/* DROP t[45] */
+	/* DROP t[245] */
 
 	#define	swd_j_a1	a1
 	#define	offset_t2	t2
