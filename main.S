@@ -1176,16 +1176,16 @@ zgitci_frob_sutcmaci:
 	slli	t2,	a3,	4 * (8 - 3)
 	srli	t2,	t2,	4 * (8 - 3)
 	//
-	add	a0,	t4,	t5
-	/* DROP t[45] */
+	add	t5,	t4,	t5
+	/* DROP t4 */
 	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
 	slli	t4,	t4,	1
 	addi	t4,	t4,	-1
 	slli	t2,	t2,	2
 	mul	t4,	t4,	t2
-	add	lwd_j_a0,	a0,	t4
+	add	lwd_j_a0,	t5,	t4
 
-	/* DROP t[245] */
+	/* DROP t[24] */
 
 	#define	swd_j_a1	a1
 	// | metfo: andi	t2,	a3,	0x000FFF00
@@ -1199,9 +1199,9 @@ zgitci_frob_sutcmaci:
 	slli	t2,	t2,	2
 	mul	t4,	t4,	t2
 	//
-	sh2add	swd_j_a1,	cur_sz_j_t3,	t4
+	sh2add	swd_j_a1,	t5,	t4
 
-	/* DROP (t[234]|a4) */
+	/* DROP (t[2345]|a4) */
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
