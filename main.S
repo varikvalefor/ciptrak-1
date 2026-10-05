@@ -1257,7 +1257,6 @@ vrici_frob_sio_post_init:
 	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
 	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	pinmask_t3,	x0,	pin_t0
 	sw	pinmask_t3,	GPIO_OUT_SET_OFFSET(sio_j_t1)
 
 	ret
