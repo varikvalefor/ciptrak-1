@@ -271,7 +271,7 @@ main_lupe_tcidu_lupe_vimcu:
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t4	t4
-	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s0,	sivniP_t4
 	sw	x0,	(sivni_t4)
 main_lupe_tcidu_lupe_ld_cur:
@@ -1228,27 +1228,32 @@ vrici_frob_sio:
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
-	bexti	t0,	a5,	SIVNI_INIT_BIT
-	beqz	t0,	vrici_frob_sio_post_init
+	#define	gpio_j_t2	t2
+	#define	pinmask_t3	t3
+
+	andi	pin_t0,	a5,	(1<<5) - 1
+	li	sio_j_t1,	SIO_BASE
+	bset	pinmask_t3,	x0,	pin_t0	// temp
+
+	bexti	temp_t2,	a5,	SIVNI_INIT_BIT
+	beqz	temp_t2,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 
-	andi	pin_t0,	a5,	((1<<5) - 1)
+	/* DROP t2 */
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	t1,	IO_BANK0_BASE + 4
-	sh3add	t1,	t1,	pin_t0	// 8 = 2 ^ 3
-	li	temp_t2,	5	// SIO fn
-	sw	temp_t2,	(t1)
+	li	t2,	IO_BANK0_BASE + 4
+	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 2 ^ 3
+	li	t5,	5	// SIO fn
+	sw	t5,	0(gpio_j_t2)
 
-	li	sio_j_t1,	SIO_BASE
-	bset	temp_t2,	x0,	pin_t0	// temp
-	sw	temp_t2,	GPIO_OE_SET_OFFSET(sio_j_t1)
+	/* DROP t[25] */
+
+	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
-	bexti	temp_t2,	a5,	SIVNI_VALUE_BIT
-	binvi	temp_t2,	temp_t2,	0
+	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
 	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	temp_t2,	x0,	pin_t0
-	sw	temp_t2,	GPIO_OUT_SET_OFFSET(sio_j_t1)
+	sw	pinmask_t3,	GPIO_OUT_SET_OFFSET(sio_j_t1)
 
 	ret
