@@ -1166,6 +1166,9 @@ zgitci_frob_sutcmaci:
 	#define	lwd_j_a0	a0
 	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
 	sh2add	a0,	vrc_s0,	a0
+
+	/* DROP a4 */
+
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	#define	cur_sz_j_t3	t3
 	addi	cur_sz_j_t3,	lwd_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
@@ -1203,7 +1206,7 @@ zgitci_frob_sutcmaci:
 	//
 	sh2add	swd_j_a1,	a1,	offset_t2
 
-	/* DROP (t[2345]|a4) */
+	/* DROP t[2345] */
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
