@@ -1106,7 +1106,7 @@ zgitci_frob_sutcmaci:
 	bne	t0,	a0,	zgitci_frob_nope
 
 	#define	sectaipe_t0	t0
-	#define	SIVNI_SECTAIPE_NILZILCMI	7
+	#define	SIVNI_SECTAIPE_NILZILCMI	8
 	#define	SIVNI_A3_NIBARDA_BIT	(4 * 6)
 	slli	t0,	a1,	4 * (8 - 3)
 	srli	t0,	t0,	4 * (8 - 3)
@@ -1246,6 +1246,7 @@ zgitci_frob_sutcmaci:
 	div	t4,	t3,	sesumjiX_t0
 	rem	t4,	t3,	sesumjiX_t0
 	mv	t4,	sesumjiX_t0
+	xor	t4,	t3,	sesumjiX_t0
 	.option rvc
 
 /*
