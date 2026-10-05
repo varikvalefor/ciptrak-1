@@ -1168,7 +1168,6 @@ zgitci_frob_sutcmaci:
 	/* DROP a4 */
 
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	#define	cur_sz_j_t3	t3
 	#define	judri_t4	t4
 	#define	sezvati_t5	t5
 	lw	judri_t4,	0(judri_j_a0)
