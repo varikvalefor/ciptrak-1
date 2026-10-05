@@ -1252,7 +1252,7 @@ vrici_frob_sio:
 	li	t2,	IO_BANK0_BASE + 4
 	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 2 ^ 3
 	li	t5,	5	// SIO fn
-	sw	t5,	(gpio_j_t2)
+	sw	t5,	0(gpio_j_t2)
 
 	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
