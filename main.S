@@ -1256,6 +1256,8 @@ vrici_frob_sio:
 	li	t5,	5	// SIO fn
 	sw	t5,	0(gpio_j_t2)
 
+	/* DROP t[25] */
+
 	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
 	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
