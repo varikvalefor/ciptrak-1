@@ -1238,11 +1238,13 @@ vrici_frob_sio:
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
 	#define	pinmask_t3	t3
+
+	andi	pin_t0,	a5,	((1<<5) - 1)
+	bset	pinmask_t3,	x0,	pin_t0	// temp
+
 	bexti	t0,	a5,	SIVNI_INIT_BIT
 	beqz	t0,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
-
-	andi	pin_t0,	a5,	((1<<5) - 1)
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
@@ -1251,7 +1253,6 @@ vrici_frob_sio:
 	sw	temp_t2,	(t1)
 
 	li	sio_j_t1,	SIO_BASE
-	bset	pinmask_t3,	x0,	pin_t0	// temp
 	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
 	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
