@@ -1240,7 +1240,7 @@ vrici_frob_sio:
 	#define	gpio_j_t2	t2
 	#define	pinmask_t3	t3
 
-	andi	pin_t0,	a5,	((1<<5) - 1)
+	andi	pin_t0,	a5,	(1<<5) - 1
 	li	sio_j_t1,	SIO_BASE
 	bset	pinmask_t3,	x0,	pin_t0	// temp
 
