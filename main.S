@@ -1160,9 +1160,10 @@ zgitci_frob_sutcmaci:
 	/* DROP t[12] a1 */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
+	#define	judri_j_a0	a0
 	#define	lwd_j_a0	a0
 	addi	a0,	zgitci_a4,	CUR_PATN_JUDRI_OFFSET
-	sh2add	a0,	vrc_s0,	a0
+	sh2add	judri_j_a0,	vrc_s0,	a0
 
 	/* DROP a4 */
 
@@ -1170,8 +1171,8 @@ zgitci_frob_sutcmaci:
 	#define	cur_sz_j_t3	t3
 	#define	judri_t4	t4
 	#define	sezvati_t5	t5
-	addi	cur_sz_j_t3,	a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
-	lw	judri_t4,	0(a0)
+	addi	cur_sz_j_t3,	judri_j_a0,	4 * (CUR_PATN_SEZVATI_OFFSET - CUR_PATN_JUDRI_OFFSET)
+	lw	judri_t4,	0(judri_j_a0)
 	lw	sezvati_t5,	0(cur_sz_j_t3)
 
 	#define	offset_t2	t2
