@@ -251,6 +251,9 @@ main_lupe_tcidu_lupe_co_barda:
 
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
+
+	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
+
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
 	#define	datni_t3	t3
@@ -258,7 +261,7 @@ main_lupe_tcidu_lupe_co_barda:
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 main_lupe_tcidu_lupe_vimcu:
-	lw	t5,	(datni_cur_j_a2)
+	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
@@ -268,7 +271,7 @@ main_lupe_tcidu_lupe_vimcu:
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t4	t4
-	// sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i ronsa zo'e pe zoi zoi. NZwe53kb_2 .zoi.  .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
+	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s0,	sivniP_t4
 	sw	x0,	(sivni_t4)
 main_lupe_tcidu_lupe_ld_cur:
@@ -517,11 +520,11 @@ zgitci_frob_1_pwm_csr:
 
 zgitci_frob_1_pwm_idx:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
-	lw	t1,	(t0)
+	slli	t0,	zgitci_a4,	2
+	#define	ZGITCI_SIVNI_J_T0	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
+	lw	t1,	ZGITCI_SIVNI_J_T0
 	addi	t1,	t1,	1
-	sw	t1,	(t0)
+	sw	t1,	ZGITCI_SIVNI_J_T0
 
 	ret
 /*
@@ -611,22 +614,21 @@ zgitci_frob_damri:
 
 	#define	A1_SIVNI_CNINO_BIT	31
 	#define	curval_a5	a5
-	#define	idx_j_t0	t0
+	#define	zgitci_t0	t0
 	// se morji: CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SAMP_IDX_OFFSET
-	sh2add	idx_j_t0,	vrc_s0,	t0
+	sh2add	zgitci_t0,	vrc_s0,	zgitci_a4
 
 	bexti	t1,	a1,	A1_SIVNI_CNINO_BIT
 	beqz	t1,	zgitci_frob_damri_sezvati_incr
 zgitci_frob_damri_sezvati_reset:
-	sw	x0,	(idx_j_t0)
+	sw	x0,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)
 	nop	// zgitci_frob_damri_sezvati_incr sync
 	nop	// zgitci_frob_damri_sezvati_incr sync
 	j	zgitci_frob_damri_sezvati_incr_post
 zgitci_frob_damri_sezvati_incr:
-	lw	t1,	(idx_j_t0)	// 2c
+	lw	t1,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)	// 2c
 	addi	t1,	t1,	1
-	sw	t1,	(idx_j_t0)
+	sw	t1,	(4 * CUR_ZGITCI_SAMP_IDX_OFFSET)(zgitci_t0)
 
 	/* DROP t0 */
 
@@ -848,10 +850,9 @@ zgitci_frob_c000_sutra_post:
 	beqz	t0,	zgitci_frob_c000_sutra_fanmo
 zgitci_frob_c000_sutra_rejgau:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
-	sw	judri_s2,	(t0)
-zgitci_frob_c000_sutra_fanmo:
+	sh2add	t0,	vrc_s0,	zgitci_a4
+	sw	judri_s2,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
+zgitci_frob_c000_fanmo:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
@@ -875,10 +876,9 @@ zgitci_frob_c000_denpa:
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
-	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
-	sh2add	denpa_j_t0,	vrc_s0,	t0
+	slli	t0,	zgitci_a4,	2
 
-	sw	a1,	(denpa_j_t0)
+	sw	a1,	CUR_DENPA_INST_OFFSET(t0)
 
 	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
 	mv	a5,	a2
@@ -987,17 +987,17 @@ zgitci_frob_deaf_setsivni:
 	beqz	t0,	zgitci_frob_deaf_setsivni_i2
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_0
-	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET
 	sh2add	t0,	vrc_s0,	t0
-	sw	a2,	(t0)
+	sw	a2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
 	beqz	t0,	zgitci_frob_deaf_setsivni_post
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
-	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
+	//
+	// addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s0,	t0
-	sw	a3,	(t0)
+	sw	a3,	(4 * (CUR_ZGITCI_SIVNI_OFFSET + 2))(t0)
 zgitci_frob_deaf_setsivni_post:
 	ret
 
@@ -1130,19 +1130,17 @@ vrici_frob_dispatch:
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_DENPA_INST_OFFSET
-	sh2add	denpa_j_t0,	vrc_s0,	t0
+	sh2add	denpa_j_t0,	vrc_s0,	zgitci_a4
 
-	sw	datni_a5,	(denpa_j_t0)
+	sw	datni_a5,	(4 * CUR_DENPA_INST_OFFSET)(denpa_j_t0)
 
 	ret
 vrici_frob_j:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
+	sh2add	t0,	vrc_s0,	zgitci_a4
 
 	// .i xu cadga fa tu'a lo me'oi .slli. co'e
-	sw	datni_a5,	(t0)
+	sw	datni_a5,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
 
 	ret
 
@@ -1152,11 +1150,10 @@ vrici_frob_j:
 vrici_frob_0:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//           CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
+	sh2add	t0,	vrc_s0,	zgitci_a4
 
-	lw	t1,	(4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET))(t0)	// CUR_PATN_JUDRI
-	lw	t0,	(t0)
+	lw	t1,	(4 * CUR_PATN_JUDRI_OFFSET)(t0)
+	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
 
 	sh2add	t1,	t1,	datni_a5
 	add	t0,	t0,	t1
@@ -1167,29 +1164,27 @@ vrici_frob_0:
 /* | [0x00][sign: 0bX] [rJudri: 0bXXX 0xXXXXX] */
 vrici_frob_jog:
 	#define	SIVNI_SIGN_BIT	23
-	#define	sezvati_j_t0	t0
+	#define	ztx_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	sezvati_j_t0,	vrc_s0,	t0
+	sh2add	ztx_j_t0,	vrc_s0,	zgitci_a4
 
 	#define	sign_t1	t1
 	bexti	sign_t1,	datni_a5,	SIVNI_SIGN_BIT
 	bclri	datni_a5,	datni_a5,	SIVNI_SIGN_BIT
 
 	#define	sezvati_t2	t2
-	lw	sezvati_t2,	(sezvati_j_t0)
+	lw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
 	slli	t1,	sign_t1,	1
 	addi	t1,	t1,	-1
 	mul	t1,	datni_a5,	t1	// s/add/sub/?
 	add	sezvati_t2,	sezvati_t2,	t1
-	sw	sezvati_t2,	(sezvati_j_t0)
+	sw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
 	ret
 // | TODO: .i xu mapti
 vrici_frob_sivni:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-	addi	t0,	zgitci_a4,	CUR_ZGITCI_SIVNI_OFFSET
-	sh2add	t0,	vrc_s0,	t0
-	sw	datni_a5,	(t0)
+	sh2add	t0,	vrc_s0,	zgitci_a4
+	sw	datni_a5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 	ret
 /* | [0x00][idx: 0bXX][datni: 0bXX + 0xXXXXX] */
 vrici_frob_denpaV:
@@ -1201,11 +1196,10 @@ vrici_frob_denpaV:
 	bclri	datni_a5,	datni_a5,	SIVNI_IDX_BIT_0
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-	addi	t0,	zt_idx_t0,	CUR_DENPA_INST_OFFSET
 	#define	denpa_j_t0	t0
-	sh2add	denpa_j_t0,	vrc_s0,	t0
+	sh2add	denpa_j_t0,	vrc_s0,	zt_idx_t0
 
-	sw	datni_a5,	(denpa_j_t0)
+	sw	datni_a5,	(4 * CUR_DENPA_INST_OFFSET)(denpa_j_t0)
 
 	ret
 vrici_frob_denpaWfi:
@@ -1221,27 +1215,32 @@ vrici_frob_sio:
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
-	bexti	t0,	a5,	SIVNI_INIT_BIT
-	beqz	t0,	vrici_frob_sio_post_init
+	#define	gpio_j_t2	t2
+	#define	pinmask_t3	t3
+
+	andi	pin_t0,	a5,	(1<<5) - 1
+	li	sio_j_t1,	SIO_BASE
+	bset	pinmask_t3,	x0,	pin_t0	// temp
+
+	bexti	temp_t2,	a5,	SIVNI_INIT_BIT
+	beqz	temp_t2,	vrici_frob_sio_post_init
 	// TODO: .i xu banuzka
 
-	andi	pin_t0,	a5,	((1<<5) - 1)
+	/* DROP t2 */
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	t1,	IO_BANK0_BASE + 4
-	sh3add	t1,	t1,	pin_t0	// 8 = 2 ^ 3
-	li	temp_t2,	5	// SIO fn
-	sw	temp_t2,	(t1)
+	li	t2,	IO_BANK0_BASE + 4
+	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 2 ^ 3
+	li	t5,	5	// SIO fn
+	sw	t5,	0(gpio_j_t2)
 
-	li	sio_j_t1,	SIO_BASE
-	bset	temp_t2,	x0,	pin_t0	// temp
-	sw	temp_t2,	GPIO_OE_SET_OFFSET(sio_j_t1)
+	/* DROP t[25] */
+
+	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
-	bexti	temp_t2,	a5,	SIVNI_VALUE_BIT
-	binvi	temp_t2,	temp_t2,	0
+	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
 	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
-	bset	temp_t2,	x0,	pin_t0
-	sw	temp_t2,	GPIO_OUT_SET_OFFSET(sio_j_t1)
+	sw	pinmask_t3,	GPIO_OUT_SET_OFFSET(sio_j_t1)
 
 	ret
