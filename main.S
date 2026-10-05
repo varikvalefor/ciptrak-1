@@ -1240,6 +1240,7 @@ vrici_frob_sio:
 	#define	pinmask_t3	t3
 
 	andi	pin_t0,	a5,	((1<<5) - 1)
+	li	sio_j_t1,	SIO_BASE
 	bset	pinmask_t3,	x0,	pin_t0	// temp
 
 	bexti	t0,	a5,	SIVNI_INIT_BIT
@@ -1252,7 +1253,6 @@ vrici_frob_sio:
 	li	temp_t2,	5	// SIO fn
 	sw	temp_t2,	(t1)
 
-	li	sio_j_t1,	SIO_BASE
 	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
 	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
