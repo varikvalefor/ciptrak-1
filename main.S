@@ -770,7 +770,6 @@ zgitci_frob_c000_mv:
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
-
 zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
