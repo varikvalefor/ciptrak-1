@@ -1177,6 +1177,7 @@ zgitci_frob_sutcmaci:
 	srli	t2,	t2,	4 * (8 - 3)
 	//
 	add	a0,	t4,	t5
+	/* DROP t[45] */
 	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
 	slli	t4,	t4,	1
 	addi	t4,	t4,	-1
