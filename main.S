@@ -520,7 +520,6 @@ zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 zgitci_frob_1_pwm_top:
-	// se morji: PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
 	sh	a2,	(SIVNI_TOP_OFFSET - SIVNI_DIV_OFFSET)(div_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
