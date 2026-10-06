@@ -329,12 +329,13 @@ main_lupe_zgike:
 	/* DROP [at][01234567] */
 
 	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) (x + CUR_ZGITCI0(z))(vrc_s0)
-	#define	SIVNI_IDX_LUPE_ZGIKE_F(x)	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, x);\
-						lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0);\
-						lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0);\
-						lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 0);\
-						li	a4,	0;\
-						jal	zgitci_frob
+	#define	SIVNI_IDX_LUPE_ZGIKE_F(x)
+		lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, x);\
+		lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0);\
+		lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0);\
+		lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 0);\
+		li	a4,	0;\
+		jal	zgitci_frob
 
 	SIVNI_IDX_LUPE_ZGIKE_F(0)
 	SIVNI_IDX_LUPE_ZGIKE_F(1)
