@@ -1155,7 +1155,7 @@ zgitci_frob_sutcmaci:
 	andi	slli_t1,	a2,	(1<<5) - 1
 
 	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
-	andi	bit_nibarda_t2,	t2,	(1<<5) - 1
+	andi	bit_nibarda_t2,	t2,	(1<<(4 + 1)) - 1
 
 	addi	t2,	bit_nibarda_t2,	1	// .i mapti tu'a li no
 	bset	t2,	x0,	t2
