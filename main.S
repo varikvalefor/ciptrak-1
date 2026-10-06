@@ -242,6 +242,7 @@ main_lupe_tcidu_lupe_co_barda:
 
 	addi	ctr_a0,	ctr_a0,	1
 
+main_lupe_tcidu_lupe_co_barda_post_svlw:
 	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
 
 	#define	datni_niho_j_t2	t2
@@ -251,14 +252,22 @@ main_lupe_tcidu_lupe_co_barda:
 	lw	datni_t3,	0(datni_niho_j_t2)	// zT9L5TrS.
 	addi	sezvati_j_a1,	sezvati_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
-main_lupe_tcidu_lupe_vimcu:
+
 	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
+
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
 	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
-	/* DROP t5 */
+	li	t6,	FAMVLA
+	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
 
-	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
+	/* DROP t[56] */
+
+	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
+	mv	sezvati_t1,	x0
+	j	main_lupe_tcidu_lupe_co_barda_post_svlw
+main_lupe_tcidu_lupe_vimcu:
+	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
 	#define	sivni_t4	t4
@@ -849,7 +858,7 @@ zgitci_frob_c000_sutra_rejgau:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	sh2add	t0,	vrc_s0,	zgitci_a4
 	sw	judri_s2,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
-zgitci_frob_c000_fanmo:
+zgitci_frob_c000_sutra_fanmo:
 	lw	ra,	0(sp)
 	lw	s2,	4(sp)
 	lw	s3,	8(sp)
