@@ -334,7 +334,7 @@ main_lupe_zgike:
 		lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, x);\
 		lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, x);\
 		lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, x);\
-		li	a4,	0;\
+		li	a4,	x;\
 		jal	zgitci_frob
 
 	SIVNI_IDX_LUPE_ZGIKE_F(0)
