@@ -761,11 +761,12 @@ zgitci_frob_c000_mv:
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	sezvati_j_t0	t0
-	#define	judri_j_t1	t1
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	sezvati_j_t0,	vrc_s0,	t0
-	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
+	#define	jszx_j_a5	t0
+	sh2add	jszx_j_a5,	vrc_s0,	zgitci_a4
+	#define	sezvati_t0	t0
+	#define	judri_t1	t1
+	lw	judri_t1,	(4 * CUR_PATN_JUDRI_OFFSET)(jszx_j_a5)
+	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
@@ -778,7 +779,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	addi	t4,	ctr_t2,	-1
 	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
-	add	t5,	judri_j_t1,	sezvati_j_t0
+	add	t5,	judri_t1,	sezvati_t0
 	lw	t6,	(t5)
 	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
 
@@ -791,8 +792,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 zgitci_frob_c000_mv_cont:
 	/* DROP t[3-6] */
 
-	sw	sezvati_a2,	(sezvati_j_t0)
-	sw	patn_a1,	(judri_j_t1)
+	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	sw	patn_a1,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 
 	/* DROP t[01] */
 
