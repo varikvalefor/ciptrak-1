@@ -814,6 +814,8 @@ zgitci_frob_c000_mv_frob:
 	lw	a3,	0xC(t0)
 	jal	zgitci_frob
 
+	/* TODO: .i xu cadga fa lo nu co'e je cu bixygau pe'a la'oi .patn_a1. */
+
 	lw	ra,	0(sp)
 	addi	sp,	sp,	4
 
