@@ -1205,7 +1205,7 @@ zgitci_frob_sutcmaci:
 	#define	offset_t2	t2
 	// | metfo: andi	t2,	a3,	0x000FFF00
 	//          srli	t2,	t2,	2 * 4
-	slli	t2,	a3,	4 * (8 - (3 + 3))
+	slli	t2,	a3,	4 * (8 - (3 + 2))
 	srli	offset_t2,	t2,	4 * (8 - 3)
 	//
 	bexti	t4,	a2,	SIVNI_A2_DIR1_BIT
