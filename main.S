@@ -521,7 +521,6 @@ zgitci_frob_1_pwm_div_sampu_zenba:
 	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
 zgitci_frob_1_pwm_top:
 	// se morji: PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
-	#define	SIVNI_TOP_OFFSET	0x10
 	sh	a2,	(SIVNI_TOP_OFFSET - SIVNI_DIV_OFFSET)(div_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
