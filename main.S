@@ -1163,10 +1163,12 @@ zgitci_frob_sutcmaci:
 	addi	t2,	t2,	-1
 	sll	clip_a5,	t2,	slli_t1
 
+	/* DROP t2 */
+
 	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
 
-	/* DROP t[12] a1 */
+	/* DROP t1 a1 */
 
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	vrcX_a0	a0
