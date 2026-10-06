@@ -309,45 +309,19 @@ main_lupe_incri:
 	#define sezvati_t2	t2
 	#define	lt_t1	t1
 
-	lw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(0))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0	// ...not
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s0)
-
-	lw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(1))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s0)
-
-	lw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(2))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s0)
-
-	lw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(3))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s0)
+	#define	MAIN_LUPE_INCRI_F(x)	lw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+					lw	denpa_t1,	(CUR_DENPA_INST(x))(vrc_s0);\
+					lw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0);\
+					sltu	lt_t1,	denpa_t1,	incri_t0;\
+					sh2add	sezvati_t2,	sezvati_t2,	lt_t1;\
+					binvi	lt_t1,	lt_t1,	0	/* ...not */;\
+					mul	incri_t0,	incri_t0,	lt_t1;\
+					sw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+					sw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0)
+	MAIN_LUPE_INCRI_F(0)
+	MAIN_LUPE_INCRI_F(1)
+	MAIN_LUPE_INCRI_F(2)
+	MAIN_LUPE_INCRI_F(3)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
