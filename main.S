@@ -309,15 +309,17 @@ main_lupe_incri:
 	#define sezvati_t2	t2
 	#define	lt_t1	t1
 
-	#define	MAIN_LUPE_INCRI_F(x)	lw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
-					lw	denpa_t1,	(CUR_DENPA_INST(x))(vrc_s0);\
-					lw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0);\
-					sltu	lt_t1,	denpa_t1,	incri_t0;\
-					sh2add	sezvati_t2,	sezvati_t2,	lt_t1;\
-					binvi	lt_t1,	lt_t1,	0	/* ...not */;\
-					mul	incri_t0,	incri_t0,	lt_t1;\
-					sw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
-					sw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0)
+	#define	MAIN_LUPE_INCRI_F(x) \
+		lw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+		lw	denpa_t1,	(CUR_DENPA_INST(x))(vrc_s0);\
+		lw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0);\
+		sltu	lt_t1,	denpa_t1,	incri_t0;\
+		sh2add	sezvati_t2,	sezvati_t2,	lt_t1;\
+		binvi	lt_t1,	lt_t1,	0	/* ...not */;\
+		mul	incri_t0,	incri_t0,	lt_t1;\
+		sw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+		sw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0)
+
 	MAIN_LUPE_INCRI_F(0)
 	MAIN_LUPE_INCRI_F(1)
 	MAIN_LUPE_INCRI_F(2)
