@@ -1218,6 +1218,7 @@ zgitci_frob_sutcmaci:
 
 	#define	max_a4	a4
 	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
+	andi	t2,	t2,	0b11
 	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
 	addi	t2,	t2,	2	// lw align
 	sll	a4,	a4,	t2
