@@ -1252,15 +1252,16 @@ zgitci_frob_sutcmaci:
 
 	ret
 .s_ops:
+	#define	SOPS_X3(op)	op	t2,	t1,	sesumjiX_t0
 	.option norvc
 	nop	// 0
-	add	t2,	t1,	sesumjiX_t0
-	sub	t2,	t1,	sesumjiX_t0
-	mul	t2,	t1,	sesumjiX_t0
-	div	t2,	t1,	sesumjiX_t0
-	rem	t2,	t1,	sesumjiX_t0
+	SOPS_X3(add)
+	SOPS_X3(sub)
+	SOPS_X3(mul)
+	SOPS_X3(div)
+	SOPS_X3(rem)
 	mv	t2,	sesumjiX_t0
-	xor	t2,	t1,	sesumjiX_t0
+	SOPS_X3(xor)
 	.option rvc
 
 /*
