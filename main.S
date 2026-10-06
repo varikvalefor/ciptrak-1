@@ -1142,6 +1142,7 @@ zgitci_frob_sutcmaci:
 	#define	SIVNI_A2_DIFF_BIT	(1 + 4 + SIVNI_A2_BIT_NIBARDA_BIT)
 	#define	SIVNI_A2_DIR0_BIT	(2 + SIVNI_A2_DIFF_BIT)
 	#define	SIVNI_A2_DIR1_BIT	(1 + SIVNI_A2_DIR0_BIT)
+	#define SIVNI_A2_BIT_NIBARDA_S	(4 + 1)
 
 	la	t1,	.s_ops
 	sh2add	t0,	t1,	sectaipe_t0
@@ -1155,7 +1156,7 @@ zgitci_frob_sutcmaci:
 	andi	slli_t1,	a2,	(1<<5) - 1
 
 	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
-	andi	bit_nibarda_t2,	t2,	(1<<(4 + 1)) - 1
+	andi	bit_nibarda_t2,	t2,	(1<<SIVNI_A2_BIT_NIBARDA_S) - 1
 
 	addi	t2,	bit_nibarda_t2,	1	// .i mapti tu'a li no
 	bset	t2,	x0,	t2
