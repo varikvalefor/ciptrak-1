@@ -784,7 +784,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	sw	t3,	0xC(t6)
 
-	/* DROP t[345] */
+	/* DROP t[3456] */
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
