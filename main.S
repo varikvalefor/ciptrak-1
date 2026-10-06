@@ -491,8 +491,10 @@ zgitci_frob_1_pwm_div_slilu:
 
 	lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
 
-	addi	t5,	t2,	1	// temp
+	addi	t5,	t2,	1
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+
+	/* DROP t5 */
 
 	#define	temci_t5	t5
 	// cnino te frinu
