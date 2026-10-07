@@ -402,7 +402,8 @@ zgitci_frob_1_pwm_xu_akti:
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	SIVNI_A1_DIV_BIT	2
-	#define	SIVNI_A1_JDIKA_BIT	(SIVNI_A1_DIV_BIT + (3 * 4))
+	#define	SIVNI_A1_DIV_S	(3 * 4)
+	#define	SIVNI_A1_JDIKA_BIT	(SIVNI_A1_DIV_BIT + SIVNI_A1_DIV_S)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
