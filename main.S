@@ -1141,7 +1141,7 @@ zgitci_frob_sutcmaci:
 	#define	sesumji_t0	t0
 	#define	slli_t1	t1
 	#define	bit_nibarda_t2	t2
-	#define	sesumjiX_t0	t0
+	#define	sesumjiX_a7	t0
 	#define	clip_a5	a5
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
@@ -1176,7 +1176,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t2 */
 
 	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
-	sll	sesumjiX_t0,	sesumji_t0,	slli_t1
+	sll	sesumjiX_a7,	sesumji_t0,	slli_t1
 
 	/* DROP t1 a1 */
 
@@ -1248,7 +1248,7 @@ zgitci_frob_sutcmaci:
 
 .sumji_lupe_op:
 	.option norvc
-	add	t2,	t1,	sesumjiX_t0
+	add	t2,	t1,	sesumjiX_a7
 	.option rvc
 	and	t2,	t2,	clip_a5
 	andn	t1,	t1,	clip_a5
@@ -1262,7 +1262,7 @@ zgitci_frob_sutcmaci:
 
 	ret
 .s_ops:
-	#define	SOPS_X3(op)	op	t2,	t1,	sesumjiX_t0
+	#define	SOPS_X3(op)	op	t2,	t1,	sesumjiX_a7
 	.option norvc
 	nop	// 0
 	SOPS_X3(add)
@@ -1270,7 +1270,7 @@ zgitci_frob_sutcmaci:
 	SOPS_X3(mul)
 	SOPS_X3(div)
 	SOPS_X3(rem)
-	mv	t2,	sesumjiX_t0
+	mv	t2,	sesumjiX_a7
 	SOPS_X3(xor)
 	.option rvc
 
