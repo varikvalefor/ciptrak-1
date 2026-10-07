@@ -1112,7 +1112,8 @@ zgitci_frob_sutcmaci:
 
 	#define	SIVNI_A3_TEMUVDU_BIT	0
 	#define	SIVNI_A3_TEMUVDU_S	(4 * 3)
-
+	#define	SIVNI_A3_SEMUVDU_BIT	(SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
+	#define	SIVNI_A3_SEMUVDU_S	(4 * 3)
 
 	#define	sectaipe_t0	t0
 	#define	SIVNI_SECTAIPE_NILZILCMI	8
