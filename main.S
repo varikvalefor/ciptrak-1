@@ -407,6 +407,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
 	#define	pwm_slice_a5	a5
 
+	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
