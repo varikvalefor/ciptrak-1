@@ -775,7 +775,7 @@ zgitci_frob_c000_mv_frob:
 	lw	a0,	0x0(t0)
 
 	// smooth interlude
-	addi	t1,	x0,	-1
+	li	t1,	FAMVLA
 	beq	a0,	t1,	.selidne
 
 	lw	a1,	0x4(t0)
