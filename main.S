@@ -1077,11 +1077,11 @@ zgitci_frob_sw_post:
  *
  * 0xDEAF0006
  *
- * [judri]
+ * [judri1]
  *
- * ?
+ * [judri2]
  *
- * ?
+ * [judri3]
  *
  */
 zgitci_frob_handoff:
