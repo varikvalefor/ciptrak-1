@@ -783,6 +783,7 @@ zgitci_frob_c000_mv_frob:
 	lw	a3,	0xC(t0)
 
 	// pt. deux
+	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
 	sw	jszx_j_a5,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
