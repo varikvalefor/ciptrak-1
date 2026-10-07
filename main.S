@@ -309,78 +309,42 @@ main_lupe_incri:
 	#define sezvati_t2	t2
 	#define	lt_t1	t1
 
-	lw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(0))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0	// ...not
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(0))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(0))(vrc_s0)
+	#define	MAIN_LUPE_INCRI_F(x) \
+		lw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+		lw	denpa_t1,	(CUR_DENPA_INST(x))(vrc_s0);\
+		lw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0);\
+		sltu	lt_t1,	denpa_t1,	incri_t0;\
+		sh2add	sezvati_t2,	sezvati_t2,	lt_t1;\
+		binvi	lt_t1,	lt_t1,	0	/* ...not */;\
+		mul	incri_t0,	incri_t0,	lt_t1;\
+		sw	incri_t0,	(CUR_INCRI_IDX(x))(vrc_s0);\
+		sw	sezvati_t2,	(CUR_PATN_SEZVATI(x))(vrc_s0)
 
-	lw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(1))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(1))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(1))(vrc_s0)
-
-	lw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(2))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(2))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(2))(vrc_s0)
-
-	lw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s0)
-	lw	denpa_t1,	(CUR_DENPA_INST(3))(vrc_s0)
-	lw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s0)
-	sltu	lt_t1,	denpa_t1,	incri_t0
-	sh2add	sezvati_t2,	sezvati_t2,	lt_t1
-	binvi	lt_t1,	lt_t1,	0
-	mul	incri_t0,	incri_t0,	lt_t1
-	sw	incri_t0,	(CUR_INCRI_IDX(3))(vrc_s0)
-	sw	sezvati_t2,	(CUR_PATN_SEZVATI(3))(vrc_s0)
+	MAIN_LUPE_INCRI_F(0)
+	MAIN_LUPE_INCRI_F(1)
+	MAIN_LUPE_INCRI_F(2)
+	MAIN_LUPE_INCRI_F(3)
 
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
 	#define	SIVNI_IDX_LUPE_ZGIKE(x,z) (x + CUR_ZGITCI0(z))(vrc_s0)
-	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 0)
-	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 0)
-	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 0)
-	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 0)
-	li	a4,	0
-	jal	zgitci_frob
-	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 1)
-	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 1)
-	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 1)
-	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 1)
-	li	a4,	1
-	jal	zgitci_frob
-	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 2)
-	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 2)
-	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 2)
-	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 2)
-	li	a4,	2
-	jal	zgitci_frob
-	lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, 3)
-	lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, 3)
-	lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, 3)
-	lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, 3)
-	li	a4,	3
-	jal	zgitci_frob
+	#define	SIVNI_IDX_LUPE_ZGIKE_F(x) \
+		lw	a0,	SIVNI_IDX_LUPE_ZGIKE(0x0, x);\
+		lw	a1,	SIVNI_IDX_LUPE_ZGIKE(0x4, x);\
+		lw	a2,	SIVNI_IDX_LUPE_ZGIKE(0x8, x);\
+		lw	a3,	SIVNI_IDX_LUPE_ZGIKE(0xC, x);\
+		li	a4,	x;\
+		jal	zgitci_frob
+
+	SIVNI_IDX_LUPE_ZGIKE_F(0)
+	SIVNI_IDX_LUPE_ZGIKE_F(1)
+	SIVNI_IDX_LUPE_ZGIKE_F(2)
+	SIVNI_IDX_LUPE_ZGIKE_F(3)
 	// 6 by 6
 	// 7 by 7
 	// 8 by 8
-	// 9 by 9
+	// 9 by 9...
 
 main_lupe_reset_denpa:
 	/* DROP [at][0-7] */
