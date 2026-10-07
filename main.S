@@ -1089,6 +1089,10 @@ zgitci_frob_handoff:
 	sw	ra,	0(sp)
 
 	jalr	a1
+	beqz	a2,	.fanmo
+	jalr	a2
+	beqz	a3,	.fanmo
+	jalr	a3
 
 	lw	ra,	0(sp)
 	addi	sp,	sp,	4
