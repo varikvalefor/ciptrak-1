@@ -804,20 +804,44 @@ zgitci_frob_c000_mv_cont:
 zgitci_frob_c000_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
-	addi	sp,	sp,	-4
-	sw	ra,	0(sp)
+	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
+	sw	ra,	0(sp)	// 5P2V2ym7.
 
 	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	0x0(t0)
+
+	// smooth interlude
+	addi	t1,	x0,	-1
+	beq	a0,	t1,	.selidne
+
 	lw	a1,	0x4(t0)
 	lw	a2,	0x8(t0)
 	lw	a3,	0xC(t0)
+
+	// pt. deux
+	sw	jszx_j_a5,	4(sp)	// BcDSLCtQ.
+
 	jal	zgitci_frob
 
-	/* TODO: .i xu cadga fa lo nu co'e je cu bixygau pe'a la'oi .patn_a1. */
+	lw	jszx_j_a5,	4(sp)
+.selidne:
+	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	addi	t1,	t1,	-1
+	beq	t0,	t1,	.selidne_0
 
+	/* DROP t1 */
+
+	addi	t0,	t0,	4 * 4
+	sw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+
+	/* DROP t0 */
+
+	j	.fanmo
+.selidne_0:
+	sw	x0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+.fanmo:
 	lw	ra,	0(sp)
-	addi	sp,	sp,	4
+	addi	sp,	sp,	8
 
 	ret
 
