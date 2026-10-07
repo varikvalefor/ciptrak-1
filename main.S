@@ -423,7 +423,7 @@ zgitci_frob_1_pwm_div:
 	#define	div_t0	t0
 	// | t0 = (a1 >> SIVNI_A1_JDIKA_BIT) & (2^12 - 1)
 	slli	t0,	a1,	(32 - (SIVNI_A1_DIV_BIT + SIVNI_A1_DIV_S))
-	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
+	srli	div_t0,	t0,	(32 - SIVNI_A1_DIV_S)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
