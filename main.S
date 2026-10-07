@@ -1200,8 +1200,8 @@ zgitci_frob_sutcmaci:
 
 	#define	offset_t2	t2
 	// offset
-	slli	t2,	a3,	4 * (8 - 3)
-	srli	offset_t2,	t2,	4 * (8 - 3)
+	slli	t2,	a3,	32 - (SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
+	srli	offset_t2,	t2,	32 - SIVNI_A3_TEMUVDU_S
 	//
 	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
 	slli	t4,	t4,	1
