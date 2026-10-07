@@ -793,7 +793,7 @@ zgitci_frob_c000_mv_cont:
 	/* DROP t[3-6] */
 
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
-	sw	patn_a1,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(jszx_j_a5)
 
 	/* DROP t[01] */
 
