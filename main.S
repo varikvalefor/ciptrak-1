@@ -826,7 +826,7 @@ zgitci_frob_c000_mv_frob:
 	lw	jszx_j_a5,	4(sp)
 .selidne:
 	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
-	addi	t1,	t1,	-1
+	addi	t1,	x0,	-1
 	slt	t1,	t0,	t1
 	addi	t0,	t0,	4 * 4
 	mul	t0,	t1
