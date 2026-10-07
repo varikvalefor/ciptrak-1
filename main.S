@@ -1073,6 +1073,7 @@ zgitci_frob_sw_post:
  */
 
 /* HANDOFF
+ * .i la .varik. cu jinvi le du'u cumki fa lo nu mapti lo co'e ja mutce be lo ka ce'u pluja
  *
  * 0xDEAF0006
  *
