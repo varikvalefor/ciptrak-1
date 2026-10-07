@@ -827,19 +827,11 @@ zgitci_frob_c000_mv_frob:
 .selidne:
 	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 	addi	t1,	t1,	-1
-	beq	t0,	t1,	.selidne_0
-
-	/* DROP t1 */
-
+	slt	t1,	t0,	t1
 	addi	t0,	t0,	4 * 4
+	mul	t0,	t1
 	sw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 
-	/* DROP t0 */
-
-	j	.fanmo
-.selidne_0:
-	sw	x0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
-.fanmo:
 	lw	ra,	0(sp)
 	addi	sp,	sp,	8
 
