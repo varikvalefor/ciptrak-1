@@ -798,7 +798,7 @@ zgitci_frob_c000_mv_frob:
 	mul	t0,	t0,	t1
 	sw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 
-	lw	ra,	0(sp)	// mv 5Arf9n2P
+	// lw	ra,	0(sp)	// mv 5Arf9n2P
 	addi	sp,	sp,	8
 
 	ret
