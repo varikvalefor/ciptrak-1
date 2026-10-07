@@ -1225,7 +1225,7 @@ zgitci_frob_sutcmaci:
 	slli	offset_t2,	offset_t2,	2
 	mul	offset_t2,	offset_t2,	t4
 	//
-	sh2add	swd_j_a1,	cur_j_a1,	offset_t2
+	add	swd_j_a1,	cur_j_a1,	offset_t2
 
 	/* DROP t[2345] */
 
