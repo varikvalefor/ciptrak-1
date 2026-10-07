@@ -1072,6 +1072,28 @@ zgitci_frob_sw_post:
  * [vrc: 0xXXXXXXXX]
  */
 
+/* HANDOFF
+ *
+ * 0xDEAF0006
+ *
+ * [judri]
+ *
+ * ?
+ *
+ * ?
+ *
+ */
+zgitci_frob_handoff:
+	addi	sp,	sp,	-4
+	sw	ra,	0(sp)
+
+	jalr	a1
+
+	lw	ra,	0(sp)
+	addi	sp,	sp,	4
+
+	ret
+
 /*
  * NOPE.AVI
  */
