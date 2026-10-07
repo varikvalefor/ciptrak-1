@@ -1227,6 +1227,7 @@ zgitci_frob_sutcmaci:
 	ret
 .s_ops:
 	#define	SIVNI_SOPS_X3(op)	op	t2,	t1,	sesumjiX_a7
+	#define	SIVNI_SOPS_X2(op)	op	t2,	sesumjiX_a7
 	.option norvc
 	nop	// 0
 	SIVNI_SOPS_X3(add)
@@ -1234,7 +1235,7 @@ zgitci_frob_sutcmaci:
 	SIVNI_SOPS_X3(mul)
 	SIVNI_SOPS_X3(div)
 	SIVNI_SOPS_X3(rem)
-	mv	t2,	sesumjiX_a7
+	SIVNI_SOPS_X2(mv)
 	SIVNI_SOPS_X3(xor)
 	.option rvc
 
