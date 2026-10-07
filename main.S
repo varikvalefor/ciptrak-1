@@ -410,8 +410,8 @@ zgitci_frob_1_pwm_xu_akti:
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	li	t1,	IO_BANK0_BASE + 4 // "
-	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
+	li	t0,	IO_BANK0_BASE + 4 // "
+	slli	t1,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	sw	t1,	(gpio_ctrl_j_t0)
