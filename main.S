@@ -1010,6 +1010,7 @@ zgitci_frob_slurp:
 	#define	temuvdu_j_a2	a2
 
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
+	#define	A2_SIVNI_DMA_S	4
 
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_sw
@@ -1017,7 +1018,7 @@ zgitci_frob_slurp:
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
 	srli	t2,	a3,	A2_SIVNI_DMA_BIT
-	andi	dma_idx_t2,	t2,	0xF
+	andi	dma_idx_t2,	t2,	(1 << A2_SIVNI_DMA_S) - 1
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
