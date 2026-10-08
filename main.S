@@ -383,6 +383,7 @@ zgitci_frob:
 
 	la	t0,	.dispatch
 	sh1add	t0,	t0,	a0
+	/* DROP a0 */
 	c.jr	t0
 .dispatch:
 	// | 0
