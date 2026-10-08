@@ -1147,6 +1147,7 @@ zgitci_frob_sutcmaci:
 	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	vrcX_a0	a0
 	#define	lwd_j_a0	a0
+	#define	swd_j_a1	a1
 	sh2add	vrcX_a0,	vrc_s0,	zgitci_a4
 
 	/* DROP a4 */
@@ -1161,34 +1162,20 @@ zgitci_frob_sutcmaci:
 
 	/* DROP a0 t[45] */
 
-	#define	offset_t2	t2
-	// offset
-	slli	t2,	a3,	32 - (SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
-	srli	offset_t2,	t2,	32 - SIVNI_A3_TEMUVDU_S
-	//
-	bexti	t4,	a2,	SIVNI_A2_DIR0_BIT
-	slli	t4,	t4,	1
-	addi	t4,	t4,	-1
-	slli	offset_t2,	offset_t2,	2
-	mul	offset_t2,	offset_t2,	t4
-	add	lwd_j_a0,	cur_j_a1,	offset_t2
+	#define	SIVNI_KANJI_DJ(destR,slop1R,offsetR,muvdu_bit,muvdu_s,dirbit) \
+		/* offset */ \
+		slli	offsetR,	a3,	32 - (muvdu_bit + muvdu_s);\
+		srli	offsetR,	offsetR,	32 - muvdu_s;\
+		/* */ \
+		bexti	slop1R,	a2,	dirbit;\
+		slli	slop1R,	slop1R,	1;\
+		addi	slop1R,	slop1R,	-1;\
+		slli	offsetR,	offsetR,	2;\
+		mul	offsetR,	offsetR,	slop1R;\
+		add	destR,	cur_j_a1,	offsetR
 
-	/* DROP t[24] */
-
-	#define	swd_j_a1	a1
-	#define	offset_t2	t2
-	// | metfo: andi	t2,	a3,	0x000FFF00
-	//          srli	t2,	t2,	2 * 4
-	slli	t2,	a3,	32 - (SIVNI_A3_SEMUVDU_BIT + SIVNI_A3_SEMUVDU_S)
-	srli	offset_t2,	t2,	32 - SIVNI_A3_SEMUVDU_S
-	//
-	bexti	t4,	a2,	SIVNI_A2_DIR1_BIT
-	slli	t4,	t4,	1
-	addi	t4,	t4,	-1
-	slli	offset_t2,	offset_t2,	2
-	mul	offset_t2,	offset_t2,	t4
-	//
-	add	swd_j_a1,	cur_j_a1,	offset_t2
+	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
+	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
 
 	/* DROP t[2345] */
 
