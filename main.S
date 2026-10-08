@@ -1162,14 +1162,14 @@ zgitci_frob_sutcmaci:
 
 	/* DROP a0 t[245] */
 
-	#define	SIVNI_KANJI_DJ(destR,pilji1R,offsetR,muvdu_bit,muvdu_s,dirbit) \
+	#define	SIVNI_KANJI_DJ(destR,piljiR,offsetR,muvdu_bit,muvdu_s,dirbit) \
 		slli	offsetR,	a3,	32 - (muvdu_bit + muvdu_s);\
 		srli	offsetR,	offsetR,	32 - muvdu_s;\
 		\
-		bexti	pilji1R,	a2,	dirbit;\
-		slli	pilji1R,	pilji1R,	3;\
-		addi	pilji1R,	pilji1R,	-4;\
-		mul	offsetR,	offsetR,	pilji1R;\
+		bexti	piljiR,	a2,	dirbit;\
+		slli	piljiR,	piljiR,	3;\
+		addi	piljiR,	piljiR,	-4;\
+		mul	offsetR,	offsetR,	piljiR;\
 		add	destR,	cur_j_a1,	offsetR
 
 	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
