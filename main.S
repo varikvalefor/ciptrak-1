@@ -1183,6 +1183,7 @@ zgitci_frob_sutcmaci:
 	addi	t2,	t2,	2	// lw align
 	//
 	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
+	// .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
 	sll	a4,	a4,	t2
 	//
 	add	max_a4,	lwd_j_a0,	a4
