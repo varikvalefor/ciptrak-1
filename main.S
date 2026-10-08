@@ -1006,14 +1006,15 @@ zgitci_frob_deaf_setsivni_fanmo:
  */
 zgitci_frob_slurp:
 	// TODO: .i xu mapti  .i simlu fi vy fe le ka ce'u sampu
+
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_sw
+
 	#define	ram_j_a1	a1
 	#define	temuvdu_j_a2	a2
 
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
 	#define	A2_SIVNI_DMA_S	4
-
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_sw
 
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
