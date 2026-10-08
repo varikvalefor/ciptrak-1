@@ -1168,9 +1168,8 @@ zgitci_frob_sutcmaci:
 		srli	offsetR,	offsetR,	32 - muvdu_s;\
 		/* */ \
 		bexti	pilji1R,	a2,	dirbit;\
-		slli	pilji1R,	pilji1R,	1;\
-		addi	pilji1R,	pilji1R,	-1;\
-		slli	offsetR,	offsetR,	2;\
+		slli	pilji1R,	pilji1R,	3;\
+		addi	pilji1R,	pilji1R,	-4;\
 		mul	offsetR,	offsetR,	pilji1R;\
 		add	destR,	cur_j_a1,	offsetR
 
