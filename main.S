@@ -1207,7 +1207,7 @@ vrici_frob_sio:
 
 	andi	pin_t0,	a5,	(1<<5) - 1
 	li	sio_j_t1,	SIO_BASE
-	bset	pinmask_t3,	x0,	pin_t0	// temp
+	bset	pinmask_t3,	x0,	pin_t0
 
 	bexti	temp_t2,	a5,	SIVNI_INIT_BIT
 	beqz	temp_t2,	vrici_frob_sio_post_init
