@@ -1195,7 +1195,7 @@ vrici_frob_denpaWfi:
 	sh	t1,	0(t0)
 	fence.i
 	ret
-/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
+/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin: 0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
 	#define	SIVNI_INIT_BIT	(1 + SIVNI_VALUE_BIT)
