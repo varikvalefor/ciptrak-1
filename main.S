@@ -822,6 +822,8 @@ zgitci_frob_c000_sutra:
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[0-7] */
 
+	/* TODO: .i xu cadga fa tu'a la'oi .FAMVLA. */
+
 	lw	t0,	(judri_s2)
 	addi	judri_s2,	judri_s2,	4
 
