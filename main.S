@@ -901,8 +901,8 @@ zgitci_frob_deaf_xosc:
 	bexti	t0,	a2,	SIVNI_A2_X1_BIT	// temp
 	beqz	t0,	zgitci_frob_deaf_xosc_post
 
-	// metfo: #define	SIVNI_ST_MASK	0x00000FFF
-	//        andi	t1,	a2,	SIVNI_ST_MASK
+	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
+	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
 	slli	t1,	a2,	4 * (8 - 3)
 	srli	t1,	t1,	4 * (8 - 3)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
