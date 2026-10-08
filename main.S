@@ -892,13 +892,13 @@ zgitci_frob_c000_denpa:
  * ?
  */
 zgitci_frob_deaf_xosc:
-	#define	SIVNI_X1_BIT	1 + 4 * 3
+	#define	SIVNI_A2_X1_BIT	1 + 4 * 3
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
 	sh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 
-	bexti	t0,	a2,	SIVNI_X1_BIT	// temp
+	bexti	t0,	a2,	SIVNI_A2_X1_BIT	// temp
 	beqz	t0,	zgitci_frob_deaf_xosc_post
 
 	// metfo: #define	SIVNI_ST_MASK	0x00000FFF
