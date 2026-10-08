@@ -980,14 +980,14 @@ zgitci_frob_deaf_setsivni:
 	sw	a2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
-	beqz	t0,	zgitci_frob_deaf_setsivni_post
+	beqz	t0,	zgitci_frob_deaf_setsivni_fanmo
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	//
 	// addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s0,	t0
 	sw	a3,	(4 * (CUR_ZGITCI_SIVNI_OFFSET + 2))(t0)
-zgitci_frob_deaf_setsivni_post:
+zgitci_frob_deaf_setsivni_fanmo:
 	ret
 
 /* SLURP
