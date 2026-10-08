@@ -759,7 +759,7 @@ zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(jszx_j_a5)
 
-	/* DROP t[01] */
+	/* DROP t[01] a[12] */
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
