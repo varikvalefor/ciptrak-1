@@ -1160,7 +1160,7 @@ zgitci_frob_sutcmaci:
 	lw	sezvati_t5,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
 	add	cur_j_a1,	judri_t4,	sezvati_t5
 
-	/* DROP a0 t[45] */
+	/* DROP a0 t[245] */
 
 	#define	SIVNI_KANJI_DJ(destR,pilji1R,offsetR,muvdu_bit,muvdu_s,dirbit) \
 		/* offset */ \
