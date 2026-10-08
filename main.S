@@ -901,7 +901,7 @@ zgitci_frob_deaf_xosc:
 	sh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 
 	bexti	t0,	a2,	SIVNI_A2_X1_BIT	// temp
-	beqz	t0,	zgitci_frob_deaf_xosc_post
+	beqz	t0,	zgitci_frob_deaf_xosc_fanmo
 
 	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
 	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
@@ -909,7 +909,7 @@ zgitci_frob_deaf_xosc:
 	srli	t1,	t1,	(32 - SIVNI_A2_ST_S)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
-zgitci_frob_deaf_xosc_post:
+zgitci_frob_deaf_xosc_fanmo:
 	ret
 
 /*
