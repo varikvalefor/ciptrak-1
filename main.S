@@ -892,6 +892,8 @@ zgitci_frob_c000_denpa:
  * ?
  */
 zgitci_frob_deaf_xosc:
+	#define	SIVNI_A2_ST_BIT	0
+	#define	SIVNI_A2_ST_S	(3 * 4)
 	#define	SIVNI_A2_X1_BIT	1 + 4 * 3
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
@@ -903,8 +905,8 @@ zgitci_frob_deaf_xosc:
 
 	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
 	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
-	slli	t1,	a2,	4 * (8 - 3)
-	srli	t1,	t1,	4 * (8 - 3)
+	slli	t1,	a2,	(32 - (SIVNI_A2_ST_BIT + SIVNI_A2_ST_S))
+	srli	t1,	t1,	(32 - SIVNI_A2_ST_S)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_post:
