@@ -1138,8 +1138,8 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t2 */
 
-	srli	sesumji_t0,	a1,	SIVNI_A1_SESUMJI_BIT
-	sll	sesumjiX_a7,	sesumji_t0,	slli_t1
+	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_a7,	a7,	slli_t1
 
 	/* DROP t[01] a1 */
 
