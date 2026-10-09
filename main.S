@@ -1078,9 +1078,9 @@ zgitci_frob_sw_post:
  *
  * [judri1]
  *
- * ?
+ * [sivni]
  *
- * ?
+ * [sivni]
  *
  */
 zgitci_frob_handoff:
