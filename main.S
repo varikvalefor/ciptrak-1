@@ -409,6 +409,7 @@ zgitci_frob_1_pwm_xu_akti:
 	#define	SIVNI_A1_SESLILU_S	4
 	#define	pwm_slice_a5	a5
 
+	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
@@ -430,21 +431,19 @@ zgitci_frob_1_pwm_div:
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
 	bexti	jdika_t2,	a1,	SIVNI_A1_JDIKA_BIT
 
-	// se morji: PWM_CHx_DIV_OFFSET(x)	4 + x * 0x14
-	#define	div_j_t3	t3
+	// se morji: PWM_CHx_OFFSET(x)	4 + x * 0x14
+	#define	pwm_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
-	addi	t3,	t3,	4
-	add	div_j_t3,	pwm_base_a6,	t3
+	add	pwm_j_t3,	pwm_base_a6,	t3
 
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
 	/* DROP t[12] */
 
-	#define	SIVNI_DIV_OFFSET	4	// TODO: .i jinvi le du'u mapti fa lo nu cikre pe'a
 zgitci_frob_1_pwm_div_basti:
-	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
+	sw	div_t0,	0(pwm_j_t3)
 	j	zgitci_frob_1_pwm_csr
 zgitci_frob_1_pwm_div_slilu:
 	/* DROP t[12456] */
@@ -455,7 +454,7 @@ zgitci_frob_1_pwm_div_slilu:
 	sh2add	sivni_j_t1,	vrc_s0,	zgitci_a4
 	lw	t2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
 
-	lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// bOeyrk5b.  lw opt
+	lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// bOeyrk5b.  lw opt
 
 	addi	t5,	t2,	1
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
@@ -465,7 +464,7 @@ zgitci_frob_1_pwm_div_slilu:
 	#define	temci_t5	t5
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
-	// lhu	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)	// mv bOeyrk5b
+	// lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// mv bOeyrk5b
 	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
 	andi	t2,	t2,	(1<<SIVNI_A1_SESLILU_S) - 1
 	bext	t2,	temci_t5,	t2	//	DROP t5
@@ -473,19 +472,20 @@ zgitci_frob_1_pwm_div_slilu:
 	addi	t2,	t2,	-1
 	mul	t2,	div_t0,	t2
 	add	div0_t4,	div0_t4,	t2
-	sh	div0_t4,	SIVNI_DIV_OFFSET(div_j_t3)
+	sh	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)
 
 	/* DROP t[012456] */
 
 	j	zgitci_frob_1_pwm_top
 zgitci_frob_1_pwm_div_sampu:
-	lw	t4,	SIVNI_DIV_OFFSET(div_j_t3)
+	lw	t4,	SIVNI_DIV_OFFSET(pwm_j_t3)
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_sampu_zenba
 	sub	div_t0,	x0,	div_t0
 zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
-	sw	div_t0,	SIVNI_DIV_OFFSET(div_j_t3)
+	sw	div_t0,	SIVNI_DIV_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_top:
+	#define	SIVNI_TOP_OFFSET	0x10
 	sh	a2,	(SIVNI_TOP_OFFSET - SIVNI_DIV_OFFSET)(div_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
@@ -868,9 +868,9 @@ zgitci_frob_c000_denpa:
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	denpa_j_t0	t0
-	slli	t0,	zgitci_a4,	2
+	sh2add	t0,	vrc_s0,	zgitci_a4
 
-	sw	a1,	CUR_DENPA_INST_OFFSET(t0)
+	sw	a1,	(4 * CUR_DENPA_INST_OFFSET)(t0)
 
 	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
 	mv	a5,	a2
@@ -989,7 +989,7 @@ zgitci_frob_deaf_setsivni_i2:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	//
-	// addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
+	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s0,	t0
 	sw	a3,	(4 * (CUR_ZGITCI_SIVNI_OFFSET + 2))(t0)
 zgitci_frob_deaf_setsivni_fanmo:
