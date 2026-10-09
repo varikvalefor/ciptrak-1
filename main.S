@@ -1126,7 +1126,7 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[01] */
 
-	andi	slli_t1,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
+	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
 
 	srli	t2,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
 	andi	bit_nibarda_t2,	t2,	(1<<SIVNI_A2_BIT_NIBARDA_S) - 1
@@ -1134,7 +1134,7 @@ zgitci_frob_sutcmaci:
 	addi	t2,	bit_nibarda_t2,	1	// .i mapti tu'a li no
 	bset	t2,	x0,	t2
 	addi	t2,	t2,	-1
-	sll	clip_a5,	t2,	slli_t1
+	sll	clip_a5,	t2,	slli_t0
 
 	/* DROP t2 */
 
