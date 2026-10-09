@@ -1136,7 +1136,7 @@ zgitci_frob_sutcmaci:
 	addi	t1,	t1,	-1
 	sll	clip_a5,	t1,	slli_t0
 
-	/* DROP t2 */
+	/* DROP t1 */
 
 	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_a7,	a7,	slli_t0
