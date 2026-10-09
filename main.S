@@ -1102,7 +1102,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t[2-6] a[5-7] */
 
 	#define	sesumji_t0	t0
-	#define	slli_t1	t1
+	#define	slli_t0	t0
 	#define	bit_nibarda_t2	t2
 	#define	sesumjiX_a7	t0
 	#define	clip_a5	a5
@@ -1139,7 +1139,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t2 */
 
 	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
-	sll	sesumjiX_a7,	a7,	slli_t1
+	sll	sesumjiX_a7,	a7,	slli_t0
 
 	/* DROP t[01] a1 */
 
