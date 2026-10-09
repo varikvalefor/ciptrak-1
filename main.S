@@ -1190,20 +1190,20 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] a3 */
 .sumji_lupe:
-	lw	t1,	0(lwd_j_a0)
+	lw	t0,	0(lwd_j_a0)
 
 	add	lwd_j_a0,	lwd_j_a0,	diff_a6
 	add	swd_j_a1,	swd_j_a1,	diff_a6
 
 .sumji_lupe_op:
 	.option norvc
-	add	t2,	t1,	sesumjiX_a7
+	add	t2,	t0,	sesumjiX_a7
 	.option rvc
 	and	t2,	t2,	clip_a5
-	andn	t1,	t1,	clip_a5
-	or	t1,	t1,	t2
+	andn	t0,	t0,	clip_a5
+	or	t0,	t0,	t2
 
-	sw	t1,	0(swd_j_a1)
+	sw	t0,	0(swd_j_a1)
 
 	blt	lwd_j_a0,	max_a4,	.sumji_lupe
 
@@ -1211,7 +1211,7 @@ zgitci_frob_sutcmaci:
 
 	ret
 .s_ops:
-	#define	SIVNI_SOPS_X3(op)	op	t2,	t1,	sesumjiX_a7
+	#define	SIVNI_SOPS_X3(op)	op	t2,	t0,	sesumjiX_a7
 	#define	SIVNI_SOPS_X2(op)	op	t2,	sesumjiX_a7
 	.option norvc
 	nop	// 0
