@@ -1201,7 +1201,7 @@ zgitci_frob_sutcmaci:
 	and	t1,	t1,	clip_a5
 	andn	t0,	t0,	clip_a5
 	or	t0,	t0,	t1
-
+	//
 	sw	t0,	0(swd_j_a1)
 
 	add	swd_j_a1,	swd_j_a1,	diff_a6
