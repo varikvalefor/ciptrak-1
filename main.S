@@ -1197,11 +1197,11 @@ zgitci_frob_sutcmaci:
 
 .sumji_lupe_op:
 	.option norvc
-	add	t2,	t0,	sesumjiX_a7
+	add	t1,	t0,	sesumjiX_a7
 	.option rvc
-	and	t2,	t2,	clip_a5
+	and	t1,	t1,	clip_a5
 	andn	t0,	t0,	clip_a5
-	or	t0,	t0,	t2
+	or	t0,	t0,	t1
 
 	sw	t0,	0(swd_j_a1)
 
@@ -1211,8 +1211,8 @@ zgitci_frob_sutcmaci:
 
 	ret
 .s_ops:
-	#define	SIVNI_SOPS_X3(op)	op	t2,	t0,	sesumjiX_a7
-	#define	SIVNI_SOPS_X2(op)	op	t2,	sesumjiX_a7
+	#define	SIVNI_SOPS_X3(op)	op	t1,	t0,	sesumjiX_a7
+	#define	SIVNI_SOPS_X2(op)	op	t1,	sesumjiX_a7
 	.option norvc
 	nop	// 0
 	SIVNI_SOPS_X3(add)
