@@ -1141,7 +1141,7 @@ zgitci_frob_sutcmaci:
 	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_a7,	a7,	slli_t0
 
-	/* DROP t[01] a1 */
+	/* DROP t0 a1 */
 
 	#define	vrcX_a0	a0
 	#define	lwd_j_a0	a0
