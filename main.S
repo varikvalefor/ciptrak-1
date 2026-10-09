@@ -1143,7 +1143,6 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t1 a1 */
 
-	// se morji: CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	#define	vrcX_a0	a0
 	#define	lwd_j_a0	a0
 	#define	swd_j_a1	a1
