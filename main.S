@@ -1188,7 +1188,7 @@ zgitci_frob_sutcmaci:
 	#define	diff_a6	a6
 	bset	diff_a6,	x0,	t2
 
-	/* DROP t[1-6] a3 */
+	/* DROP t[0-6] a3 */
 .sumji_lupe:
 	lw	t1,	0(lwd_j_a0)
 
