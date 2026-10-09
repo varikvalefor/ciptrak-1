@@ -431,7 +431,7 @@ zgitci_frob_1_pwm_div:
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
 	bexti	jdika_t2,	a1,	SIVNI_A1_JDIKA_BIT
 
-	// se morji: PWM_CHx_OFFSET(x)	4 + x * 0x14
+	// se morji: PWM_zx_OFFSET(z,x)	z + x * 0x14
 	#define	pwm_j_t3	t3
 	li	t3,	0x14
 	mul	t3,	t3,	pwm_slice_a5
@@ -486,7 +486,7 @@ zgitci_frob_1_pwm_div_sampu_zenba:
 	sw	div_t0,	SIVNI_DIV_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_top:
 	#define	SIVNI_TOP_OFFSET	0x10
-	sh	a2,	(SIVNI_TOP_OFFSET - SIVNI_DIV_OFFSET)(div_j_t3)
+	sh	a2,	SIVNI_TOP_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
 	 * .i djica tu'a la'oi .A_INV. ji la'oi .PH_CORRECT. ji la'oi .DIVMODE. ji ma
