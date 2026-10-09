@@ -1130,7 +1130,7 @@ zgitci_frob_sutcmaci:
 
 	#define	bit_nibarda_t1	t1
 	srli	t1,	a2,	SIVNI_A2_BIT_NIBARDA_BIT
-	andi	bit_nibarda_t1,	t1,	(1<<SIVNI_A2_BIT_NIBARDA_S) - 1
+	andi	bit_nibarda_t1,	t1,	(1 << SIVNI_A2_BIT_NIBARDA_S) - 1
 
 	addi	t1,	bit_nibarda_t1,	1	// .i mapti tu'a li no
 	bset	t1,	x0,	t1
