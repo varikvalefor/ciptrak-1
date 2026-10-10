@@ -1082,8 +1082,8 @@ zgitci_frob_sutcmaci:
 
 	#define	sectaipe_t0	t0
 	#define	SIVNI_SECTAIPE_NILZILCMI	8
-	slli	t0,	a1,	4 * (8 - 3)
-	srli	t0,	t0,	4 * (8 - 3)
+	slli	t0,	a1,	32 - (SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
+	srli	t0,	t0,	32 - SIVNI_A3_TEMUVDU_S
 	//
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	sltu	t1,	t0,	t1
