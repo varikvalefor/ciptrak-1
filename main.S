@@ -951,6 +951,8 @@ zgitci_frob_deaf_bixygau:
 	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
 	sh3add	judri0_t0,	t1,	t0
 
+	/* DROP t1 */
+
 	sw	a2,	0(judri0_t0)
 	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
 	beqz	t1,	.fanmo
