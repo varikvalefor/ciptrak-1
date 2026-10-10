@@ -935,11 +935,11 @@ zgitci_frob_deaf_bixygau:
 	bne	t0,	a0,	zgitci_frob_deaf_setsivni
 
 	#define	judri0_t0	t0
-	#define	A1_SIVNI_JUDRIP_OFFSET	4
+	#define	A1_SIVNI_JUDRIP_BIT	4
 	#define	A1_SIVNI_FLASH_BIT	1
 	#define	A1_SIVNI_REMOI_BIT	3
 
-	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
+	srli	t0,	a1,	A1_SIVNI_JUDRIP_BIT
 
 	// metfo: ga naja co'e gi...
 	//        addi	t0,	t0,	0x10000000
