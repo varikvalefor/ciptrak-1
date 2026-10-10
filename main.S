@@ -936,6 +936,7 @@ zgitci_frob_deaf_bixygau:
 
 	#define	judri0_t0	t0
 	#define	A1_SIVNI_JUDRIP_BIT	4
+	#define	A1_SIVNI_JUDRIP_S	(7 * 4)
 	#define	A1_SIVNI_FLASH_BIT	1
 	#define	A1_SIVNI_REMOI_BIT	3
 
