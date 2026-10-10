@@ -1093,6 +1093,8 @@ zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_nope
 
+	#define	SIVNI_A1_SECTAIPE_BIT	0
+	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
 	#define	SIVNI_A3_TEMUVDU_BIT	0
 	#define	SIVNI_A3_TEMUVDU_S	(4 * 3)
 	#define	SIVNI_A3_SEMUVDU_BIT	(SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
@@ -1102,7 +1104,7 @@ zgitci_frob_sutcmaci:
 
 	#define	sectaipe_t0	t0
 	#define	SIVNI_SECTAIPE_NILZILCMI	8
-	BFEXTR(t0, a1, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S)
+	BFEXTR(t0, a1, SIVNI_A1_SECTAIPE_BIT, SIVNI_A3_SECTAIPE_S)
 	//
 	li	t1,	SIVNI_SECTAIPE_NILZILCMI
 	sltu	t1,	t0,	t1
