@@ -30,7 +30,7 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
-#define	BFEXTR(b,s,rd,rs)\
+#define	BFEXTR(rd,rs,b,s)\
 	slli	rd,	rs,	32 - (b + s);\
 	srli	rd,	rd,	32 - s
 
