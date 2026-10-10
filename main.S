@@ -1025,7 +1025,7 @@ zgitci_frob_slurp:
 
 	#define	A2_SIVNI_NIBARDA_BIT	0
 	#define	A2_SIVNI_NIBARDA_S	(5 * 4)
-	#define	A2_SIVNI_DMA_BIT	(5 * 4)
+	#define	A2_SIVNI_DMA_BIT	(A2_SIVNI_NIBARDA_BIT + A2_SIVNI_NIBARDA_S)
 	#define	A2_SIVNI_DMA_S	4
 
 	#define	dma_read_j_t0	t0
