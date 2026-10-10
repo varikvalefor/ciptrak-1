@@ -638,8 +638,7 @@ zgitci_frob_damri_sha:
 	lw	sha_t0,	CUR_SHA_OFFSET(vrc_s0)
 
 	#define	nlev_t2	t2
-	srli	t2,	a2,	SIVNI_A2_NLEV_BIT
-	andi	nlev_t2,	t2,	0b11
+	BFEXTR(t2, a2, SIVNI_A2_NLEV_BIT, 2)
 	clz	t1,	curval_a5
 	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
