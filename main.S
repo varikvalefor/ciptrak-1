@@ -30,6 +30,10 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
+#define	BFEXTR(rd,rs,b,s)\
+	slli	rd,	rs,	32 - (b + s);\
+	srli	rd,	rd,	32 - s
+
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
@@ -423,9 +427,7 @@ zgitci_frob_1_pwm_div:
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// | t0 = (a1 >> SIVNI_A1_JDIKA_BIT) & (2^12 - 1)
-	slli	t0,	a1,	(32 - (SIVNI_A1_DIV_BIT + SIVNI_A1_DIV_S))
-	srli	div_t0,	t0,	(32 - SIVNI_A1_DIV_S)
+	BFEXTR(div_t0, a1, SIVNI_A1_DIV_BIT, SIVNI_A1_DIV_S)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
@@ -544,8 +546,7 @@ zgitci_frob_check_2:
 	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
-	slli	t0,	a1,	32 - (SIVNI_A1_SID_BIT + SIVNI_A1_SID_S)	// 1c
-	srli	zts_id_t0,	t0,	(32 - SIVNI_A1_SID_S)	// 1c
+	BFEXTR(zts_id_t0, a1, SIVNI_A1_SID_BIT, SIVNI_A1_SID_S) // (1 + 1)c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh2add	zts_j_t1,	t2,	zts_id_t0
@@ -912,8 +913,7 @@ zgitci_frob_deaf_xosc:
 
 	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
 	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
-	slli	t1,	a2,	(32 - (SIVNI_A2_ST_BIT + SIVNI_A2_ST_S))
-	srli	t1,	t1,	(32 - SIVNI_A2_ST_S)
+	BFEXTR(t1, a2, SIVNI_A2_ST_BIT, SIVNI_A2_ST_S)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
 zgitci_frob_deaf_xosc_fanmo:
@@ -1041,8 +1041,7 @@ zgitci_frob_slurp:
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
-	slli	t1,	a3,	32 - (A2_SIVNI_NIBARDA_BIT + A2_SIVNI_NIBARDA_S)
-	srli	t1,	t1,	32 - A2_SIVNI_NIBARDA_S
+	BFEXTR(t1, a3, A2_SIVNI_NIBARDA_BIT, A2_SIVNI_NIBARDA_S)
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
