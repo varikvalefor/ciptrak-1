@@ -468,8 +468,7 @@ zgitci_frob_1_pwm_div_slilu:
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
 	// lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// mv bOeyrk5b
-	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
-	andi	t2,	t2,	(1<<SIVNI_A1_SESLILU_S) - 1
+	BEXTF(t2, a1, SIVNI_A1_SESLILU_BIT, SIVNI_A1_SESLILU_S)
 	bext	t2,	temci_t5,	t2	//	DROP t5
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
