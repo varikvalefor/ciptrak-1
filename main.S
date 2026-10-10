@@ -442,6 +442,7 @@ zgitci_frob_1_pwm_div:
 
 	/* DROP t[12] */
 
+	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
 	sw	div_t0,	0(pwm_j_t3)
 	j	zgitci_frob_1_pwm_csr
@@ -948,7 +949,7 @@ zgitci_frob_deaf_bixygau:
 	// .i jinvi le du'u lo me'oi .idx. cu jai to'e filri'a tu'a lo barda judri
 	// .i ku'i jinvi ga je le du'u lakne fa lo nu pilno lo me'oi .DATA. judri gi le du'u la'e zo'oi .0x10000000. pa moi lo'i me'oi .DATA. judri
 	bexti	t1,	a1,	A1_SIVNI_FLASH_BIT
-	slli	t1,	t1,	(28 - 1)
+	slli	t1,	t1,	28	// 0x10000000 = (1<<28)
 	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
 	sh3add	judri0_t0,	t1,	t0
 
