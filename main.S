@@ -1023,6 +1023,8 @@ zgitci_frob_slurp:
 	#define	ram_j_a1	a1
 	#define	temuvdu_j_a2	a2
 
+	#define	A2_SIVNI_NIBARDA_BIT	0
+	#define	A2_SIVNI_NIBARDA_S	(5 * 4)
 	#define	A2_SIVNI_DMA_BIT	(5 * 4)
 	#define	A2_SIVNI_DMA_S	4
 
@@ -1039,8 +1041,8 @@ zgitci_frob_slurp:
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
-	slli	t1,	a3,	4 * (8 - 5)
-	srli	t1,	t1,	4 * (8 - 5)
+	slli	t1,	a3,	32 - (A2_SIVNI_NIBARDA_BIT + A2_SIVNI_NIBARDA_S)
+	srli	t1,	t1,	32 - A2_SIVNI_NIBARDA_S
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
