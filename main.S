@@ -1198,8 +1198,7 @@ zgitci_frob_sutcmaci:
 	/* DROP t[0-6] */
 
 	#define	max_a4	a4
-	srli	t2,	a2,	SIVNI_A2_DIFF_BIT
-	andi	t2,	t2,	(1 << SIVNI_A2_DIFF_S) - 1
+	BEXTF(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
 	addi	t2,	t2,	2	// lw align
 	//
 	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
