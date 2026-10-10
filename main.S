@@ -534,14 +534,17 @@ zgitci_frob_check_2:
 	addi	t0,	a0,	-2
 	li	t1,	1
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
+
+	#define	SIVNI_A1_SID_BIT	0
+	#define	SIVNI_A1_SID_S	(4 * 3)
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
 	// | metfo: andi t0,   a1,     0xFFF
 	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
-	slli	t0,	a1,	4 * (8 - 3)	// 1c
-	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
+	slli	t0,	a1,	32 - (SIVNI_A1_SID_BIT + SIVNI_A1_SID_S)	// 1c
+	srli	zts_id_t0,	t0,	(32 - SIVNI_A1_SID_S)	// 1c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh2add	zts_j_t1,	t2,	zts_id_t0
