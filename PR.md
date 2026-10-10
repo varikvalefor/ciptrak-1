@@ -1,0 +1,1 @@
+# ni'o ciksi je setese basygau pe'a le cmavlaka'i co'e poi vo'a jinvi le du'u cumki fa lo nu ke'a jai filri'a lo nu zengau pe'a fi le ka ce'u jai zilsutra... je poi vo'a jinvi le du'u ke'a jai filri'a lo nu jimpe
