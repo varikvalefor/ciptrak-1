@@ -1073,6 +1073,7 @@ zgitci_frob_sw_post:
 	ret
 
 /* QUICK MATHS
+ * .i la .varik. cu jinvi le du'u ko'a goi le cmalu proga cu jai filri'a lo nu sampla lo cnino fi'o te zbasu lo zasti  .i ku'i la .varik. cu kajde fi zo'e joi le su'u vo'a jinvi le du'u ko'a jai filri'a lo ckape  .i ku'i la .varik. cu jinvi le du'u cumki fa lo nu mruli lo dinko ja lo stedu
  *
  * [0xDEAF00004]
  *
