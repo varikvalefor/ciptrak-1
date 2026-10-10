@@ -1185,8 +1185,7 @@ zgitci_frob_sutcmaci:
 	/* DROP a0 t[245] */
 
 	#define	SIVNI_KANJI_DJ(destR,piljiR,offsetR,muvdu_bit,muvdu_s,dirbit) \
-		slli	offsetR,	a3,	32 - (muvdu_bit + muvdu_s);\
-		srli	offsetR,	offsetR,	32 - muvdu_s;\
+		BFEXTR(offsetR, a3, muvdu_bit, muvdu_s);\
 		\
 		bexti	piljiR,	a2,	dirbit;\
 		slli	piljiR,	piljiR,	3;\
