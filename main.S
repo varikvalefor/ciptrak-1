@@ -31,12 +31,8 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 #include "shortcut.S"
 
 #define	BFEXTR(rd,rs,b,s)\
-	#if ((s < 0x7FF) && (b == 0)) \
-		andi	rd,	rs,	(1 << s) - 1;\
-	#else \
-		slli	rd,	rs,	32 - (b + s);\
-		srli	rd,	rd,	32 - s\
-	#fi
+	slli	rd,	rs,	32 - (b + s);\
+	srli	rd,	rd,	32 - s
 
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
