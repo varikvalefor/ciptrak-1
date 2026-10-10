@@ -1229,8 +1229,8 @@ zgitci_frob_sutcmaci:
 	SIVNI_SOPS_X2(mv)
 	SIVNI_SOPS_X3(xor)
 	.option rvc
-#undef	SIVNI_SOPS_X3(op)
-#undef	SIVNI_SOPS_X2(op)
+#undef	SIVNI_SOPS_X3
+#undef	SIVNI_SOPS_X2
 
 /*
  * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
