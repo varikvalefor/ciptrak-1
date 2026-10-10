@@ -546,8 +546,7 @@ zgitci_frob_check_2:
 	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
-	slli	t0,	a1,	32 - (SIVNI_A1_SID_BIT + SIVNI_A1_SID_S)	// 1c
-	srli	zts_id_t0,	t0,	(32 - SIVNI_A1_SID_S)	// 1c
+	BFEXTR(zts_id_t0, a1, SIVNI_A1_SID_BIT, SIVNI_A1_SID_S) // (1 + 1)c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh2add	zts_j_t1,	t2,	zts_id_t0
