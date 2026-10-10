@@ -30,6 +30,10 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
+#define	BFEXTR(b,s,rd,rs)\
+	slli	rd,	rs,	32 - (b + s);\
+	srli	rd,	rd,	32 - s
+
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
