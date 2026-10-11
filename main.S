@@ -1158,7 +1158,6 @@ vrici_frob_dispatch:
 	la	t1,	vrici_frob_dispatch
 	sh1add	t1,	t1,	klesi_t0
 	c.jr	t1
-
 	#undef	klesi_t0
 vrici_frob_dispatch:
 	// | 0
