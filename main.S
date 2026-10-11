@@ -908,6 +908,8 @@ zgitci_frob_c000_denpa:
 	sw	a1,	(4 * CUR_DENPA_INST_OFFSET)(zt_j_t0)
 	#undef	zt_j_t0
 
+	/* DROP t0 a1 */
+
 	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
 	mv	a5,	a2
 	jal	vrici_frob
