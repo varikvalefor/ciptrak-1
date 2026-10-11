@@ -1210,6 +1210,7 @@ zgitci_frob_sutcmaci:
 	lw	t0,	0(lwd_j_a0)
 
 	add	lwd_j_a0,	lwd_j_a0,	diff_a3
+	add	swd_j_a1,	swd_j_a1,	diff_a3
 
 .sumji_lupe_op:
 	.option norvc
@@ -1219,9 +1220,7 @@ zgitci_frob_sutcmaci:
 	andn	t0,	t0,	clip_a5
 	or	t0,	t0,	t1
 	//
-	sw	t0,	0(swd_j_a1)
-
-	add	swd_j_a1,	swd_j_a1,	diff_a3
+	sw	t0,	(-4)(swd_j_a1)
 
 	blt	lwd_j_a0,	max_a4,	.sumji_lupe
 
