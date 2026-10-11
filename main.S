@@ -148,7 +148,7 @@ main_init_xosc:
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
-	/* DROP t1 */
+	/* DROP t[12] */
 
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
