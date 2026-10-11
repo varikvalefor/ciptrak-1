@@ -1144,6 +1144,7 @@ vrici_frob:
 	li	t1,	SIVNI_NILZILCMI
 	ble	klesi_t0,	t1,	vrici_frob_dispatch_pre
 	ret
+	#undef	SIVNI_NILZILCMI
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	(2 * 4)
