@@ -1140,12 +1140,15 @@ zgitci_frob_nope:
 vrici_frob:
 	#define	SIVNI_A5_KLESI_S	(2 * 4)
 	#define	SIVNI_NILZILCMI	8
+
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	0xFF
 	li	t1,	SIVNI_NILZILCMI
 	ble	klesi_t0,	t1,	vrici_frob_dispatch
 	ret
+
 	#undef	SIVNI_NILZILCMI
+
 vrici_frob_dispatch:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	SIVNI_A5_KLESI_S
