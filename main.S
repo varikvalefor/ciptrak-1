@@ -242,6 +242,8 @@ main_lupe_sha:
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(1))(dma_base_a1)
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_a1) // hack hack hack
 
+	#undef	dma_base_a1
+
 	sw	x0,	CUR_SHA_EN(vrc_s0)
 
 	/* DROP [at][01234567] */
