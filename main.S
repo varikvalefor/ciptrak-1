@@ -1282,6 +1282,7 @@ vrici_frob_sio:
 	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 1<<3
 	li	t5,	5	// SIO fn
 	sw	t5,	0(gpio_j_t2)
+	#undef	gpio_j_t2	t2
 
 	/* DROP t[025] */
 
@@ -1296,7 +1297,6 @@ vrici_frob_sio_post_init:
 
 	#undef	sio_j_t1
 	#undef	temp_t2
-	#undef	gpio_j_t2
 	#undef	pinmask_t3
 
 	ret
