@@ -324,7 +324,7 @@ main_lupe_incri:
 
 	#define	incri_t0	t0
 	#define	denpa_t1	t1
-	#define sezvati_t2	t2
+	#define	sezvati_t2	t2
 	#define	lt_t1	t1
 
 	#define	MAIN_LUPE_INCRI_F(x) \
