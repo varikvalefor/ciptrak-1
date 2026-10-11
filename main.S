@@ -345,7 +345,7 @@ main_lupe_incri:
 
 	#undef	incri_t0
 	#undef	denpa_t1
-	#undef sezvati_t2
+	#undef	sezvati_t2
 	#undef	lt_t1
 
 main_lupe_zgike:
