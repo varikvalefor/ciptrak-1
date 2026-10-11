@@ -903,11 +903,11 @@ zgitci_frob_c000_denpa:
 	bne	a0,	t0,	zgitci_frob_deaf_xosc
 
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
-	#define	denpa_j_t0	t0
+	#define	zt_j_t0	t0
 	sh2add	t0,	vrc_s0,	zgitci_a4
 
 	sw	a1,	(4 * CUR_DENPA_INST_OFFSET)(t0)
-	#undef	denpa_j_t0
+	#undef	zt_j_t0
 
 	// | TODO: .i xu lo su'o co'e cu zmadu fi le ka ce'u mapti
 	mv	a5,	a2
