@@ -1149,13 +1149,13 @@ vrici_frob:
 
 	#undef	SIVNI_NILZILCMI
 
-vrici_frob_dispatch:
+vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	SIVNI_A5_KLESI_S
 	#undef	SIVNI_A5_KLESI_S
 
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
-	la	t1,	vrici_frob_dispatch
+	la	t1,	vrici_frob_dispatch_pre
 	sh1add	t1,	t1,	klesi_t0
 	c.jr	t1
 	#undef	klesi_t0
