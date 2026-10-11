@@ -1144,16 +1144,14 @@ zgitci_frob_sutcmaci:
 	#define	slli_t0	t0
 	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
 
-	#define	bit_nibarda_t1	t1
-	BEXTF(bit_nibarda_t1, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
+	#define	bit_nibarda_a5	a5
+	BEXTF(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
 
-	addi	t1,	bit_nibarda_t1,	1	// .i mapti tu'a li no
-	bset	t1,	x0,	t1
-	addi	t1,	t1,	-1
-	sll	clip_a5,	t1,	slli_t0
-	#undef bit_nibarda_t1
-
-	/* DROP t1 */
+	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
+	bset	a5,	x0,	a5
+	addi	a5,	a5,	-1
+	sll	clip_a5,	a5,	slli_t0
+	#undef bit_nibarda_a5
 
 	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
 	sll	sesumjiX_a7,	a7,	slli_t0
