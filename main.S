@@ -1264,6 +1264,6 @@ vrici_frob_sctrl:
 
 	BFEXTR(t1, a5, SIVNI_A5_PIN_BIT, SIVNI_A5_PIN_S)
 
-	sw	t1,	(t0)
+	sw	t1,	(ctrl_j_t0)
 
 	ret
