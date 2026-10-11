@@ -905,7 +905,6 @@ zgitci_frob_c000_denpa:
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
 	#define	zt_j_t0	t0
 	sh2add	zt_j_t0,	vrc_s0,	zgitci_a4
-
 	sw	a1,	(4 * CUR_DENPA_INST_OFFSET)(zt_j_t0)
 	#undef	zt_j_t0
 
