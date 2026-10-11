@@ -128,15 +128,15 @@ main_init_oe:
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
 main_init_xosc:
-	#define	xosc_t0	t0
-	li	xosc_t0,	XOSC_BASE
+	#define	xosc_t2	t2	// .i pilno la'oi .t2. ki'u tu'a la'oi .resets_t0.
+	li	xosc_t2,	XOSC_BASE
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
 
 .cipra_lupe:
 	#define	resets_t0	t0
-	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
+	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
