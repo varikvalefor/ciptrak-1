@@ -142,6 +142,8 @@ main_init_xosc:
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
+	/* DROP t1 */
+
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
