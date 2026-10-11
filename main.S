@@ -343,6 +343,11 @@ main_lupe_incri:
 	MAIN_LUPE_INCRI_F(2)
 	MAIN_LUPE_INCRI_F(3)
 
+	#undef	incri_t0
+	#undef	denpa_t1
+	#undef sezvati_t2
+	#undef	lt_t1
+
 main_lupe_zgike:
 	/* DROP [at][01234567] */
 
