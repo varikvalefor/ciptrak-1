@@ -147,7 +147,6 @@ main_init_xosc:
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
-	#undef	resets_t0
 	#undef	xosc_t2
 
 	/* DROP t[12] */
