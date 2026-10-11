@@ -243,9 +243,9 @@ main_lupe_sha:
 
 	sw	x0,	CUR_SHA_EN(vrc_s0)
 
-main_lupe_tcidu:
 	/* DROP [at][01234567] */
 
+main_lupe_tcidu:
 	/* ni'o la .varik. cu jinvi le du'u racli fa lo nu sruma lo du'u lo ro co'e cu srana lo zgitci */
 	/* ni'o ji'a la .varik. cu jinvi le du'u cumki fa lo nu me'oi .unroll.
 	   .i ku'i la .varik. cu jinvi le du'u banzuka le ka ce'u jai pluja kei le ka mapti fa lo nu na me'oi .unroll. ce'u  .i la .varik. cu jinvi le du'u le na'e me'oi .unroll. versiio cu zmadu fi le ka frili fa lo nu jimpe fi ce'u
