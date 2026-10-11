@@ -136,9 +136,8 @@ main_init_xosc:
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
-	#undef xosc_t0
 
-	/* DROP t[01] */
+	/* DROP t1 */
 
 .cipra_lupe:
 	#define	resets_t0	t0
