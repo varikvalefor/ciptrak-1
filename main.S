@@ -1149,6 +1149,7 @@ vrici_frob:
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	SIVNI_A5_KLESI_S
+	#undef	SIVNI_A5_KLESI_S
 
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	la	t1,	vrici_frob_dispatch
