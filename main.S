@@ -703,6 +703,7 @@ zgitci_frob_damri_cusku:
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
 	#define	SIVNI_A2_PIOIDX_S	2
+	#define	SIVNI_A2_NIBARDA_S	(1 + 4)
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	4*4
@@ -727,7 +728,7 @@ zgitci_frob_check_pio_gpio_post:
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
 	#define	max_t1	t1
-	andi	max_t1,	a2,	(1<<5)-1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
+	andi	max_t1,	a2,	(1<<SIVNI_A2_NIBARDA_S)-1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 	#undef	max_t1
 
