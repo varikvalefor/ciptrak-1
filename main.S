@@ -730,6 +730,8 @@ zgitci_frob_check_pio_gpio_post:
 	andi	max_t1,	a2,	(1<<5)-1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
 
+	/* DROP t1 */
+
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
 	li	t1,	1 | (1<<2)
