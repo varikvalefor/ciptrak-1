@@ -127,6 +127,9 @@ main_init_oe:
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
+
+	/* DROP t[01] */
+
 main_init_xosc:
 	#define	xosc_t0	t0
 	li	xosc_t0,	XOSC_BASE
