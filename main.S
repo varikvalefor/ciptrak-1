@@ -1267,3 +1267,5 @@ vrici_frob_sctrl:
 	sw	t1,	(ctrl_j_t0)
 
 	ret
+
+	#undef ctrl_j_t0
