@@ -135,6 +135,8 @@ main_init_xosc:
 	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
 	#undef xosc_t0
 
+	/* DROP t[01] */
+
 .cipra_lupe:
 	#define	resets_t0	t0
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
