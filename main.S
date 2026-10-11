@@ -727,6 +727,8 @@ zgitci_frob_check_pio_gpio_post:
 
 	sw	t1,	(DMA_CHx_WRITE_ADDR_OFFSET(2))(dma_t0)
 
+	/* DROP t1 */
+
 	#define	max_t1	t1
 	andi	max_t1,	a2,	(1 << SIVNI_A2_NIBARDA_S) - 1	// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li ci re cu nilzilcmi lo'i me'oi .PIO. midnoi pe'a
 	sw	max_t1,	(DMA_CHx_TRANS_COUNT_OFFSET(2))(dma_t0)
