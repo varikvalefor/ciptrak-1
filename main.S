@@ -1149,6 +1149,8 @@ vrici_frob:
 
 	#undef	SIVNI_NILZILCMI
 
+	/* DROP t1 */
+
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
 	srli	datni_a5,	a5,	SIVNI_A5_KLESI_S
