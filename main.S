@@ -207,12 +207,11 @@ main_lupe_reset_temci:
 	/* DROP [at][01234567] */
 
 main_lupe_sha:
-	#define	sha256_a0	a0
-
 	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
 	li	t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
+	#define	sha256_a0	a0
 	li	sha256_a0,	SHA256_BASE
 
 	andi	t0,	temci_t0,	0xF
