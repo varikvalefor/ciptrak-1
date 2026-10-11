@@ -1229,6 +1229,7 @@ zgitci_frob_sutcmaci:
 	ret
 
 	#undef	diff_a3
+	#undef	max_a4
 	#undef	lwd_j_a0
 	#undef	swd_j_a1
 .s_ops:
