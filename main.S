@@ -1164,8 +1164,7 @@ vrici_frob_dispatch_pre:
 vrici_frob_dispatch:
 	/* DROP t1 */
 
-	// | 0
-	ret
+	ret	// 0
 	c.j	vrici_frob_denpa
 	c.j	vrici_frob_j
 	c.j	vrici_frob_0
