@@ -204,8 +204,9 @@ main_lupe_reset_temci:
 	addi	temci_t0,	t0,	1
 	sw	temci_t0,	CUR_TEMCI_OFFSET(vrc_s0)
 
-main_lupe_sha:
 	/* DROP [at][01234567] */
+
+main_lupe_sha:
 	#define	sha256_a0	a0
 
 	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
