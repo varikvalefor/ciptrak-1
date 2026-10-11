@@ -1102,7 +1102,7 @@ zgitci_frob_nope:
  * DROP t[0-7] a5
  */
 vrici_frob:
-	#define	SIVNI_NILZILCMI	8
+	#define	SIVNI_NILZILCMI	9
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	0xFF
 	li	t1,	SIVNI_NILZILCMI
@@ -1127,6 +1127,7 @@ vrici_frob_dispatch:
 	c.j	vrici_frob_denpaV
 	c.j	vrici_frob_denpaWfi
 	c.j	vrici_frob_sio
+	c.j	vrici_frob_sctrl
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
@@ -1246,5 +1247,23 @@ vrici_frob_sio_post_init:
 	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
 	sw	pinmask_t3,	GPIO_OUT_SET_OFFSET(sio_j_t1)
+
+	ret
+/* [0xXX][?: 0xXXX 0bXX][fn: 0xX 0bX][pin: 0xX 0bX]
+vrici_frob_sctrl:
+	#define	SIVNI_A5_PIN_BIT	0
+	#define	SIVNI_A5_PIN_S	(1 + 4)
+	#define	SIVNI_A5_FN_BIT	(SIVNI_A5_PIN_BIT + SIVNI_A5_PIN_S)
+	#define	SIVNI_A5_FN_S	(1 + 4)
+
+	#define	ctrl_j_t0	t0
+	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
+	li	t0,	IO_BANK0_BASE + 4
+	andi	t1,	a5,	(1 << SIVNI_A5_PIN_S) - 1
+	sh3add	ctrl_j_t0,	t0,	t1
+
+	BFEXTR(t1, a5, SIVNI_A5_PIN_BIT, SIVNI_A5_PIN_S)
+
+	sw	t1,	(t0)
 
 	ret
