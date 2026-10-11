@@ -1138,6 +1138,7 @@ zgitci_frob_nope:
  * DROP t[0-7] a5
  */
 vrici_frob:
+	#define	SIVNI_A5_KLESI_S	(2 * 4)
 	#define	SIVNI_NILZILCMI	8
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	0xFF
@@ -1147,7 +1148,7 @@ vrici_frob:
 	#undef	SIVNI_NILZILCMI
 vrici_frob_dispatch_pre:
 	#define	datni_a5	a5
-	srli	datni_a5,	a5,	(2 * 4)
+	srli	datni_a5,	a5,	SIVNI_A5_KLESI_S
 
 	// TODO: .i xu mapti fa lo me'oi .j. co'e  .i la .varik. cu milxe le ka ce'u senpi
 	la	t1,	vrici_frob_dispatch
