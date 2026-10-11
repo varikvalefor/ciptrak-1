@@ -1145,7 +1145,7 @@ zgitci_frob_sutcmaci:
 	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
 
 	#define	bit_nibarda_t1	t1
-	BEXTF(t1, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
+	BEXTF(bit_nibarda_t1, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
 
 	addi	t1,	bit_nibarda_t1,	1	// .i mapti tu'a li no
 	bset	t1,	x0,	t1
