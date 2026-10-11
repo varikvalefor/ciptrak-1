@@ -140,10 +140,10 @@ main_init_xosc:
 	/* DROP t1 */
 
 .cipra_lupe:
-	#define	resets_t0	t0
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
 	#undef xosc_t0
 
+	#define	resets_t0	t0
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
