@@ -736,6 +736,8 @@ zgitci_frob_check_pio_gpio_post:
 
 	sw	a1,	(DMA_CHx_READ_ADDR_OFFSET(2))(dma_t0)
 
+	/* DROP a1 */
+
 	li	t1,	1 | (1<<2)
 	sw	t1,	(DMA_CHx_CTRL_TRIG_OFFSET(2))(dma_t0)
 
