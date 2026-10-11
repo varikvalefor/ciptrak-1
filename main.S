@@ -243,6 +243,7 @@ main_lupe_sha:
 	sw	t0,	(DMA_CHx_CTRL_TRIG_OFFSET(1))(dma_base_a1) // hack hack hack
 
 	#undef	dma_base_a1
+	#undef	sha256_a0
 
 	sw	x0,	CUR_SHA_EN(vrc_s0)
 
