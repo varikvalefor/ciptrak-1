@@ -718,6 +718,8 @@ zgitci_frob_check_pio:
 	addi	t1,	t1,	6	// p590 DS; pio0 = 6
 	sw	t1,	(gpio_ctrl_j_t0)
 	#undef	gpio_ctrl_j_t0
+
+	/* DROP t[01] */
 zgitci_frob_check_pio_gpio_post:
 	#define	dma_t0	t0
 	li	dma_t0,	DMA_BASE
