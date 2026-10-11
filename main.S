@@ -1179,6 +1179,7 @@ vrici_frob_denpa:
 	sh2add	denpa_j_t0,	vrc_s0,	zgitci_a4
 
 	sw	datni_a5,	(4 * CUR_DENPA_INST_OFFSET)(denpa_j_t0)
+	#undef	denpa_j_t0	t0
 
 	ret
 vrici_frob_j:
