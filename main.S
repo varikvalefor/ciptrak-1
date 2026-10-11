@@ -1162,6 +1162,8 @@ vrici_frob_dispatch_pre:
 	c.jr	t1
 	#undef	klesi_t0
 vrici_frob_dispatch:
+	/* DROP t1 */
+
 	// | 0
 	ret
 	c.j	vrici_frob_denpa
