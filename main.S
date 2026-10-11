@@ -661,6 +661,7 @@ zgitci_frob_damri_sha:
 	clz	t1,	curval_a5
 	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
+	#undef	nlev_t2
 
 	/* DROP t[12] */
 
