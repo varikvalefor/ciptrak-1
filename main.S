@@ -1139,6 +1139,8 @@ zgitci_frob_sw_post:
 zgitci_frob_nope:
 	ret
 
+#undef	zgitci_a4
+
 /*
  * VRICI
  * .i pilno lo me'oi .a5... tu'a lo vrici  .i go'i
