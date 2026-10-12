@@ -223,6 +223,8 @@ main_lupe_sha:
 	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
 	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
 
+	/* DROP t2 */
+
 	// not (dma design)
 	#define	dma_base_a1	a1
 	li	dma_base_a1,	DMA_BASE
