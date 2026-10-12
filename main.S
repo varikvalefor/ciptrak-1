@@ -1146,7 +1146,6 @@ zgitci_frob_sutcmaci:
 
 	#define	bit_nibarda_a5	a5
 	BEXTF(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
-
 	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
 	bset	a5,	x0,	a5
 	addi	a5,	a5,	-1
