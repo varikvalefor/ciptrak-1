@@ -293,9 +293,6 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	li	t6,	FAMVLA
 	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
 
-	#undef	datni_t3
-	#undef	datni_niho_j_t2
-
 	/* DROP t[56] */
 
 	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
@@ -326,6 +323,9 @@ main_lupe_tcidu_lupe_ld_cur_fanmo:
 	// | se morji: CUR_ZGITCI0(x)	4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
+
+	#undef	datni_t3
+	#undef	datni_niho_j_t2
 
 main_lupe_incri:
 	/* DROP [at][0-7] */
