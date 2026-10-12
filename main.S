@@ -571,7 +571,7 @@ zgitci_frob_check_2:
 	#define	SIVNI_A1_SID_S	(4 * 3)
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
-	// | metfo: andi t0,   a1,     0xFFF
+	// | metfo: andi t0,	a1,	0xFFF
 	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
