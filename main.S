@@ -308,6 +308,7 @@ main_lupe_tcidu_lupe_vimcu:
 	sub	sivniP_t4,	sivniP_t4,	ctr_a0	// .i indika tu'a zoi zoi. ctr_a0 = 4 - CUR_ZGITCI .zoi.  .i la'oi .Maxima. jai .indika tu'a zoi zoi. (CUR_ZGITCI_SIVNI_OFFSET + 4) - (4 - x) = CUR_ZGITCI_SIVNI_OFFSET + x .zoi.
 	sh2add	sivni_t4,	vrc_s0,	sivniP_t4
 	sw	x0,	(sivni_t4)
+	#undef	sivni_t4
 main_lupe_tcidu_lupe_ld_cur:
 	#define	datni2_t4	t4
 	// lw	datni_t3,	0(datni_niho_j_t2)	// .i jinvi le du'u ronsa la'oi .zT9L5TrS.
