@@ -1112,6 +1112,9 @@ zgitci_frob_sw:
 
 	sw	data_a2,	(judri_a1)
 
+	#undef	judri_a1
+	#undef	data_a2
+
 	beqz	a3,	zgitci_frob_sw_post
 	mv	a5,	a3
 	jal	vrici_frob
