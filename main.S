@@ -211,6 +211,8 @@ main_lupe_sha:
 	li	t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
+	/* DROP t1 */
+
 	#define	sha256_a0	a0
 	li	sha256_a0,	SHA256_BASE
 
