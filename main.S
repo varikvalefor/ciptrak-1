@@ -543,6 +543,7 @@ zgitci_frob_1_pwm_idx:
 	lw	t1,	ZGITCI_SIVNI_J_T0
 	addi	t1,	t1,	1
 	sw	t1,	ZGITCI_SIVNI_J_T0
+	#undef	ZGITCI_SIVNI_J_T0
 
 	ret
 /*
