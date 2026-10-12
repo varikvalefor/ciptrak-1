@@ -689,6 +689,8 @@ zgitci_frob_damri_sha_min:
 	min	curval_a5,	curval_a5,	x0
 zgitci_frob_damri_cusku:
 
+	#undef	sha_t0
+
 	/* TODO: cusku pe'a */
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
 	   .i xu mapti fa tu'a lo me'oi .jal. co'e
