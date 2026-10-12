@@ -292,6 +292,8 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	li	t6,	FAMVLA
 	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
 
+	#undef	datni_t3
+
 	/* DROP t[56] */
 
 	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
