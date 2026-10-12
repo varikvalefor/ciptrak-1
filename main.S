@@ -1083,6 +1083,7 @@ zgitci_frob_slurp:
 	#undef	temuvdu_j_a2
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
+	#undef	ram_j_a1
 
 	BFEXTR(t1, a3, A2_SIVNI_NIBARDA_BIT, A2_SIVNI_NIBARDA_S)
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
