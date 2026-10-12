@@ -1080,6 +1080,7 @@ zgitci_frob_slurp:
 	add	dma_read_j_t0,	t0,	t2
 
 	sw	temuvdu_j_a2,	(dma_read_j_t0)
+	#undef	temuvdu_j_a2
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
