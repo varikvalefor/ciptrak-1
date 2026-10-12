@@ -293,6 +293,7 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
 
 	#undef	datni_t3
+	#undef	datni_niho_j_t2
 
 	/* DROP t[56] */
 
