@@ -724,7 +724,7 @@ zgitci_frob_check_pio:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
-	sh3add	gpio_ctrl_j_t0,	t1,	zgitci_a4
+	sh3add	gpio_ctrl_j_t0,	t1,	zgitci_a4	// DROP t1
 	BFEXTR(t1, a2, SIVNI_A2_PIOIDX_BIT, SIVNI_A2_PIOIDX_S)
 	addi	t1,	t1,	6	// p590 DS; pio0 = 6
 	sw	t1,	(gpio_ctrl_j_t0)
