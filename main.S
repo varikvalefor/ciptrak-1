@@ -1189,6 +1189,8 @@ zgitci_frob_sutcmaci:
 	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
 	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
 
+	#undef	SIVNI_KANJI_DJ
+
 	/* DROP t[0-6] */
 
 	#define	max_a4	a4
