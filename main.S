@@ -223,6 +223,7 @@ main_lupe_sha:
 	#undef	temci_t0
 
 	/* DROP t0 */
+main_lupe_shaX:
 
 	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
 	sw	sha_akti_t2,	SHA256_CSR_OFFSET(sha256_a0)
