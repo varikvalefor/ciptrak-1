@@ -384,6 +384,9 @@ main_lupe_zgike:
 	// 8 by 8
 	// 9 by 9...
 
+	#undef	SIVNI_IDX_LUPE_ZGIKE
+	#undef	SIVNI_IDX_LUPE_ZGIKE_F
+
 main_lupe_reset_denpa:
 	/* DROP [at][0-7] */
 
