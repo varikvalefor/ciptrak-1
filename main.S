@@ -219,6 +219,8 @@ main_lupe_sha:
 	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
+	#undef	temci_t0
+
 	/* DROP t0 */
 
 	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
