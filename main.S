@@ -128,15 +128,15 @@ main_init_oe:
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
 main_init_xosc:
-	#define	xosc_t0	t0
-	li	xosc_t0,	XOSC_BASE
+	#define	xosc_t2	t2	// .i pilno la'oi .t2. ki'u tu'a la'oi .resets_t0.
+	li	xosc_t2,	XOSC_BASE
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
-	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
+	sw	t1,	XOSC_CTRL_OFFSET(xosc_t2)
 
 .cipra_lupe:
 	#define	resets_t0	t0
-	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
+	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
@@ -479,8 +479,7 @@ zgitci_frob_1_pwm_div_slilu:
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
 	// lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// mv bOeyrk5b
-	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
-	andi	t2,	t2,	(1<<SIVNI_A1_SESLILU_S) - 1
+	BFEXTR(t2, a1, SIVNI_A1_SESLILU_BIT, SIVNI_A1_SESLILU_S)
 	bext	t2,	temci_t5,	t2	//	DROP t5
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
@@ -650,8 +649,7 @@ zgitci_frob_damri_sha:
 	lw	sha_t0,	CUR_SHA_OFFSET(vrc_s0)
 
 	#define	nlev_t2	t2
-	srli	t2,	a2,	SIVNI_A2_NLEV_BIT
-	andi	nlev_t2,	t2,	0b11
+	BFEXTR(t2, a2, SIVNI_A2_NLEV_BIT, 2)
 	clz	t1,	curval_a5
 	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
@@ -695,7 +693,7 @@ zgitci_frob_damri_cusku:
  */
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
-	#define	SIVNI_A2_PIOIDX_MASK	0b11
+	#define	SIVNI_A2_PIOIDX_S	2
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	4*4
@@ -706,8 +704,7 @@ zgitci_frob_check_pio:
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
 	sh3add	t0,	t1,	zgitci_a4
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
-	andi	t1,	t1,	SIVNI_A2_PIOIDX_MASK
+	BFEXTR(t1, a2, SIVNI_A2_PIOIDX_BIT, SIVNI_A2_PIOIDX_S)
 	addi	t1,	t1,	6	// p590 DS; pio0 = 6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
@@ -1041,8 +1038,7 @@ zgitci_frob_slurp:
 
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
-	srli	t2,	a3,	A2_SIVNI_DMA_BIT
-	andi	dma_idx_t2,	t2,	(1 << A2_SIVNI_DMA_S) - 1
+	BFEXTR(t2, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
