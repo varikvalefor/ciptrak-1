@@ -208,7 +208,8 @@ main_lupe_reset_temci:
 
 main_lupe_sha:
 	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
-	li	t2,	1	// x48Xyorh.  lw opt
+	#define	sha_akti_t2	t2
+	li	sha_akti_t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
 	/* DROP t1 */
@@ -224,7 +225,9 @@ main_lupe_sha:
 	/* DROP t0 */
 
 	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
-	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
+	sw	sha_akti_t2,	SHA256_CSR_OFFSET(sha256_a0)
+
+	#undef	sha_akti_t2
 
 	/* DROP t2 */
 
