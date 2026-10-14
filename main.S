@@ -1092,11 +1092,11 @@ zgitci_frob_sw_post:
  *
  * 0xDEAF0006
  *
+ * [sivni]
+ *
+ * [sivni]
+ *
  * [judri1]
- *
- * [sivni]
- *
- * [sivni]
  *
  */
 zgitci_frob_handoff:
@@ -1106,7 +1106,7 @@ zgitci_frob_handoff:
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
-	jalr	a1
+	jalr	a3
 
 	lw	ra,	0(sp)
 	addi	sp,	sp,	4
