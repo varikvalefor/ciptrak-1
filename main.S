@@ -1090,6 +1090,8 @@ zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_nope
 
+	/* DROP t0 */
+
 	#define	SIVNI_A1_SECTAIPE_BIT	0
 	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
 	#define	SIVNI_A3_TEMUVDU_BIT	0
