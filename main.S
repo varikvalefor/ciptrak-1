@@ -1059,7 +1059,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_handoff
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
@@ -1100,6 +1100,9 @@ zgitci_frob_sw_post:
  *
  */
 zgitci_frob_handoff:
+	addi	t0,	t0,	2
+	bne	t0,	a0,	zgitci_frob_nope
+
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
