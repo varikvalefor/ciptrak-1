@@ -1111,15 +1111,13 @@ zgitci_frob_sutcmaci:
 	// va'o lo nu lo namcu na jai .indika
 	mul	sectaipe_t0,	t0,	t1
 
-	/* DROP t1 */
+	/* DROP t[1-6] a[5-7] */
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
 	 *
 	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
-
-	/* DROP t[2-6] a[5-7] */
 
 	#define	sesumjiX_a7	t0
 	#define	clip_a5	a5
