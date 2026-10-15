@@ -1193,25 +1193,25 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] */
 
-	#define	max_a4	a4
+	#define	max_a3	a3
 	BFEXTR(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
 	addi	t2,	t2,	2	// lw align
 	//
 	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
-	srli	a4,	a3,	SIVNI_A3_NIBARDA_BIT
-	sll	a4,	a4,	t2
+	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	a3,	a4,	t2
 	//
-	add	max_a4,	lwd_j_a0,	a4
+	add	max_a3,	lwd_j_a0,	a3
 
-	#define	diff_a3	a3
-	bset	diff_a3,	x0,	t2
+	#define	diff_a4	a4
+	bset	diff_a4,	x0,	t2
 
 	/* DROP t[0-6] */
 .sumji_lupe:
 	lw	t0,	0(lwd_j_a0)
 
-	add	lwd_j_a0,	lwd_j_a0,	diff_a3
-	add	swd_j_a1,	swd_j_a1,	diff_a3
+	add	lwd_j_a0,	lwd_j_a0,	diff_a4
+	add	swd_j_a1,	swd_j_a1,	diff_a4
 
 .sumji_lupe_op:
 	.option norvc
@@ -1223,10 +1223,10 @@ zgitci_frob_sutcmaci:
 	//
 	sw	t0,	(-4)(swd_j_a1)
 
-	blt	lwd_j_a0,	max_a4,	.sumji_lupe
+	blt	lwd_j_a0,	max_a3,	.sumji_lupe
 
-	#undef	diff_a3
-	#undef	max_a4
+	#undef	diff_a4
+	#undef	max_a3
 	#undef	lwd_j_a0
 	#undef	swd_j_a1
 	#undef	sesumjiX_a7
