@@ -1200,7 +1200,7 @@ zgitci_frob_sutcmaci:
 	//
 	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
 	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
-	sll	a3,	a4,	t2
+	sll	a3,	a3,	t2
 	//
 	add	max_a3,	lwd_j_a0,	a3
 
