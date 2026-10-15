@@ -1119,7 +1119,7 @@ zgitci_frob_sutcmaci:
 	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
-	#define	sesumjiX_a7	t0
+	#define	sesumjiX_a7	a7
 	#define	clip_a5	a5
 	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
 	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
