@@ -1229,7 +1229,6 @@ zgitci_frob_sutcmaci:
 	#undef	max_a3
 	#undef	lwd_j_a0
 	#undef	swd_j_a1
-	#undef	sesumjiX_a7
 
 	/* DROP t[0-6] */
 
@@ -1249,6 +1248,7 @@ zgitci_frob_sutcmaci:
 	.option rvc
 	#undef	SIVNI_SOPS_X3
 	#undef	SIVNI_SOPS_X2
+	#undef	sesumjiX_a7
 
 /*
  * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
