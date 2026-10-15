@@ -1177,6 +1177,7 @@ zgitci_frob_sutcmaci:
 
 	/* DROP a0 t[245] */
 
+	// TODO: .i xu frili cumki fa lo nu muvgau pe'a lo lidne be la'o zoi. .sumji .zoi.
 	#define	SIVNI_KANJI_DJ(destR,piljiR,offsetR,muvdu_bit,muvdu_s,dirbit) \
 		BFEXTR(offsetR, a3, muvdu_bit, muvdu_s);\
 		\
