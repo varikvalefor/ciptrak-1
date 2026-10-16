@@ -1197,7 +1197,7 @@ zgitci_frob_sutcmaci:
 	#define	max_a3	a3
 	BFEXTR(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
 	addi	t2,	t2,	2	// lw align
-	//
+
 	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
 	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
 	sll	a3,	a3,	t2
