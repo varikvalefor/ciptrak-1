@@ -1193,18 +1193,20 @@ zgitci_frob_sutcmaci:
 
 	/* DROP t[0-6] */
 
+	#define	offset_t2	t2
 	BFEXTR(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
-	addi	t2,	t2,	2	// lw align
+	addi	offset_t2,	t2,	2	// lw align
 
 	#define	max_a3	a3
 	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
 	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
-	sll	a3,	a3,	t2
+	sll	a3,	a3,	offset_t2
 	//
 	add	max_a3,	lwd_j_a0,	a3
 
 	#define	diff_a4	a4
-	bset	diff_a4,	x0,	t2
+	bset	diff_a4,	x0,	offset_t2
+	#undef	offset_t2
 
 	/* DROP t[0-6] */
 .sumji_lupe:
