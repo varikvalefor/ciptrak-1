@@ -1059,7 +1059,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_handoff
+	bne	t0,	a0,	zgitci_frob_sutcmaci
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
@@ -1071,6 +1071,186 @@ zgitci_frob_sw:
 	jal	vrici_frob
 zgitci_frob_sw_post:
 	ret
+
+/* QUICK MATHS
+ * .i la .varik. cu jinvi le du'u ko'a goi le cmalu proga cu jai filri'a lo nu sampla lo cnino fi'o te zbasu lo zasti  .i ku'i la .varik. cu kajde fi zo'e joi le su'u vo'a jinvi le du'u ko'a jai filri'a lo ckape  .i ku'i la .varik. cu jinvi le du'u cumki fa lo nu mruli lo dinko ja lo stedu
+ *
+ * [0xDEAF00004]
+ *
+ * [?: 0xXXXXX][sectaipe: 0xXXX]
+ *
+ * [sivni]
+ *
+ * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
+ * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
+ *   .i ji'a...
+ *   TODO: .i ma mapti tu'a lo lidne je datni
+ */
+zgitci_frob_sutcmaci:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_handoff
+
+	/* DROP [at]0 */
+
+	#define	SIVNI_A1_SECTAIPE_BIT	0
+	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
+	#define	SIVNI_A3_TEMUVDU_BIT	0
+	#define	SIVNI_A3_TEMUVDU_S	(4 * 3)
+	#define	SIVNI_A3_SEMUVDU_BIT	(SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
+	#define	SIVNI_A3_SEMUVDU_S	(4 * 3)
+	#define	SIVNI_A3_NIBARDA_BIT	(SIVNI_A3_SEMUVDU_BIT + SIVNI_A3_SEMUVDU_S)
+	#define	SIVNI_A3_NIBARDA_S	(4 * 2)
+
+	#define	sectaipe_t0	t0
+	#define	SIVNI_SECTAIPE_NILZILCMI	8
+	BFEXTR(t0, a1, SIVNI_A1_SECTAIPE_BIT, SIVNI_A1_SECTAIPE_S)
+	//
+	li	t1,	SIVNI_SECTAIPE_NILZILCMI
+	sltu	t1,	t0,	t1
+	// | .i jinvi le du'u mapti fa lo nu na'e zukte pe'a
+	// va'o lo nu lo namcu na jai .indika
+	mul	sectaipe_t0,	t0,	t1
+
+	/* DROP t[1-6] a[5-7] */
+.sumji:
+	/*
+	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
+	 *
+	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 */
+
+	#define	sesumjiX_a7	a7
+	#define	clip_a5	a5
+	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
+	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
+	#define SIVNI_A2_SLLI_BIT	0
+	#define SIVNI_A2_SLLI_S	(4 + 1)
+	#define	SIVNI_A2_BIT_NIBARDA_BIT	(SIVNI_A2_SLLI_BIT + SIVNI_A2_SLLI_S)
+	#define SIVNI_A2_BIT_NIBARDA_S	(4 + 1)
+	#define	SIVNI_A2_DIFF_BIT	(SIVNI_A2_BIT_NIBARDA_BIT + SIVNI_A2_BIT_NIBARDA_S)
+	#define	SIVNI_A2_DIFF_S	2
+	#define	SIVNI_A2_DIR0_BIT	(SIVNI_A2_DIFF_BIT + SIVNI_A2_DIFF_S)
+	#define	SIVNI_A2_DIR1_BIT	(1 + SIVNI_A2_DIR0_BIT)
+
+	la	t1,	.s_ops
+	sh2add	t0,	t1,	sectaipe_t0
+	lw	t1,	0(t0)
+	la	t0,	.sumji_lupe_op
+	sw	t1,	0(t0)
+	fence.i
+
+	/* DROP t[01] */
+
+	#define	slli_t0	t0
+	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
+
+	#define	bit_nibarda_a5	a5
+	BFEXTR(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
+	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
+	bset	a5,	x0,	a5
+	addi	a5,	a5,	-1
+	sll	clip_a5,	a5,	slli_t0
+	#undef bit_nibarda_a5
+
+	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_a7,	a7,	slli_t0
+	#undef slli_t0
+
+	/* DROP t0 a1 */
+
+	#define	vrcX_a0	a0
+	#define	lwd_j_a0	a0
+	#define	swd_j_a1	a1
+	sh2add	vrcX_a0,	vrc_s0,	zgitci_a4
+
+	/* DROP a4 */
+
+	#define	judri_t4	t4
+	#define	sezvati_t5	t5
+	#define	cur_j_a1	a1
+	lw	judri_t4,	(4 * CUR_PATN_JUDRI_OFFSET)(vrcX_a0)
+	lw	sezvati_t5,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
+	add	cur_j_a1,	judri_t4,	sezvati_t5
+	#undef	vrcX_a0
+	#undef	judri_t4
+	#undef	sezvati_t5
+
+	/* DROP a0 t[245] */
+
+	#define	SIVNI_KANJI_DJ(destR,piljiR,offsetR,muvdu_bit,muvdu_s,dirbit) \
+		BFEXTR(offsetR, a3, muvdu_bit, muvdu_s);\
+		\
+		bexti	piljiR,	a2,	dirbit;\
+		slli	piljiR,	piljiR,	3;\
+		addi	piljiR,	piljiR,	-4;\
+		mul	offsetR,	offsetR,	piljiR;\
+		add	destR,	cur_j_a1,	offsetR
+
+	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
+	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
+
+	#undef	SIVNI_KANJI_DJ
+
+	/* DROP t[0-6] */
+
+	#define	offset_t2	t2
+	BFEXTR(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
+	addi	offset_t2,	t2,	2	// lw align
+
+	#define	max_a3	a3
+	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
+	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	a3,	a3,	offset_t2
+	//
+	add	max_a3,	lwd_j_a0,	a3
+
+	#define	diff_a4	a4
+	bset	diff_a4,	x0,	offset_t2
+	#undef	offset_t2
+
+	/* DROP t[0-6] */
+.sumji_lupe:
+	lw	t0,	0(lwd_j_a0)
+
+	add	lwd_j_a0,	lwd_j_a0,	diff_a4
+	add	swd_j_a1,	swd_j_a1,	diff_a4
+
+.sumji_lupe_op:
+	.option norvc
+	add	t1,	t0,	sesumjiX_a7
+	.option rvc
+	and	t1,	t1,	clip_a5
+	andn	t0,	t0,	clip_a5
+	or	t0,	t0,	t1
+	//
+	sw	t0,	(-4)(swd_j_a1)
+
+	blt	lwd_j_a0,	max_a3,	.sumji_lupe
+
+	#undef	diff_a4
+	#undef	max_a3
+	#undef	lwd_j_a0
+	#undef	swd_j_a1
+
+	/* DROP t[0-6] */
+
+	ret
+.s_ops:
+	#define	SIVNI_SOPS_X3(op)	op	t1,	t0,	sesumjiX_a7
+	#define	SIVNI_SOPS_X2(op)	op	t1,	sesumjiX_a7
+	.option norvc
+	nop	// 0
+	SIVNI_SOPS_X3(add)
+	SIVNI_SOPS_X3(sub)
+	SIVNI_SOPS_X3(mul)
+	SIVNI_SOPS_X3(div)
+	SIVNI_SOPS_X3(rem)
+	SIVNI_SOPS_X2(mv)
+	SIVNI_SOPS_X3(xor)
+	.option rvc
+	#undef	SIVNI_SOPS_X3
+	#undef	SIVNI_SOPS_X2
+	#undef	sesumjiX_a7
 
 /*
  * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
