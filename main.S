@@ -1090,7 +1090,7 @@ zgitci_frob_sutcmaci:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_handoff
 
-	/* DROP t0 */
+	/* DROP [at]0 */
 
 	#define	SIVNI_A1_SECTAIPE_BIT	0
 	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
