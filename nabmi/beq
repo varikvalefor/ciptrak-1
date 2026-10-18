@@ -1,1 +1,10 @@
 ni'o xu cadga fa lo nu basygau pe'a lo me'oi .beq. co'e
+
+# le pa moi be lo'i danfu
+.i vy goi la .varik. na jinvi le du'u sarcu  .i vy jinvi le du'u le velcki cu se pagbu zoi glibau.
+
+> A jump or branch to a 32-bit instruction that isn't 32-bit-aligned requires one additional cycle because two naturally aligned bus cycles are required to fetch the target instruction.
+
+.glibau. noi vy jinvi le du'u ke'a jai .indika le du'u sutra tu'a lo se judri be lo se dilcu be fo li no
+
+.i vy na birti lo du'u xu kau lo me'oi .assembler. cu jai filri'a lo nu dilcu fo li no  .i ku'i vy jinvi le du'u frili cumki fa lo nu dilcu fo li no
