@@ -1470,7 +1470,7 @@ vrici_frob_sctrl:
 	sh3add	ctrl_j_t0,	t0,	pin_t1
 	#undef	pin_t1
 
-	BFEXTR(t1, a5, SIVNI_A5_PIN_BIT, SIVNI_A5_PIN_S)
+	BFEXTR(t1, a5, SIVNI_A5_FN_BIT, SIVNI_A5_FN_S)
 
 	sw	t1,	(ctrl_j_t0)
 
