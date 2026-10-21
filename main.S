@@ -1463,10 +1463,12 @@ vrici_frob_sctrl:
 	#define	SIVNI_A5_FN_S	(1 + 4)
 
 	#define	ctrl_j_t0	t0
+	#define	pin_t1	t1
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t0,	IO_BANK0_BASE + 4
-	andi	t1,	a5,	(1 << SIVNI_A5_PIN_S) - 1
-	sh3add	ctrl_j_t0,	t0,	t1
+	andi	pin_t1,	a5,	(1 << SIVNI_A5_PIN_S) - 1
+	sh3add	ctrl_j_t0,	t0,	pin_t1
+	#undef	pin_t1
 
 	BFEXTR(t1, a5, SIVNI_A5_PIN_BIT, SIVNI_A5_PIN_S)
 
