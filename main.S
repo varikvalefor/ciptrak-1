@@ -30,6 +30,10 @@ ni'o la .varik. cu morji le du'u vo'a benji fi le co'e ja pendo be vo'a fa lo no
 
 #include "shortcut.S"
 
+#define	BFEXTR(rd,rs,b,s)\
+	slli	rd,	rs,	32 - (b + s);\
+	srli	rd,	rd,	32 - s
+
 #define	REG_ALIAS_XOR_BITS	0x1000
 #define	REG_ALIAS_SET_BITS	0x2000
 #define	REG_ALIAS_CLR_BITS	0x3000
@@ -117,18 +121,18 @@ main_init_oe:
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
 main_init_xosc:
-	#define	xosc_t0	t0
-	li	xosc_t0,	XOSC_BASE
+	#define	xosc_t2	t2	// .i pilno la'oi .t2. ki'u tu'a la'oi .resets_t0.
+	li	xosc_t2,	XOSC_BASE
 	# .i zu'edji lo ka ce'u pilno la'oi .XOSC. lo temci co'e
 	li	t1,	(XOSC_CTRL_ENABLE_BITS << XOSC_CTRL_ENABLE_BIT)
-	sw	t1,	XOSC_CTRL_OFFSET(xosc_t0)
-main_init_xosc_cipra:
-main_init_xosc_cipra_lupe:
+	sw	t1,	XOSC_CTRL_OFFSET(xosc_t2)
+
+.cipra_lupe:
 	#define	resets_t0	t0
-	lw	t1,	XOSC_STATUS_OFFSET(xosc_t0)
+	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
 	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
-	beqz	t1,	main_init_xosc_cipra_lupe
+	beqz	t1,	.cipra_lupe
 
 main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
@@ -392,17 +396,19 @@ zgitci_frob_1_pwm_xu_akti:
 
 	#define	SIVNI_A1_SLICE_BITS	0b11
 	#define	SIVNI_A1_DIV_BIT	2
-	#define	SIVNI_A1_JDIKA_BIT	(SIVNI_A1_DIV_BIT + (3 * 4))
+	#define	SIVNI_A1_DIV_S	(3 * 4)
+	#define	SIVNI_A1_JDIKA_BIT	(SIVNI_A1_DIV_BIT + SIVNI_A1_DIV_S)
 	#define	SIVNI_A1_ZENBA_BIT	(1 + SIVNI_A1_JDIKA_BIT)
 	#define	SIVNI_A1_SESLILU_BIT	(1 + SIVNI_A1_ZENBA_BIT)
+	#define	SIVNI_A1_SESLILU_S	4
 	#define	pwm_slice_a5	a5
 
 	andi	pwm_slice_a5,	a1,	SIVNI_A1_SLICE_BITS
 zgitci_frob_1_pwm_gpioctrl:
 	#define	gpio_ctrl_j_t0	t0
 	// se morji: IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
-	slli	t0,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
-	li	t1,	IO_BANK0_BASE + 4 // "
+	li	t0,	IO_BANK0_BASE + 4 // "
+	slli	t1,	pwm_slice_a5,	(1 + 3) # 8 * PIN = 16 * PWM
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	sw	t1,	(gpio_ctrl_j_t0)
@@ -411,9 +417,7 @@ zgitci_frob_1_pwm_div:
 
 	// TODO: .i xu mapti
 	#define	div_t0	t0
-	// | t0 = (a1 >> SIVNI_A1_JDIKA_BIT) & (2^12 - 1)
-	slli	t0,	a1,	(32 - SIVNI_A1_JDIKA_BIT)
-	srli	div_t0,	t0,	(32 - SIVNI_A1_JDIKA_BIT + SIVNI_A1_DIV_BIT)
+	BFEXTR(div_t0, a1, SIVNI_A1_DIV_BIT, SIVNI_A1_DIV_S)
 	#define	zenba_t1	t1
 	#define	jdika_t2	t2
 	bexti	zenba_t1,	a1,	SIVNI_A1_ZENBA_BIT
@@ -428,7 +432,7 @@ zgitci_frob_1_pwm_div:
 	bne	zenba_t1,	jdika_t2,	zgitci_frob_1_pwm_div_sampu
 	bnez	zenba_t1,	zgitci_frob_1_pwm_div_slilu
 
-	/* DROP t[456] */
+	/* DROP t[12] */
 
 	#define	SIVNI_DIV_OFFSET	4
 zgitci_frob_1_pwm_div_basti:
@@ -445,15 +449,16 @@ zgitci_frob_1_pwm_div_slilu:
 
 	lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// bOeyrk5b.  lw opt
 
-	addi	t5,	t2,	1	// temp
+	addi	t5,	t2,	1
 	sw	t5,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(sivni_j_t1)
+
+	/* DROP t5 */
 
 	#define	temci_t5	t5
 	// cnino te frinu
 	lw	temci_t5,	CUR_TEMCI_OFFSET(vrc_s0)
 	// lhu	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)	// mv bOeyrk5b
-	srli	t2,	a1,	SIVNI_A1_SESLILU_BIT	// namcu judri pe'a
-	andi	t2,	t2,	(1<<4) - 1
+	BFEXTR(t2, a1, SIVNI_A1_SESLILU_BIT, SIVNI_A1_SESLILU_S)
 	bext	t2,	temci_t5,	t2	//	DROP t5
 	slli	t2,	t2,	1
 	addi	t2,	t2,	-1
@@ -472,7 +477,6 @@ zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
 	sw	div_t0,	SIVNI_DIV_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_top:
-	// se morji: PWM_CHx_TOP_OFFSET(x)	0x10 + x * 0x14
 	#define	SIVNI_TOP_OFFSET	0x10
 	sh	a2,	SIVNI_TOP_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_csr:
@@ -522,14 +526,16 @@ zgitci_frob_check_2:
 	addi	t0,	a0,	-2
 	li	t1,	1
 	bgeu	t0,	t1,	zgitci_frob_c000_mv
+
+	#define	SIVNI_A1_SID_BIT	0
+	#define	SIVNI_A1_SID_S	(4 * 3)
 	# todo	// TODO: .i cadga ma  .i na morji
 	#define	zts_id_t0	t0
 	// | metfo: andi t0,   a1,     0xFFF
 	//
 	// li	t0,	0xFFF	// 2c
 	// andi	zts_id_t0,	a1,	0xFFF	// 1c
-	slli	t0,	a1,	4 * (8 - 3)	// 1c
-	srli	zts_id_t0,	t0,	4 * (8 - 3)	// 1c
+	BFEXTR(zts_id_t0, a1, SIVNI_A1_SID_BIT, SIVNI_A1_SID_S) // (1 + 1)c
 	#define	zts_j_t1	t1
 	la	t2,	sanceListe
 	sh2add	zts_j_t1,	t2,	zts_id_t0
@@ -622,8 +628,7 @@ zgitci_frob_damri_sha:
 	lw	sha_t0,	CUR_SHA_OFFSET(vrc_s0)
 
 	#define	nlev_t2	t2
-	srli	t2,	a2,	SIVNI_A2_NLEV_BIT
-	andi	nlev_t2,	t2,	0b11
+	BFEXTR(t2, a2, SIVNI_A2_NLEV_BIT, 2)
 	clz	t1,	curval_a5
 	add	t1,	t1,	nlev_t2
 	srl	sha_t0,	sha_t0,	t1
@@ -633,6 +638,9 @@ zgitci_frob_damri_sha:
 	// | TODO: .i xu cadga fa lo nu frica
 	bexti	t1,	sha_t0,	0	// temp
 	beqz	t1,	zgitci_frob_damri_sha_jdika
+
+	/* DROP t1 */
+
 	add	curval_a5,	curval_a5,	sha_t0
 	j	zgitci_frob_damri_sha_min
 zgitci_frob_damri_sha_jdika:
@@ -664,7 +672,7 @@ zgitci_frob_damri_cusku:
  */
 zgitci_frob_check_pio:
 	#define	SIVNI_A2_PIOIDX_BIT	(4 + 1)
-	#define	SIVNI_A2_PIOIDX_MASK	0b11
+	#define	SIVNI_A2_PIOIDX_S	2
 	/* a0 `elem` [0x00010001, 0x00010002]? */
 	// | metfo: addi	t0,	a0,	-0x00010001
 	bclri	t0,	a0,	4*4
@@ -675,8 +683,7 @@ zgitci_frob_check_pio:
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t1,	IO_BANK0_BASE + 4
 	sh3add	t0,	t1,	zgitci_a4
-	srli	t1,	a2,	SIVNI_A2_PIOIDX_BIT
-	andi	t1,	t1,	SIVNI_A2_PIOIDX_MASK
+	BFEXTR(t1, a2, SIVNI_A2_PIOIDX_BIT, SIVNI_A2_PIOIDX_S)
 	addi	t1,	t1,	6	// p590 DS; pio0 = 6
 	sw	t1,	(t0)
 zgitci_frob_check_pio_gpio_post:
@@ -733,7 +740,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	sw	t3,	0xC(t6)
 
-	/* DROP t[345] */
+	/* DROP t[3456] */
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
@@ -803,6 +810,8 @@ zgitci_frob_c000_sutra:
 zgitci_frob_c000_sutra_lupe:
 	/* DROP t[0-7] */
 
+	/* TODO: .i xu cadga fa tu'a la'oi .FAMVLA. */
+
 	lw	t0,	(judri_s2)
 	addi	judri_s2,	judri_s2,	4
 
@@ -871,22 +880,23 @@ zgitci_frob_c000_denpa:
  * ?
  */
 zgitci_frob_deaf_xosc:
-	#define	SIVNI_X1_BIT	1 + 4 * 3
+	#define	SIVNI_A2_ST_BIT	0
+	#define	SIVNI_A2_ST_S	(3 * 4)
+	#define	SIVNI_A2_X1_BIT	1 + 4 * 3
 	li	t0,	0xDEAF0000
 	bne	a0,	t0,	zgitci_frob_deaf_bixygau
 
 	sh	t0,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
 
-	bexti	t0,	a2,	SIVNI_X1_BIT	// temp
-	beqz	t0,	zgitci_frob_deaf_xosc_post
+	bexti	t0,	a2,	SIVNI_A2_X1_BIT	// temp
+	beqz	t0,	zgitci_frob_deaf_xosc_fanmo
 
-	// metfo: #define	SIVNI_ST_MASK	0x00000FFF
-	//        andi	t1,	a2,	SIVNI_ST_MASK
-	slli	t1,	a2,	4 * (8 - 3)
-	srli	t1,	t1,	4 * (8 - 3)
+	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
+	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
+	BFEXTR(t1, a2, SIVNI_A2_ST_BIT, SIVNI_A2_ST_S)
 	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
 	sw	t1,	(t0)
-zgitci_frob_deaf_xosc_post:
+zgitci_frob_deaf_xosc_fanmo:
 	ret
 
 /*
@@ -906,11 +916,12 @@ zgitci_frob_deaf_bixygau:
 	bne	t0,	a0,	zgitci_frob_deaf_setsivni
 
 	#define	judri0_t0	t0
-	#define	A1_SIVNI_JUDRIP_OFFSET	4
+	#define	A1_SIVNI_JUDRIP_BIT	4
+	#define	A1_SIVNI_JUDRIP_S	(7 * 4)
 	#define	A1_SIVNI_FLASH_BIT	1
 	#define	A1_SIVNI_REMOI_BIT	3
 
-	srli	t0,	a1,	A1_SIVNI_JUDRIP_OFFSET
+	srli	t0,	a1,	A1_SIVNI_JUDRIP_BIT
 
 	// metfo: ga naja co'e gi...
 	//        addi	t0,	t0,	0x10000000
@@ -921,6 +932,8 @@ zgitci_frob_deaf_bixygau:
 	slli	t1,	t1,	28	// 0x10000000 = (1<<28)
 	// | .i jinvi le du'u jai filri'a tu'a lo me'oi .offset. kei joi le du'i baitni li bi fa loi re zgitci co'e
 	sh3add	judri0_t0,	t1,	t0
+
+	/* DROP t1 */
 
 	sw	a2,	0(judri0_t0)
 	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
@@ -959,14 +972,14 @@ zgitci_frob_deaf_setsivni:
 	sw	a2,	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 zgitci_frob_deaf_setsivni_i2:
 	bexti	t0,	a1,	A1_SIVNI_ENABLE_BIT_1
-	beqz	t0,	zgitci_frob_deaf_setsivni_post
+	beqz	t0,	zgitci_frob_deaf_setsivni_fanmo
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	bexti	t0,	a1,	A1_SIVNI_OFFSET_BIT_1
 	//
 	addi	t0,	t0,	CUR_ZGITCI_SIVNI_OFFSET + 2	// .i jinvi le du'u filri'a tu'a lo ci moi je lo vo moi
 	sh2add	t0,	vrc_s0,	t0
 	sw	a3,	(4 * (CUR_ZGITCI_SIVNI_OFFSET + 2))(t0)
-zgitci_frob_deaf_setsivni_post:
+zgitci_frob_deaf_setsivni_fanmo:
 	ret
 
 /* SLURP
@@ -983,18 +996,21 @@ zgitci_frob_deaf_setsivni_post:
  */
 zgitci_frob_slurp:
 	// TODO: .i xu mapti  .i simlu fi vy fe le ka ce'u sampu
-	#define	ram_j_a1	a1
-	#define	temuvdu_j_a2	a2
-
-	#define	A2_SIVNI_DMA_BIT	(5 * 4)
 
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_sw
 
+	#define	ram_j_a1	a1
+	#define	temuvdu_j_a2	a2
+
+	#define	A2_SIVNI_NIBARDA_BIT	0
+	#define	A2_SIVNI_NIBARDA_S	(5 * 4)
+	#define	A2_SIVNI_DMA_BIT	(A2_SIVNI_NIBARDA_BIT + A2_SIVNI_NIBARDA_S)
+	#define	A2_SIVNI_DMA_S	4
+
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
-	srli	t2,	a3,	A2_SIVNI_DMA_BIT
-	andi	dma_idx_t2,	t2,	0xF
+	BFEXTR(t2, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
@@ -1004,8 +1020,7 @@ zgitci_frob_slurp:
 
 	sw	ram_j_a1,	 (DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
-	slli	t1,	a3,	4 * (8 - 5)
-	srli	t1,	t1,	4 * (8 - 5)
+	BFEXTR(t1, a3, A2_SIVNI_NIBARDA_BIT, A2_SIVNI_NIBARDA_S)
 	sw	t1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_j_t0)
 
 	#define	DMA_CTRL_DATA_SIZE_WORD	(0x2 << 2)
@@ -1027,7 +1042,7 @@ zgitci_frob_slurp:
  */
 zgitci_frob_sw:
 	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_sutcmaci
 
 	#define	judri_a1	a1
 	#define	data_a2	a2
@@ -1039,6 +1054,182 @@ zgitci_frob_sw:
 	jal	vrici_frob
 zgitci_frob_sw_post:
 	ret
+
+/* QUICK MATHS
+ * .i la .varik. cu jinvi le du'u ko'a goi le cmalu proga cu jai filri'a lo nu sampla lo cnino fi'o te zbasu lo zasti  .i ku'i la .varik. cu kajde fi zo'e joi le su'u vo'a jinvi le du'u ko'a jai filri'a lo ckape  .i ku'i la .varik. cu jinvi le du'u cumki fa lo nu mruli lo dinko ja lo stedu
+ *
+ * [0xDEAF00004]
+ *
+ * [?: 0xXXXXX][sectaipe: 0xXXX]
+ *
+ * [sivni]
+ *
+ * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
+ * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
+ *   .i ji'a...
+ *   TODO: .i ma mapti tu'a lo lidne je datni
+ */
+zgitci_frob_sutcmaci:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_handoff
+
+	/* DROP [at]0 */
+
+	#define	SIVNI_A1_SECTAIPE_BIT	0
+	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
+	#define	SIVNI_A3_TEMUVDU_BIT	0
+	#define	SIVNI_A3_TEMUVDU_S	(4 * 3)
+	#define	SIVNI_A3_SEMUVDU_BIT	(SIVNI_A3_TEMUVDU_BIT + SIVNI_A3_TEMUVDU_S)
+	#define	SIVNI_A3_SEMUVDU_S	(4 * 3)
+	#define	SIVNI_A3_NIBARDA_BIT	(SIVNI_A3_SEMUVDU_BIT + SIVNI_A3_SEMUVDU_S)
+	#define	SIVNI_A3_NIBARDA_S	(4 * 2)
+
+	#define	sectaipe_t0	t0
+	#define	SIVNI_SECTAIPE_NILZILCMI	8
+	BFEXTR(t0, a1, SIVNI_A1_SECTAIPE_BIT, SIVNI_A1_SECTAIPE_S)
+	//
+	li	t1,	SIVNI_SECTAIPE_NILZILCMI
+	sltu	t1,	t0,	t1
+	// | .i jinvi le du'u mapti fa lo nu na'e zukte pe'a
+	// va'o lo nu lo namcu na jai .indika
+	mul	sectaipe_t0,	t0,	t1
+
+	/* DROP t[1-6] a[5-7] */
+.sumji:
+	/*
+	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
+	 *
+	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
+	 */
+
+	#define	sesumjiX_a7	a7
+	#define	clip_a5	a5
+	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
+	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
+	#define SIVNI_A2_SLLI_BIT	0
+	#define SIVNI_A2_SLLI_S	(4 + 1)
+	#define	SIVNI_A2_BIT_NIBARDA_BIT	(SIVNI_A2_SLLI_BIT + SIVNI_A2_SLLI_S)
+	#define SIVNI_A2_BIT_NIBARDA_S	(4 + 1)
+	#define	SIVNI_A2_DIFF_BIT	(SIVNI_A2_BIT_NIBARDA_BIT + SIVNI_A2_BIT_NIBARDA_S)
+	#define	SIVNI_A2_DIFF_S	2
+	#define	SIVNI_A2_DIR0_BIT	(SIVNI_A2_DIFF_BIT + SIVNI_A2_DIFF_S)
+	#define	SIVNI_A2_DIR1_BIT	(1 + SIVNI_A2_DIR0_BIT)
+
+	la	t1,	.s_ops
+	sh2add	t0,	t1,	sectaipe_t0
+	lw	t1,	0(t0)
+	la	t0,	.sumji_lupe_op
+	sw	t1,	0(t0)
+	fence.i
+
+	/* DROP t[01] */
+
+	#define	slli_t0	t0
+	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
+
+	#define	bit_nibarda_a5	a5
+	BFEXTR(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
+	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
+	bset	a5,	x0,	a5
+	addi	a5,	a5,	-1
+	sll	clip_a5,	a5,	slli_t0
+	#undef bit_nibarda_a5
+
+	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_a7,	a7,	slli_t0
+	#undef slli_t0
+
+	/* DROP t0 a1 */
+
+	#define	vrcX_a0	a0
+	#define	lwd_j_a0	a0
+	#define	swd_j_a1	a1
+	sh2add	vrcX_a0,	vrc_s0,	zgitci_a4
+
+	/* DROP a4 */
+
+	#define	sezvati_t5	t5
+	#define	cur_j_a1	a1
+	lw	cur_j_a1,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
+	#undef	vrcX_a0
+	#undef	sezvati_t5
+
+	/* DROP a0 t[245] */
+
+	#define	SIVNI_KANJI_DJ(destR,piljiR,offsetR,muvdu_bit,muvdu_s,dirbit) \
+		BFEXTR(offsetR, a3, muvdu_bit, muvdu_s);\
+		\
+		bexti	piljiR,	a2,	dirbit;\
+		slli	piljiR,	piljiR,	3;\
+		addi	piljiR,	piljiR,	-4;\
+		mul	offsetR,	offsetR,	piljiR;\
+		add	destR,	cur_j_a1,	offsetR
+
+	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
+	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
+
+	#undef	SIVNI_KANJI_DJ
+
+	/* DROP t[0-6] */
+
+	#define	offset_t2	t2
+	BFEXTR(t2, a2, SIVNI_A2_DIFF_BIT, SIVNI_A2_DIFF_S)
+	addi	offset_t2,	t2,	2	// lw align
+
+	#define	max_a3	a3
+	// | .i romoi  .i jinvi le du'u zo'e ja la'oi .andi. na jai sarcu
+	srli	a3,	a3,	SIVNI_A3_NIBARDA_BIT
+	sll	a3,	a3,	offset_t2
+	//
+	add	max_a3,	lwd_j_a0,	a3
+
+	#define	diff_a4	a4
+	bset	diff_a4,	x0,	offset_t2
+	#undef	offset_t2
+
+	/* DROP t[0-6] */
+.sumji_lupe:
+	lw	t0,	0(lwd_j_a0)
+
+	add	lwd_j_a0,	lwd_j_a0,	diff_a4
+	add	swd_j_a1,	swd_j_a1,	diff_a4
+
+.sumji_lupe_op:
+	.option norvc
+	add	t1,	t0,	sesumjiX_a7
+	.option rvc
+	and	t1,	t1,	clip_a5
+	andn	t0,	t0,	clip_a5
+	or	t0,	t0,	t1
+	//
+	sw	t0,	(-4)(swd_j_a1)
+
+	blt	lwd_j_a0,	max_a3,	.sumji_lupe
+
+	#undef	diff_a4
+	#undef	max_a3
+	#undef	lwd_j_a0
+	#undef	swd_j_a1
+
+	/* DROP t[0-6] */
+
+	ret
+.s_ops:
+	#define	SIVNI_SOPS_X3(op)	op	t1,	t0,	sesumjiX_a7
+	#define	SIVNI_SOPS_X2(op)	op	t1,	sesumjiX_a7
+	.option norvc
+	nop	// 0
+	SIVNI_SOPS_X3(add)
+	SIVNI_SOPS_X3(sub)
+	SIVNI_SOPS_X3(mul)
+	SIVNI_SOPS_X3(div)
+	SIVNI_SOPS_X3(rem)
+	SIVNI_SOPS_X2(mv)
+	SIVNI_SOPS_X3(xor)
+	.option rvc
+	#undef	SIVNI_SOPS_X3
+	#undef	SIVNI_SOPS_X2
+	#undef	sesumjiX_a7
 
 /*
  * LE RE MOI BE LE'I BIXYGAU PE'A FANCU
@@ -1054,6 +1245,32 @@ zgitci_frob_sw_post:
  *
  * [vrc: 0xXXXXXXXX]
  */
+
+/* HANDOFF
+ * .i la .varik. cu jinvi le du'u cumki fa lo nu mapti lo co'e ja mutce be lo ka ce'u pluja
+ *
+ * 0xDEAF0006
+ *
+ * [sivni]
+ *
+ * [sivni]
+ *
+ * [judri1]
+ *
+ */
+zgitci_frob_handoff:
+	addi	t0,	t0,	2
+	bne	t0,	a0,	zgitci_frob_nope
+
+	addi	sp,	sp,	-4
+	sw	ra,	0(sp)
+
+	jalr	a3
+
+	lw	ra,	0(sp)
+	addi	sp,	sp,	4
+
+	ret
 
 /*
  * NOPE.AVI
@@ -1172,19 +1389,21 @@ vrici_frob_denpaWfi:
 	sh	t1,	0(t0)
 	fence.i
 	ret
-/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin:0bXXXXX] */
+/* [0x00][0xXXXX][0bX][init: 0bX][val: 0bX][pin: 0bXXXXX] */
 vrici_frob_sio:
 	#define	SIVNI_VALUE_BIT	5
 	#define	SIVNI_INIT_BIT	(1 + SIVNI_VALUE_BIT)
+	#define	SIVNI_A5_PIN_BIT	0
+	#define	SIVNI_A5_PIN_S	5
 	#define	pin_t0	t0
 	#define	sio_j_t1	t1
 	#define	temp_t2	t2
 	#define	gpio_j_t2	t2
 	#define	pinmask_t3	t3
 
-	andi	pin_t0,	a5,	(1<<5) - 1
+	andi	pin_t0,	a5,	(1<<SIVNI_A5_PIN_S) - 1
 	li	sio_j_t1,	SIO_BASE
-	bset	pinmask_t3,	x0,	pin_t0	// temp
+	bset	pinmask_t3,	x0,	pin_t0
 
 	bexti	temp_t2,	a5,	SIVNI_INIT_BIT
 	beqz	temp_t2,	vrici_frob_sio_post_init
@@ -1194,14 +1413,16 @@ vrici_frob_sio:
 
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t2,	IO_BANK0_BASE + 4
-	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 2 ^ 3
+	sh3add	gpio_j_t2,	t2,	pin_t0	// 8 = 1<<3
 	li	t5,	5	// SIO fn
 	sw	t5,	0(gpio_j_t2)
 
-	/* DROP t[25] */
+	/* DROP t[025] */
 
 	sw	pinmask_t3,	GPIO_OE_SET_OFFSET(sio_j_t1)
 vrici_frob_sio_post_init:
+	/* DROP t[02456] */
+
 	binvi	temp_t2,	a5,	SIVNI_VALUE_BIT
 	sh3add	sio_j_t1,	sio_j_t1,	temp_t2	// 8 = GPIO_OUT_CLR_OFFSET - GPIO_OUT_SET_OFFSET
 
