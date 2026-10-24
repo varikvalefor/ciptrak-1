@@ -761,8 +761,6 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
 zgitci_frob_c000_mv_cont:
-	/* DROP t[3-6] */
-
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
 	#undef	sezvati_a2
