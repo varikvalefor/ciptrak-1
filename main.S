@@ -750,7 +750,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	#define	ctr2_t4	t4
 	srli	vrici_a3_t3,	a3,	16
 	addi	ctr2_t4,	ctr_t2,	-1
-	// pack	vrici_a3_t3,	vrici_a3_t3,	ctr2_t4	// mv OIQqIiSz
+	// pack	t3,	vrici_a3_t3,	ctr2_t4	// mv OIQqIiSz
 
 	add	t5,	judri_t1,	sezvati_t0
 	lw	t6,	(t5)
