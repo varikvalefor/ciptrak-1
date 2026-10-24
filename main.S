@@ -802,13 +802,15 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
-	srli	t3,	a3,	16
+	#define	a3_vrici_t3	t3
+	srli	a3_vrici_t3,	a3,	16
 	addi	t4,	ctr_t2,	-1
-	// pack	t3,	t3,	t4	// mv OIQqIiSz
+	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 
 	add	t5,	judri_j_t1,	sezvati_j_t0
 	lw	t6,	(t5)
-	pack	t3,	t3,	t4	// OIQqIiSz.  lw opt
+	pack	t3,	a3_vrici_t3,	t4	// OIQqIiSz.  lw opt
+	#undef	a3_vrici_t3
 
 	sw	t3,	0xC(t6)
 
