@@ -809,12 +809,12 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 
 	add	t5,	judri_j_t1,	sezvati_j_t0
-	lw	t6,	(t5)
+	lw	t5,	(t5)
 	pack	t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
 	#undef	ctr2_t4
 
-	sw	t3,	0xC(t6)
+	sw	t3,	0xC(t5)
 
 	/* DROP t[3456] */
 
