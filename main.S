@@ -746,7 +746,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
-	srli	t3,	a3,	16	// TODO: .i xu li pa xa mapti
+	srli	t3,	a3,	16
 	addi	t4,	ctr_t2,	-1
 	// pack	t3,	t3,	t4	// mv OIQqIiSz
 
