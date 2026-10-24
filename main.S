@@ -798,6 +798,7 @@ zgitci_frob_c000_mv_frob:
 
 	lw	jszx_j_a5,	4(sp)
 .selidne:
+	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 	sltu	t1,	t0,	famvla_t1
 	#undef	famvla_t1
@@ -808,7 +809,7 @@ zgitci_frob_c000_mv_frob:
 
 	/* TODO: .i xu cadga fa lo da'i nu bixygau pe'a lo me'oi .pattern. judri namcu */
 
-	lw	ra,	0(sp)
+	// lw	ra,	0(sp)	// mv NdICeQJh
 	addi	sp,	sp,	8
 
 	ret
