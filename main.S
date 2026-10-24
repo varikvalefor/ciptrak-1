@@ -805,6 +805,9 @@ zgitci_frob_c000_mv_frob:
 
 	addi	t0,	t0,	4 * 4
 	mul	t0,	t0,	t1
+
+	/* DROP t1 */
+`
 	sw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
 
 	/* TODO: .i xu cadga fa lo da'i nu bixygau pe'a lo me'oi .pattern. judri namcu */
