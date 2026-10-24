@@ -732,7 +732,7 @@ zgitci_frob_c000_mv:
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	szx_j_a5	t0
+	#define	szx_j_a5	a5
 	sh2add	szx_j_a5,	vrc_s0,	zgitci_a4
 	#define	sezvati_t0	t0
 	#define	judri_t1	t1
