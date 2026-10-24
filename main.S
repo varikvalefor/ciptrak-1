@@ -802,6 +802,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
+	#define	note_j_t5	t5
+
 	#define	a3_vrici_t3	t3
 	#define	ctr2_t4	t4
 	srli	a3_vrici_t3,	a3,	16
@@ -809,12 +811,13 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 
 	add	t5,	judri_j_t1,	sezvati_j_t0
-	lw	t5,	(t5)
+	lw	note_j_t5,	(t5)
 	pack	t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
 	#undef	ctr2_t4
 
-	sw	t3,	0xC(t5)
+	sw	t3,	0xC(note_j_t5)
+	#undef	note_j_t5
 
 	/* DROP t[3456] */
 
