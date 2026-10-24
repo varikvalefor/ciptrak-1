@@ -732,12 +732,12 @@ zgitci_frob_c000_mv:
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	jszx_j_a5	t0
-	sh2add	jszx_j_a5,	vrc_s0,	zgitci_a4
+	#define	szx_j_a5	t0
+	sh2add	szx_j_a5,	vrc_s0,	zgitci_a4
 	#define	sezvati_t0	t0
 	#define	judri_t1	t1
-	lw	judri_t1,	(4 * CUR_PATN_JUDRI_OFFSET)(jszx_j_a5)
-	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	lw	judri_t1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
+	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
@@ -763,8 +763,8 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 zgitci_frob_c000_mv_cont:
 	/* DROP t[3-6] */
 
-	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
-	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(jszx_j_a5)
+	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
 
 	/* DROP t[01] a[12] */
 
@@ -802,7 +802,7 @@ zgitci_frob_c000_mv_frob:
 
 	#define	sezvati_t0	t0
 	#define	cnino_sezvati_t0	t0
-	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
@@ -812,7 +812,7 @@ zgitci_frob_c000_mv_frob:
 
 	/* DROP t1 */
 `
-	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(jszx_j_a5)
+	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	#undef	cnino_sezvati_t0
 
 	/* TODO: .i xu cadga fa lo da'i nu bixygau pe'a lo me'oi .pattern. judri namcu */
