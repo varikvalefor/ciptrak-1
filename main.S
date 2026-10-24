@@ -510,6 +510,7 @@ zgitci_frob_1_pwm_csr:
 zgitci_frob_1_pwm_idx:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	slli	t0,	zgitci_a4,	2
+	add	t0,	t0,	vrc_s0
 	#define	ZGITCI_SIVNI_J_T0	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 	lw	t1,	ZGITCI_SIVNI_J_T0
 	addi	t1,	t1,	1
