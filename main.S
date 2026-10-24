@@ -819,7 +819,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	sw	t3,	0xC(note_j_t5)
 	#undef	note_j_t5
 
-	/* DROP t[3456] */
+	/* DROP t[345] */
 
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
