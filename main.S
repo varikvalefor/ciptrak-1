@@ -804,6 +804,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	#define	note_j_t5	t5
 
+	/* metfo: t3 = [a3_vrici][ctr - 1] */
 	#define	a3_vrici_t3	t3
 	#define	ctr2_t4	t4
 	srli	a3_vrici_t3,	a3,	16
