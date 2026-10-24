@@ -543,8 +543,6 @@ zgitci_frob_1_pwm_csr:
 	# TODO
 	# ???
 
-	/* ni'o la .varik. na te cadga fi tu'a lo me'oi .DIV. */
-
 zgitci_frob_1_pwm_idx:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	slli	t0,	zgitci_a4,	2
