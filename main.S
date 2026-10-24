@@ -552,6 +552,8 @@ zgitci_frob_1_pwm_idx:
 	sw	t1,	ZGITCI_SIVNI_J_T0
 	#undef	ZGITCI_SIVNI_J_T0
 
+	/* DROP t[10] */
+
 	ret
 /*
  * SANCE DATNYVEI PE'A
