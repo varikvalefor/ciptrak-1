@@ -459,6 +459,7 @@ zgitci_frob_1_pwm_gpioctrl:
 	add	gpio_ctrl_j_t0,	t0,	t1
 	li	t1,	IO_BANK0_GPIO_CTRL_FUNCSEL_PWM_A_0
 	sw	t1,	(gpio_ctrl_j_t0)
+	#undef	gpio_ctrl_j_t0
 zgitci_frob_1_pwm_div:
 	/* DROP t[0-6] */
 
