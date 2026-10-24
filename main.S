@@ -743,7 +743,7 @@ zgitci_frob_c000_mv:
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
 zgitci_frob_c000_mv_cont_cnino_ctr:
-	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
+	// .i rinka lo nu binxo pe'a fa lo me'oi .note. fe lo mleca be fi tu'a lo namcu co su'u rapli
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
 	srli	t3,	a3,	16
