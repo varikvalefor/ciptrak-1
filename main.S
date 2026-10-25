@@ -1396,7 +1396,7 @@ vrici_frob:
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	(1 << SIVNI_A5_KLESI_S) - 1
 	li	t1,	SIVNI_NILZILCMI
-	ble	klesi_t0,	t1,	vrici_frob_dispatch
+	ble	klesi_t0,	t1,	vrici_frob_dispatch_pre
 	ret
 
 	#undef	SIVNI_NILZILCMI
