@@ -204,7 +204,7 @@ main_lupe_reset_temci:
 	addi	temci_t0,	t0,	1
 	sw	temci_t0,	CUR_TEMCI_OFFSET(vrc_s0)
 
-	/* DROP a[01234567] t[1-6] */
+	/* DROP a[0-7] t[1-6] */
 
 main_lupe_sha:
 	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
