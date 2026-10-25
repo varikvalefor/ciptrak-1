@@ -1474,6 +1474,7 @@ vrici_frob_jog:
 	mul	t1,	datni_a5,	t1	// s/add/sub/?
 	add	sezvati_t2,	sezvati_t2,	t1
 	sw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
+	#undef	sign_t1
 
 	ret
 // | TODO: .i xu mapti
