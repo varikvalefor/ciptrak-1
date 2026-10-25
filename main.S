@@ -1102,6 +1102,8 @@ zgitci_frob_slurp:
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
 
+	/* DROP t2 */
+
 	sw	temuvdu_j_a2,	(dma_read_j_t0)
 	#undef	temuvdu_j_a2
 
