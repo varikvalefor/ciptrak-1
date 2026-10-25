@@ -1463,6 +1463,9 @@ vrici_frob_jog:
 	bexti	sign_t1,	datni_a5,	SIVNI_SIGN_BIT
 	bclri	datni_a5,	datni_a5,	SIVNI_SIGN_BIT
 
+	/*
+	 * metfo: swi	SEZVATI + ((sign*2)-1),	(SEZVATI_J)
+	 */
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
 	slli	t1,	sign_t1,	1
