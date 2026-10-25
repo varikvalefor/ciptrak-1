@@ -1099,15 +1099,15 @@ zgitci_frob_slurp:
 	 *        DROP t2
 	 */
 	#define	dma_read_j_t0	t0
-	#define	dma_idx_t2	t2
-	BFEXTR(dma_idx_t2, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
+	#define	dma_idx_t1	t1
+	BFEXTR(dma_idx_t1, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
-	add	dma_read_j_t0,	t0,	t2
-	#undef	dma_idx_t2
+	slli	t1,	dma_idx_t2,	6	// * 64 = * 0x40
+	add	dma_read_j_t0,	t0,	t1
+	#undef	dma_idx_t1
 
-	/* DROP t2 */
+	/* DROP t1 */
 
 	sw	temuvdu_j_a2,	(dma_read_j_t0)
 	#undef	temuvdu_j_a2
