@@ -1101,6 +1101,7 @@ zgitci_frob_slurp:
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
 	slli	t2,	dma_idx_t2,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t2
+	#undef	dma_idx_t2
 
 	/* DROP t2 */
 
