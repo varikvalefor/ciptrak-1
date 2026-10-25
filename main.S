@@ -1096,6 +1096,7 @@ zgitci_frob_slurp:
 
 	/*
 	 * metfo: t0 = DMA_BASE + 0x40 * DMAIDX
+	 *        DROP t2
 	 */
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
