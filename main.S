@@ -1516,9 +1516,10 @@ vrici_frob_sio:
 
 	bexti	temp_t2,	a5,	SIVNI_INIT_BIT
 	beqz	temp_t2,	vrici_frob_sio_post_init
-	// TODO: .i xu banuzka
 
 	/* DROP t2 */
+
+	// TODO: .i xu banuzka
 
 	#define	gpio_j_t2	t2
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
