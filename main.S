@@ -1521,6 +1521,9 @@ vrici_frob_sio:
 
 	// TODO: .i xu banuzka
 
+	/*
+	 * metfo:	swi	5,	IO_BANK0_GPIOx_CTRL(pin_t0)
+	 */
 	#define	gpio_j_t2	t2
 	// se morji:	IO_BANK0_GPIOx_CTRL(x)	0x004 + 0x008 * x
 	li	t2,	IO_BANK0_BASE + 4
