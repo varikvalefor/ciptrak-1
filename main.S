@@ -1094,6 +1094,9 @@ zgitci_frob_slurp:
 	#define	A2_SIVNI_DMA_BIT	(A2_SIVNI_NIBARDA_BIT + A2_SIVNI_NIBARDA_S)
 	#define	A2_SIVNI_DMA_S	4
 
+	/*
+	 * metfo: t0 = DMA_BASE + 0x40 * DMAIDX
+	 */
 	#define	dma_read_j_t0	t0
 	#define	dma_idx_t2	t2
 	BFEXTR(dma_idx_t2, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
