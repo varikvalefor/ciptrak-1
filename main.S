@@ -1454,7 +1454,8 @@ vrici_frob_0:
 	ret
 /* | [0x00][sign: 0bX] [rJudri: 0bXXX 0xXXXXX] */
 vrici_frob_jog:
-	#define	SIVNI_SIGN_BIT	23
+	#define	SIVNI_A5_RJUDRI_S	(3 + 5 * 4)
+	#define	SIVNI_SIGN_BIT	SIVNI_A5_RJUDRI_S
 	#define	ztx_j_t0	t0
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	sh2add	ztx_j_t0,	vrc_s0,	zgitci_a4
