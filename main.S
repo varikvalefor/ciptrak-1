@@ -1464,7 +1464,7 @@ vrici_frob_jog:
 	bclri	datni_a5,	datni_a5,	SIVNI_SIGN_BIT
 
 	/*
-	 * metfo: swi	SEZVATI + ((sign*2)-1),	(SEZVATI_J)
+	 * metfo: swi	SEZVATI (+/-) datni_a5,	(SEZVATI_J)
 	 */
 	#define	sezvati_t2	t2
 	lw	sezvati_t2,	(4 * CUR_PATN_SEZVATI_OFFSET)(ztx_j_t0)
