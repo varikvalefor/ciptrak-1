@@ -169,13 +169,15 @@ main_init_periph:
 	/* DROP t[0-2] */
 
 main_init_gpio:
+	#define	gpio_max_t2	t2
 	li	t1,	1 << PADS_BANK0_ISO_BIT
 	li	t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
-	addi	t2,	t0,	4 * 32
+	addi	gpio_max_t2,	t0,	4 * 32
 .lupe:
 	addi	t0,	t0,	4
 	sw	t1,	0(t0)
-	blt	t0,	t2,	.lupe
+	blt	t0,	gpio_max_t2,	.lupe
+	#undef	gpio_max_t2
 
 	/* DROP t[0-2] */
 
