@@ -122,6 +122,8 @@ main:
 	.word 0xAB123579
 
 main_init:
+	// ni'o la .varik. na te cadga fa lo nu me'oi .unroll. lo tolsti co'e
+	// .i la .varik. cu jinvi le du'u na sarcu lo nu sutra kei fo zo'e joi le du'u na rapli pe'a noi vo'a jinvi ke'a
 main_init_oe:
 	# .i curmi tu'a lo dikca
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
