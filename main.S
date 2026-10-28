@@ -1245,8 +1245,6 @@ zgitci_frob_sutcmaci:
 	/* DROP t0 a1 */
 
 	#define	vrcX_a0	a0
-	#define	lwd_j_a0	a0
-	#define	swd_j_a1	a1
 	sh2add	vrcX_a0,	vrc_s0,	zgitci_a4
 
 	/* DROP a4 */
@@ -1271,6 +1269,9 @@ zgitci_frob_sutcmaci:
 		addi	piljiR,	piljiR,	-4;\
 		mul	offsetR,	offsetR,	piljiR;\
 		add	destR,	cur_j_a1,	offsetR
+
+	#define	lwd_j_a0	a0
+	#define	swd_j_a1	a1
 
 	SIVNI_KANJI_DJ(lwd_j_a0, t2, t4, SIVNI_A3_TEMUVDU_BIT, SIVNI_A3_TEMUVDU_S, SIVNI_A2_DIR0_BIT)
 	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
