@@ -529,6 +529,8 @@ zgitci_frob_1_pwm_div_sampu:
 zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
 	sw	div_t0,	SIVNI_DIV_OFFSET(pwm_j_t3)
+
+	/* DROP t[012456] */
 zgitci_frob_1_pwm_post:
 	#undef	div_t0
 
