@@ -1557,6 +1557,7 @@ vrici_frob_sio:
 	li	t5,	5	// SIO fn
 	sw	t5,	0(gpio_j_t2)
 	#undef	gpio_j_t2	t2
+	#undef	pin_t0
 
 	/* DROP t[025] */
 
