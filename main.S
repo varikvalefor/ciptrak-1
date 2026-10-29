@@ -519,8 +519,6 @@ zgitci_frob_1_pwm_div_slilu:
 	add	div0_t4,	div0_t4,	t2
 	sh	div0_t4,	SIVNI_DIV_OFFSET(pwm_j_t3)
 
-	/* DROP t[012456] */
-
 	j	zgitci_frob_1_pwm_div_post
 zgitci_frob_1_pwm_div_sampu:
 	lw	t4,	SIVNI_DIV_OFFSET(pwm_j_t3)
@@ -529,12 +527,10 @@ zgitci_frob_1_pwm_div_sampu:
 zgitci_frob_1_pwm_div_sampu_zenba:
 	add	div_t0,	div_t0,	t4
 	sw	div_t0,	SIVNI_DIV_OFFSET(pwm_j_t3)
-
-	/* DROP t[012456] */
 zgitci_frob_1_pwm_div_post:
 	#undef	div_t0
 
-	/* DROP t0 */
+	/* DROP t[012456] */
 zgitci_frob_1_pwm_top:
 	#define	SIVNI_TOP_OFFSET	0x10
 	// metfo: andi	t0,	a2,	0xFFFF
