@@ -1536,6 +1536,7 @@ vrici_frob_sio:
 
 	#define	pin_t0	t0
 	andi	pin_t0,	a5,	(1<<SIVNI_A5_PIN_S) - 1
+
 	li	sio_j_t1,	SIO_BASE
 	bset	pinmask_t3,	x0,	pin_t0
 
