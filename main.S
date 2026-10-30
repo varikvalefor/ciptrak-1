@@ -645,7 +645,7 @@ zgitci_frob_damri_sha:
 	/* DROP t[12] */
 
 	// | TODO: .i xu cadga fa lo nu frica
-	bexti	t1,	sha_t0,	0	// temp
+	bexti	t1,	sha_t0,	0
 	slli	t1,	t1,	1
 	addi	t1,	t1,	-1
 	mul	t1,	sha_t0,	t1
