@@ -1,4 +1,5 @@
+#define	X_VRICI_DENPA_OFFSET	1
 #define	X_VRICI_DENPA(i)\
-	1 + (i << (4 * 2))
+	X_VRICI_DENPA_OFFSET + (i << (4 * 2))
 #define	X_VRICI_J(i)\
 	(2 + (1 << (4 * 2))
