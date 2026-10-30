@@ -1120,43 +1120,6 @@ zgitci_frob_sutcmaci:
 	// va'o lo nu lo namcu na jai .indika
 	mul	sectaipe_t0,	t0,	t1
 
-	/* DROP t[1-6] a[5-7] */
-.sumji:
-	/*
-	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
-	 */
-
-	#define	sesumjiX_a7	a7
-	#define	clip_a5	a5
-	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
-	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
-
-	la	t1,	.s_ops
-	sh2add	t0,	t1,	sectaipe_t0
-	lw	t1,	0(t0)
-	la	t0,	.sumji_lupe_op
-	sw	t1,	0(t0)
-	fence.i
-
-	/* DROP t[01] */
-
-	#define	slli_t0	t0
-	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
-
-	#define	bit_nibarda_a5	a5
-	BFEXTR(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
-	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
-	bset	a5,	x0,	a5
-	addi	a5,	a5,	-1
-	sll	clip_a5,	a5,	slli_t0
-	#undef bit_nibarda_a5
-
-	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
-	sll	sesumjiX_a7,	a7,	slli_t0
-	#undef slli_t0
-
-	/* DROP t0 a1 */
-
 	#define	vrcX_a0	a0
 	#define	lwd_j_a0	a0
 	#define	swd_j_a1	a1
@@ -1206,6 +1169,41 @@ zgitci_frob_sutcmaci:
 	#define	diff_a4	a4
 	bset	diff_a4,	x0,	offset_t2
 	#undef	offset_t2
+
+	/* DROP t[1-6] a[5-7] */
+.sumji:
+	/*
+	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
+	 */
+
+	#define	sesumjiX_a7	a7
+	#define	clip_a5	a5
+	#define	SIVNI_A1_SESUMJI_BIT	(4 * 3)
+	#define	SIVNI_A1_SESUMJI_S	(4 * 5)
+
+	la	t1,	.s_ops
+	sh2add	t0,	t1,	sectaipe_t0
+	lw	t1,	0(t0)
+	la	t0,	.sumji_lupe_op
+	sw	t1,	0(t0)
+	fence.i
+
+	/* DROP t[01] */
+
+	#define	slli_t0	t0
+	andi	slli_t0,	a2,	(1 << SIVNI_A2_SLLI_S) - 1
+
+	#define	bit_nibarda_a5	a5
+	BFEXTR(bit_nibarda_a5, a2, SIVNI_A2_BIT_NIBARDA_BIT, SIVNI_A2_BIT_NIBARDA_S)
+	addi	a5,	bit_nibarda_a5,	1	// .i mapti tu'a li no
+	bset	a5,	x0,	a5
+	addi	a5,	a5,	-1
+	sll	clip_a5,	a5,	slli_t0
+	#undef bit_nibarda_a5
+
+	srli	a7,	a1,	SIVNI_A1_SESUMJI_BIT
+	sll	sesumjiX_a7,	a7,	slli_t0
+	#undef slli_t0
 
 	/* DROP t[0-6] */
 .sumji_lupe:
