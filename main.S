@@ -651,6 +651,8 @@ zgitci_frob_damri_sha:
 	mul	t1,	sha_t0,	t1
 	add	curval_a5,	curval_a5,	t1
 
+	/* DROP t1 */
+
 	min	curval_a5,	curval_a5,	x0
 
 	/* TODO: cusku pe'a */
