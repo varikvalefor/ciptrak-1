@@ -1174,6 +1174,8 @@ zgitci_frob_sutcmaci:
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
+	 *
+	 * a2.  [sivni: 0xXXXX 0bXX][na se pilno: 0xXXX 0bXX]
 	 */
 
 	#define	sesumjiX_a7	a7
