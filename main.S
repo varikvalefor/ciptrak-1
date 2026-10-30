@@ -1079,7 +1079,8 @@ zgitci_frob_sw_post:
  *
  * [?: 0xXXXXX][sectaipe: 0xXXX]
  *
- * [sivni]
+ *
+ * a2.  [sivni: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
  *
  * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
  * ^ ni'o xu banzuka le ka ce'u mapti tu'a lo barda
@@ -1115,8 +1116,6 @@ zgitci_frob_sutcmaci:
 .sumji:
 	/*
 	 * a1.  [sesumji: 0xXXXXX][na se pilno: 0xXXX]
-	 *
-	 * a2.  [?: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
 	 */
 
 	#define	sesumjiX_a7	a7
