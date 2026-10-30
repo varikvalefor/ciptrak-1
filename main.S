@@ -191,7 +191,6 @@ main_lupe_sha:
 	#define	sha256_a0	a0
 
 	// lw	t1,	CUR_SHA_EN(vrc_s0)	// mv xOrtNIYQ
-	li	t2,	1	// x48Xyorh.  lw opt
 	beqz	t1,	main_lupe_tcidu
 
 	li	sha256_a0,	SHA256_BASE
@@ -199,7 +198,7 @@ main_lupe_sha:
 	andi	t0,	temci_t0,	0xF
 	bnez	t0,	main_lupe_tcidu
 
-	// li	t2,	1	// .i mapti fa zo'e pe zo'oi .x48Xyorh.
+	li	t2,	1
 	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
 
 	// not (dma design)
@@ -636,18 +635,15 @@ zgitci_frob_damri_sha:
 	/* DROP t[12] */
 
 	// | TODO: .i xu cadga fa lo nu frica
-	bexti	t1,	sha_t0,	0	// temp
-	beqz	t1,	zgitci_frob_damri_sha_jdika
+	bexti	t1,	sha_t0,	0
+	slli	t1,	t1,	1
+	addi	t1,	t1,	-1
+	mul	t1,	sha_t0,	t1
+	add	curval_a5,	curval_a5,	t1
 
 	/* DROP t1 */
 
-	add	curval_a5,	curval_a5,	sha_t0
-	j	zgitci_frob_damri_sha_min
-zgitci_frob_damri_sha_jdika:
-	sub	curval_a5,	curval_a5,	sha_t0
-zgitci_frob_damri_sha_min:
 	min	curval_a5,	curval_a5,	x0
-zgitci_frob_damri_cusku:
 
 	/* TODO: cusku pe'a */
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
