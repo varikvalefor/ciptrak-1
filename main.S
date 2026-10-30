@@ -1079,7 +1079,6 @@ zgitci_frob_sw_post:
  *
  * [?: 0xXXXXX][sectaipe: 0xXXX]
  *
- *
  * a2.  [sivni: 0xXXXX 0bXX][dir: 0bXX][diff: 0bXX][bit_nibarda: 0xX 0bX][slli: 0xX 0bX]
  *
  * [nibarda: 0xXX][semuvdu_offset: 0xXXX][temuvdu_offset: 0xXXX]
