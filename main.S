@@ -227,12 +227,12 @@ main_lupe_sha:
 
 	/* DROP t0 */
 
-	#define	sha_akti_t2	t2
-	li	sha_akti_t2,	1
-	sw	t2,	SHA256_CSR_OFFSET(sha256_a0)
-	#undef	sha_akti_t2
+	#define	sha_akti_t0	t0
+	li	sha_akti_t0,	1
+	sw	t0,	SHA256_CSR_OFFSET(sha256_a0)
+	#undef	sha_akti_t0
 
-	/* DROP t2 */
+	/* DROP t0 */
 
 	// not (dma design)
 	#define	dma_base_a1	a1
