@@ -532,7 +532,7 @@ zgitci_frob_1_pwm_div_post:
 zgitci_frob_1_pwm_top:
 	#define	SIVNI_TOP_OFFSET	0x10
 	// metfo: andi	t0,	a2,	0xFFFF
-	//        sw	t0,	SIVNI_TOP_OFFSET(pwm_j_t3)
+	//        sh	t0,	SIVNI_TOP_OFFSET(pwm_j_t3)
 	sh	a2,	SIVNI_TOP_OFFSET(pwm_j_t3)
 zgitci_frob_1_pwm_csr:
 	/* ni'o vajni fa ma pe la'oi .CSR.
