@@ -822,12 +822,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	ret
 zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(sezvati_j_t0)
-<<<<<<< HEAD
-=======
-	sw	patn_a1,	(judri_j_t1)
 	#undef	sezvati_j_t0
-	#undef	judri_j_t1
->>>>>>> master
 
 	/* DROP t[01] */
 
