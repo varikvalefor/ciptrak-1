@@ -1280,6 +1280,7 @@ zgitci_frob_sutcmaci:
 	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
 
 	#undef	SIVNI_KANJI_DJ
+	#undef	cur_j_a1
 
 	/* DROP t[0-6] */
 
