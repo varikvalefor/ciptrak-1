@@ -1323,7 +1323,7 @@ zgitci_frob_sutcmaci:
 	#undef	lwd_j_a0
 	#undef	swd_j_a1
 
-	/* DROP t[0-6] */
+	/* DROP t[0-6] a[0-7] */
 
 	ret
 .s_ops:
