@@ -815,9 +815,9 @@ zgitci_frob_c000_mv_frob:
 	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	#undef	cnino_sezvati_t0
 
-	/* TODO: .i xu cadga fa lo da'i nu bixygau pe'a lo me'oi .pattern. judri namcu
-	 *
-	 * .i la .varik. na birti lo du'u xu kau frili cumki fa lo nu co'e ja djuno lo du'u lidne ma kau */
+	// .i la .varik. cu jinvi le du'u na mpati fa lo nu bixygau pe'a lo judri namcu kei kei
+	// fo zo'e joi le su'u vo'a jinvi le du'u lo fanmo be lo me'oi .pattern. cu jai rinka
+	// lo nu rapli pe'a
 
 	// lw	ra,	0(sp)	// mv NdICeQJh
 	addi	sp,	sp,	8
