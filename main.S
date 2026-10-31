@@ -814,6 +814,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	 *        t5 = judri + sezvati_j
 	 */
 	#define	a3_vrici_t3	t3
+	#define	cnino_vrici_t3	t3
 	#define	ctr2_t4	t4
 	srli	a3_vrici_t3,	a3,	16
 	addi	t4,	ctr2_t4,	-1
@@ -821,12 +822,13 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	//
 	add	t5,	judri_j_t1,	sezvati_j_t0
 	lw	note_j_t5,	(t5)
-	pack	t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
+	pack	cnino_vrici_t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
 	#undef	ctr2_t4
 
-	sw	t3,	0xC(note_j_t5)
+	sw	cnino_vrici_t3,	0xC(note_j_t5)
 	#undef	note_j_t5
+	#undef	cnino_vrici_t3
 
 	/* DROP t[345] */
 
