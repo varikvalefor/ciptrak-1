@@ -304,7 +304,7 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	beq	cur_sectaipe_t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
 	li	t6,	FAMVLA
-	bne	cur_sectaipe_t5,	t6,	main_lupe_tcidu_lupe_vimcu
+	bne	cur_sectaipe_t5,	t6,	main_lupe_tcidu_lupe_sivni0
 	#undef	cur_sectaipe_t5
 
 	/* DROP t[56] */
@@ -312,7 +312,7 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	mv	sezvati_t1,	x0
 	j	main_lupe_tcidu_lupe_co_barda_post_svlw
-main_lupe_tcidu_lupe_vimcu:
+main_lupe_tcidu_lupe_sivni0:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
