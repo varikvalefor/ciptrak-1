@@ -300,7 +300,7 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 
 	// lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 
-	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
+	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// NZwe53kb_2.  lw opt
 	beq	cur_sectaipe_t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
 	li	t6,	FAMVLA
