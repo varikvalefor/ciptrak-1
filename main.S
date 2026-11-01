@@ -233,7 +233,7 @@ main_lupe_sha:
 
 	#define	sha_akti_t0	t0
 	li	sha_akti_t0,	1
-	sw	t0,	SHA256_CSR_OFFSET(sha256_a0)
+	sw	sha_akti_t0,	SHA256_CSR_OFFSET(sha256_a0)
 	#undef	sha_akti_t0
 
 	/* DROP t0 */
