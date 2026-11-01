@@ -288,7 +288,8 @@ main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 main_lupe_tcidu_lupe_co_barda_post_svlw:
-	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
+	#define	cur_sectaipe_t5	t5
+	lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
 
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
@@ -297,13 +298,14 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 
-	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
+	// lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 
 	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
-	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
+	beq	cur_sectaipe_t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
 	li	t6,	FAMVLA
-	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
+	bne	cur_sectaipe_t5,	t6,	main_lupe_tcidu_lupe_vimcu
+	#undef	cur_sectaipe_t5
 
 	/* DROP t[56] */
 
