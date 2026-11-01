@@ -126,6 +126,7 @@ main_init:
 	// .i la .varik. cu jinvi le du'u na sarcu lo nu sutra kei fo zo'e joi le du'u na rapli pe'a noi vo'a jinvi ke'a
 main_init_oe:
 	// .i curmi tu'a lo dikca
+	// .i la .varik. cu morji jinvi le du'u mapti lo vo me'oi .PWM. minji
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
