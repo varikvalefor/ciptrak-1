@@ -1112,7 +1112,7 @@ zgitci_frob_slurp:
 	BFEXTR(dma_idx_t1, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	slli	t1,	dma_idx_t2,	6	// * 64 = * 0x40
+	slli	t1,	dma_idx_t1,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t1
 	#undef	dma_idx_t1
 
