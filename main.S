@@ -403,7 +403,7 @@ main_lupe_reset_denpa:
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_lupe_reset_denpa_prelupe	// 2B
-
+main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 	// | c.j	main_lupe_reset_denpa_prelupe
 	li	t1,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
 	la	t0,	main_lupe_reset_denpa	// 4B
