@@ -803,17 +803,18 @@ zgitci_frob_c000_mv:
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
 	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	sezvati_j_t0	t0
-	#define	judri_j_t1	t1
-	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
-	sh2add	sezvati_j_t0,	vrc_s0,	t0
-	addi	judri_j_t1,	sezvati_j_t0,	4 * (CUR_PATN_JUDRI_OFFSET - CUR_PATN_SEZVATI_OFFSET)	// CUR_PATN_JUDRI
+	#define	szx_j_a5	a5
+	sh2add	szx_j_a5,	vrc_s0,	zgitci_a4
+	#define	sezvati_t0	t0
+	#define	judri_t1	t1
+	lw	judri_t1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
+	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
 zgitci_frob_c000_mv_cont_cnino_ctr:
-	// .i rinka lo nu binxo pe'a fa lo me'oi .note.
+	// .i rinka lo nu binxo pe'a fa lo me'oi .note. fe lo mleca be fi tu'a lo namcu co su'u rapli
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
 	#define	note_j_t5	t5
@@ -844,10 +845,10 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
 	ret
 zgitci_frob_c000_mv_cont:
-	sw	sezvati_a2,	(sezvati_j_t0)
-	sw	patn_a1,	(judri_j_t1)
-	#undef	sezvati_j_t0
-	#undef	judri_j_t1
+	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
+	#undef	sezvati_a2
+	#undef	patn_a1
 
 	/* DROP t[01] */
 
@@ -858,18 +859,52 @@ zgitci_frob_c000_mv_cont:
 zgitci_frob_c000_mv_frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
-	addi	sp,	sp,	-4
-	sw	ra,	0(sp)
+	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
+	sw	ra,	0(sp)	// 5P2V2ym7.
 
 	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	0x0(t0)
+
+	// smooth interlude
+	#define	famvla_t1	t1
+	li	famvla_t1,	FAMVLA
+	beq	a0,	famvla_t1,	.selidne
+
 	lw	a1,	0x4(t0)
 	lw	a2,	0x8(t0)
 	lw	a3,	0xC(t0)
+
+	// pt. deux
+	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
+	sw	jszx_j_a5,	4(sp)	// BcDSLCtQ.
+
 	jal	zgitci_frob
 
-	lw	ra,	0(sp)
-	addi	sp,	sp,	4
+	lw	jszx_j_a5,	4(sp)
+.selidne:
+	lw	ra,	0(sp)	// NdICeQJh.  lw opt
+
+	#define	sezvati_t0	t0
+	#define	cnino_sezvati_t0	t0
+	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	sltu	t1,	sezvati_t0,	famvla_t1
+	#undef	famvla_t1
+
+	addi	cnino_sezvati_t0,	sezvati_t0,	4 * 4
+	#undef	sezvati_t0
+	mul	cnino_sezvati_t0,	cnino_sezvati_t0,	t1
+
+	/* DROP t1 */
+`
+	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	#undef	cnino_sezvati_t0
+
+	// .i la .varik. cu jinvi le du'u na mpati fa lo nu bixygau pe'a lo judri namcu kei kei
+	// fo zo'e joi le su'u vo'a jinvi le du'u lo fanmo be lo me'oi .pattern. cu jai rinka
+	// lo nu rapli pe'a
+
+	// lw	ra,	0(sp)	// mv NdICeQJh
+	addi	sp,	sp,	8
 
 	ret
 
