@@ -868,11 +868,11 @@ zgitci_frob_c000_mv_frob:
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
-	sw	jszx_j_a5,	4(sp)	// BcDSLCtQ.
+	sw	szx_j_a5,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
 
-	lw	jszx_j_a5,	4(sp)
+	lw	szx_j_a5,	4(sp)
 .selidne:
 	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 
