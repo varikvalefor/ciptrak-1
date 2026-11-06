@@ -822,7 +822,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 	addi	t4,	ctr2_t4,	-1
 	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 	//
-	add	t5,	judri_j_t1,	sezvati_j_t0
+	add	t5,	judri_j_a1,	sezvati_j_t0
 	lw	note_j_t5,	(t5)
 	pack	cnino_vrici_t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
