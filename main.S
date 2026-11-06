@@ -813,7 +813,7 @@ zgitci_frob_c000_mv:
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
-zgitci_frob_c000_mv_cont_cnino_ctr:
+.cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note. fe lo mleca be fi tu'a lo namcu co su'u rapli
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
@@ -842,9 +842,9 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	/* DROP t[345] */
 
-	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+	beqz	ctr_t2,	.cont
 	ret
-zgitci_frob_c000_mv_cont:
+.cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
 	#undef	sezvati_a2
@@ -854,9 +854,9 @@ zgitci_frob_c000_mv_cont:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	zgitci_frob_c000_mv_frob
+	bnez	t0,	.frob
 	ret
-zgitci_frob_c000_mv_frob:
+.frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
 	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
