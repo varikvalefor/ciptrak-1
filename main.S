@@ -839,8 +839,6 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 zgitci_frob_c000_mv_cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
-	#undef	sezvati_a2
-	#undef	patn_a1
 
 	/* DROP t[01] */
 
@@ -856,6 +854,8 @@ zgitci_frob_c000_mv_frob:
 
 	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	0x0(t0)
+	#undef	sezvati_a2
+	#undef	patn_a1
 
 	// smooth interlude
 	#define	famvla_t1	t1
