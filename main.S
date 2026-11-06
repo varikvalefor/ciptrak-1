@@ -367,7 +367,7 @@ main_lupe_incri:
 	MAIN_LUPE_INCRI_F(2)
 	MAIN_LUPE_INCRI_F(3)
 
-	#undef	MAIN_LUPE_INCRI_F(x)
+	#undef	MAIN_LUPE_INCRI_F
 
 	#undef	incri_t0
 	#undef	denpa_t1
@@ -890,8 +890,6 @@ zgitci_frob_c000_mv:
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
-	addi	cnino_sezvati_t0,	sezvati_t0,	4 * 4
-	#undef	sezvati_t0
 	mul	cnino_sezvati_t0,	cnino_sezvati_t0,	t1
 
 	/* DROP t1 */
