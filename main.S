@@ -813,7 +813,7 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	/*
 	 * metfo: t3 = [a3_vrici][ctr - 1]
-	 *        t5 = judri + sezvati_j
+	 *        t5 = (judri + sezvati)
 	 */
 	#define	a3_vrici_t3	t3
 	#define	cnino_vrici_t3	t3
