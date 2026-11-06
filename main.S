@@ -887,7 +887,7 @@ zgitci_frob_c000_mv_frob:
 	mul	cnino_sezvati_t0,	cnino_sezvati_t0,	t1
 
 	/* DROP t1 */
-`
+
 	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	#undef	cnino_sezvati_t0
 
