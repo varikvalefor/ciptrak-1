@@ -708,6 +708,7 @@ zgitci_frob_damri_sha:
 
 	/* DROP t0 */
 
+zgitci_frob_damri_cusku:
 	/* TODO: cusku pe'a */
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
 	   .i xu mapti fa tu'a lo me'oi .jal. co'e
