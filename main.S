@@ -562,6 +562,7 @@ zgitci_frob_1_pwm_csr:
 zgitci_frob_1_pwm_idx:
 	// se morji: CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	slli	t0,	zgitci_a4,	2
+	add	t0,	t0,	vrc_s0
 	#define	ZGITCI_SIVNI_J_T0	(4 * CUR_ZGITCI_SIVNI_OFFSET)(t0)
 	lw	t1,	ZGITCI_SIVNI_J_T0
 	addi	t1,	t1,	1
@@ -716,6 +717,7 @@ zgitci_frob_damri_sha:
 
 	/* DROP t0 */
 
+zgitci_frob_damri_cusku:
 	/* TODO: cusku pe'a */
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
 	   .i xu mapti fa tu'a lo me'oi .jal. co'e
@@ -821,7 +823,7 @@ zgitci_frob_c000_mv:
 
 	/*
 	 * metfo: t3 = [a3_vrici][ctr - 1]
-	 *        t5 = judri + sezvati_j
+	 *        t5 = (judri + sezvati)
 	 */
 	#define	a3_vrici_t3	t3
 	#define	cnino_vrici_t3	t3
@@ -830,7 +832,7 @@ zgitci_frob_c000_mv:
 	addi	t4,	ctr2_t4,	-1
 	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 	//
-	add	t5,	judri_j_t1,	sezvati_j_t0
+	add	t5,	judri_j_a1,	sezvati_a2
 	lw	note_j_t5,	(t5)
 	pack	cnino_vrici_t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
@@ -847,8 +849,6 @@ zgitci_frob_c000_mv:
 .cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
-	#undef	sezvati_a2
-	#undef	patn_a1
 
 	/* DROP t[01] */
 
@@ -864,6 +864,8 @@ zgitci_frob_c000_mv:
 
 	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	0x0(t0)
+	#undef	sezvati_a2
+	#undef	patn_a1
 
 	// smooth interlude
 	#define	famvla_t1	t1
@@ -876,11 +878,11 @@ zgitci_frob_c000_mv:
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
-	sw	jszx_j_a5,	4(sp)	// BcDSLCtQ.
+	sw	szx_j_a5,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
 
-	lw	jszx_j_a5,	4(sp)
+	lw	szx_j_a5,	4(sp)
 .selidne:
 	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 
@@ -893,7 +895,7 @@ zgitci_frob_c000_mv:
 	mul	cnino_sezvati_t0,	cnino_sezvati_t0,	t1
 
 	/* DROP t1 */
-`
+
 	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	#undef	cnino_sezvati_t0
 
@@ -1153,7 +1155,7 @@ zgitci_frob_slurp:
 	BFEXTR(dma_idx_t1, a3, A2_SIVNI_DMA_BIT, A2_SIVNI_DMA_S)
 	li	t0,	DMA_BASE
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	slli	t1,	dma_idx_t2,	6	// * 64 = * 0x40
+	slli	t1,	dma_idx_t1,	6	// * 64 = * 0x40
 	add	dma_read_j_t0,	t0,	t1
 	#undef	dma_idx_t1
 
