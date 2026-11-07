@@ -722,7 +722,9 @@ zgitci_frob_damri_cusku:
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
 	   .i xu mapti fa tu'a lo me'oi .jal. co'e
 	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
-	   .i la .varik. na birti */
+	   .i la .varik. na birti
+
+	   .i xu cadga fa lo nu rinka fa lo me'oi .DMA. minji */
 
 	ret
 /*
