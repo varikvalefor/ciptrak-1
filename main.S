@@ -724,7 +724,7 @@ zgitci_frob_damri_cusku:
 	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
 	   .i la .varik. na birti
 
-	   .i xu cadga fa lo nu rinka fa lo me'oi .DMA. minji
+	   .i xu cadga fa lo nu rinka fa lo me'oi .DMA. ja me'oi .PIO. minji
 	   .i la .varik. na djuno le du'u tolmapti fa lo nu zmiku cusku lo se du'u lo me'oi .DMA. minji cu jai rinka ma kau kei ca zo'e je lo nu tolsti
 	   .i la .varik. cu jijyji'i le du'u frili cumki fa lo nu cusku se pi'o lo me'oi .byte... ja lo me'oi .nybble.  .i la .varik. na jinvi le du'u mabla ke tolmapti ja barda */
 
