@@ -60,6 +60,7 @@ sanceListe: .word	0,	0,	0,	0
  */
 #define	DMABANK_NM_CANDO	0
 #define	DMABANK_NM_PWM(x)	1 + x
+// .i la .varik. cu jinvi fo tu'a le velcki fe le du'u li re vo cu nilzilcmi lo'i me'oi .PWM. minji
 dmaBank: .byte	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
