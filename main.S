@@ -59,6 +59,7 @@ sanceListe: .word	0,	0,	0,	0
 /* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .dmaBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .DMA. minji cu jai rinka ma kau
  */
 #define	DMABANK_NM_CANDO	0
+#define	DMABANK_NM_PWM(x)	1 + x
 dmaBank: .byte	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
