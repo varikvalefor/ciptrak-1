@@ -59,7 +59,7 @@ sanceListe: .word	0,	0,	0,	0
 /* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .dmaBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .DMA. minji cu jai rinka ma kau
  * .i sa'u nai ru'e ga naja mapti gi ro da poi ke'a me'oi .dmaBank. namcu zo'u ga je...
  * ga jo da du la'oi .DMABANK_NM_CANDO. gi ko'a goi lo me'oi .DMA. minji pe da cu cando gi
- * ga jo su'o de zo'u da du lo mu'oi zoi. DMABANK_NM_PIO .zoi. be de gi lo me'oi .DMA. minji cu jai rinka tu'a lo me'oi .PIO. minji je ke ve meirmoi be fe lo se mu'oi zoi. DMABANK_NM_PIO .zoi.
+ * ga jo su'o de zo'u da du lo mu'oi zoi. DMABANK_NM_PIO .zoi. be de gi lo me'oi .DMA. minji cu jai rinka tu'a lo me'oi .PIO. minji je ke ve meirmoi be fe lo se mu'oi zoi. DMABANK_NM_PIO .zoi. be da
  */
 #define	DMABANK_NM_CANDO	0
 #define	DMABANK_NM_PIO(x)	1 + x
