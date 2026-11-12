@@ -56,6 +56,14 @@ patton:	.word	1,	2,	3,	4, \
 */
 sanceListe: .word	0,	0,	0,	0
 
+/* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .dmaBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .DMA. minji cu jai rinka ma kau
+ */
+dmaBank: .byte	0,	0,	0,	0,\
+		0,	0,	0,	0,\
+		0,	0,	0,	0,\
+		0,	0,	0,	0,\
+		0,	0,	0,	0
+
 cur: .word	-1,				/* 0 */ \
 	/* ^ .i temci namcu */ \
 	0,				/* 1 */ \
