@@ -70,10 +70,12 @@ dmaBank: .byte	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,
 
 /* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .pioBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .PIO. minji cu jai rinka ma kau
- * .i sa'u nai ru'e ga naja mapti gi ro da poi ke'a me'oi .dmaBank. namcu zo'u...
- * ga jo da du la'oi .PIOBANK_NM_CANDO. gi ko'a goi lo me'oi .PIO. minji pe da cu cando
+ * .i sa'u nai ru'e ga naja mapti gi ro da poi ke'a me'oi .dmaBank. namcu zo'u ga je...
+ * ga jo da du la'oi .PIOBANK_NM_CANDO. gi ko'a goi lo me'oi .PIO. minji pe da cu cando gi
+ * ga jo da du la'oi .PIOBANK_NM_WILD. gi ko'a jai rinka... lo na jai se .indika
  */
 #define	PIOBANK_NM_CANDO	0
+#define	PIOBANK_NM_WILD	1
 pioBank : .byte	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,\
 		PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,\
 		PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,	PIOBANK_NM_CANDO,
