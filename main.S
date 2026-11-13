@@ -67,8 +67,7 @@ sanceListe: .word	0,	0,	0,	0
 dmaBank: .byte	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
 		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
-		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,\
-		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO
+		DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,	DMABANK_NM_CANDO,
 
 /* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .pioBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .PIO. minji cu jai rinka ma kau */
 #define	PIOBANK_NM_CANDO	0
