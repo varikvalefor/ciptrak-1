@@ -854,7 +854,6 @@ zgitci_frob_c000_mv:
 	sw	ra,	0(sp)	// 5P2V2ym7.
 
 	lw	a0,	0x0(sezvati_a2)
-	#undef	sezvati_a2
 	#undef	patn_a1
 
 	// smooth interlude
@@ -865,6 +864,7 @@ zgitci_frob_c000_mv:
 	lw	a1,	0x4(sezvati_a2)
 	lw	a2,	0x8(sezvati_a2)
 	lw	a3,	0xC(sezvati_a2)
+	#undef	sezvati_a2
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
