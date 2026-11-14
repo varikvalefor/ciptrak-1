@@ -299,7 +299,7 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 
 	/* DROP t[56] */
 
-	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
+	sw	x0,	(sezvati_j_a1)
 	mv	sezvati_t1,	x0
 	j	main_lupe_tcidu_lupe_co_barda_post_svlw
 main_lupe_tcidu_lupe_sivni0:
