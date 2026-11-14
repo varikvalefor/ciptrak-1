@@ -125,7 +125,8 @@ main_init:
 	// ni'o la .varik. na te cadga fa lo nu me'oi .unroll. lo tolsti co'e
 	// .i la .varik. cu jinvi le du'u na sarcu lo nu sutra kei fo zo'e joi le du'u na rapli pe'a noi vo'a jinvi ke'a
 main_init_oe:
-	# .i curmi tu'a lo dikca
+	// .i curmi tu'a lo dikca
+	// .i la .varik. cu morji jinvi le du'u mapti lo vo me'oi .PWM. minji
 	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
 	sw	t1,	(t0)
@@ -145,7 +146,7 @@ main_init_xosc:
 
 .cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
-	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// lw opt; main_init_periph
+	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
@@ -157,15 +158,18 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
+	// li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
 	sw	t1,	(resets_t0)
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
-	li      t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET  // TODO: .i xu lo me'oi .addi. co'e cu frili cumki
+	#define	resets_t0	t0
+	li      t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
-	lw	t2,	0(t0)
+	lw	t2,	0(resets_t0)
 	and	t2,	t2,	t1
 	bne	t2,	t1,	.denpa
+	#undef	resets_t0
 
 	/* DROP t[0-2] */
 
@@ -229,7 +233,7 @@ main_lupe_sha:
 
 	#define	sha_akti_t0	t0
 	li	sha_akti_t0,	1
-	sw	t0,	SHA256_CSR_OFFSET(sha256_a0)
+	sw	sha_akti_t0,	SHA256_CSR_OFFSET(sha256_a0)
 	#undef	sha_akti_t0
 
 	/* DROP t0 */
@@ -284,7 +288,8 @@ main_lupe_tcidu_lupe_co_barda:
 	lw	judri_t0,	(judri_j_a1)
 	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 main_lupe_tcidu_lupe_co_barda_post_svlw:
-	lw	t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
+	#define	cur_sectaipe_t5	t5
+	lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
 
 	#define	datni_niho_j_t2	t2
 	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
@@ -293,20 +298,21 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 
-	// lw	t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
+	// lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
 
-	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// lw opt; NZwe53kb_2
-	beq	t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
+	addi	sivniP_t4,	ctr_a0,	CUR_ZGITCI_SIVNI_OFFSET + 4	// NZwe53kb_2.  lw opt
+	beq	cur_sectaipe_t5,	datni_t3,	main_lupe_tcidu_lupe_ld_cur
 
 	li	t6,	FAMVLA
-	bne	t5,	t6,	main_lupe_tcidu_lupe_vimcu
+	bne	cur_sectaipe_t5,	t6,	main_lupe_tcidu_lupe_sivni0
+	#undef	cur_sectaipe_t5
 
 	/* DROP t[56] */
 
 	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 	mv	sezvati_t1,	x0
 	j	main_lupe_tcidu_lupe_co_barda_post_svlw
-main_lupe_tcidu_lupe_vimcu:
+main_lupe_tcidu_lupe_sivni0:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
 	// .i vimcu ki'u zo'e joi le su'u steci tu'a lo zgitci pe'a
 	// .i ku'i la .varik. na ba'e birti lo du'u xu kau mapti
@@ -361,6 +367,8 @@ main_lupe_incri:
 	MAIN_LUPE_INCRI_F(2)
 	MAIN_LUPE_INCRI_F(3)
 
+	#undef	MAIN_LUPE_INCRI_F
+
 	#undef	incri_t0
 	#undef	denpa_t1
 	#undef	sezvati_t2
@@ -395,6 +403,7 @@ main_lupe_reset_denpa:
 
 	// | ni'o srana la'o zoi. vrici_frob_denpaWfi .zoi.
 	c.j	main_lupe_reset_denpa_prelupe	// 2B
+main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 	// | c.j	main_lupe_reset_denpa_prelupe
 	li	t1,	(101<<13) | (((2+4+2+4+2+4+4+2)/2)<<2) | (01<<0)	// (4 + 2)B; TODO: .i xu mapti
 	la	t0,	main_lupe_reset_denpa	// 4B
@@ -403,7 +412,7 @@ main_lupe_reset_denpa:
 	wfi	// 4B
 	j	main_lupe	// 2B
 
-	# .i denpa fi tu'a la'oi .XOSC.
+	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
 main_lupe_reset_denpa_lupe:
@@ -713,7 +722,11 @@ zgitci_frob_damri_cusku:
 	/* TODO: .i xu cadga fa lo nu pilno lo me'oi .PWM. co'e
 	   .i xu mapti fa tu'a lo me'oi .jal. co'e
 	   .i ma pu'u jdika pe'a tu'a zo'e je lo tonga pa'a tu'a lo damri
-	   .i la .varik. na birti */
+	   .i la .varik. na birti
+
+	   .i xu cadga fa lo nu rinka fa lo me'oi .DMA. ja me'oi .PIO. minji
+	   .i la .varik. na djuno le du'u tolmapti fa lo nu zmiku cusku lo se du'u lo me'oi .DMA. minji cu jai rinka ma kau kei ca zo'e je lo nu tolsti
+	   .i la .varik. cu jijyji'i le du'u frili cumki fa lo nu cusku se pi'o lo me'oi .byte... ja lo me'oi .nybble.  .i la .varik. na jinvi le du'u mabla ke tolmapti ja barda */
 
 	ret
 /*
@@ -806,7 +819,7 @@ zgitci_frob_c000_mv:
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
 	zext.h	ctr_t2,	a3
-zgitci_frob_c000_mv_cont_cnino_ctr:
+.cont_cnino_ctr:
 	// .i rinka lo nu binxo pe'a fa lo me'oi .note. fe lo mleca be fi tu'a lo namcu co su'u rapli
 	// .i jinvi le du'u filri'a tu'a lo jai se rapli pe'a
 
@@ -835,9 +848,9 @@ zgitci_frob_c000_mv_cont_cnino_ctr:
 
 	/* DROP t[345] */
 
-	beqz	ctr_t2,	zgitci_frob_c000_mv_cont
+	beqz	ctr_t2,	.cont
 	ret
-zgitci_frob_c000_mv_cont:
+.cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
 
@@ -845,9 +858,9 @@ zgitci_frob_c000_mv_cont:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	zgitci_frob_c000_mv_frob
+	bnez	t0,	.frob
 	ret
-zgitci_frob_c000_mv_frob:
+.frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
 	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
@@ -883,8 +896,6 @@ zgitci_frob_c000_mv_frob:
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
-	addi	cnino_sezvati_t0,	sezvati_t0,	4 * 4
-	#undef	sezvati_t0
 	mul	cnino_sezvati_t0,	cnino_sezvati_t0,	t1
 
 	/* DROP t1 */
@@ -1317,6 +1328,7 @@ zgitci_frob_sutcmaci:
 	SIVNI_KANJI_DJ(swd_j_a1, t2, t4, SIVNI_A3_SEMUVDU_BIT, SIVNI_A3_SEMUVDU_S, SIVNI_A2_DIR1_BIT)
 
 	#undef	SIVNI_KANJI_DJ
+	#undef	cur_j_a1
 
 	/* DROP t[0-6] */
 
@@ -1359,7 +1371,7 @@ zgitci_frob_sutcmaci:
 	#undef	lwd_j_a0
 	#undef	swd_j_a1
 
-	/* DROP t[0-6] */
+	/* DROP t[0-6] a[0-7] */
 
 	ret
 .s_ops:
@@ -1477,7 +1489,7 @@ vrici_frob_denpa:
 	sh2add	denpa_j_t0,	vrc_s0,	zgitci_a4
 
 	sw	datni_a5,	(4 * CUR_DENPA_INST_OFFSET)(denpa_j_t0)
-	#undef	denpa_j_t0	t0
+	#undef	denpa_j_t0
 
 	ret
 vrici_frob_j:
@@ -1592,7 +1604,7 @@ vrici_frob_sio:
 	//
 	li	t5,	5	// SIO fn
 	sw	t5,	0(gpio_j_t2)
-	#undef	gpio_j_t2	t2
+	#undef	gpio_j_t2
 	#undef	pin_t0
 
 	/* DROP t[025] */
