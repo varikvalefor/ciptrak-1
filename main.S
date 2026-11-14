@@ -853,7 +853,6 @@ zgitci_frob_c000_mv:
 	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
 	sw	ra,	0(sp)	// 5P2V2ym7.
 
-	add	t0,	sezvati_a2,	patn_a1
 	lw	a0,	0x0(sezvati_a2)
 	#undef	sezvati_a2
 	#undef	patn_a1
