@@ -853,7 +853,11 @@ zgitci_frob_c000_mv:
 	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
 	sw	ra,	0(sp)	// 5P2V2ym7.
 
-	lw	a0,	0x0(sezvati_a2)
+	#define	sezvati_a5	a5
+	mv	sezvati_a5,	sezvati_a2
+	#undef	sezvati_a2
+
+	lw	a0,	0x0(sezvati_a5)
 	#undef	patn_a1
 
 	// smooth interlude
@@ -861,17 +865,17 @@ zgitci_frob_c000_mv:
 	li	famvla_t1,	FAMVLA
 	beq	a0,	famvla_t1,	.selidne
 
-	lw	a1,	0x4(sezvati_a2)
-	lw	a2,	0x8(sezvati_a2)
-	lw	a3,	0xC(sezvati_a2)
+	lw	a1,	0x4(sezvati_a5)
+	lw	a2,	0x8(sezvati_a5)
+	lw	a3,	0xC(sezvati_a5)
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
-	sw	sezvati_a2,	4(sp)	// BcDSLCtQ.
+	sw	sezvati_a5,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
 
-	lw	sezvati_a2,	4(sp)
+	lw	sezvati_a5,	4(sp)
 .selidne:
 	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 
@@ -885,9 +889,9 @@ zgitci_frob_c000_mv:
 
 	/* DROP t1 */
 
-	sw	cnino_sezvati_t0,	(sezvati_a2)
+	sw	cnino_sezvati_t0,	(sezvati_a5)
 	#undef	cnino_sezvati_t0
-	#undef	sezvati_a2
+	#undef	sezvati_a5
 
 	// .i la .varik. cu jinvi le du'u na mpati fa lo nu bixygau pe'a lo judri namcu kei kei
 	// fo zo'e joi le su'u vo'a jinvi le du'u lo fanmo be lo me'oi .pattern. cu jai rinka
