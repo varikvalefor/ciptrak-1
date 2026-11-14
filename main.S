@@ -864,21 +864,20 @@ zgitci_frob_c000_mv:
 	lw	a1,	0x4(sezvati_a2)
 	lw	a2,	0x8(sezvati_a2)
 	lw	a3,	0xC(sezvati_a2)
-	#undef	sezvati_a2
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
-	sw	szx_j_a5,	4(sp)	// BcDSLCtQ.
+	sw	sezvati_a2,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
 
-	lw	szx_j_a5,	4(sp)
+	lw	sezvati_a2,	4(sp)
 .selidne:
 	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 
 	#define	sezvati_t0	t0
 	#define	cnino_sezvati_t0	t0
-	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	lw	sezvati_t0,	(sezvati_a2)
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
@@ -886,8 +885,9 @@ zgitci_frob_c000_mv:
 
 	/* DROP t1 */
 
-	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	sw	cnino_sezvati_t0,	(sezvati_a2)
 	#undef	cnino_sezvati_t0
+	#undef	sezvati_a2
 
 	// .i la .varik. cu jinvi le du'u na mpati fa lo nu bixygau pe'a lo judri namcu kei kei
 	// fo zo'e joi le su'u vo'a jinvi le du'u lo fanmo be lo me'oi .pattern. cu jai rinka
