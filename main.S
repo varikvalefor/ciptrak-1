@@ -1465,7 +1465,7 @@ zgitci_frob_dma_sync:
 	addi	trcnt_mode_t0,	x0,	0xF
 .post_0xF:
 	slli	trcnt_mode_t0,	trcnt_mode_t0,	28	// DMA TRANS_COUNT MODE
-	add	trans_count_out_a5,	x0,	trcnt_mode_t0
+	or	trans_count_out_a5,	x0,	trcnt_mode_t0
 	#undef	trcnt_mode_t0
 	/* DROP t0 */
 
