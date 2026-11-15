@@ -68,9 +68,8 @@ cur: .word	-1,				/* 0 */ \
 	0,	0,	0,	0,	/* 21 / 0x15 | ZT4 */ \
 	/* ^ .i le vo co'e cu jai .indika tu'a lo zgitci */ \
 	0,	0,	0,	0,	/* 25 / 0x19 | PTSZ */ \
-	/* ^ .i .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
-	0,	0,	0,	0,	/* 29 / 0x1D | PTJD */ \
-	/* ^ .i .indika lo du'u ma kau judri lo me'oi .pattern. */ \
+	/* ^ .i le bi moi cu jai .indika lo du'u zvati pe'a ma kau poi ke'a pagbu lo me'oi .pattern. */ \
+	0,	0,	0,	0,	/* 29 / 0x1D | ZGITCI TEMCI */ \
 	0,	0,	0,	0,	/* 33 / 0x21 | SIDX */ \
 	/* ^ .i co'e ja me'oi .sample. se zvati */ \
 	0,	0,	0,	0,	/* 37 / 0x25 | POCKET SAND */ \
@@ -82,9 +81,7 @@ cur: .word	-1,				/* 0 */ \
 	 */ \
 	0,	/* 38 / 0x29 | SHA_EN */ \
 	/* ^ .i xu djica tu'a lo me'oi .SHA256. co'e */ \
-	0,	0,	0,	0,	/* 42 / 2A | SIVNI */ \
-	/* ^ .i zgitci pe'a sivni datni */ \
-	0,	0,	0,	0	/* 46 / 2E | ZGITCI TEMCI */
+	0,	0,	0,	0	/* 42 / 2A | SIVNI */
 
 #define	CUR_TEMCI_OFFSET	4 * 0
 #define	CUR_XOSC_SNIDU_OFFSET	4 * 1
@@ -94,8 +91,8 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_ZGITCI0(x)		4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 #define	CUR_PATN_SEZVATI_OFFSET	22
 #define	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-#define	CUR_PATN_JUDRI_OFFSET	26
-#define	CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
+#define	CUR_INCRI_IDX_OFFSET	26
+#define	CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 #define	CUR_ZGITCI_SAMP_IDX_OFFSET	30
 #define	CUR_ZGITCI_SAMP_IDX(x)	4 * (CUR_ZGITCI_SAMP_IDX_OFFSET + x)
 #define	CUR_SHA_OFFSET	4 * 34
@@ -103,8 +100,6 @@ cur: .word	-1,				/* 0 */ \
 #define	CUR_SHA_EN	4 * CUR_SHA_EN_OFFSET
 #define	CUR_ZGITCI_SIVNI_OFFSET	39
 #define	CUR_ZGITCI_SIVNI(x)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
-#define	CUR_INCRI_IDX_OFFSET	43
-#define	CUR_INCRI_IDX(x)	4 * (CUR_INCRI_IDX_OFFSET + x)
 
 .text
 
@@ -272,30 +267,27 @@ main_lupe_tcidu:
 	   .i ku'i la .varik. cu jinvi le du'u banzuka le ka ce'u jai pluja kei le ka mapti fa lo nu na me'oi .unroll. ce'u  .i la .varik. cu jinvi le du'u le na'e me'oi .unroll. versiio cu zmadu fi le ka frili fa lo nu jimpe fi ce'u
 	   .i ku'i la .varik. cu co'e ja djica curmi tu'a lo pinka */
 	#define	ctr_a0	a0
-	#define	judri_j_a1	a1
+	#define	sezvati_j_a1	a1
 	#define	datni_cur_j_a2	a2
-	#define	judri_t0	t0
-	#define	sezvati_t1	t1
 	#define	sivniP_t4	t4
 	li	ctr_a0,	-4
-	addi	judri_j_a1,	vrc_s0,	CUR_PATN_JUDRI(0)
+	addi	sezvati_j_a1,	vrc_s0,	CUR_PATN_SEZVATI(0)
 	addi	datni_cur_j_a2,	vrc_s0,	CUR_ZGITCI0(0)
 main_lupe_tcidu_lupe_co_barda:
 	/* DROP t[0-6] */
 
 	addi	ctr_a0,	ctr_a0,	1
 
-	lw	judri_t0,	(judri_j_a1)
-	lw	sezvati_t1,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
 main_lupe_tcidu_lupe_co_barda_post_svlw:
 	#define	cur_sectaipe_t5	t5
 	lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// AXBBIAaw.  lw opt
 
 	#define	datni_niho_j_t2	t2
-	add	datni_niho_j_t2,	judri_t0,	sezvati_t1
+	lw	datni_niho_j_t2,	(sezvati_j_a1)
+	addi	ctr_a0,	ctr_a0,	1	// OcrdTMFf.  lw opt
 	#define	datni_t3	t3
 	lw	datni_t3,	0(datni_niho_j_t2)	// zT9L5TrS.
-	addi	judri_j_a1,	judri_j_a1,	4	// zMWcmLmU.  lw opt
+	addi	sezvati_j_a1,	sezvati_j_a1,	4	// zMWcmLmU.  lw opt
 	beqz	datni_t3,	main_lupe_tcidu_lupe_ld_cur_fanmo
 
 	// lw	cur_sectaipe_t5,	(datni_cur_j_a2)	// temp; mv AXBBIAaw
@@ -309,8 +301,12 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 
 	/* DROP t[56] */
 
-	sw	x0,	(4 * (CUR_PATN_SEZVATI(0) - CUR_PATN_JUDRI(0)))(judri_j_a1)
-	mv	sezvati_t1,	x0
+	/* TODO: .i xu mapti fa tu'a la'oi .FAMVLA.
+	         .i xu zmadu fa tu'a la'oi .MV. poi ke'a me'oi .CIPTRAK. co'e */
+
+	// | ??
+	//	sw	x0,	(sezvati_j_a1)
+	//	mv	sezvati_t1,	x0
 	j	main_lupe_tcidu_lupe_co_barda_post_svlw
 main_lupe_tcidu_lupe_sivni0:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
@@ -333,7 +329,7 @@ main_lupe_tcidu_lupe_ld_cur:
 	sw	datni_t3,	8(datni_cur_j_a2)
 	sw	datni2_t4,	0xC(datni_cur_j_a2)
 main_lupe_tcidu_lupe_ld_cur_fanmo:
-	// addi	judri_j_a1,	judri_j_a1,	4	// mv zMWcmLmU
+	// addi	sezvati_j_a1,	sezvati_j_a1,	4	// mv zMWcmLmU
 	// | se morji: CUR_ZGITCI0(x)	4 * (CUR_ZGITCI0_OFFSET + 4 * x)
 	addi	datni_cur_j_a2,	datni_cur_j_a2,	4 * 4
 	bnez	ctr_a0,	main_lupe_tcidu_lupe_co_barda
@@ -795,26 +791,22 @@ zgitci_frob_check_pio_gpio_post:
  *
  * 0xC0000001
  *
- * [patn: 0xXXXXXXXX]
+ * [?: 0xXXXXXXXX]
  *
  * [sezvati: 0xXXXXXXXX]
  *
  * [?: 0xXXX 0bXXX][j: 0bX][ctr: 0xXXXX]
  */
 zgitci_frob_c000_mv:
-	#define	patn_a1	a1
 	#define	sezvati_a2	a2
 	li	t0,	0xC0000001
 	bne	a0,	t0,	zgitci_frob_c000_sutra
 
 	// se morji:	CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	//		CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
-	#define	szx_j_a5	a5
-	sh2add	szx_j_a5,	vrc_s0,	zgitci_a4
-	#define	sezvati_t0	t0
-	#define	judri_t1	t1
-	lw	judri_t1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
-	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	#define	sezvati_j_t0	t0
+	addi	t0,	zgitci_a4,	CUR_PATN_SEZVATI_OFFSET
+	sh2add	t0,	vrc_s0,	t0
+	lw	sezvati_j_t0,	(t0)
 
 	#define	ctr_t2	t2
 	// | metfo: andi	ctr_t2,	a3,	0xFFFF
@@ -836,8 +828,7 @@ zgitci_frob_c000_mv:
 	addi	t4,	ctr2_t4,	-1
 	// pack	t3,	a3_vrici_t3,	t4	// mv OIQqIiSz
 	//
-	add	t5,	judri_j_a1,	sezvati_a2
-	lw	note_j_t5,	(t5)
+	lw	note_j_t5,	(sezvati_j_t0)
 	pack	cnino_vrici_t3,	a3_vrici_t3,	ctr2_t4	// OIQqIiSz.  lw opt
 	#undef	a3_vrici_t3
 	#undef	ctr2_t4
@@ -851,8 +842,8 @@ zgitci_frob_c000_mv:
 	beqz	ctr_t2,	.cont
 	ret
 .cont:
-	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
-	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
+	sw	sezvati_a2,	(sezvati_j_t0)
+	#undef	sezvati_j_t0
 
 	/* DROP t[01] */
 
@@ -866,9 +857,12 @@ zgitci_frob_c000_mv:
 	addi	sp,	sp,	-8	// 5P2V2ym7 + BcDSLCtQ
 	sw	ra,	0(sp)	// 5P2V2ym7.
 
-	add	t0,	sezvati_a2,	patn_a1
-	lw	a0,	0x0(t0)
+	#define	sezvati_a5	a5
+	lw	t0,	(sezvati_a2)
+	mv	sezvati_a5,	sezvati_a2
 	#undef	sezvati_a2
+
+	lw	a0,	0x0(t0)
 	#undef	patn_a1
 
 	// smooth interlude
@@ -882,17 +876,17 @@ zgitci_frob_c000_mv:
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
-	sw	szx_j_a5,	4(sp)	// BcDSLCtQ.
+	sw	sezvati_a5,	4(sp)	// BcDSLCtQ.
 
 	jal	zgitci_frob
 
-	lw	szx_j_a5,	4(sp)
+	lw	sezvati_a5,	4(sp)
 .selidne:
 	lw	ra,	0(sp)	// NdICeQJh.  lw opt
 
 	#define	sezvati_t0	t0
 	#define	cnino_sezvati_t0	t0
-	lw	sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	lw	sezvati_t0,	(sezvati_a5)
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
@@ -900,8 +894,9 @@ zgitci_frob_c000_mv:
 
 	/* DROP t1 */
 
-	sw	cnino_sezvati_t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
+	sw	cnino_sezvati_t0,	(sezvati_a5)
 	#undef	cnino_sezvati_t0
+	#undef	sezvati_a5
 
 	// .i la .varik. cu jinvi le du'u na mpati fa lo nu bixygau pe'a lo judri namcu kei kei
 	// fo zo'e joi le su'u vo'a jinvi le du'u lo fanmo be lo me'oi .pattern. cu jai rinka
@@ -1300,14 +1295,10 @@ zgitci_frob_sutcmaci:
 
 	/* DROP a4 */
 
-	#define	judri_t4	t4
 	#define	sezvati_t5	t5
 	#define	cur_j_a1	a1
-	lw	judri_t4,	(4 * CUR_PATN_JUDRI_OFFSET)(vrcX_a0)
-	lw	sezvati_t5,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
-	add	cur_j_a1,	judri_t4,	sezvati_t5
+	lw	cur_j_a1,	(4 * CUR_PATN_SEZVATI_OFFSET)(vrcX_a0)
 	#undef	vrcX_a0
-	#undef	judri_t4
 	#undef	sezvati_t5
 
 	/* DROP a0 t[245] */
@@ -1506,14 +1497,10 @@ vrici_frob_j:
  */
 vrici_frob_0:
 	// se morji: CUR_PATN_SEZVATI(x)	4 * (CUR_PATN_SEZVATI_OFFSET + x)
-	//           CUR_PATN_JUDRI(x)	4 * (CUR_PATN_JUDRI_OFFSET + x)
 	sh2add	t0,	vrc_s0,	zgitci_a4
 
-	lw	t1,	(4 * CUR_PATN_JUDRI_OFFSET)(t0)
 	lw	t0,	(4 * CUR_PATN_SEZVATI_OFFSET)(t0)
-
-	sh2add	t1,	t1,	datni_a5
-	add	t0,	t0,	t1
+	sh2add	t0,	t0,	datni_a5
 
 	sw	x0,	(t0)
 
