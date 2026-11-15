@@ -1465,12 +1465,12 @@ zgitci_frob_dma_sync:
 
 .write_addr:
 	// se morji:	DMA_CHx_WRITE_ADDR_OFFSET(x)	0x004 + 0x40 * x
-	sw	ciska_j_a2,	0x004(dma_read_addr_j_a6)
-	#undef	ciska_j_a2
+	sw	tcidu_j_a1,	0x004(dma_read_addr_j_a6)
+	#undef	tcidu_j_a1
 .read_addr:
 	// se morji:	DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	sw	tcidu_j_a1,	0x000(dma_read_addr_j_a6)
-	#undef	tcidu_j_a1
+	sw	ciska_j_a2,	0x000(dma_read_addr_j_a6)
+	#undef	ciska_j_a2
 .trans_count:
 	#define	trans_count_out_a5	a5
 
