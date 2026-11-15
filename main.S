@@ -1476,11 +1476,11 @@ zgitci_frob_dma_sync:
 
 	/* DROP a2 */
 .trans_count:
-	#define	trans_count_out_a5	a5
+	#define	trans_count_out_a1	a1
 
 	/*
          * metfo: #define	B	a3 & ((1 << TRCNT_MODE_S) - 1)
-	 *        trans_count_out_a5 = ((B == 0x2) ? 0xF : B) << 28
+	 *        trans_count_out_a1 = ((B == 0x2) ? 0xF : B) << 28
          */
 	#define	trcnt_mode_t0	t0
 	andi	t0,	a3,	(1 << SIVNI_A3_TRCNT_MODE_S) - 1
@@ -1490,19 +1490,19 @@ zgitci_frob_dma_sync:
 	addi	trcnt_mode_t0,	x0,	0xF
 .trans_count_post_0xF:
 	slli	trcnt_mode_t0,	trcnt_mode_t0,	28	// DMA TRANS_COUNT MODE
-	or	trans_count_out_a5,	x0,	trcnt_mode_t0
+	or	trans_count_out_a1,	x0,	trcnt_mode_t0
 	#undef	trcnt_mode_t0
 	/* DROP t0 */
 
 	#define	trans_count_t0	t0
 	?	trans_count_t0,	?
-	or	trans_count_out_a5,	trans_count_out_a5,	trans_count_t0
+	or	trans_count_out_a1,	trans_count_out_a1,	trans_count_t0
 	#undef	trans_count_t0
 	/* DROP t1 */
 
 	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)	0x008 + 0x40 * x
-	sw	trans_count_out_a5,	0x008(dma_read_addr_j_a6)
-	#undef	trans_count_out_a5
+	sw	trans_count_out_a1,	0x008(dma_read_addr_j_a6)
+	#undef	trans_count_out_a1
 
 	/* DROP t0 a5 */
 .ctrl_trig:
