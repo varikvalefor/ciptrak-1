@@ -1479,7 +1479,7 @@ zgitci_frob_dma_sync:
 	#undef	dma_trans_addr_t1
 	#undef	trans_count_out_a5
 
-	/* DROP t1 */
+	/* DROP t1 a5 */
 
 	// TODO
 
