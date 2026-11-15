@@ -1434,11 +1434,11 @@ zgitci_frob_handoff:
 
 /* DMA SYNC
  *
+ * 0xDEAF0006
+ *
  * [judri co tcidu]
  *
  * [judri co rejgau pe'a]
- *
- * ?
  *
  * ?
  */
