@@ -1490,7 +1490,7 @@ zgitci_frob_dma_sync:
 
 	/* DROP t0 a5 */
 .ctrl_trig:
-	// se morji: DMA_CHx_CTRL_TRIG_OFFSET(x)     0x00C + 0x40 * x
+	// se morji: DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	sw	?,	0xC(dma_vrici_addr_a6)
 	#undef	dma_vrici_addr_a6
 	/* DROP t0 */
