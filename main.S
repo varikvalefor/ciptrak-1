@@ -1472,6 +1472,8 @@ zgitci_frob_dma_sync:
 	sw	?,	0x8(dma_trans_addr_t1)
 	#undef	dma_trans_addr_t1
 
+	/* DROP t1 */
+
 	// TODO
 
 	ret
