@@ -885,7 +885,7 @@ zgitci_frob_c000_mv:
 
 	#define	sezvati_t0	t0
 	#define	cnino_sezvati_t0	t0
-	lw	sezvati_t0,	(sezvati_a2)
+	lw	sezvati_t0,	(sezvati_a5)
 	sltu	t1,	sezvati_t0,	famvla_t1
 	#undef	famvla_t1
 
