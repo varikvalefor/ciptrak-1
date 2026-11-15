@@ -1440,7 +1440,7 @@ zgitci_frob_handoff:
  *
  * [judri co rejgau pe'a]
  *
- * ?
+ * [?: 0xXXXXXXX][?: 0bXX][trcnt_mode: 0bXX]
  */
 zgitci_frob_dma_sync:
 	addi	t0,	t0,	1
