@@ -1466,20 +1466,20 @@ zgitci_frob_dma_sync:
 	/* DROP t0 */
 
 	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)   0x008 + 0x40 * x
-	#define	dma_trans_addr_t1	t1
-	li	t1,	DMA_BASE
+	#define	dma_trans_addr_t0	t0
+	li	t0,	DMA_BASE
 	addi	t2,	x0,	0x40
 	mul	t2,	t2,	?
-	add	dma_trans_addr_t1,	t1,	t2
+	add	dma_trans_addr_t1,	t0,	t2
 	/* DROP t2 */
 
 	// TODO: trans_count
 
-	sw	trans_count_out_a5,	0x8(dma_trans_addr_t1)
-	#undef	dma_trans_addr_t1
+	sw	trans_count_out_a5,	0x8(dma_trans_addr_t0)
+	#undef	dma_trans_addr_t0
 	#undef	trans_count_out_a5
 
-	/* DROP t1 a5 */
+	/* DROP t0 a5 */
 
 	// TODO
 
