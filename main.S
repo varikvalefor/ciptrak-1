@@ -301,8 +301,12 @@ main_lupe_tcidu_lupe_co_barda_post_svlw:
 
 	/* DROP t[56] */
 
-	sw	x0,	(sezvati_j_a1)
-	mv	sezvati_t1,	x0
+	/* TODO: .i xu mapti fa tu'a la'oi .FAMVLA.
+	         .i xu zmadu fa tu'a la'oi .MV. poi ke'a me'oi .CIPTRAK. co'e */
+
+	// | ??
+	//	sw	x0,	(sezvati_j_a1)
+	//	mv	sezvati_t1,	x0
 	j	main_lupe_tcidu_lupe_co_barda_post_svlw
 main_lupe_tcidu_lupe_sivni0:
 	// se morji: CUR_ZGITCI_SIVNI(0)	4 * (CUR_ZGITCI_SIVNI_OFFSET + x)
