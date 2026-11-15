@@ -1455,23 +1455,23 @@ zgitci_frob_dma_sync:
 	#define	tcidu_j_a1	a1
 	#define	ciska_j_a2	a2
 
-	#define	dma_read_addr_j_a6	a6
+	#define	dma_read_addr_j_a0	a0
 	// se morji: DMA_CHx_READ_ADDROFFSET(x)   0x000 + 0x40 * x
 	li	t0,	DMA_BASE
 	addi	t1,	x0,	0x40
 	mul	t1,	t1,	dma_idx_?
-	add	dma_read_addr_j_a6,	t0,	t1
+	add	dma_read_addr_j_a0,	t0,	t1
 	/* DROP t1 */
 
 .write_addr:
 	// se morji:	DMA_CHx_WRITE_ADDR_OFFSET(x)	0x004 + 0x40 * x
-	sw	tcidu_j_a1,	0x004(dma_read_addr_j_a6)
+	sw	tcidu_j_a1,	0x004(dma_read_addr_j_a0)
 	#undef	tcidu_j_a1
 
 	/* DROP a1 */
 .read_addr:
 	// se morji:	DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	sw	ciska_j_a2,	0x000(dma_read_addr_j_a6)
+	sw	ciska_j_a2,	0x000(dma_read_addr_j_a0)
 	#undef	ciska_j_a2
 
 	/* DROP a2 */
@@ -1501,14 +1501,14 @@ zgitci_frob_dma_sync:
 	/* DROP t1 */
 
 	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)	0x008 + 0x40 * x
-	sw	trans_count_out_a1,	0x008(dma_read_addr_j_a6)
+	sw	trans_count_out_a1,	0x008(dma_read_addr_j_a0)
 	#undef	trans_count_out_a1
 
 	/* DROP t0 a5 */
 .ctrl_trig:
 	// se morji: DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
-	sw	?,	0x00C(dma_read_addr_j_a6)
-	#undef	dma_read_addr_j_a6
+	sw	?,	0x00C(dma_read_addr_j_a0)
+	#undef	dma_read_addr_j_a0
 	/* DROP t0 */
 
 	ret
