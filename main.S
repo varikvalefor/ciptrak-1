@@ -1470,18 +1470,18 @@ zgitci_frob_dma_sync:
 	#undef	trcnt_mode_t0
 	/* DROP t0 */
 
+	#define	trans_count_t1	t1
+	?	trans_count_t1,	?
+	or	trans_count_out_a5,	trans_count_out_a5,	trans_count_t1
+	#undef	trans_count_t1
+	/* DROP t1 */
+
 	#define	dma_trans_addr_t0	t0
 	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)   0x008 + 0x40 * x
 	li	t0,	DMA_BASE
 	addi	t1,	x0,	0x40
 	mul	t1,	t1,	dma_idx_?
 	add	dma_trans_addr_t0,	t0,	t1
-	/* DROP t1 */
-
-	#define	trans_count_t1	t1
-	?	trans_count_t1,	?
-	or	trans_count_out_a5,	trans_count_out_a5,	trans_count_t1
-	#undef	trans_count_t1
 	/* DROP t1 */
 
 	sw	trans_count_out_a5,	0x8(dma_trans_addr_t0)
