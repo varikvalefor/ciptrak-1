@@ -1455,6 +1455,13 @@ zgitci_frob_dma_sync:
 
 	// TODO
 
+	#define	dma_vrici_addr_a6	a6
+	// se morji: DMA_CHx_z_OFFSET(x)   z + 0x40 * x
+	li	t0,	DMA_BASE
+	addi	t1,	x0,	0x40
+	mul	t1,	t1,	dma_idx_?
+	add	dma_vrici_addr_a6,	t0,	t1
+	/* DROP t1 */
 .trans_count:
 	#define	trans_count_out_a5	a5
 
@@ -1464,14 +1471,6 @@ zgitci_frob_dma_sync:
 	bne	t0,	t1,	.trans_count_post_0xF
 	/* DROP t1 */
 	addi	trcnt_mode_t0,	x0,	0xF
-
-	#define	dma_vrici_addr_a6	a6
-	// se morji: DMA_CHx_z_OFFSET(x)   z + 0x40 * x
-	li	t0,	DMA_BASE
-	addi	t1,	x0,	0x40
-	mul	t1,	t1,	dma_idx_?
-	add	dma_vrici_addr_a6,	t0,	t1
-	/* DROP t1 */
 .trans_count_post_0xF:
 	slli	trcnt_mode_t0,	trcnt_mode_t0,	28	// DMA TRANS_COUNT MODE
 	or	trans_count_out_a5,	x0,	trcnt_mode_t0
