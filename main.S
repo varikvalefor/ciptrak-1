@@ -1475,8 +1475,9 @@ zgitci_frob_dma_sync:
 
 	// TODO: trans_count
 
-	sw	?,	0x8(dma_trans_addr_t1)
+	sw	trans_count_out_a5,	0x8(dma_trans_addr_t1)
 	#undef	dma_trans_addr_t1
+	#undef	trans_count_out_a5
 
 	/* DROP t1 */
 
