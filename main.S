@@ -1473,6 +1473,8 @@ zgitci_frob_dma_sync:
 	// se morji:	DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
 	sw	ciska_j_a2,	0x000(dma_read_addr_j_a6)
 	#undef	ciska_j_a2
+
+	/* DROP a2 */
 .trans_count:
 	#define	trans_count_out_a5	a5
 
