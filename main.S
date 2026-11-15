@@ -1446,6 +1446,9 @@ zgitci_frob_dma_sync:
 	addi	t0,	t0,	1
 	bne	t0,	a0,	zgitci_frob_nope
 
+	#define	SIVNI_A3_TRCNT_MODE_BIT	0
+	#define	SIVNI_A3_TRCNT_MODE_S	2
+
 	// TODO
 
 	ret
