@@ -1466,7 +1466,7 @@ zgitci_frob_dma_sync:
 	sw	a2,	0x004(dma_read_addr_j_a6)
 .read_addr:
 	// se morji:	DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	sw	a2,	0x000(dma_read_addr_j_a6)
+	sw	a1,	0x000(dma_read_addr_j_a6)
 .trans_count:
 	#define	trans_count_out_a5	a5
 
