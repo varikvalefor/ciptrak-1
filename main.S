@@ -858,10 +858,11 @@ zgitci_frob_c000_mv:
 	sw	ra,	0(sp)	// 5P2V2ym7.
 
 	#define	sezvati_a5	a5
+	lw	t0,	(sezvati_a2)
 	mv	sezvati_a5,	sezvati_a2
 	#undef	sezvati_a2
 
-	lw	a0,	0x0(sezvati_a5)
+	lw	a0,	0x0(t0)
 	#undef	patn_a1
 
 	// smooth interlude
@@ -869,9 +870,9 @@ zgitci_frob_c000_mv:
 	li	famvla_t1,	FAMVLA
 	beq	a0,	famvla_t1,	.selidne
 
-	lw	a1,	0x4(sezvati_a5)
-	lw	a2,	0x8(sezvati_a5)
-	lw	a3,	0xC(sezvati_a5)
+	lw	a1,	0x4(t0)
+	lw	a2,	0x8(t0)
+	lw	a3,	0xC(t0)
 
 	// pt. deux
 	// .i muvgau pe'a ki'u zo'e joi le su'u jinvi le du'u na sarcu fa lo nu rejgau pe'a va'o tu'a lo fanmo be lo porsi
