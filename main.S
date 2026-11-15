@@ -1470,10 +1470,10 @@ zgitci_frob_dma_sync:
 	#undef	trcnt_mode_t0
 	/* DROP t0 */
 
-	#define	trans_count_t1	t1
-	?	trans_count_t1,	?
-	or	trans_count_out_a5,	trans_count_out_a5,	trans_count_t1
-	#undef	trans_count_t1
+	#define	trans_count_t0	t0
+	?	trans_count_t0,	?
+	or	trans_count_out_a5,	trans_count_out_a5,	trans_count_t0
+	#undef	trans_count_t0
 	/* DROP t1 */
 
 	#define	dma_trans_addr_t0	t0
