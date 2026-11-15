@@ -1465,6 +1465,8 @@ zgitci_frob_dma_sync:
 
 .write_addr:
 	// TODO
+.read_addr:
+	// TODO
 .trans_count:
 	#define	trans_count_out_a5	a5
 
