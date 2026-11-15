@@ -1453,8 +1453,6 @@ zgitci_frob_dma_sync:
 	#define	SIVNI_A3_DATA_SIZE_BIT	(SIVNI_A3_TRCNT_MODE_BIT + SIVNI_A3_TRCNT_MODE_S)
 	#define	SIVNI_A3_DATA_SIZE_S	2
 
-	// TODO
-
 	#define	dma_vrici_addr_a6	a6
 	// se morji: DMA_CHx_z_OFFSET(x)   z + 0x40 * x
 	li	t0,	DMA_BASE
@@ -1462,6 +1460,9 @@ zgitci_frob_dma_sync:
 	mul	t1,	t1,	dma_idx_?
 	add	dma_vrici_addr_a6,	t0,	t1
 	/* DROP t1 */
+
+	// TODO
+
 .trans_count:
 	#define	trans_count_out_a5	a5
 
