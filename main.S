@@ -1461,8 +1461,6 @@ zgitci_frob_dma_sync:
 	add	dma_vrici_addr_a6,	t0,	t1
 	/* DROP t1 */
 
-	// TODO
-
 .write_addr:
 	// TODO
 .read_addr:
