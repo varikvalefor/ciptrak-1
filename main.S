@@ -1462,7 +1462,7 @@ zgitci_frob_dma_sync:
 	/* DROP t1 */
 
 .write_addr:
-	// TODO
+	sw	a2,	?
 .read_addr:
 	// TODO
 .trans_count:
