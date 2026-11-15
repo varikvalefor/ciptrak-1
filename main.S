@@ -1461,7 +1461,7 @@ zgitci_frob_dma_sync:
 	#define	trcnt_mode_t0	t0
 	andi	t0,	a3,	(1 << SIVNI_A3_TRCNT_MODE_S) - 1
 	addi	t1,	x0,	0x2
-	bne	t0,	t1,	.post_0xF
+	bne	t0,	t1,	.trans_count_post_0xF
 	/* DROP t1 */
 	addi	trcnt_mode_t0,	x0,	0xF
 .trans_count_post_0xF:
