@@ -1420,7 +1420,7 @@ zgitci_frob_sutcmaci:
  */
 zgitci_frob_handoff:
 	addi	t0,	t0,	2
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_dma_sync
 
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
@@ -1430,6 +1430,20 @@ zgitci_frob_handoff:
 	lw	ra,	0(sp)
 	addi	sp,	sp,	4
 
+	ret
+
+/* DMA SYNC
+ *
+ * [judri co tcidu]
+ *
+ * [judri co rejgau pe'a]
+ *
+ * ?
+ *
+ * ?
+ */
+zgitci_frob_dma_sync:
+	// TODO
 	ret
 
 /*
