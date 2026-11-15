@@ -1453,20 +1453,20 @@ zgitci_frob_dma_sync:
 	#define	SIVNI_A3_DATA_SIZE_BIT	(SIVNI_A3_TRCNT_MODE_BIT + SIVNI_A3_TRCNT_MODE_S)
 	#define	SIVNI_A3_DATA_SIZE_S	2
 
-	#define	dma_vrici_addr_a6	a6
-	// se morji: DMA_CHx_z_OFFSET(x)   z + 0x40 * x
+	#define	dma_read_addr_j_a6	a6
+	// se morji: DMA_CHx_READ_ADDROFFSET(x)   0x000 + 0x40 * x
 	li	t0,	DMA_BASE
 	addi	t1,	x0,	0x40
 	mul	t1,	t1,	dma_idx_?
-	add	dma_vrici_addr_a6,	t0,	t1
+	add	dma_read_addr_j_a6,	t0,	t1
 	/* DROP t1 */
 
 .write_addr:
 	// se morji:	DMA_CHx_WRITE_ADDR_OFFSET(x)	0x004 + 0x40 * x
-	sw	a2,	0x004(dma_vrici_addr_a6)
+	sw	a2,	0x004(dma_read_addr_j_a6)
 .read_addr:
 	// se morji:	DMA_CHx_READ_ADDR_OFFSET(x)	0x000 + 0x40 * x
-	sw	a2,	0x000(dma_vrici_addr_a6)
+	sw	a2,	0x000(dma_read_addr_j_a6)
 .trans_count:
 	#define	trans_count_out_a5	a5
 
@@ -1489,14 +1489,14 @@ zgitci_frob_dma_sync:
 	/* DROP t1 */
 
 	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)	0x008 + 0x40 * x
-	sw	trans_count_out_a5,	0x008(dma_vrici_addr_a6)
+	sw	trans_count_out_a5,	0x008(dma_read_addr_j_a6)
 	#undef	trans_count_out_a5
 
 	/* DROP t0 a5 */
 .ctrl_trig:
 	// se morji: DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
-	sw	?,	0x00C(dma_vrici_addr_a6)
-	#undef	dma_vrici_addr_a6
+	sw	?,	0x00C(dma_read_addr_j_a6)
+	#undef	dma_read_addr_j_a6
 	/* DROP t0 */
 
 	ret
