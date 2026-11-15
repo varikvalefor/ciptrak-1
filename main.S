@@ -1462,6 +1462,7 @@ zgitci_frob_dma_sync:
 	/* DROP t1 */
 
 .write_addr:
+	// se morji:	DMA_CHx_WRITE_ADDR_OFFSET(x)	0x004 + 0x40 * x
 	sw	a2,	0x004(dma_vrici_addr_a6)
 .read_addr:
 	// TODO
