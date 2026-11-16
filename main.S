@@ -1433,6 +1433,9 @@ zgitci_frob_handoff:
 	ret
 
 /* DMA SYNC
+ * ni'o la .varik. cu zu'edji tu'a lo nu ko'a goi la'oi .zgitci_frob_dma_sync. jai filri'a tu'a lo me'oi .DMA. co'e
+ * .i ku'i la .varik. cu jinvi le du'u jitfa fa le du'u ko'a mapti lo ro me'oi .bit. pe lo me'oi .DMA. minji
+ * .i le re ze moi be lo mu'oi zoi. DMA_CHx_TRANS_COUNT .zoi. cu mupli le ka la .varik. cu jinvi le du'u na ko'a jai rinka tu'a ce'u
  *
  * 0xDEAF0006
  *
