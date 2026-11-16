@@ -1474,7 +1474,7 @@ zgitci_frob_dma_sync:
 	sw	tcidu_j_a1,	0x000(dma_read_addr_j_a0)
 	#undef	tcidu_j_a1
 
-	/* DROP a2 */
+	/* DROP a1 */
 .trans_count:
 	#define	trans_count_out_a1	a1
 
