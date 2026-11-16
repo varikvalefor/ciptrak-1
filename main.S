@@ -1502,7 +1502,7 @@ zgitci_frob_dma_sync:
 	/* DROP t0 */
 
 	#define	trans_count_t0	t0
-	?	trans_count_t0,	?
+	srli	trans_count_t0,	a3,	SIVNI_A3_TRANS_COUNT_BIT
 	or	trans_count_out_a1,	trans_count_out_a1,	trans_count_t0
 	#undef	trans_count_t0
 	/* DROP t1 */
