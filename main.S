@@ -1504,7 +1504,7 @@ zgitci_frob_dma_sync:
 	srli	trans_count_t0,	a3,	SIVNI_A3_TRANS_COUNT_BIT
 	or	trans_count_out_a1,	trans_count_out_a1,	trans_count_t0
 	#undef	trans_count_t0
-	/* DROP t1 */
+	/* DROP t0 */
 
 	sw	trans_count_out_a1,	(WOFF(DMA_CHx_TRANS_COUNT_OFFSET))(dma_read_addr_j_a0)
 	#undef	trans_count_out_a1
