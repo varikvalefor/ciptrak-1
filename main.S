@@ -1509,7 +1509,7 @@ zgitci_frob_dma_sync:
 	sw	trans_count_out_a1,	(WOFF(DMA_CHx_TRANS_COUNT_OFFSET))(dma_read_addr_j_a0)
 	#undef	trans_count_out_a1
 
-	/* DROP t0 a5 */
+	/* DROP t0 a1 */
 .ctrl_trig:
 	#if	SIVNI_A3_DATA_SIZE_BIT == 2
 		andi	t0,	a3,	0b1100
