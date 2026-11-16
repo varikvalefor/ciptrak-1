@@ -1458,12 +1458,15 @@ zgitci_frob_dma_sync:
 	#define	ciska_j_a2	a2
 
 	#define	dma_read_addr_j_a0	a0
+	#define	dma_idx_t2	t2
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)   0x000 + 0x40 * x
 	li	t0,	DMA_BASE
 	addi	t1,	x0,	0x40
-	mul	t1,	t1,	dma_idx_?
+	BFEXTR(dma_idx_t2, a3, SIVNI_A3_DMA_IDX_BIT, SIVNI_A3_DMA_IDX_S)
+	mul	t1,	t1,	dma_idx_t2
+	#undef	dma_idx_t2
 	add	dma_read_addr_j_a0,	t0,	t1
-	/* DROP t1 */
+	/* DROP t[12] */
 
 	#define	WOFF(F)	(F(0) - DMA_CHx_READ_ADDR_OFFSET(0))
 
