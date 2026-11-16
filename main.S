@@ -1500,8 +1500,7 @@ zgitci_frob_dma_sync:
 	#undef	trans_count_t0
 	/* DROP t1 */
 
-	// se morji: DMA_CHx_TRANS_COUNT_OFFSET(x)	0x008 + 0x40 * x
-	sw	trans_count_out_a1,	0x008(dma_read_addr_j_a0)
+	sw	trans_count_out_a1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_OFFSET(0))(dma_read_addr_j_a0)
 	#undef	trans_count_out_a1
 
 	/* DROP t0 a5 */
