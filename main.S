@@ -1495,6 +1495,7 @@ zgitci_frob_dma_sync:
 	bne	t0,	t1,	.trans_count_post_0xF
 	/* DROP t1 */
 	addi	trcnt_mode_t0,	x0,	0xF
+.p2align 2
 .trans_count_post_0xF:
 	slli	trans_count_out_a1,	trcnt_mode_t0,	28	// DMA TRANS_COUNT MODE
 	#undef	trcnt_mode_t0
