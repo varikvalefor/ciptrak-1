@@ -1464,8 +1464,7 @@ zgitci_frob_dma_sync:
 	/* DROP t1 */
 
 .write_addr:
-	// se morji:	DMA_CHx_WRITE_ADDR_OFFSET(x)	0x004 + 0x40 * x
-	sw	tcidu_j_a1,	0x004(dma_read_addr_j_a0)
+	sw	tcidu_j_a1,	(DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_addr_j_a0)
 	#undef	tcidu_j_a1
 
 	/* DROP a1 */
