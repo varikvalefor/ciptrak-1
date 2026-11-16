@@ -1484,7 +1484,7 @@ zgitci_frob_dma_sync:
 
 	/*
          * metfo: #define	B	a3 & ((1 << TRCNT_MODE_S) - 1)
-	 *        trans_count_out_a1 = (((B == 0x2) || (B = 0x3)) ? 0xF : B) << 28
+	 *        trans_count_out_a1 = (B + ((0xF - 0x2) * ((B == 0x2) || (B = 0x3)))) << 28
          */
 	#define	trcnt_mode_t0	t0
 	andi	t0,	a3,	(1 << SIVNI_A3_TRCNT_MODE_S) - 1
