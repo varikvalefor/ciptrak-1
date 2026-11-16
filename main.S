@@ -1507,6 +1507,7 @@ zgitci_frob_dma_sync:
 	/* DROP t0 a5 */
 .ctrl_trig:
 	sw	?,	(WOFF(DMA_CHx_CTRL_TRIG_OFFSET))(dma_read_addr_j_a0)
+	#undef	WOFF
 	#undef	dma_read_addr_j_a0
 	/* DROP t0 */
 
