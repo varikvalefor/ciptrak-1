@@ -1512,8 +1512,12 @@ zgitci_frob_dma_sync:
 
 	/* DROP t0 a5 */
 .ctrl_trig:
-	BFEXTR(t0,	a3,	SIVNI_A3_DATA_SIZE_BIT,	SIVNI_A3_DATA_SIZE_S)
-	slli	t0,	t0,	2	// DATA_SIZE
+	#if	SIVNI_A3_DATA_SIZE_BIT = 2
+		andi	t0,	a3,	0b1100
+	#else
+		srli	t0,	a3,	SIVNI_A3_DATA_SIZE_BIT - 2
+		andi	t0,	t0,	0b1100
+	#fi
 	ori	t0,	t0,	1	// EN
 	sw	t0,	(WOFF(DMA_CHx_CTRL_TRIG_OFFSET))(dma_read_addr_j_a0)
 	#undef	WOFF
