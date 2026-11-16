@@ -1465,7 +1465,7 @@ zgitci_frob_dma_sync:
 	BFEXTR(t1, a3, SIVNI_A3_DMA_IDX_BIT, SIVNI_A3_DMA_IDX_S)
 	slli	t1,	t1,	6	// 0x40 = 64 = (2 ^ 6)
 	add	dma_read_addr_j_a0,	t0,	t1
-	/* DROP t1 */
+	/* DROP t[01] */
 
 	#define	WOFF(F)	(F(0) - DMA_CHx_READ_ADDR_OFFSET(0))
 
