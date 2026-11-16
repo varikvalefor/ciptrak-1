@@ -1463,8 +1463,8 @@ zgitci_frob_dma_sync:
 	#define	dma_idx_t2	t2
 	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)   0x000 + 0x40 * x
 	li	t0,	DMA_BASE
-	BFEXTR(dma_idx_t2, a3, SIVNI_A3_DMA_IDX_BIT, SIVNI_A3_DMA_IDX_S)
-	slli	t1,	dma_idx_t2,	6	// 0x40 = 64 = (2 ^ 6)
+	BFEXTR(t1, a3, SIVNI_A3_DMA_IDX_BIT, SIVNI_A3_DMA_IDX_S)
+	slli	t1,	t1,	6	// 0x40 = 64 = (2 ^ 6)
 	#undef	dma_idx_t2
 	add	dma_read_addr_j_a0,	t0,	t1
 	/* DROP t[12] */
