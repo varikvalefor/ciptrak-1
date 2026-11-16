@@ -1469,7 +1469,7 @@ zgitci_frob_dma_sync:
 	sw	ciska_j_a2,	(WOFF(DMA_CHx_WRITE_ADDR_OFFSET))(dma_read_addr_j_a0)
 	#undef	ciska_j_a2
 
-	/* DROP a1 */
+	/* DROP a2 */
 .read_addr:
 	sw	tcidu_j_a1,	0x000(dma_read_addr_j_a0)
 	#undef	tcidu_j_a1
