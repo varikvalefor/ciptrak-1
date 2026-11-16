@@ -1440,7 +1440,7 @@ zgitci_frob_handoff:
  *
  * [judri co rejgau pe'a]
  *
- * [?: 0xXXXXXX][dma_idx: 0xX][data_size: 0bXX][trcnt_mode: 0bXX]
+ * [trans_count: 0xXXXXXX][dma_idx: 0xX][data_size: 0bXX][trcnt_mode: 0bXX]
  */
 zgitci_frob_dma_sync:
 	addi	t0,	t0,	1
@@ -1454,6 +1454,8 @@ zgitci_frob_dma_sync:
 	#define	SIVNI_A3_DATA_SIZE_S	2
 	#define	SIVNI_A3_DMA_IDX_BIT	(SIVNI_A3_DATA_SIZE_BIT + SIVNI_A3_DATA_SIZE_S)
 	#define	SIVNI_A3_DMA_IDX_S	4
+	#define	SIVNI_A3_TRANS_COUNT_BIT	(SIVNI_A3_DMA_IDX_BIT + SIVNI_A3_DMA_IDX_S)
+	#define	SIVNI_A3_TRANS_COUNT_S	(6 * 4)
 	#define	tcidu_j_a1	a1
 	#define	ciska_j_a2	a2
 
