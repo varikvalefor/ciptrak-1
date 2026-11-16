@@ -1463,8 +1463,10 @@ zgitci_frob_dma_sync:
 	add	dma_read_addr_j_a0,	t0,	t1
 	/* DROP t1 */
 
+	#define	WOFF(F)	(F(0) - DMA_CHx_READ_ADDR_OFFSET(0))
+
 .write_addr:
-	sw	tcidu_j_a1,	(DMA_CHx_WRITE_ADDR_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_addr_j_a0)
+	sw	tcidu_j_a1,	(WOFF(DMA_CHx_WRITE_ADDR_OFFSET))(dma_read_addr_j_a0)
 	#undef	tcidu_j_a1
 
 	/* DROP a1 */
@@ -1499,12 +1501,12 @@ zgitci_frob_dma_sync:
 	#undef	trans_count_t0
 	/* DROP t1 */
 
-	sw	trans_count_out_a1,	(DMA_CHx_TRANS_COUNT_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_addr_j_a0)
+	sw	trans_count_out_a1,	(WOFF(DMA_CHx_TRANS_COUNT_OFFSET))(dma_read_addr_j_a0)
 	#undef	trans_count_out_a1
 
 	/* DROP t0 a5 */
 .ctrl_trig:
-	sw	?,	(DMA_CHx_CTRL_TRIG_OFFSET(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_addr_j_a0)
+	sw	?,	(WOFF(DMA_CHx_CTRL_TRIG_OFFSET))(dma_read_addr_j_a0)
 	#undef	dma_read_addr_j_a0
 	/* DROP t0 */
 
