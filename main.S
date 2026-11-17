@@ -1521,7 +1521,7 @@ zgitci_frob_dma_sync:
 	ori	t0,	t0,	1	// EN
 	sw	t0,	WOFF(DMA_CHx_CTRL_TRIG_OFFSET)
 	#undef	WOFF
-	#undef	dma_read_addr_j_a0
+	#undef	dma_read_addr_j_a0	// .i jinvi le du'u pagbu le velcki be la'oi .WOFF.
 	/* DROP t0 */
 
 	ret
