@@ -1451,7 +1451,7 @@ zgitci_frob_sutcmaci:
  */
 zgitci_frob_handoff:
 	addi	t0,	t0,	2
-	bne	t0,	a0,	zgitci_frob_nope
+	bne	t0,	a0,	zgitci_frob_dma_sync
 
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
@@ -1460,6 +1460,100 @@ zgitci_frob_handoff:
 
 	lw	ra,	0(sp)
 	addi	sp,	sp,	4
+
+	ret
+
+/* DMA SYNC
+ * ni'o la .varik. cu zu'edji tu'a lo nu ko'a goi la'oi .zgitci_frob_dma_sync. jai filri'a tu'a lo me'oi .DMA. co'e
+ * .i ku'i la .varik. cu jinvi le du'u jitfa fa le du'u ko'a mapti lo ro me'oi .bit. pe lo me'oi .DMA. minji
+ * .i le re ze moi be lo mu'oi zoi. DMA_CHx_TRANS_COUNT .zoi. cu mupli le ka la .varik. cu jinvi le du'u na ko'a jai rinka tu'a ce'u
+ *
+ * 0xDEAF0006
+ *
+ * [judri co tcidu]
+ *
+ * [judri co rejgau pe'a]
+ *
+ * [trans_count: 0xXXXXXX][dma_idx: 0xX][data_size: 0bXX][trcnt_mode: 0bXX]
+ */
+zgitci_frob_dma_sync:
+	addi	t0,	t0,	1
+	bne	t0,	a0,	zgitci_frob_nope
+
+	/* DROP t0 a0 */
+
+	#define	SIVNI_A3_TRCNT_MODE_BIT	0
+	#define	SIVNI_A3_TRCNT_MODE_S	2
+	#define	SIVNI_A3_DATA_SIZE_BIT	(SIVNI_A3_TRCNT_MODE_BIT + SIVNI_A3_TRCNT_MODE_S)
+	#define	SIVNI_A3_DATA_SIZE_S	2
+	#define	SIVNI_A3_DMA_IDX_BIT	(SIVNI_A3_DATA_SIZE_BIT + SIVNI_A3_DATA_SIZE_S)
+	#define	SIVNI_A3_DMA_IDX_S	4
+	#define	SIVNI_A3_TRANS_COUNT_BIT	(SIVNI_A3_DMA_IDX_BIT + SIVNI_A3_DMA_IDX_S)
+	#define	SIVNI_A3_TRANS_COUNT_S	(6 * 4)
+	#define	tcidu_j_a1	a1
+	#define	ciska_j_a2	a2
+
+	#define	dma_read_addr_j_a0	a0
+	// se morji: DMA_CHx_READ_ADDR_OFFSET(x)   0x000 + 0x40 * x
+	li	t0,	DMA_BASE
+	BFEXTR(t1, a3, SIVNI_A3_DMA_IDX_BIT, SIVNI_A3_DMA_IDX_S)
+	slli	t1,	t1,	6	// 0x40 = 64 = (2 ^ 6)
+	add	dma_read_addr_j_a0,	t0,	t1
+	/* DROP t[01] */
+
+	#define	WOFF(F)	(F(0) - DMA_CHx_READ_ADDR_OFFSET(0))(dma_read_addr_j_a0)
+
+.read_addr:
+	sw	tcidu_j_a1,	0x000(dma_read_addr_j_a0)
+	#undef	tcidu_j_a1
+
+	/* DROP a1 */
+.write_addr:
+	sw	ciska_j_a2,	WOFF(DMA_CHx_WRITE_ADDR_OFFSET)
+	#undef	ciska_j_a2
+
+	/* DROP a2 */
+.trans_count:
+	#define	trans_count_out_a1	a1
+
+	/*
+         * metfo: #define	B	a3 & ((1 << TRCNT_MODE_S) - 1)
+	 *        trans_count_out_a1 = ((B == 0x2) ? 0xF : B) << 28
+         */
+	#define	trcnt_mode_t0	t0
+	andi	t0,	a3,	(1 << SIVNI_A3_TRCNT_MODE_S) - 1
+	addi	t1,	x0,	0x2
+	bne	t0,	t1,	.trans_count_post_0xF
+	/* DROP t1 */
+	addi	trcnt_mode_t0,	x0,	0xF
+.p2align 2	// p300 DS
+.trans_count_post_0xF:
+	slli	trans_count_out_a1,	trcnt_mode_t0,	28	// DMA TRANS_COUNT MODE
+	#undef	trcnt_mode_t0
+	/* DROP t0 */
+
+	#define	trans_count_t0	t0
+	srli	trans_count_t0,	a3,	SIVNI_A3_TRANS_COUNT_BIT
+	or	trans_count_out_a1,	trans_count_out_a1,	trans_count_t0
+	#undef	trans_count_t0
+	/* DROP t0 */
+
+	sw	trans_count_out_a1,	WOFF(DMA_CHx_TRANS_COUNT_OFFSET)
+	#undef	trans_count_out_a1
+
+	/* DROP a1 */
+.ctrl_trig:
+	#if	SIVNI_A3_DATA_SIZE_BIT == 2
+		andi	t0,	a3,	0b1100
+	#else
+		srli	t0,	a3,	SIVNI_A3_DATA_SIZE_BIT - 2
+		andi	t0,	t0,	0b1100
+	#endif
+	ori	t0,	t0,	1	// EN
+	sw	t0,	WOFF(DMA_CHx_CTRL_TRIG_OFFSET)
+	#undef	WOFF
+	#undef	dma_read_addr_j_a0	// .i jinvi le du'u pagbu le velcki be la'oi .WOFF.
+	/* DROP t0 */
 
 	ret
 
