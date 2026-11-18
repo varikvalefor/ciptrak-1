@@ -56,6 +56,8 @@ patton:	.word	1,	2,	3,	4, \
 */
 sanceListe: .word	0,	0,	0,	0
 
+// | TODO: .i ma filri'a lo nu na'e mojrinfli pe'a lo nu vimcu pe'a ca lo fanmo
+
 /* | ni'o sa'u ga naja mapti gi ro da poi ke'a co'e je cu kacna'u zo'u lo meirmoi be da bei fo lo'i me'oi .dmaBank. namcu cu jai .indika lo du'u lo meimoi be da bei fo lo'i me'oi .DMA. minji cu jai rinka ma kau
  * .i sa'u nai ru'e ga naja mapti gi ro da poi ke'a me'oi .dmaBank. namcu zo'u ga je...
  * ga jo da du la'oi .DMABANK_NM_CANDO. gi ko'a goi lo me'oi .DMA. minji pe da cu cando gi ga je
