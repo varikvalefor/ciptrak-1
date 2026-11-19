@@ -468,7 +468,7 @@ main_lupe_dma_bank_reset_lupe:
 
 	bnez	max_t0,	main_lupe_dma_bank_reset_lupe
 	#undef	dmav2_t1
-	#undef	dmav2_t2	t2
+	#undef	dmav2_t2
 	
 
 	// | .i denpa fi tu'a la'oi .XOSC.
