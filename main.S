@@ -468,7 +468,7 @@ main_lupe_dma_bank_reset_lupe:
 	lw	dmav1_t1,	0x00C(dma_cur_a2)
 	bexti	t3,	dmav1_t1,	26	// BUSY
 	bnez	t3,	.x_dmav2
-	/ *DROP t3 */
+	/* DROP t3 */
 	sw	x0,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe_x_dmav2:
 	beqz	dmav2_t2,	.selidne
