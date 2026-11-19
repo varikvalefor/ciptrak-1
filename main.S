@@ -465,9 +465,15 @@ main_lupe_dma_bank_reset_lupe:
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	beqz	dmav1_t1,	.x_dmav2
+	lw	dmav1_t1,	0x00C(dma_cur_a2)
+	bexti	t3,	dmav1_t1,	26	// BUSY
+	bnez	t3,	.x_dmav2
 	// TODO
 .x_dmav2:
 	beqz	dmav_t2,	.selidne
+	lw	dmav2_t2,	0x04C(dma_cur_a2)
+	bexti	t3,	dmav2_t2,	26	// BUSY
+	bnez	t3,	.selidne
 	// TODO
 
 .selidne:
