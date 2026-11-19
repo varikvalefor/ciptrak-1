@@ -487,7 +487,6 @@ main_lupe_dma_bank_reset_lupe_selidne:
 	#undef	dma_cur_a2
 	#undef	dmav2_t1
 	#undef	dmav2_t2
-	
 
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
