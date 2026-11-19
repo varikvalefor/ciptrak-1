@@ -461,6 +461,9 @@ main_lupe_dma_bank_reset_lupe:
 	lw	dmav2_t2,	4(dmaBank_j_a0)
 	addi	dmaBank_j_a0,	8
 
+	beqz	dmav1_t1,	.x_dmav2
+	// TODO
+.x_dmav2:
 	// TODO
 
 	bnez	max_t0,	main_lupe_dma_bank_reset_lupe
