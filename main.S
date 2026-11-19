@@ -451,16 +451,19 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_a1	t0
+	#define	dma_cur_a2
 	#define	dmav1_t1	t1
 	#define	dmav2_t2	t2
 	li	max_a1	8
 	la	dmaBank_j_a0,	dmaBank
+	li	dma_cur_a2,	DMA_BASE
 main_lupe_dma_bank_reset_lupe:
 	addi	max_a1,	max_a1,	-1
 	lw	dmav1_t1,	0(dmaBank_j_a0)
 	lw	dmav2_t2,	4(dmaBank_j_a0)
 	addi	dmaBank_j_a0,	8
 
+	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	beqz	dmav1_t1,	.x_dmav2
 	// TODO
 .x_dmav2:
@@ -468,9 +471,11 @@ main_lupe_dma_bank_reset_lupe:
 	// TODO
 
 .selidne:
+	addi	dma_cur_a2,	dma_cur_a2,	0x40
 	bnez	max_a1,	main_lupe_dma_bank_reset_lupe
 
 	#undef	max_a1
+	#undef	dma_cur_a2
 	#undef	dmav2_t1
 	#undef	dmav2_t2
 	
