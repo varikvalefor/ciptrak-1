@@ -464,8 +464,10 @@ main_lupe_dma_bank_reset_lupe:
 	beqz	dmav1_t1,	.x_dmav2
 	// TODO
 .x_dmav2:
+	beqz	dmav_t2,	.selidne
 	// TODO
 
+.selidne:
 	bnez	max_a1,	main_lupe_dma_bank_reset_lupe
 	#undef	max_a1
 	#undef	dmav2_t1
