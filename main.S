@@ -467,6 +467,7 @@ main_lupe_dma_bank_reset_lupe:
 	// TODO
 
 	bnez	max_t0,	main_lupe_dma_bank_reset_lupe
+	#undef	dmav2_t1	t1
 	#undef	dmav2_t2	t2
 	
 
