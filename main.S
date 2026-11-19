@@ -447,6 +447,10 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 	wfi	// 4B
 	j	main_lupe	// 2B
 
+// .i cipra lo ka ce'u mapti
+main_lupe_dma_bank_reset:
+	// TODO
+
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
 	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
