@@ -469,6 +469,7 @@ main_lupe_dma_bank_reset_lupe:
 
 .selidne:
 	bnez	max_a1,	main_lupe_dma_bank_reset_lupe
+
 	#undef	max_a1
 	#undef	dmav2_t1
 	#undef	dmav2_t2
