@@ -451,7 +451,7 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_a1	t0
-	#define	dma_cur_a2
+	#define	dma_cur_a2	a2
 	#define	dmav1_t1	t1
 	#define	dmav2_t2	t2
 	li	max_a1	8
