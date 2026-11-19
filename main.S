@@ -452,12 +452,13 @@ main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_t0	t0
 	#define	dmav1_t1	t1
+	#define	dmav2_t2	t2
 	li	max_t0	8
 	la	dmaBank_j_a0,	dmaBank
 main_lupe_dma_bank_reset_lupe:
 	addi	max_t0,	max_t0,	-1
 	lw	dmav1_t1,	0(dmaBank_j_a0)
-	lw	t2,	4(dmaBank_j_a0)
+	lw	dmav2_t2,	4(dmaBank_j_a0)
 	addi	dmaBank_j_a0,	8
 
 	// TODO
