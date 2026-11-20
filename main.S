@@ -448,6 +448,7 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 	j	main_lupe	// 2B
 
 // .i cipra lo ka ce'u mapti
+// TODO: .i xu frili cumki fa lo nu zengau pe'a fi zo'e ja le ka ce'u jai zilsutra
 main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_a1	t0
