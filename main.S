@@ -467,6 +467,7 @@ main_lupe_dma_bank_reset_lupe:
 	beqz	dmav1_t1,	main_lupe_dma_bank_reset_lupe_x_dmav2
 	lw	dmav1_t1,	0x00C(dma_cur_a2)
 	bexti	t3,	dmav1_t1,	26	// BUSY
+	// | L9qSRxpJ.  .i la .varik. cu jinvi le du'u la'oi .mul. jai filri'a lo nu rivbi tu'a la'oi .bnez. noi vo'a jinvi le du'u ke'a na mapti lo su'u zilsutra panra
 	mul	dmav1_t1,	dmav1_t1,	t3
 	/* DROP t3 */
 	sw	dmav1_t1,	0(dmaBank_j_a0)
