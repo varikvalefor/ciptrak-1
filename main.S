@@ -462,7 +462,6 @@ main_lupe_dma_bank_reset_lupe:
 	addi	max_a1,	max_a1,	-1
 	lw	dmav1_t1,	0(dmaBank_j_a0)
 	lw	dmav2_t2,	4(dmaBank_j_a0)
-	addi	dmaBank_j_a0,	dmaBank_j_a0,	8
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	beqz	dmav1_t1,	main_lupe_dma_bank_reset_lupe_x_dmav2
@@ -480,6 +479,7 @@ main_lupe_dma_bank_reset_lupe_x_dmav2:
 	sw	x0,	4(dmaBank_j_a0)
 
 main_lupe_dma_bank_reset_lupe_selidne:
+	addi	dmaBank_j_a0,	dmaBank_j_a0,	8
 	addi	dma_cur_a2,	dma_cur_a2,	0x80
 	bnez	max_a1,	main_lupe_dma_bank_reset_lupe
 
