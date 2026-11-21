@@ -474,8 +474,8 @@ main_lupe_dma_bank_reset_lupe:
 	sw	dmav1_t1,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe_x_dmav2:
 	beqz	dmav2_t2,	.selidne
-	lw	dmav2_t2,	0x04C(dma_cur_a2)
-	bexti	t3,	dmav2_t2,	26	// BUSY
+	lw	t3,	0x04C(dma_cur_a2)
+	bexti	t3,	t3,	26	// BUSY
 	// | .i la .varik. cu jinvi le du'u la'oi .L9qSRxpJ. mapti
 	mul	dmav2_t2,	dmav2_t2,	t3
 	/* DROP t3 */
