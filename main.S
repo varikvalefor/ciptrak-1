@@ -464,6 +464,7 @@ main_lupe_dma_bank_reset_lupe:
 	lw	dmav2_t2,	4(dmaBank_j_a0)
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
+	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
 	beqz	dmav1_t1,	main_lupe_dma_bank_reset_lupe_x_dmav2
 	lw	dmav1_t1,	0x00C(dma_cur_a2)
 	bexti	t3,	dmav1_t1,	26	// BUSY
