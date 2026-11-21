@@ -461,7 +461,7 @@ main_lupe_dma_bank_reset:
 
 	lw	dmav2_t2,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe:
-	mv	dmav0_t0,	dmav2_t2
+	mv	dmav0_t0,	dmav1_t1
 	lw	dmav1_t1,	4(dmaBank_j_a0)
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
