@@ -455,11 +455,11 @@ main_lupe_dma_bank_reset:
 	#define	dma_cur_a2	a2
 	#define	dmav1_t1	t1
 	#define	dmav2_t2	t2
-	li	max_a1,	8
+	li	max_a1,	16
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
 main_lupe_dma_bank_reset_lupe:
-	addi	max_a1,	max_a1,	-1
+	addi	max_a1,	max_a1,	-2
 	lw	dmav1_t1,	0(dmaBank_j_a0)
 	lw	dmav2_t2,	4(dmaBank_j_a0)
 
