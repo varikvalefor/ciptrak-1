@@ -453,24 +453,24 @@ main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_a1	a1
 	#define	dma_cur_a2	a2
-	#define	dmav1_t1	t1
+	#define	dmav0_t0	t0
 	#define	dmav2_t2	t2
 	li	max_a1,	(DMA_BASE + (0x40 * 15) + 0x00C)
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
 main_lupe_dma_bank_reset_lupe:
-	lw	dmav1_t1,	0(dmaBank_j_a0)
+	lw	dmav0_t0,	0(dmaBank_j_a0)
 	lw	dmav2_t2,	4(dmaBank_j_a0)
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
-	beqz	dmav1_t1,	main_lupe_dma_bank_reset_lupe_x_dmav2
+	beqz	dmav0_t0,	main_lupe_dma_bank_reset_lupe_x_dmav2
 	lw	t3,	0x00C(dma_cur_a2)
 	bexti	t3,	t3,	26	// BUSY
 	// | L9qSRxpJ.  .i la .varik. cu jinvi le du'u la'oi .mul. jai filri'a lo nu rivbi tu'a la'oi .bnez. noi vo'a jinvi le du'u ke'a na mapti lo su'u zilsutra panra
-	mul	dmav1_t1,	dmav1_t1,	t3
+	mul	dmav0_t0,	dmav0_t0,	t3
 	/* DROP t3 */
-	sw	dmav1_t1,	0(dmaBank_j_a0)
+	sw	dmav0_t0,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe_x_dmav2:
 	beqz	dmav2_t2,	.selidne
 	lw	t3,	0x04C(dma_cur_a2)
@@ -488,7 +488,7 @@ main_lupe_dma_bank_reset_lupe_selidne:
 	#undef	dmaBank_j_a0
 	#undef	max_a1
 	#undef	dma_cur_a2
-	#undef	dmav1_t1
+	#undef	dmav0_t0
 	#undef	dmav2_t2
 
 	// | .i denpa fi tu'a la'oi .XOSC.
