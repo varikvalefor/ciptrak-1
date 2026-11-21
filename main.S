@@ -454,7 +454,7 @@ main_lupe_dma_bank_reset:
 	#define	max_a1	a1
 	#define	dma_cur_a2	a2
 	#define	dmav0_t0	t0
-	#define	dmav2_t2	t2
+	#define	dmav1_t1	t1
 	li	max_a1,	(DMA_BASE + (0x40 * 15) + 0x00C)
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
@@ -462,7 +462,7 @@ main_lupe_dma_bank_reset:
 	lw	dmav2_t2,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe:
 	mv	dmav0_t0,	dmav2_t2
-	lw	dmav2_t2,	4(dmaBank_j_a0)
+	lw	dmav1_t1,	4(dmaBank_j_a0)
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
@@ -483,7 +483,7 @@ main_lupe_dma_bank_reset_lupe_selidne:
 	#undef	max_a1
 	#undef	dma_cur_a2
 	#undef	dmav0_t0
-	#undef	dmav2_t2
+	#undef	dmav1_t1
 
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
