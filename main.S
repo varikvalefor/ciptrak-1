@@ -467,11 +467,11 @@ main_lupe_dma_bank_reset_lupe:
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
 	beqz	dmav0_t0,	main_lupe_dma_bank_reset_lupe_selidne
-	lw	t3,	0x00C(dma_cur_a2)
-	bexti	t3,	t3,	26	// BUSY
+	lw	t2,	0x00C(dma_cur_a2)
+	bexti	t2,	t2,	26	// BUSY
 	// | L9qSRxpJ.  .i la .varik. cu jinvi le du'u la'oi .mul. jai filri'a lo nu rivbi tu'a la'oi .bnez. noi vo'a jinvi le du'u ke'a na mapti lo su'u zilsutra panra
-	mul	dmav0_t0,	dmav0_t0,	t3
-	/* DROP t3 */
+	mul	dmav0_t0,	dmav0_t0,	t2
+	/* DROP t2 */
 	sw	dmav0_t0,	0(dmaBank_j_a0)
 
 main_lupe_dma_bank_reset_lupe_selidne:
