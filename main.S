@@ -480,6 +480,7 @@ main_lupe_dma_bank_reset_lupe_x_dmav2:
 	bexti	tmp_t2,	tmp_t2,	26	// BUSY
 	// | .i la .varik. cu jinvi le du'u la'oi .L9qSRxpJ. mapti
 	mul	dmav1_t1,	dmav1_t1,	tmp_t2
+	#undef	tmp_t2
 	/* DROP t2 */
 	sw	dmav1_t1,	4(dmaBank_j_a0)
 
@@ -493,7 +494,6 @@ main_lupe_dma_bank_reset_lupe_selidne:
 	#undef	dma_cur_a2
 	#undef	dmav0_t0
 	#undef	dmav1_t1
-	#undef	tmp_t2
 
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
