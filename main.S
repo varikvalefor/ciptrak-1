@@ -456,13 +456,14 @@ main_lupe_dma_bank_reset:
 	#define	dma_cur_a2	a2
 	#define	dmav0_t0	t0
 	#define	dmav1_t1	t1
-	#define	tmp_t2	t2
 	li	max_a1,	(DMA_BASE + (0x40 * 14) + 0x00C)
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
 main_lupe_dma_bank_reset_lupe:
 	lw	dmav0_t0,	0(dmaBank_j_a0)
 	lw	dmav1_t1,	4(dmaBank_j_a0)
+
+	#define	tmp_t2	t2
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
