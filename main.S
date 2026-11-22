@@ -484,6 +484,8 @@ main_lupe_dma_bank_reset_lupe_x_dmav2:
 	/* DROP t2 */
 	sw	dmav1_t1,	4(dmaBank_j_a0)
 
+	#undef	dmav0_t0
+
 main_lupe_dma_bank_reset_lupe_selidne:
 	addi	dmaBank_j_a0,	dmaBank_j_a0,	8
 	addi	dma_cur_a2,	dma_cur_a2,	0x80
@@ -492,7 +494,6 @@ main_lupe_dma_bank_reset_lupe_selidne:
 	#undef	dmaBank_j_a0
 	#undef	max_a1
 	#undef	dma_cur_a2
-	#undef	dmav0_t0
 	#undef	dmav1_t1
 
 	// | .i denpa fi tu'a la'oi .XOSC.
