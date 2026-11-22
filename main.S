@@ -459,10 +459,8 @@ main_lupe_dma_bank_reset:
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
 
-	lw	dmav1_t1,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe:
-	mv	dmav0_t0,	dmav1_t1
-	lw	dmav1_t1,	4(dmaBank_j_a0)
+	lw	dmav0_t0,	0(dmaBank_j_a0)
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
