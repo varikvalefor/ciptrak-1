@@ -454,7 +454,6 @@ main_lupe_dma_bank_reset:
 	#define	dmaBank_j_a0	a0
 	#define	max_a1	a1
 	#define	dma_cur_a2	a2
-	#define	dmav0_t0	t0
 	li	max_a1,	(DMA_BASE + (0x40 * 15) + 0x00C)
 	la	dmaBank_j_a0,	dmaBank
 	li	dma_cur_a2,	DMA_BASE
