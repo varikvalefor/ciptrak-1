@@ -462,7 +462,6 @@ main_lupe_dma_bank_reset:
 
 main_lupe_dma_bank_reset_lupe:
 	#define	dmav0_t0	t0
-	#define	dmav1_t1	t1
 	lw	dmav0_t0,	0(dmaBank_j_a0)
 
 	#define	tmp_t2	t2
@@ -478,7 +477,6 @@ main_lupe_dma_bank_reset_lupe:
 	sw	dmav0_t0,	0(dmaBank_j_a0)
 
 	#undef	dmav0_t0
-	#undef	dmav1_t1
 
 main_lupe_dma_bank_reset_lupe_selidne:
 	addi	dmaBank_j_a0,	dmaBank_j_a0,	4
