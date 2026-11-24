@@ -856,8 +856,7 @@ zgitci_frob_c000_mv:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	.frob
-	ret
+	beqz	t0,	.fanmo
 .frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
