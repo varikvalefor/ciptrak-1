@@ -191,9 +191,9 @@ main_init_gpio:
 main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
-	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	li	t0,	PWM_BASE
 	li	t1,	(1<<4) - 1
-	sw	t1,	(t0)
+	sw	t1,	PWM_EN_OFFSET(t0)
 
 	/* DROP [as][0-7] t[0-6] */
 
