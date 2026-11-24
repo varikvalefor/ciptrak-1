@@ -417,9 +417,9 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
-	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
+	li	t0,	XOSC_BASE
 main_lupe_reset_denpa_lupe:
-	lhu	t1,	0(t0)
+	lhu	t1,	XOSC_COUNT_OFFSET(t0)
 	bnez	t1,	main_lupe_reset_denpa_lupe
 main_lupe_reset_denpa_barda:
 	lhu	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
