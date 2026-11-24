@@ -638,7 +638,6 @@ zgitci_frob_check_2:
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
 	sw	zts_a5,	(zts_sance_idx_t2)
-	ret
 zgitci_frob_check_2_fanmo:
 	ret
 /*
