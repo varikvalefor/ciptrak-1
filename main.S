@@ -142,11 +142,11 @@ main_init_xosc:
 
 	/* DROP t1 */
 
-	#define	resets_t0	t0
+	#define	resetsClr_t0	t0
 
 .cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
-	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
+	li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
@@ -158,13 +158,16 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	// li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
+	// li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
 	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(resets_t0)
+	sw	t1,	(resetsClr_t0)
+	#undef	resetsClr_t0
+
+	/* DROP t0 */
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	#define	resets_t0	t0
-	li      t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	li      resets_t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
 	lw	t2,	0(resets_t0)
 	and	t2,	t2,	t1
