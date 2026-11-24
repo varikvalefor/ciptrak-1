@@ -206,8 +206,8 @@ main_lupe_pre:
 main_lupe:
 main_lupe_xosc_counter:
 	lhu	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
-	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
-	sh	t1,	(t0)	// 15:0; ds 561
+	li	t0,	XOSC_BASE
+	sh	t1,	XOSC_COUNT_OFFSET(t0)	// 15:0; ds 561
 
 main_lupe_reset_temci:
 	#define	temci_t0	t0
