@@ -639,7 +639,6 @@ zgitci_frob_check_2:
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
 	sw	zts_a5,	(zts_sance_idx_t2)
-	ret
 zgitci_frob_check_2_fanmo:
 	ret
 /*
@@ -849,8 +848,7 @@ zgitci_frob_c000_mv:
 
 	/* DROP t[345] */
 
-	beqz	ctr_t2,	.cont
-	ret
+	bnez	ctr_t2,	.fanmo
 .cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
@@ -859,8 +857,7 @@ zgitci_frob_c000_mv:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	.frob
-	ret
+	beqz	t0,	.fanmo
 .frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
@@ -910,7 +907,7 @@ zgitci_frob_c000_mv:
 
 	// lw	ra,	0(sp)	// mv NdICeQJh
 	addi	sp,	sp,	8
-
+.fanmo:
 	ret
 
 /*
@@ -1549,8 +1546,7 @@ vrici_frob:
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	(1 << SIVNI_A5_KLESI_S) - 1
 	li	t1,	SIVNI_NILZILCMI
-	ble	klesi_t0,	t1,	vrici_frob_dispatch_pre
-	ret
+	bgt	klesi_t0,	t1,	vrici_frob_dispatch_pre	// fanmo; ret
 
 	#undef	SIVNI_NILZILCMI
 
