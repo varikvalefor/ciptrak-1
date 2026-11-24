@@ -456,6 +456,7 @@ zgitci_frob:
 	c.j	zgitci_frob_sw
 	c.j	zgitci_frob_sutcmaci
 	c.j	zgitci_frob_handoff
+	c.j	zgitci_frob_dma_sync
 	.option norvc
 	nop	// bixygau2
 	.option rvc
@@ -1197,11 +1198,6 @@ zgitci_frob_sw_post:
  *   TODO: .i ma mapti tu'a lo lidne je datni
  */
 zgitci_frob_sutcmaci:
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_handoff
-
-	/* DROP [at]0 */
-
 	#define	SIVNI_A1_SECTAIPE_BIT	0
 	#define	SIVNI_A1_SECTAIPE_S	(4 * 3)
 	#define	SIVNI_A3_TEMUVDU_BIT	0
@@ -1390,9 +1386,6 @@ zgitci_frob_sutcmaci:
  *
  */
 zgitci_frob_handoff:
-	addi	t0,	t0,	2
-	bne	t0,	a0,	zgitci_frob_dma_sync
-
 	addi	sp,	sp,	-4
 	sw	ra,	0(sp)
 
@@ -1408,8 +1401,6 @@ zgitci_frob_handoff:
  * .i ku'i la .varik. cu jinvi le du'u jitfa fa le du'u ko'a mapti lo ro me'oi .bit. pe lo me'oi .DMA. minji
  * .i le re ze moi be lo mu'oi zoi. DMA_CHx_TRANS_COUNT .zoi. cu mupli le ka la .varik. cu jinvi le du'u na ko'a jai rinka tu'a ce'u
  *
- * 0xDEAF0006
- *
  * [judri co tcidu]
  *
  * [judri co rejgau pe'a]
@@ -1417,11 +1408,6 @@ zgitci_frob_handoff:
  * [trans_count: 0xXXXXXX][dma_idx: 0xX][data_size: 0bXX][trcnt_mode: 0bXX]
  */
 zgitci_frob_dma_sync:
-	addi	t0,	t0,	1
-	bne	t0,	a0,	zgitci_frob_nope
-
-	/* DROP t0 a0 */
-
 	#define	SIVNI_A3_TRCNT_MODE_BIT	0
 	#define	SIVNI_A3_TRCNT_MODE_S	2
 	#define	SIVNI_A3_DATA_SIZE_BIT	(SIVNI_A3_TRCNT_MODE_BIT + SIVNI_A3_TRCNT_MODE_S)
