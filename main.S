@@ -165,7 +165,7 @@ main_init_periph:
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	#define	resets_t0	t0
-	li      t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	li      resets_t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
 	lw	t2,	0(resets_t0)
 	and	t2,	t2,	t1
