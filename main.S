@@ -1079,9 +1079,9 @@ zgitci_frob_deaf_bixygau:
 
 	sw	a2,	0(judri0_t0)
 	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
-	beqz	t1,	.fanmo
+	beqz	t1,	zgitci_frob_deaf_bixygau_fanmo
 	sw	a3,	4(judri0_t0)
-.fanmo:
+zgitci_frob_deaf_bixygau_fanmo:
 	ret
 
 /*
