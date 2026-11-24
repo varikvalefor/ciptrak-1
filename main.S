@@ -163,6 +163,8 @@ main_init_periph:
 	sw	t1,	(resetsClr_t0)
 	#undef	resetsClr_t0
 
+	/* DROP t0 */
+
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	#define	resets_t0	t0
 	li      resets_t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
