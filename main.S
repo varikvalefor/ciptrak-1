@@ -847,8 +847,7 @@ zgitci_frob_c000_mv:
 
 	/* DROP t[345] */
 
-	beqz	ctr_t2,	.cont
-	ret
+	bnez	ctr_t2,	.fanmo
 .cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
@@ -908,7 +907,7 @@ zgitci_frob_c000_mv:
 
 	// lw	ra,	0(sp)	// mv NdICeQJh
 	addi	sp,	sp,	8
-
+.fanmo:
 	ret
 
 /*
