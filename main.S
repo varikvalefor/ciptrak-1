@@ -146,7 +146,7 @@ main_init_xosc:
 
 .cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
-	li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
+	li	resetsClr_t0,	RESETS_BASE + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
@@ -162,7 +162,7 @@ main_init_periph:
 	#define	resetBits_t1	t1
 	// li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
 	li	resetBits_t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	resetBits_t1,	(resetsClr_t0)
+	sw	resetBits_t1,	RESETS_RESET_OFFSET(resetsClr_t0)
 	#undef	resetsClr_t0
 
 	/* DROP t0 */
