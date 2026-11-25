@@ -127,9 +127,9 @@ main_init:
 main_init_oe:
 	// .i curmi tu'a lo dikca
 	// .i la .varik. cu morji jinvi le du'u mapti lo vo me'oi .PWM. minji
-	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
+	li	t0,	SIO_BASE
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
-	sw	t1,	(t0)
+	sw	t1,	GPIO_OE_SET_OFFSET(t0)
 
 	/* DROP t[01] */
 
