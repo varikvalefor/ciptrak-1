@@ -1039,8 +1039,8 @@ zgitci_frob_deaf_xosc:
 	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
 	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
 	BFEXTR(t1, a2, SIVNI_A2_ST_BIT, SIVNI_A2_ST_S)
-	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
-	sw	t1,	(t0)
+	li	t0,	XOSC_BASE
+	sw	t1,	XOSC_CTRL_OFFSET(t0)
 zgitci_frob_deaf_xosc_fanmo:
 	ret
 
