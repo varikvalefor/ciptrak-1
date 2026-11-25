@@ -158,9 +158,11 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
+
+	#define	resetBits_t1	t1
 	// li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(resetsClr_t0)
+	li	resetBits_t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
+	sw	resetBits_t1,	(resetsClr_t0)
 	#undef	resetsClr_t0
 
 	/* DROP t0 */
@@ -170,9 +172,10 @@ main_init_periph:
 	li      resets_t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
 .denpa:
 	lw	t2,	0(resets_t0)
-	and	t2,	t2,	t1
-	bne	t2,	t1,	.denpa
+	and	t2,	t2,	resetBits_t1
+	bne	t2,	resetBits_t1,	.denpa
 	#undef	resets_t0
+	#undef	resetBits_t1
 
 	/* DROP t[0-2] */
 
