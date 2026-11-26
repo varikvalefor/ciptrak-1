@@ -476,7 +476,7 @@ main_lupe_dma_bank_reset_lupe:
 	#define	tmp_t2	t2	// TODO: .i fegli la .varik.  .i xu frili cumki fa lo nu muvgau pe'a
 
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
-	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e
+	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e... kei je lo du'u xu kau frili cumki fa lo nu lo su'o co'e cu se lidne tu'a la'oi .lw. ri'a lo su'u zenba pe'a fi le ka ce'u jai zilsutra
 	beqz	dmav0_t0,	main_lupe_dma_bank_reset_lupe_x_dmav2
 	lw	tmp_t2,	0x00C(dma_cur_a2)
 	bexti	tmp_t2,	tmp_t2,	26	// BUSY
