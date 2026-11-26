@@ -489,7 +489,7 @@ main_lupe_dma_bank_reset_lupe:
 main_lupe_dma_bank_reset_lupe_selidne:
 	addi	dmaBank_j_a0,	dmaBank_j_a0,	4
 	addi	dma_cur_a2,	dma_cur_a2,	0x40
-	bne	dma_cur_a2,	max_a1,	main_lupe_dma_bank_reset_lupe
+	blt	dma_cur_a2,	max_a1,	main_lupe_dma_bank_reset_lupe
 
 	#undef	dmaBank_j_a0
 	#undef	max_a1
