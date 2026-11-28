@@ -1579,7 +1579,7 @@ vrici_frob_dispatch:
 	c.j	vrici_frob_denpaV
 	c.j	vrici_frob_denpaWfi
 	c.j	vrici_frob_sio
-	c.j	vrici_frob_sctrl
+	c.j	vrici_frob_fnset
 vrici_frob_denpa:
 	#define	denpa_j_t0	t0
 	// se morji: CUR_DENPA_INST(x)	4 * (CUR_DENPA_INST_OFFSET + x)
@@ -1723,7 +1723,7 @@ vrici_frob_sio_post_init:
 
 	ret
 /* [0xXX][?: 0xXXX 0bXX][fn: 0xX 0bX][pin: 0xX 0bX]
-vrici_frob_sctrl:
+vrici_frob_fnset:
 	#define	SIVNI_A5_PIN_BIT	0
 	#define	SIVNI_A5_PIN_S	(1 + 4)
 	#define	SIVNI_A5_FN_BIT	(SIVNI_A5_PIN_BIT + SIVNI_A5_PIN_S)
