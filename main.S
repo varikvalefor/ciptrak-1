@@ -1743,6 +1743,6 @@ vrici_frob_fnset:
 	ret
 
 	#undef ctrl_j_t0
-	#undef	SIVNI_A5_FN_S	(1 + 4)
+	#undef	SIVNI_A5_FN_S
 
 #undef	zgitci_a4
