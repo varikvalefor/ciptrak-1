@@ -1744,5 +1744,6 @@ vrici_frob_fnset:
 
 	#undef ctrl_j_t0
 	#undef	SIVNI_A5_FN_S
+	#undef	SIVNI_A5_FN_BIT
 
 #undef	zgitci_a4
