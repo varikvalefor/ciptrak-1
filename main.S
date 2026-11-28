@@ -1746,5 +1746,6 @@ vrici_frob_fnset:
 	#undef	SIVNI_A5_FN_S
 	#undef	SIVNI_A5_FN_BIT
 	#undef	SIVNI_A5_PIN_S
+	#undef	SIVNI_A5_PIN_BIT
 
 #undef	zgitci_a4
