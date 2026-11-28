@@ -127,9 +127,9 @@ main_init:
 main_init_oe:
 	// .i curmi tu'a lo dikca
 	// .i la .varik. cu morji jinvi le du'u mapti lo vo me'oi .PWM. minji
-	li	t0,	SIO_BASE + GPIO_OE_SET_OFFSET
+	li	t0,	SIO_BASE
 	li	t1,	(1<<0) | (1<<2) | (1<<4) | (1<<6)
-	sw	t1,	(t0)
+	sw	t1,	GPIO_OE_SET_OFFSET(t0)
 
 	/* DROP t[01] */
 
@@ -142,11 +142,11 @@ main_init_xosc:
 
 	/* DROP t1 */
 
-	#define	resets_t0	t0
+	#define	resetsClr_t0	t0
 
 .cipra_lupe:
 	lw	t1,	XOSC_STATUS_OFFSET(xosc_t2)
-	li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
+	li	resetsClr_t0,	RESETS_BASE + REG_ALIAS_CLR_BITS	// ObBNIcCd.  lw opt; main_init_periph
 	bexti	t1,	t1,	XOSC_STATUS_ENABLED_BIT
 	beqz	t1,	.cipra_lupe
 
@@ -158,18 +158,24 @@ main_init_periph:
 	/* ni'o jitfa fa le du'u sarcu fa lo nu pilno
 	 * .i ku'i la .varik. cu jinvi le du'u lo nu me'oi .reset. va'o lo nu djuno lo du'u pilno
 	 * cu zmadu fi le ka ce'u jai zilmasno */
-	// li	resets_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
-	li	t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
-	sw	t1,	(resets_t0)
+
+	#define	resetBits_t1	t1
+	// li	resetsClr_t0,	RESETS_BASE + RESETS_RESET_OFFSET + REG_ALIAS_CLR_BITS	// mv ObBNIcCd
+	li	resetBits_t1,	(1<<RESETS_SHA256_BIT) | (1<<RESETS_DMA_BIT) | (1<<RESETS_PWM_BIT) | (1<<RESETS_PADS_BANK0_BIT) | (1<<RESETS_IO_BANK0_BIT)
+	sw	resetBits_t1,	RESETS_RESET_OFFSET(resetsClr_t0)
+	#undef	resetsClr_t0
+
+	/* DROP t0 */
 
 	/* TODO: .i xu sarcu fa lo nu denpa  .i jinvi le du'u barda fa lo pu'u skicu fi le me'oi .PWM. minji */
 	#define	resets_t0	t0
-	li      t0,	RESETS_BASE + RESETS_RESET_DONE_OFFSET
+	li      resets_t0,	RESETS_BASE
 .denpa:
-	lw	t2,	0(resets_t0)
-	and	t2,	t2,	t1
-	bne	t2,	t1,	.denpa
+	lw	t2,	RESETS_RESET_DONE_OFFSET(resets_t0)
+	and	t2,	t2,	resetBits_t1
+	bne	t2,	resetBits_t1,	.denpa
 	#undef	resets_t0
+	#undef	resetBits_t1
 
 	/* DROP t[0-2] */
 
@@ -177,11 +183,11 @@ main_init_gpio:
 	#define	gpio_max_t2	t2
 	#define	gpio_cur_j_t0	t0
 	li	t1,	1 << PADS_BANK0_ISO_BIT
-	li	gpio_cur_j_t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS) - 4
-	addi	gpio_max_t2,	t0,	4 * 32
+	li	gpio_cur_j_t0,	(PADS_BANK0_BASE + PADS_BANK0_GPIOx_OFFSET(0) + REG_ALIAS_CLR_BITS)
+	addi	gpio_max_t2,	t0,	4 * 32 - 4
 .lupe:
-	addi	gpio_cur_j_t0,	gpio_cur_j_t0,	4
 	sw	t1,	0(gpio_cur_j_t0)
+	addi	gpio_cur_j_t0,	gpio_cur_j_t0,	4
 	blt	gpio_cur_j_t0,	gpio_max_t2,	.lupe
 	#undef	gpio_max_t2
 	#undef	gpio_cur_j_t0
@@ -191,9 +197,9 @@ main_init_gpio:
 main_init_pwm_en:
 	// | ni'o xu dukse
 	// .i kanpe tu'a lo me'oi .PWM. minji  .i ku'i na jinvi le du'u ba'e sarcu fa lo nu pilno ro lo vo me'oi .PWM. co'e
-	li	t0,	PWM_BASE + PWM_EN_OFFSET
+	li	t0,	PWM_BASE
 	li	t1,	(1<<4) - 1
-	sw	t1,	(t0)
+	sw	t1,	PWM_EN_OFFSET(t0)
 
 	/* DROP [as][0-7] t[0-6] */
 
@@ -203,8 +209,8 @@ main_lupe_pre:
 main_lupe:
 main_lupe_xosc_counter:
 	lhu	t1,	CUR_XOSC_SNIDU_OFFSET(vrc_s0)
-	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
-	sh	t1,	(t0)	// 15:0; ds 561
+	li	t0,	XOSC_BASE
+	sh	t1,	XOSC_COUNT_OFFSET(t0)	// 15:0; ds 561
 
 main_lupe_reset_temci:
 	#define	temci_t0	t0
@@ -414,9 +420,9 @@ main_lupe_reset_denpa_cumki_je_ke_wfi_interlude:
 
 	// | .i denpa fi tu'a la'oi .XOSC.
 main_lupe_reset_denpa_prelupe:
-	li	t0,	(XOSC_BASE + XOSC_COUNT_OFFSET)
+	li	t0,	XOSC_BASE
 main_lupe_reset_denpa_lupe:
-	lhu	t1,	0(t0)
+	lhu	t1,	XOSC_COUNT_OFFSET(t0)
 	bnez	t1,	main_lupe_reset_denpa_lupe
 main_lupe_reset_denpa_barda:
 	lhu	t0,	(2 + CUR_XOSC_SNIDU_OFFSET)(vrc_s0)
@@ -638,7 +644,6 @@ zgitci_frob_check_2:
 	addi	zts_a5,	zts_a5,	1
 	mul	zts_a5,	zts_a5,	t1 // commit f51350400945c75f36d95b19ed64b40ab9830d5b
 	sw	zts_a5,	(zts_sance_idx_t2)
-	ret
 zgitci_frob_check_2_fanmo:
 	ret
 /*
@@ -848,8 +853,7 @@ zgitci_frob_c000_mv:
 
 	/* DROP t[345] */
 
-	beqz	ctr_t2,	.cont
-	ret
+	bnez	ctr_t2,	.fanmo
 .cont:
 	sw	sezvati_a2,	(4 * CUR_PATN_SEZVATI_OFFSET)(szx_j_a5)
 	sw	patn_a1,	(4 * CUR_PATN_JUDRI_OFFSET)(szx_j_a5)
@@ -858,8 +862,7 @@ zgitci_frob_c000_mv:
 
 	#define	SIVNI_A3_J_BIT	4 * 4
 	bexti	t0,	a3,	SIVNI_A3_J_BIT
-	bnez	t0,	.frob
-	ret
+	beqz	t0,	.fanmo
 .frob:
 	// If my calculations are correct, when this baby hits 88 miles per hour, you're going to see some serious shit.
 
@@ -909,7 +912,7 @@ zgitci_frob_c000_mv:
 
 	// lw	ra,	0(sp)	// mv NdICeQJh
 	addi	sp,	sp,	8
-
+.fanmo:
 	ret
 
 /*
@@ -1036,8 +1039,8 @@ zgitci_frob_deaf_xosc:
 	// metfo: #define	SIVNI_A2_ST_MASK	0x00000FFF
 	//        andi	t1,	a2,	SIVNI_A2_ST_MASK
 	BFEXTR(t1, a2, SIVNI_A2_ST_BIT, SIVNI_A2_ST_S)
-	li	t0,	(XOSC_BASE + XOSC_CTRL_OFFSET)
-	sw	t1,	(t0)
+	li	t0,	XOSC_BASE
+	sw	t1,	XOSC_CTRL_OFFSET(t0)
 zgitci_frob_deaf_xosc_fanmo:
 	ret
 
@@ -1079,9 +1082,9 @@ zgitci_frob_deaf_bixygau:
 
 	sw	a2,	0(judri0_t0)
 	bexti	t1,	a1,	A1_SIVNI_REMOI_BIT
-	beqz	t1,	.fanmo
+	beqz	t1,	zgitci_frob_deaf_bixygau_fanmo
 	sw	a3,	4(judri0_t0)
-.fanmo:
+zgitci_frob_deaf_bixygau_fanmo:
 	ret
 
 /*
@@ -1548,8 +1551,7 @@ vrici_frob:
 	#define	klesi_t0	t0
 	andi	klesi_t0,	a5,	(1 << SIVNI_A5_KLESI_S) - 1
 	li	t1,	SIVNI_NILZILCMI
-	ble	klesi_t0,	t1,	vrici_frob_dispatch_pre
-	ret
+	bgt	klesi_t0,	t1,	vrici_frob_dispatch_pre	// fanmo; ret
 
 	#undef	SIVNI_NILZILCMI
 
