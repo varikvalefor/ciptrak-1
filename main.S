@@ -1738,7 +1738,6 @@ vrici_frob_fnset:
 	#undef	pin_t1
 
 	BFEXTR(t1, a5, SIVNI_A5_FN_BIT, SIVNI_A5_FN_S)
-
 	sw	t1,	(ctrl_j_t0)
 
 	ret
