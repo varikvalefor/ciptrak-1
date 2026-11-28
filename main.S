@@ -478,7 +478,7 @@ main_lupe_dma_bank_reset_lupe:
 	// se morji:	DMA_CHx_CTRL_TRIG_OFFSET(x)	0x00C + 0x40 * x
 	// | .i la .varik. cu kucli lo du'u xu kau frili cumki fa lo nu basygau pe'a fi le me'oi .beqz. co'e... kei je lo du'u xu kau frili cumki fa lo nu lo su'o co'e cu se lidne tu'a la'oi .lw. ri'a lo su'u zenba pe'a fi le ka ce'u jai zilsutra
 	beqz	dmav0_t0,	main_lupe_dma_bank_reset_lupe_x_dmav2
-	lw	tmp_t2,	0x00C(dma_cur_a2)
+	lw	tmp_t2,	0x00C(dma_cur_a2)	// CTRL_TRIG
 	bexti	tmp_t2,	tmp_t2,	26	// BUSY
 	// | L9qSRxpJ.  .i la .varik. cu jinvi le du'u la'oi .mul. jai filri'a lo nu rivbi tu'a la'oi .bnez. noi vo'a jinvi le du'u ke'a na mapti lo su'u zilsutra panra
 	mul	dmav0_t0,	dmav0_t0,	tmp_t2
@@ -486,7 +486,7 @@ main_lupe_dma_bank_reset_lupe:
 	sw	dmav0_t0,	0(dmaBank_j_a0)
 main_lupe_dma_bank_reset_lupe_x_dmav2:
 	beqz	dmav1_t1,	main_lupe_dma_bank_reset_lupe_selidne
-	lw	tmp_t2,	0x04C(dma_cur_a2)
+	lw	tmp_t2,	0x04C(dma_cur_a2)	// CTRL_TRIG
 	bexti	tmp_t2,	tmp_t2,	26	// BUSY
 	// | .i la .varik. cu jinvi le du'u la'oi .L9qSRxpJ. mapti
 	mul	dmav1_t1,	dmav1_t1,	tmp_t2
